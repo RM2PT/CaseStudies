@@ -1,0 +1,208 @@
+Actor Cashier {
+	UC::processSale() 
+} 
+
+
+Service ProcessSale {
+	
+	makeNewSale()
+	
+	enterItem(barcode, quantity)
+	endSale()
+
+	makeCashPayment(amount)
+	makeCardPayment(cardAccountNumber, expiryDate) 
+	
+	
+	[TempProperty]
+	currentSale : Sale
+	currentCashDesk : CashDesk
+	currentStore : Store
+	currentPaymentMethod : PaymentMethod[CASH|CARD]
+	
+ 	[WorkFlow]
+	ProcessSale 
+	
+}
+
+/* System Work Flow, Not for runing, protocol for Actor inter-active with System */
+WorkFlow ProcessSale {
+	
+	makeNewSale()
+	
+	loop (hasMoreItems) { 
+		enterItem(barcode, quantity)
+	}
+	
+	endSale()
+	
+	switch {
+		case: PaymentMethod::CASH -> makeCashPayment(amount) 
+		case: PaymentMethod::CARD -> makeCardPayment(cardAccountNumber, expiryDate) 
+	}
+	
+}
+
+Entity Store {
+	id : Integer
+	name : String
+	address : String
+	
+	[Refer]
+	cashdeskes : CashDesk*
+	productcatalogs : ProductCatalog*
+	items : Item*
+	cashiers : Cashier*
+	sales : Sale*
+	
+}
+
+Entity ProductCatalog {
+	name : String
+}
+
+Entity CashDesk {
+	
+	id : Integer
+	
+	[Refer]
+	containedSales : Sale*
+	belongedStore : Store
+}
+
+Entity Sale {
+	
+	time : Date
+	isComplete: Boolean
+	amount : Real
+	isReadytoPay : Boolean
+	
+    [Refer] 
+    store : Store
+    belongedCashDesk : CashDesk 
+    containedSalesLine : SalesLineItem*
+}
+
+Entity Cashier {
+	id : Integer
+	name : String
+	
+	[Refer]
+	store : Store
+}
+
+
+Entity SalesLineItem {
+	
+	quantity : Integer
+	subamount : Real
+	
+	[Refer]
+	belongedSale : Sale
+	belongedItem : Item
+}
+
+Entity Item {
+	barcode : Integer
+	description : String
+	price : Real
+	
+	[Refer]
+	catalog : ProductCatalog
+}
+
+Entity Payment {
+	
+	amountTendered : Real
+	
+	[Refer]
+	sale : Sale
+}
+
+Entity CashPayment extends Payment {
+	balance : Real
+}
+
+Entity CardPayment extends Payment {
+	cardAccountNumber : Integer
+	expiryDate : Date
+}
+
+Contract makeNewSale()  {
+				
+	/* preconditions:  none */
+	precondition: true
+	
+	/* postconditions: 
+	 * A sale instance s was created (instance creation).
+	 * s was associated with the current CashDesk (association formed)
+	 * Attribute of s were initialized. (object initialization)
+	 */
+	postcondition:  let s:Sale in s.oclIsNew() and s.belongedCashDesk = currentCashDesk and currentCashDesk.containedSales->includes(s) and s.isComplete = false and currentSale = s
+}
+
+Contract enterItem(barcode : Item, quantity : Integer) {
+	
+	/* Definition: find item instance, based on barcode */
+	definition: item:Item = Item.allInstance()->any(i:Item | i.barcode = barcode)
+	
+	/* Precondition: there is a sale underway */
+	precondition: currentSale.isComplete = false
+	
+	/**
+	 * A salesLineItem instance sli was created (instance creation).
+	 * sli was associated with the current Sale (association formed).
+	 * sli.quantity became quantity (attribute modification).
+	 * sli was associated with a Item (association formed).
+	 * subamount became item.price * quantity ?
+	 */
+	 postcondition : let sli:SalesLineItem in sli.oclIsNew() and sli.belongedSale = currentSale and currentSale.containedSalesLine->includes(sli) and sli.quantity = quantity and sli.belongedItem = item and subamount = item.price * quantity
+}
+
+
+Contract endSale() {
+	
+	/* Precondition: there is a sale underway and all items have been entered. */
+	precondition: currentSale.isComplete = false and isReadytoPay = false
+	
+	/**
+	 * Postcondition: 
+	 */
+	postcondition: currentSale.containedSalesLine->forAll(sl : SalesLineItem | currentSale.amount = currentSale.amount@pre + sl.subamount) and isReadytoPay = true
+}
+
+Contract makeCashPayment(amount : Real) {
+	
+	/* Precondition: There is a sale underway, all items have been entered, and tendered amount is greater than or equal to the amount of current Sale*/
+	precondition: currentSale.isComplete = false and  isReadytoPay = true and amount >= currentSale.amount 
+	
+	/**
+	 * A CashPayment instance cp was created (instance creation).
+	 * cp.amountTendered became amount (attribute modification).
+	 * cp was associated with the current Sale (association formed).
+	 * The current Sale was associated with the Store (association formed).
+	 * Sale.isComplete became true (attribute modification)
+	 * Sale.time became now 
+	 */
+	 postcondition: let cp:CashPayment in cp.oclIsNew() and cp.amountTendered = amount and cp.balance = amout - currentSale.amount 
+	 				and cp.sale = currentSale and currentSale.payment = cp and currentSale.store = currentStore and currentStore.sales->includes(currentSale) and currentSale.isComplete = true and currentSale.time = Now
+	 
+}
+
+Contract makeCardPayment(cardAccountNumber : Integer, expiryDate : Date) {
+	
+	/* Precondition: An underway sale exists and all items have been entered. */
+	precondition:  currentSale.isComplete = false and isReadytoPay = true 
+	
+	/**
+	 * a CardPayment pmt was created
+	 * cdp was associated with the current Sale
+	 * cdp.number = cardAccountNumber, cdp.expiryDate = expiryDate
+	 * invoke third party card payment service
+	 * sale was associated with the Store as a completed sale
+	 * Sale.time became now 
+	 */
+	 postcondition: let cdp:CardPayment in cp.oclIsNew() and cdp.number = cardAccountNumber and cdp.expiryDate = expiryDate and thirdPartyCardPaymentService(cdp, expiryDate, currentSale) = true 
+	 				and cdp.sale = currentSale and currentSale.payment = cdp and currentSale.store = currentStore and currentStore.sales->includes(currentSale) and currentSale.isComplete = true and currentSale.time = Now
+	 
+}

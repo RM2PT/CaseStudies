@@ -1,0 +1,629 @@
+ /* Actors and Use Cases */
+Actor User {
+	          
+	UC::searchBookByTitle() 
+	UC::searchBookByAuthor() 
+	UC::searchBookByISBN()
+	UC::searchBookBySubject()
+	UC::searchBookByKeywords()        
+	 
+	UC::listBorrowHistory() 
+	UC::listHodingBook()   
+	UC::listOverDueBook() 
+	UC::listReservationBook()
+	
+	UC::renewBook()       
+	UC::makeReservation()
+		
+	UC::recommendBook()
+	     
+}       
+  
+Actor Student extends User {
+	
+	UC::studentLogin()
+	UC::studentLogout() 
+	
+}
+
+Actor Faculty extends User {
+	
+	UC::FacultyLogin()
+	UC::FacultyLogout()
+
+} 
+
+Actor Librarian {
+	
+	UC::librarianLogin()
+	UC::librarianLogout()
+	
+	UC::searchBookByTitle() 
+	UC::searchBookByAuthor() 
+	UC::searchBookByISBN()
+	UC::searchBookBySubject()
+	UC::searchBookByBarCode()
+	UC::searchBookByKeywords() 
+
+	UC::payOverDueFee()
+	
+	UC::borrowBook()
+	UC::renewBook() 
+	UC::returnBook()
+	UC::listRecommendBook()
+	
+	UC::addBook()
+	UC::modifyBook()
+	UC::deleteBook()
+	
+	UC::createUser()
+	UC::deleteUser()
+	UC::queryUser()
+	UC::modifyUser()
+	
+}
+
+Actor Administrator {
+	
+	UC::AdministratorLogin()
+	UC::AdministratorLogout()
+	
+	UC::createLibrarian()
+	UC::deleteLibrarian()
+	UC::queryLibrarian()  
+	UC::modifyLibrarian()
+}
+
+Actor Timer {
+	
+	UC::checkOverDueandComputeOverDueFee()
+	UC::dueSoonNotification()
+	UC::countDownSuspensionDay()
+}
+
+Actor ThirdPartSystem {
+	UC::sendNotificationEmail()
+}
+
+/* System Controller */
+Service LibraryManagementSystem {
+
+	[Operation] 
+	//for log in and out
+	studentLogin(username, password)
+	studentLogout()
+	FacultyLogin(username, password)
+	FacultyLogout()
+	AdministratorLogin(username, password)
+	AdministratorLogout()
+	
+	//for book
+	searchBookByBarCode(barcode)
+	searchBookByTitle(title) 
+	searchBookByAuthor(authorname) 
+	searchBookByISBN(ISBNnumber)
+	searchBookByKeywords(keywords) 
+	searchBookBySubject(subject)
+
+	
+	addBook(book)
+	deleteBook(barcode)
+	recommendBook(userid, book)
+	queryBookCopy(barcode) 
+	addBookCopy(callNo, copy)
+	deleteBookCopy(barcode)
+	
+	makeReservation(uid, barcode)
+	cannelReservation(uid , barcode)
+	borrowBook(uid, barcode)
+	renewBook(uid, barcode) 
+	returnBook(barcode)
+	payOverDueFee(uid, fee, change)   
+
+	//list book
+	listBorrowHistory(userid) 
+	listHodingBook(userid) 
+	listOverDueBook(userid) 
+	listReservationBook(userid)
+	listRecommendBook(userid)
+	   
+	//regular checking
+	checkOverDueandComputeOverDueFee()
+	dueSoonNotification()
+	countDownSuspensionDay()
+	 
+	//user management
+	createUser(user)
+	deleteUser(uid)   
+	queryUser(uid) 
+	
+	createLibrarian(librarian)
+	deleteLibrarian(librarianid)
+	queryLibrarian(librarianid)
+	
+	[TempProperty]
+	
+}  
+
+Service ThridPartServices {
+	 
+	[Operation]
+	sendNotificationEmail(user)
+}
+
+/* Domain Model */
+Entity User {
+	
+	/* Basic information */
+	UserID : Integer
+	Name : String
+	Sex : Sex[M|F]
+	Password : String
+	Email : String
+	Faculty : String
+	Programme : Programme[BACHELOR|MASTER|PHD]
+	  
+	/* Library related information */
+	LoanedNumber : Integer
+	BorrowStatus : BorrowStatus[NORMAL|SUSPEND]
+	SuspensionDays : Integer
+	OverDueFee : Real
+	
+	[Refer]
+	LoanedBook : Loan*
+	ReservedBook : Reserve*
+	RecommendedBook : RecommendBook*
+	
+	[INV]
+	inv: User.allInstance()->forAll(u1, u2 | u1.UserID <> u2.UserID)
+}
+
+Entity Student extends User {
+	
+	Major : String
+	RegistrationStatus : StudentStatus[PROGRAMMING|GRADUATED]
+	
+	[INV]
+	inv: Student.allInstance()->forAll(stu | stu.LoanedNumber < 12)
+	
+}
+
+Entity Faculty extends User {
+	
+	Position : FacultyPosition[ASSISTANTPROFESSORS|ASSOCIATEPROFESSOR|PROFESSOR|CHAIRPROFESSOR]
+	Status : FacultyStatus[HASRETIRED|INPOSITION]	
+	
+	[INV]
+	inv: Student.allInstance()->forAll(stu | stu.LoanedNumber < 24)
+}
+ 
+
+Entity Book {
+	  
+	CallNo : String
+	Title : String
+	Edition : String
+	Author : String
+	Publisher : String
+	Description : String
+	
+	ISBn : Integer
+	CopyNum: Integer
+	
+	[Refer]
+	Copys : BookCopy*
+	Subject : Subject*
+	
+	[INV]
+	inv: Book.allInstance()->forAll(b1, b2 | b1.CallNo <> b2.CallNo)
+	inv: Book.allInstance()->forAll(b1, b2 | b1.ISBn <> b2.ISBn)
+}   
+
+Entity Subject {
+	
+	Name : String
+	
+	[Refer]
+	SuperSubject : Subject
+	SubSubject : Subject*
+} 
+
+Entity BookCopy {
+	
+	Barcode : Integer
+	Status : CopyStatus[AVAILABLE|INPROCESSING|LIBUSEONLY|ONHOLDSHELF|LOANED]
+	Location : String
+	isReserved : Boolean
+	
+	[Refer]
+	BookBelongs : Book
+	LoanedRecord : Loan*
+	ReservationRecord : Reserve* 
+	
+	[INV]
+	inv: BookCopy.allInstance()->forAll(c1, c2 | c1.Barcode <> c2.Barcode)
+}
+
+Entity Loan {
+	
+	LoanDate : Date
+	RenewDate : Date
+	DueDate : Date 
+	RenewedTimes : Integer
+	isReturned : Boolean  // for list loaning book and loaned book
+	ReturnDate : Date
+	OverDueFee : Real
+	
+	OverDue3Days : Boolean
+	OverDue10Days : Boolean
+	OverDue17Days : Boolean
+	OverDue31Days : Boolean
+	
+	[Refer]
+	LoanedUser : User
+	LoanedCopy : BookCopy
+	LoanLibrarian : Librarian
+	ReturnLibrarian : Librarian
+}  
+
+Entity Reserve {
+	
+	ReserveDate : Date
+	isReserveClosed : Boolean // for list all reserving book and reserved book 
+	
+	[Refer]
+	ReservedCopy : BookCopy
+	ReservedUser : User
+}
+ 
+Entity RecommendBook extends Book {
+	
+	RecommendDate : Date
+	[Refer]
+	RecommendUser : User
+} 
+
+Entity Administrator {
+	AdminID : Integer
+	UserName : String
+	Password : String
+attribute4 : String }
+
+Entity Librarian {
+	LibrarianID : Integer
+	UserName : String
+	Name : String
+	Password : String
+}    
+                           
+
+     
+/* -------------------- Contracts ----------------------*/
+/* Search book */
+Contract searchBookByBarCode(barcode : Integer) : Set(Book)  {
+	precondition: barcode.oclIsTypeOf(Integer)
+	postcondition: result = Book.allInstance()->select(book:Book | book.Copys->exists(c:BookCopy | c.Barcode = barcode))
+}       
+     
+Contract searchBookByTitle(title : String) : Set(Book) {
+	precondition: title <> ""          
+	postcondition: result = Book.allInstance()->select(book:Book | book.Title = title)
+}     
+        
+Contract searchBookByAuthor(authorname : String) : Set(Book) {
+	precondition: authorname <> ""
+	postcondition: result = Book.allInstance()->select(book:Book | book.Author = authorname)
+} 
+                     
+Contract searchBookByISBN(ISBNnumber : Integer) : Set(Book) {
+	precondition: ISBNnumber.oclIsTypeOf(Integer)
+	postcondition: result = Book.allInstance()->select(book:Book | book.ISBn = ISBNnumber)
+} 
+     
+Contract searchBookBySubject(subject : String) : Set(Book) {
+	precondition: subject.oclIsTypeOf(String)
+	postcondition: result = Book.allInstance()->select(book:Book| book.Subject->exists(s:Subject | s.Name = subject))
+}          
+   
+/* Main functions */
+Contract makeReservation(uid : Integer, barcode : Integer)  {
+	
+	definition: user:User = User.allInstance()->any(u:User | u.UserID = uid), 
+				copy:BookCopy = BookCopy.allInstance()->any(bc:BookCopy | bc.Barcode = barcode)
+			
+	precondition:  user.oclIsUndefined() = false and copy.oclIsUndefined() = false and copy.Status = CopyStatus::LOANED and copy.isReserved = false
+	
+	postcondition: let res:Reserve in res.oclIsNew() and copy.isReserved = true and res.isReserveClosed = false and res.ReservedUser = user and res.ReservedCopy = copy and user.ReservedBook->includes(res) and 
+					copy.ReservationRecord->includes(res) 
+}             
+  
+Contract cannelReservation(uid : Integer, barcode : Integer)  {
+	
+	definition: user:User = User.allInstance()->any(u:User | u.UserID = uid), 
+		 		copy:BookCopy = BookCopy.allInstance()->any(bc:BookCopy | bc.Barcode = barcode), 
+				res:Reserve = Reserve.allInstance()->any(r:Reserve | r.ReservedCopy = copy and r.ReservedUser = user)
+				
+	precondition:  user.oclIsUndefined() = false and copy.oclIsUndefined() = false and copy.Status = CopyStatus::LOANED and copy.isReserved = true and res.oclIsUndefined() = false and res.isReserveClosed = false
+	
+	postcondition:  copy.isReserved = false and res.isReserveClosed = true
+}           
+	     
+Contract borrowBook(uid : Integer, barcode: Integer)  {
+	          
+	definition: user:User = User.allInstance()->any(u:User | u.UserID = uid),           
+	            copy:BookCopy = BookCopy.allInstance()->any(bc:BookCopy | bc.Barcode = barcode),
+	            res:Reserve = Reserve.allInstance()->any(r:Reserve | r.ReservedCopy = copy and r.ReservedUser = user and r.isReserveClosed = false)	        
+	                   
+	precondition: user.oclIsUndefined() = false and copy.oclIsUndefined() = false and user.BorrowStatus = BorrowStatus::NORMAL and user.SuspensionDays = 0 and
+		  if user.oclIsTypeOf(Student) 
+		  then 
+		  		if user.Programme = Programme::BACHELOR
+		  		then 
+		  			user.LoanedNumber < 20
+		  		else
+		  			if user.Programme = Programme::MASTER
+		  			then
+		  				user.LoanedNumber < 40
+		  			else
+		  				user.LoanedNumber < 60 
+		  			endif 
+		  		endif 
+		  else 
+		  		user.LoanedNumber < 60
+		  endif
+		  and  
+		  (copy.Status = CopyStatus::AVAILABLE or (copy.Status = CopyStatus::ONHOLDSHELF and copy.isReserved = true and res.oclIsUndefined() = false and res.isReserveClosed = false))
+ 	  
+	postcondition: let loan:Loan in loan.oclIsNew() and loan.LoanedUser = user and loan.LoanedCopy = copy and loan.isReturned = false
+	    and loan.LoanDate = Today and user.LoanedNumber = user.LoanedNumber@pre + 1
+	    and user.LoanedBook->includes(loan) and copy.LoanedRecord->includes(loan) and
+		if user.oclIsTypeOf(Student)
+		then
+			loan.DueDate = Today.After(30)
+		else
+			loan.DueDate = Today.After(60)
+		endif 
+		and 
+		if  copy.Status@pre = CopyStatus::ONHOLDSHELF
+		then	
+			copy.isReserved = false and res.isReserveClosed = true 
+		endif
+		and copy.Status = CopyStatus::LOANED 
+		and loan.OverDue3Days = false and loan.OverDue10Days = false and loan.OverDue17Days = false and loan.OverDue31Days = false
+		          
+}    
+              
+Contract returnBook(barcode: Integer) {
+	
+	definition: copy:BookCopy = BookCopy.allInstance()->any(bc:BookCopy | bc.Barcode = barcode and bc.Status = CopyStatus::LOANED), 
+	            loan:Loan = Loan.allInstance()->any(l:Loan | l.LoanedCopy = copy and l.isReturned = false),
+	            loans:Set(Loan) =  Loan.allInstance()->select(l:Loan | l.LoanedUser = loan.LoanedUser and l.isReturned = false and l.DueDate.isAfter(Today)),
+	            res:Reserve = copy.ReservationRecord->any(r:Reserve | r.ReservedCopy = copy)
+	            
+	precondition: copy.oclIsUndefined() = false
+	 
+	postcondition: loan.LoanedUser.LoanedNumber = loan.LoanedUser.LoanedNumber@pre - 1 and loan.isReturned = true and loan.ReturnDate = Today and 
+				if copy.isReserved = true 
+				then
+					copy.Status =  CopyStatus::ONHOLDSHELF and sendNotificationEmail(res.ReservedUser)
+				else
+					copy.Status = CopyStatus::AVAILABLE
+				endif 
+
+		 
+}
+      
+Contract renewBook(uid: Integer, barcode: Integer)  {
+	
+	definition:  user:User = User.allInstance()->any(u:User | u.UserID = uid), 
+	 			 copy:BookCopy = BookCopy.allInstance()->any(bc:BookCopy | bc.Barcode = barcode and bc.Status = CopyStatus::LOANED),
+	 			 loan:Loan = Loan.allInstance()->any(l:Loan | l.LoanedUser = user and l.LoanedCopy = copy)
+	 			 
+	precondition: user.BorrowStatus = BorrowStatus::NORMAL and user.oclIsUndefined() = false and copy.oclIsUndefined() = false and loan.oclIsUndefined() = false and copy.isReserved = false and loan.DueDate.isAfter(Today) and loan.OverDueFee = 0 and
+		if user.oclIsTypeOf(Student)
+		then
+			loan.RenewedTimes < 3
+		else
+			loan.RenewedTimes < 6
+		endif 
+		     
+	postcondition: 	loan.RenewedTimes = loan.RenewedTimes@pre + 1 and 
+		if user.oclIsTypeOf(Student)
+		then 
+			if user.Programme = Programme::BACHELOR
+		  		then 
+		  			loan.DueDate = loan.DueDate@pre.After(20) 
+		  		else
+		  			if user.Programme = Programme::MASTER
+		  			then
+		  				loan.DueDate = loan.DueDate@pre.After(40) 
+		  			else
+		  				loan.DueDate = loan.DueDate@pre.After(60) 
+		  			endif  
+		  		endif
+		else
+			loan.DueDate = loan.DueDate@pre.After(60)
+		endif  
+}          
+        
+Contract payOverDueFee(uid: Integer, fee: Real)  {
+	  
+	 definition: user:User = User.allInstance()->any(u:User | u.UserID = uid), 
+	 			 loans:Set(Loan) = Loan.allInstance()->select(l:Loan | l.LoanedUser = user and l.DueDate.isBefore(Today) and l.isReturned = true and l.OverDueFee > 0)
+	   
+	 precondition: user.oclIsUndefined() = false and loans.notEmpty() and fee >= user.OverDueFee
+	 postcondition: user.OverDueFee = 0 and loans->forAll(l:Loan | l.OverDueFee = 0) 
+}      
+ 
+Contract dueSoonNotification()  { 
+	precondition: true   
+	postcondition: let users:Set(User) = User.allInstance()->select(user:User | user.LoanedBook->exists(loan:Loan | loan.isReturned = false and Today.After(3).isAfter(loan.DueDate))) in 
+					users->forAll(u:User | sendNotificationEmail(u))
+}       
+
+//Contract dueSoonNotification()  { 
+//	precondition: true   
+//	postcondition: let users:Set(User) = User.allInstance()->select(user:User | user.LoanedBook->exists(loan:Loan | loan.isReturned = false and Today.After(3) = loan.DueDate)) in 
+//					users->forAll(u:User | sendNotificationEmail(u))
+//}  
+              
+              
+         
+Contract checkOverDueandComputeOverDueFee() { 
+	definition: loans:Set(Loan) = Loan.allInstance()->select(loan:Loan | loan.isReturned = false and loan.DueDate.isBefore(Today)) 
+	precondition: true 
+	postcondition:  
+		loans->forAll(loan:Loan | loan.isReturned = false and
+			if Today.Before(3).isAfter(loan.DueDate) and loan.OverDue3Days = false
+			then  
+				loan.LoanedUser.BorrowStatus = BorrowStatus::SUSPEND and sendNotificationEmail(loan.LoanedUser) and loan.OverDue3Days = true
+			endif 
+			and
+			if Today.Before(10).isAfter(loan.DueDate) and loan.OverDue10Days = false
+			then
+				loan.LoanedUser.SuspensionDays = loan.LoanedUser.SuspensionDays@pre + 14  and sendNotificationEmail(loan.LoanedUser) and loan.OverDue10Days = true
+			endif
+			and
+			if Today.Before(17).isAfter(loan.DueDate) and loan.OverDue17Days = false 
+			then
+				loan.LoanedUser.SuspensionDays = loan.LoanedUser.SuspensionDays@pre + 30  and sendNotificationEmail(loan.LoanedUser) and loan.OverDue17Days = true 
+			endif
+			and
+			if Today.Before(31).isAfter(loan.DueDate) and loan.OverDue31Days = false  
+			then
+				loan.OverDueFee = 60 and sendNotificationEmail(loan.LoanedUser) and  loan.OverDue31Days = true and
+				loan.LoanedUser.OverDueFee = loan.LoanedUser.OverDueFee@pre + loan.OverDueFee 
+			endif			
+		)
+}
+ 
+Contract countDownSuspensionDay() {
+	precondition: true
+	postcondition: let users:Set(User) = User.allInstance()->select(u:User | u.SuspensionDays > 0) in
+	users->forAll(u:User | u.SuspensionDays = u.SuspensionDays@pre - 1
+	 			and   
+				if u.BorrowStatus = BorrowStatus::SUSPEND and u.OverDueFee = 0 and u.SuspensionDays = 0
+				then
+					u.BorrowStatus = BorrowStatus::NORMAL
+				endif )
+}
+
+/* List records */
+Contract listBorrowHistory(uid : Integer) : Set(Loan) {
+	definition: user:User = User.allInstance()->any(u:User | u.UserID = uid)
+	precondition: user.oclIsUndefined() = false
+	/*postcondition: result = user.LoanedBook->collect(l:Loan| l.LoanedCopy)*/
+	postcondition: result = user.LoanedBook
+}
+     
+/*Contract listHodingBook(uid : Integer) : Set(BookCopy) {
+	definition: user:User = User.allInstance()->any(u:User | u.UserID = uid), 
+				loans:Set(Loan) = user.LoanedBook->select(l:Loan | l.isReturned = false)
+	precondition: user.oclIsUndefined() = false and loans.oclIsUndefined() = false
+	postcondition: result = loans->collect(l:Loan | l.LoanedCopy)   
+}*/
+     
+Contract listHodingBook(uid : Integer) : Set(Loan) {
+	definition: user:User = User.allInstance()->any(u:User | u.UserID = uid)
+	precondition: user.oclIsUndefined() = false 
+	postcondition: result =  user.LoanedBook->select(l:Loan | l.isReturned = false)
+}      
+      
+Contract listOverDueBook(uid : Integer) : Set(BookCopy) { 
+	definition: user:User = User.allInstance()->any(u:User | u.UserID = uid), 
+				loans:Set(Loan) = user.LoanedBook->select(l:Loan | l.isReturned = false and l.OverDueFee > 0)
+	precondition: user.oclIsUndefined() = false and loans.oclIsUndefined() = false
+	postcondition: result = loans->collect(l:Loan | l.LoanedCopy) 
+}
+	  
+Contract listReservationBook(uid : Integer) : Set(BookCopy) {
+	definition: user:User = User.allInstance()->any(u:User | u.UserID = uid),  
+				res:Set(Reserve) = user.ReservedBook
+	precondition: user.oclIsUndefined() = false and res.oclIsUndefined() = false
+	postcondition: result = res->collect(r:Reserve| r.ReservedCopy) 
+} 
+        
+Contract listRecommendBook(uid : Integer) : Set(RecommendBook) {
+	definition:  user:User = User.allInstance()->any(u:User | u.UserID = uid),  
+				rBooks:Set(RecommendBook) = user.RecommendedBook 
+	precondition: user.oclIsUndefined() = false and rBooks.oclIsUndefined() = false
+	postcondition: result = rBooks
+} 
+  
+/* For Book and Book Copy*/
+Contract recommendBook(uid : Integer, book : RecommendBook) {
+	definition: user:User = User.allInstance()->any(u:User | u.UserID = uid)
+	precondition: user.oclIsUndefined() = false and Book.allInstance()->excludes(book) and RecommendBook.allInstance()->excludes(book)
+	postcondition: book.RecommendDate = Today and book.RecommendUser = user and user.RecommendedBook->includes(book) and RecommendBook.allInstance()->includes(book)
+}     
+   
+Contract addBook(book : Book) {  
+	precondition :  Book.allInstance()->excludes(book)
+	postcondition : Book.allInstance()->includes(book)
+}       
+         
+Contract deleteBook(callNo: String) {
+	definition: book:Book = Book.allInstance()->any(b:Book | b.CallNo = callNo), bookcopys:Set(BookCopy) = book.Copys
+	precondition: book.oclIsUndefined() = false and Book.allInstance()->includes(book)
+	postcondition: BookCopy.allInstance()->excludesAll(bookcopys) and Book.allInstance()->excludes(book)  
+}      
+  
+Contract queryBookCopy(barcode : Integer) : BookCopy {
+	precondition: true
+	postcondition: result = BookCopy.allInstance()->any(copy:BookCopy | copy.Barcode = barcode)
+}  
+      
+Contract addBookCopy(callNo: String, copy: BookCopy) {
+	definition: book:Book = Book.allInstance()->any(b:Book | b.CallNo = callNo)
+	precondition: book.oclIsUndefined() = false and book.Copys->excludes(copy) and BookCopy.allInstance()->excludes(copy)
+	postcondition: book.Copys->includes(copy) and copy.BookBelongs = book and BookCopy.allInstance()->includes(copy)
+}
+   
+Contract deleteBookCopy(barcode : Integer) {
+	definition: copy:BookCopy = BookCopy.allInstance()->any(c:BookCopy | c.Barcode = barcode)
+	precondition: copy.oclIsUndefined() = false and BookCopy.allInstance()->includes(copy)
+	postcondition: BookCopy.allInstance()->excludes(copy)
+}             
+     
+/* For user account*/ 
+Contract createUser(user : User) {
+	precondition: User.allInstance()->excludes(user)
+	postcondition: User.allInstance()->includes(user)
+} 
+   
+Contract deleteUser(uid : Integer) {
+	definition: user:User = User.allInstance()->any(u:User | u.UserID = uid)
+	precondition:  User.allInstance()->includes(user)
+	postcondition: User.allInstance()->excludes(user)
+}    
+                     
+Contract queryUser(uid : Integer, librarianID : Integer) : User { 
+	definition: user:User = User.allInstance()->any(u:User | u.UserID = uid)
+	precondition: user.oclIsUndefined() = false 
+	postcondition: result = user   
+}
+       
+/* For Librarian account */
+Contract createLibrarian(lib : Librarian) { 
+	precondition: Librarian.allInstance()->excludes(lib)
+	postcondition: Librarian.allInstance()->includes(lib) 
+}
+
+Contract deleteLibrarian(librarianID : Integer) {
+	definition: librarian:Librarian = Librarian.allInstance()->any(lib:Librarian | lib.LibrarianID = librarianID)
+	precondition: Librarian.allInstance()->includes(librarian)
+	postcondition: Librarian.allInstance()->excludes(librarian)
+}
+ 
+Contract queryLibrarian(librarianID : Integer) : Librarian{
+	definition: librarian:Librarian = Librarian.allInstance()->any(lib:Librarian | lib.LibrarianID = librarianID)
+	precondition: librarian.oclIsUndefined() = false 
+	postcondition: result = librarian
+}
+ 
+Contract  sendNotificationEmail(user : User)  {
+	precondition: true
+	postcondition: true
+}
+
+	
