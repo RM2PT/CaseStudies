@@ -90,13 +90,13 @@ public class MainTest {
 		bc1.setBarcode(123456);
 		bc1.setLocation("3/F A2 Science");
 		bc1.setStatus(CopyStatus.AVAILABLE);
-		bc1.setisReserved(false);
+		bc1.setIsReserved(false);
 		
 		BookCopy bc2 = new BookCopy();
 		bc2.setBarcode(123457);
 		bc2.setLocation("3/F A2 Science");
 		bc2.setStatus(CopyStatus.AVAILABLE);
-		bc2.setisReserved(false);
+		bc2.setIsReserved(false);
 		System.out.println("add 2 copys of Applying UML and patterns");
 
 		/* add BookCopy */
@@ -193,12 +193,12 @@ public class MainTest {
 		System.out.println(libraryservice.borrowBook(37418, 123457));
 		
 		System.out.println("Copy 123457 status is: " + libraryservice.queryBookCopy(123457).getStatus());
-		System.out.println("Is reserved: " + libraryservice.queryBookCopy(123457).getisReserved());
+		System.out.println("Is reserved: " + libraryservice.queryBookCopy(123457).getIsReserved());
 		
 		System.out.print("Weiru Wang 47427 reserves book copy 123457 brrowed by Yilong Yang: ");
 		System.out.println(libraryservice.makeReservation(47427, 123457));
 
-		System.out.println("Is reserved: " + libraryservice.queryBookCopy(123457).getisReserved());
+		System.out.println("Is reserved: " + libraryservice.queryBookCopy(123457).getIsReserved());
 		
 		System.out.print("Weiru Wang 47427 cannel this reservation");
 		startTime = System.nanoTime();
@@ -206,12 +206,12 @@ public class MainTest {
 		System.out.println(libraryservice.cannelReservation(47427, 123457));
 		System.out.println("cannelReservation, estimatedTime:" + ((float)estimatedTime)/100000 + "ms");
 
-		System.out.println("Is reserved: " + libraryservice.queryBookCopy(123457).getisReserved());
+		System.out.println("Is reserved: " + libraryservice.queryBookCopy(123457).getIsReserved());
 		
 		System.out.print("Weiru Wang 47427 reserves book copy 123457 brrowed by Yilong Yang: ");
 		System.out.println(libraryservice.makeReservation(47427, 123457));
 
-		System.out.println("Is reserved: " + libraryservice.queryBookCopy(123457).getisReserved());
+		System.out.println("Is reserved: " + libraryservice.queryBookCopy(123457).getIsReserved());
 		
 		
 		System.out.print("return book copy 123457: ");

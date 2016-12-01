@@ -2,35 +2,6 @@ Actor Cashier {
 	UC::processSale() 
 } 
 
-Service ProcessSale {
-	
-	[Operation]
-	makeNewSale()
-	
-	enterItem(barcode, quantity)
-	endSale()
-
-	makeCashPayment(amount)
-	makeCardPayment(cardAccountNumber, expiryDate) 
-	
-	
-	[TempProperty]
-	CurrentSale : Sale
-	CurrentCashDesk : CashDesk 
-	CurrentStore : Store
-	CurrentPaymentMethod : PaymentMethod[CASH|CARD]
-	
- 
-	[WorkFlow]
-	ProcessSale
-}
-
-Service ThridPartServices {
-	
-	[Operation]
-	thirdPartyCardPaymentService(cdp, expiryDate, currentSale)
-}
-
 /* System Work Flow, Not for runing, protocol for Actor inter-active with System */
 Workflow ProcessSale {
 	
@@ -46,8 +17,38 @@ Workflow ProcessSale {
 		case: PaymentMethod::CASH -> makeCashPayment(amount) 
 		case: PaymentMethod::CARD -> makeCardPayment(cardAccountNumber, expiryDate) 
 	}
-	
+	 
 }
+
+Service ProcessSale {
+	
+	[Operation]
+	makeNewSale()
+	
+	enterItem(barcode, quantity)
+	endSale()
+
+	makeCashPayment(amount)
+	makeCardPayment(cardAccountNumber, expiryDate) 
+	
+	
+	[TempProperty]
+	currentSale : Sale
+	currentCashDesk : CashDesk 
+	currentStore : Store
+	currentPaymentMethod : PaymentMethod[CASH|CARD]
+	
+	[WorkFlow]
+	ProcessSale
+}
+
+Service ThridPartServices {
+	
+	[Operation]
+	thirdPartyCardPaymentService(cdp, expiryDate, currentSale)
+}
+
+
 
 Entity Store {
 	Id : Integer
@@ -135,8 +136,8 @@ Entity CardPayment extends Payment {
 	ExpiryDate : Date
 }
 
-
-Contract makeNewSale()  {
+ 
+Contract ProcessSale::makeNewSale()  {
 				
 	/* preconditions:  none */
 	precondition: true
@@ -144,79 +145,98 @@ Contract makeNewSale()  {
 	/* postconditions: 
 	 * A sale instance s was created (instance creation).
 	 * s was associated with the current CashDesk (association formed)
-	 * Attribute of s were initialized. (object initialization)
-	 */
-	postcondition:  let s:Sale in s.oclIsNew() and s.BelongedCashDesk = CurrentCashDesk and CurrentCashDesk.ContainedSales->includes(s) and s.IsComplete = false and self.CurrentSale = s
+	 * Attribute IsComplete of s was initialized as false. (object initialization)
+	 * currentSale became s
+	 */ 
+	postcondition:  let s:Sale in s.oclIsNew() and 
+					s.BelongedCashDesk = currentCashDesk and currentCashDesk.ContainedSales->includes(s) and 
+					s.IsComplete = false and 
+					self.currentSale = s
 }
 
-Contract enterItem(barcode : Item, quantity : Integer) {
+Contract ProcessSale::enterItem(barcode : Integer, quantity : Integer) {
 	
-	/* Definition: find item instance, based on barcode */
+	/* Definition: find specific Item instance by barcode */
 	definition: item:Item = Item.allInstance()->any(i:Item | i.Barcode = barcode)
 	
 	/* Precondition: there is a sale underway */
-	precondition: CurrentSale.IsComplete = false
+	precondition: currentSale.IsComplete = false 
 	
 	/**
 	 * A salesLineItem instance sli was created (instance creation).
 	 * sli was associated with the current Sale (association formed).
 	 * sli.quantity became quantity (attribute modification).
 	 * sli was associated with a Item (association formed). 
-	 * subamount became item.price * quantity ?
+	 * subamount became item.price * quantity 
 	 */
-	 postcondition : let sli:SalesLineItem in sli.oclIsNew() and sli.BelongedSale = CurrentSale and CurrentSale.ContainedSalesLine->includes(sli) and
-	 				 sli.Quantity = quantity and sli.BelongedItem = item and sli.Subamount = item.Price * quantity
+	 postcondition : let sli:SalesLineItem in sli.oclIsNew() and 
+	 				 sli.BelongedSale = currentSale and currentSale.ContainedSalesLine->includes(sli) and
+	 				 sli.Quantity = quantity and 
+	 				 sli.BelongedItem = item and 
+	 				 sli.Subamount = item.Price * quantity
 }
 
 
-Contract endSale() {
+Contract ProcessSale::endSale() {
 	
-	/* Precondition: there is a sale underway and all items have been entered. */
-	precondition: CurrentSale.IsComplete = false and IsReadytoPay = false
+	/* Precondition: there is a sale underway and no more items. */
+	precondition: currentSale.IsComplete = false and currentSale.IsReadytoPay = false
 	
 	/**
 	 * Postcondition: 
+	 * add all sub amount of SalesLineItem up to the Amount of currentSale (compute amount).
+	 * currentSale.IsReadytoPay became true
 	 */
-	postcondition: CurrentSale.containedSalesLine->forAll(sl : SalesLineItem | CurrentSale.Amount = CurrentSale.Amount@pre + sl.Subamount) and IsReadytoPay = true
+	postcondition: currentSale.ContainedSalesLine->forAll(sl : SalesLineItem | currentSale.Amount = currentSale.Amount@pre + sl.Subamount) and currentSale.IsReadytoPay = true
 }
 
-Contract makeCashPayment(amount : Real) {
+Contract ProcessSale::makeCashPayment(amount : Real) {
 	
-	/* Precondition: There is a sale underway, all items have been entered, and tendered amount is greater than or equal to the amount of current Sale*/
-	precondition: CurrentSale.IsComplete = false and  IsReadytoPay = true and amount >= CurrentSale.Amount 
-	
+	/* Precondition: There is a sale underway, the sale is ready to pay, and tendered amount is greater than or equal to the amount of current Sale*/
+	precondition: currentSale.IsComplete = false and  currentSale.IsReadytoPay = true and amount >= currentSale.Amount 
+	 
 	/**
 	 * A CashPayment instance cp was created (instance creation).
 	 * cp.amountTendered became amount (attribute modification).
 	 * cp was associated with the current Sale (association formed).
 	 * The current Sale was associated with the Store (association formed).
-	 * Sale.isComplete became true (attribute modification)
-	 * Sale.time became now 
+	 * Sale.isComplete became true (attribute modification).
+	 * Sale.time became now  (attribute modification).
+	 * cp.Balance became the value of tendered amount minus current Sale amount
 	 */
-	 postcondition: let cp:CashPayment in cp.oclIsNew() and cp.AmountTendered = amount and cp.Balance = amout - CurrentSale.Amount 
-	 				and cp.sale = CurrentSale and CurrentSale.assoicatedPayment = cp and CurrentSale.store = CurrentStore and CurrentStore.Sales->includes(currentSale) and CurrentSale.IsComplete = true and CurrentSale.Time = Now
+	 postcondition: let cp:CashPayment in cp.oclIsNew() and 
+	 				cp.AmountTendered = amount and 
+	 				cp.BelongedSale = currentSale and currentSale.AssoicatedPayment = cp  
+	 				and currentSale.Belongedstore = currentStore and currentStore.Sales->includes(currentSale) and 
+	 				currentSale.IsComplete = true and currentSale.Time = Now and 
+	 				cp.Balance = amount - currentSale.Amount 
 	  
 }
 
-Contract makeCardPayment(cardAccountNumber : Integer, expiryDate : Date) {
+Contract ProcessSale::makeCardPayment(cardAccountNumber : Integer, expiryDate : Date) {
 	
 	/* Precondition: An underway sale exists and all items have been entered. */
-	precondition:  CurrentSale.IsComplete = false and IsReadytoPay = true 
+	precondition:  currentSale.IsComplete = false and currentSale.IsReadytoPay = true 
 	
 	/**
-	 * a CardPayment pmt was created
+	 * a CardPayment cdp was created
 	 * cdp was associated with the current Sale
-	 * cdp.number = cardAccountNumber, cdp.expiryDate = expiryDate
+	 * cdp.CardAccountNumber = cardAccountNumber, cdp.expiryDate = expiryDate
 	 * invoke third party card payment service 
 	 * sale was associated with the Store as a completed sale
+	 * The current sale is complete
 	 * Sale.time became now 
 	 */
-	 postcondition: let cdp:CardPayment in cp.oclIsNew() and cdp.Number = cardAccountNumber and cdp.ExpiryDate = expiryDate and thirdPartyCardPaymentService(cdp, expiryDate, currentSale) = true 
-	 				and cdp.Sale = currentSale and currentSale.assoicatedPayment = cdp and currentSale.belongedStore = currentStore and currentStore.sales->includes(currentSale) and currentSale.IsComplete = true and currentSale.Time = Now
+	 postcondition: let cdp:CardPayment in cp.oclIsNew() and 
+	 				cdp.BelongedSale = currentSale and currentSale.AssoicatedPayment = cdp and
+	 				cdp.CardAccountNumber = cardAccountNumber and cdp.ExpiryDate = expiryDate and 
+	 				thirdPartyCardPaymentService(cdp, expiryDate, currentSale) and
+	 				currentSale.Belongedstore = currentStore and currentStore.Sales->includes(currentSale) and 
+	 				currentSale.IsComplete = true and currentSale.Time = Now
 	 
 }
 
-Contract  thirdPartyCardPaymentService(cdp : CardPayment, expiryDate : Date, currentSale : Sale)  {
+Contract  ThridPartServices::thirdPartyCardPaymentService(cdp : CardPayment, expiryDate : Date, currentSale : Sale)  {
 	precondition: true
 	postcondition: true
 }
