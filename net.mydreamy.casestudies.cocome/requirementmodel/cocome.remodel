@@ -2,24 +2,6 @@ Actor Cashier {
 	UC::processSale() 
 } 
 
-/* System Work Flow, Not for runing, protocol for Actor inter-active with System */
-Workflow ProcessSale {
-	
-	makeNewSale()
-	
-	Loop -> hasMoreItems { 
-		enterItem(barcode, quantity)
-	}
-	
-	endSale()
-	
-	Switch -> PaymentMethod {
-		case: PaymentMethod::CASH -> makeCashPayment(amount) 
-		case: PaymentMethod::CARD -> makeCardPayment(cardAccountNumber, expiryDate) 
-	}
-	 
-}
-
 Service ProcessSale {
 	
 	[Operation]
@@ -37,9 +19,9 @@ Service ProcessSale {
 	currentCashDesk : CashDesk 
 	currentStore : Store
 	currentPaymentMethod : PaymentMethod[CASH|CARD]
-	
+	 
 	[WorkFlow]
-	ProcessSale
+	ProcessSaleWF
 }
 
 Service ThridPartServices {
@@ -47,6 +29,28 @@ Service ThridPartServices {
 	[Operation]
 	thirdPartyCardPaymentService(cdp, expiryDate, currentSale)
 }
+
+/* System Work Flow, Not for runing, protocol for Actor inter-active with System */
+Workflow ProcessSaleWF {
+	
+	[Cashier ProcessSale]
+	
+	makeNewSale()
+	
+	Loop -> hasMoreItems { 
+		enterItem(barcode, quantity)
+	}
+	
+	endSale()
+	
+	Switch -> PaymentMethod {
+		case: PaymentMethod::CASH -> makeCashPayment(amount) 
+		case: PaymentMethod::CARD -> makeCardPayment(cardAccountNumber, expiryDate) 
+	}
+	 
+}
+
+
 
 
 
@@ -138,7 +142,7 @@ Entity CardPayment extends Payment {
 
  
 Contract ProcessSale::makeNewSale()  {
-				
+				 
 	/* preconditions:  none */
 	precondition: true
 	
@@ -234,7 +238,7 @@ Contract ProcessSale::makeCardPayment(cardAccountNumber : Integer, expiryDate : 
 	 				currentSale.Belongedstore = currentStore and currentStore.Sales->includes(currentSale) and 
 	 				currentSale.IsComplete = true and currentSale.Time = Now
 	 
-}
+} 
 
 Contract  ThridPartServices::thirdPartyCardPaymentService(cdp : CardPayment, expiryDate : Date, currentSale : Sale)  {
 	precondition: true
