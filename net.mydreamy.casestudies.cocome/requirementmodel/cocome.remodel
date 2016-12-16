@@ -66,7 +66,7 @@ Interaction ProcessSaleInteraction {
 		
 		enterItemLoopStart->enterItemLoopFinish
 		
-		Operand::hasMoreItems(hasMoreItemsEnd)
+		Operand::hasMoreItems(hasMoreItemsStart enterItemLoopFinish)
 		
 	} 
 	
@@ -76,30 +76,29 @@ Interaction ProcessSaleInteraction {
 		
 		PaymentMethodAltStart->PaymentMethodAltFinish
 		
-		Operand::Cash(CashEnd)
-		Operand::Card(CardEnd)
+		Operand::Cash(CashStart CardStart)
+		Operand::Card(CardStart PaymentMethodAltFinish)
 		
 	} 
 	 
 	MessageEnd::makeNewSaleSender(Cashier makeNewSale)
-	MessageEnd::makeNewSaleReceiver(ProcessSale makeNewSale)
+	MessageEnd::makeNewSaleReceiver(makeNewSale makeNewSale)
 	
 	ExecutionEnd::makeNewSaleStart(ProcessSale makeNewSale)
 	ExecutionEnd::makeNewSaleFinish(ProcessSale makeNewSale)
 	
-	CombinedFragmentEnd::enterItemLoopStart(ProcessSale enterItemLoop)
-	CombinedFragmentEnd::enterItemLoopFinish(ProcessSale enterItemLoop)
+	CombinedFragmentEnd::enterItemLoopStart(enterItemLoop)
+	OperandEnd::hasMoreItemsStart(hasMoreItems)
+	CombinedFragmentEnd::enterItemLoopFinish(enterItemLoop)
 	
-	OperandEnd::hasMoreItemsEnd(ProcessSale hasMoreItems)
-	
-	CombinedFragmentEnd::PaymentMethodAltStart(ProcessSale PaymentMethodAlt)
-	CombinedFragmentEnd::PaymentMethodAltFinish(ProcessSale PaymentMethodAlt)	
+	CombinedFragmentEnd::PaymentMethodAltStart(PaymentMethodAlt)	
+	OperandEnd::CashStart(Cash)
+	OperandEnd::CardStart(Card)
+	CombinedFragmentEnd::PaymentMethodAltFinish(PaymentMethodAlt)	
 
-	OperandEnd::CashEnd(ProcessSale Cash)
-	OperandEnd::CardEnd(ProcessSale Card)
 		
 	MessageEnd::endSaleSender(Cashier endSale)
-	MessageEnd::endSaleReceiver(ProcessSale endSale)
+	MessageEnd::endSaleReceiver(endSale endSale)
 	
 	ExecutionEnd::endSaleStart(ProcessSale endSale)
 	ExecutionEnd::endSaleFinish(ProcessSale endSale)
