@@ -54,11 +54,28 @@ Interaction ProcessSaleInteraction {
 	
 	[Participants: Cashier ProcessSale]
 	
-	Message:makeNewSale(makeNewSaleSender->makeNewSaleReceiver)
-	Message:endSale(endSaleSender->endSaleReceiver)
+	CallMessage:makeNewSale(makeNewSaleSender->makeNewSaleStart)
+	ReturnMessage:makeNewSaleReturn(makeNewSaleFinish->makeNewSaleReturnReceiver makeNewSale)
+	
+	CallMessage:enterItem(enterItemSender->enterItemStart)
+	ReturnMessage:enterItemReturn(enterItemFinish->enterItemReturnReceiver enterItem)
+	
+	CallMessage:endSale(endSaleSender->endSaleStart)
+	ReturnMessage:endSaleReturn(endSaleFinish->endSaleReturnReceiver endSale)
+	
+	CallMessage:makeCashPayment(makeCashPaymentSender->makeCashPaymentStart)
+	ReturnMessage:makeCashPaymentReturn(makeCashPaymentFinish->makeCashPaymentReturnReceiver makeCashPayment)
+	
+	CallMessage:makeCardPayment(makeCardPaymentSender->makeCardPaymentStart)
+	ReturnMessage:makeCardPaymentReturn(makeCardPaymentFinish->makeCardPaymentReturnReceiver makeCardPayment)
+	
 	
 	Execution:makeNewSale(ProcessSale makeNewSaleStart makeNewSaleFinish)
-	Execution:endSale(ProcessSale endSaleStart endSaleFinish)
+	Execution:enterItem(ProcessSale enterItemStart enterItemFinish)
+	Execution:endSale(ProcessSale endSaleStart endSaleFinish)	
+	Execution:makeCashPayment(ProcessSale makeCashPaymentStart makeCashPaymentFinish)
+	Execution:makeCardPayment(ProcessSale makeCardPaymentStart makeCardPaymentFinish)
+	
 	 
 	CombinedFragment:enterItemLoop->loop {
 		
@@ -82,26 +99,43 @@ Interaction ProcessSaleInteraction {
 	} 
 	 
 	MessageEnd::makeNewSaleSender(Cashier makeNewSale)
-	MessageEnd::makeNewSaleReceiver(makeNewSale makeNewSale)
+//	MessageEnd::makeNewSaleReceiver(makeNewSale makeNewSale)
 	
 	ExecutionEnd::makeNewSaleStart(ProcessSale makeNewSale)
 	ExecutionEnd::makeNewSaleFinish(ProcessSale makeNewSale)
 	
+	MessageEnd::makeNewSaleReturnReceiver(Cashier makeNewSaleReturn)
+	
 	CombinedFragmentEnd::enterItemLoopStart(enterItemLoop)
-	OperandEnd::hasMoreItemsStart(hasMoreItems)
+	OperandEnd::hasMoreItemsStart(hasMoreItems)	
+	MessageEnd::enterItemSender(Cashier enterItem)
+	ExecutionEnd::enterItemStart(ProcessSale enterItem)
+	ExecutionEnd::enterItemFinish(ProcessSale enterItem)
+	MessageEnd::enterItemReturnReceiver(Cashier enterItemReturn)
 	CombinedFragmentEnd::enterItemLoopFinish(enterItemLoop)
 	
-	CombinedFragmentEnd::PaymentMethodAltStart(PaymentMethodAlt)	
-	OperandEnd::CashStart(Cash)
-	OperandEnd::CardStart(Card)
-	CombinedFragmentEnd::PaymentMethodAltFinish(PaymentMethodAlt)	
-
-		
 	MessageEnd::endSaleSender(Cashier endSale)
-	MessageEnd::endSaleReceiver(endSale endSale)
+//	MessageEnd::endSaleReceiver(endSale endSale)
 	
 	ExecutionEnd::endSaleStart(ProcessSale endSale)
 	ExecutionEnd::endSaleFinish(ProcessSale endSale)
+	
+	MessageEnd::endSaleReturnReceiver(Cashier endSaleReturn)
+	
+	CombinedFragmentEnd::PaymentMethodAltStart(PaymentMethodAlt)	
+	OperandEnd::CashStart(Cash)
+	MessageEnd::makeCashPaymentSender(Cashier makeCashPayment)
+	ExecutionEnd::makeCashPaymentStart(ProcessSale makeCashPayment)
+	ExecutionEnd::makeCashPaymentFinish(ProcessSale makeCashPayment)
+	MessageEnd::makeCashPaymentReturnReceiver(Cashier makeCashPaymentReturn)
+	OperandEnd::CardStart(Card)
+	MessageEnd::makeCardPaymentSender(Cashier makeCardPayment)
+	ExecutionEnd::makeCardPaymentStart(ProcessSale makeCardPayment)
+	ExecutionEnd::makeCardPaymentFinish(ProcessSale makeCardPayment)
+	MessageEnd::makeCardPaymentReturnReceiver(Cashier makeCardPaymentReturn)
+	CombinedFragmentEnd::PaymentMethodAltFinish(PaymentMethodAlt)	
+		
+
 	
 }
 
