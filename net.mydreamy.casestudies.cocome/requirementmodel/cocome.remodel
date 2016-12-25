@@ -2,7 +2,7 @@ Actor Cashier {
 	UC::processSale() 
 } 
 
-Service ProcessSale {
+Service CoCoME {
 	
 	[Operation]
 	makeNewSale()
@@ -33,7 +33,7 @@ Service ThridPartServices {
 /* System Work Flow, Not for runing, protocol for Actor inter-active with System */
 Workflow ProcessSaleWF {
 	
-	[Cashier ProcessSale]
+	[Cashier CoCoME]
 	
 	makeNewSale()
 	
@@ -52,34 +52,34 @@ Workflow ProcessSaleWF {
 
 Interaction ProcessSaleInteraction {
 	
-	[Participants: Cashier ProcessSale]
+	[Participants: Cashier CoCoME]
 	
-	CallMessage:makeNewSale(makeNewSaleSender->makeNewSaleStart)
+	CallMessage:makeNewSale(makeNewSale makeNewSaleSender->makeNewSaleStart)
 	ReturnMessage:makeNewSaleReturn(makeNewSaleFinish->makeNewSaleReturnReceiver makeNewSale)
 	
-	CallMessage:enterItem(enterItemSender->enterItemStart)
+	CallMessage:enterItem(enterItem enterItemSender->enterItemStart)
 	ReturnMessage:enterItemReturn(enterItemFinish->enterItemReturnReceiver enterItem)
 	
-	CallMessage:endSale(endSaleSender->endSaleStart)
+	CallMessage:endSale(endSale endSaleSender->endSaleStart) 
 	ReturnMessage:endSaleReturn(endSaleFinish->endSaleReturnReceiver endSale)
 	
-	CallMessage:makeCashPayment(makeCashPaymentSender->makeCashPaymentStart)
+	CallMessage:makeCashPayment(makeCashPayment makeCashPaymentSender->makeCashPaymentStart)
 	ReturnMessage:makeCashPaymentReturn(makeCashPaymentFinish->makeCashPaymentReturnReceiver makeCashPayment)
 	
-	CallMessage:makeCardPayment(makeCardPaymentSender->makeCardPaymentStart)
+	CallMessage:makeCardPayment(makeCardPayment makeCardPaymentSender->makeCardPaymentStart)
 	ReturnMessage:makeCardPaymentReturn(makeCardPaymentFinish->makeCardPaymentReturnReceiver makeCardPayment)
+	 
 	
-	
-	Execution:makeNewSale(ProcessSale makeNewSaleStart makeNewSaleFinish)
-	Execution:enterItem(ProcessSale enterItemStart enterItemFinish)
-	Execution:endSale(ProcessSale endSaleStart endSaleFinish)	
-	Execution:makeCashPayment(ProcessSale makeCashPaymentStart makeCashPaymentFinish)
-	Execution:makeCardPayment(ProcessSale makeCardPaymentStart makeCardPaymentFinish)
+	Execution:makeNewSale(CoCoME makeNewSaleStart makeNewSaleFinish)
+	Execution:enterItem(CoCoME enterItemStart enterItemFinish)
+	Execution:endSale(CoCoME endSaleStart endSaleFinish)	
+	Execution:makeCashPayment(CoCoME makeCashPaymentStart makeCashPaymentFinish)
+	Execution:makeCardPayment(CoCoME makeCardPaymentStart makeCardPaymentFinish)
 	
 	 
 	CombinedFragment:enterItemLoop->loop {
 		
-		[Participants: Cashier ProcessSale]
+		[Participants: Cashier CoCoME]
 		
 		enterItemLoopStart->enterItemLoopFinish
 		
@@ -89,7 +89,7 @@ Interaction ProcessSaleInteraction {
 	
 	CombinedFragment:PaymentMethodAlt->alt {
 		
-		[Participants: Cashier ProcessSale]
+		[Participants: Cashier CoCoME]
 		
 		PaymentMethodAltStart->PaymentMethodAltFinish
 		
@@ -101,37 +101,37 @@ Interaction ProcessSaleInteraction {
 	MessageEnd::makeNewSaleSender(Cashier makeNewSale)
 //	MessageEnd::makeNewSaleReceiver(makeNewSale makeNewSale)
 	
-	ExecutionEnd::makeNewSaleStart(ProcessSale makeNewSale)
-	ExecutionEnd::makeNewSaleFinish(ProcessSale makeNewSale)
+	ExecutionEnd::makeNewSaleStart(CoCoME makeNewSale)
+	ExecutionEnd::makeNewSaleFinish(CoCoME makeNewSale)
 	
 	MessageEnd::makeNewSaleReturnReceiver(Cashier makeNewSaleReturn)
 	
 	CombinedFragmentEnd::enterItemLoopStart(enterItemLoop)
 	OperandEnd::hasMoreItemsStart(hasMoreItems)	
 	MessageEnd::enterItemSender(Cashier enterItem)
-	ExecutionEnd::enterItemStart(ProcessSale enterItem)
-	ExecutionEnd::enterItemFinish(ProcessSale enterItem)
+	ExecutionEnd::enterItemStart(CoCoME enterItem)
+	ExecutionEnd::enterItemFinish(CoCoME enterItem)
 	MessageEnd::enterItemReturnReceiver(Cashier enterItemReturn)
 	CombinedFragmentEnd::enterItemLoopFinish(enterItemLoop)
 	
 	MessageEnd::endSaleSender(Cashier endSale)
 //	MessageEnd::endSaleReceiver(endSale endSale)
 	
-	ExecutionEnd::endSaleStart(ProcessSale endSale)
-	ExecutionEnd::endSaleFinish(ProcessSale endSale)
+	ExecutionEnd::endSaleStart(CoCoME endSale)
+	ExecutionEnd::endSaleFinish(CoCoME endSale)
 	
 	MessageEnd::endSaleReturnReceiver(Cashier endSaleReturn)
 	
 	CombinedFragmentEnd::PaymentMethodAltStart(PaymentMethodAlt)	
 	OperandEnd::CashStart(Cash)
 	MessageEnd::makeCashPaymentSender(Cashier makeCashPayment)
-	ExecutionEnd::makeCashPaymentStart(ProcessSale makeCashPayment)
-	ExecutionEnd::makeCashPaymentFinish(ProcessSale makeCashPayment)
+	ExecutionEnd::makeCashPaymentStart(CoCoME makeCashPayment)
+	ExecutionEnd::makeCashPaymentFinish(CoCoME makeCashPayment)
 	MessageEnd::makeCashPaymentReturnReceiver(Cashier makeCashPaymentReturn)
 	OperandEnd::CardStart(Card)
 	MessageEnd::makeCardPaymentSender(Cashier makeCardPayment)
-	ExecutionEnd::makeCardPaymentStart(ProcessSale makeCardPayment)
-	ExecutionEnd::makeCardPaymentFinish(ProcessSale makeCardPayment)
+	ExecutionEnd::makeCardPaymentStart(CoCoME makeCardPayment)
+	ExecutionEnd::makeCardPaymentFinish(CoCoME makeCardPayment)
 	MessageEnd::makeCardPaymentReturnReceiver(Cashier makeCardPaymentReturn)
 	CombinedFragmentEnd::PaymentMethodAltFinish(PaymentMethodAlt)	
 		
@@ -228,7 +228,7 @@ Entity CardPayment extends Payment {
 }
 
  
-Contract ProcessSale::makeNewSale()  {
+Contract CoCoME::makeNewSale()  {
 				 
 	/* preconditions:  none */
 	precondition: true
@@ -245,7 +245,7 @@ Contract ProcessSale::makeNewSale()  {
 					self.currentSale = s
 }
 
-Contract ProcessSale::enterItem(barcode : Integer, quantity : Integer) {
+Contract CoCoME::enterItem(barcode : Integer, quantity : Integer) {
 	
 	/* Definition: find specific Item instance by barcode */
 	definition: item:Item = Item.allInstance()->any(i:Item | i.Barcode = barcode)
@@ -268,7 +268,7 @@ Contract ProcessSale::enterItem(barcode : Integer, quantity : Integer) {
 }
 
 
-Contract ProcessSale::endSale() {
+Contract CoCoME::endSale() {
 	
 	/* Precondition: there is a sale underway and no more items. */
 	precondition: currentSale.IsComplete = false and currentSale.IsReadytoPay = false
@@ -281,7 +281,7 @@ Contract ProcessSale::endSale() {
 	postcondition: currentSale.ContainedSalesLine->forAll(sl : SalesLineItem | currentSale.Amount = currentSale.Amount@pre + sl.Subamount) and currentSale.IsReadytoPay = true
 }
 
-Contract ProcessSale::makeCashPayment(amount : Real) {
+Contract CoCoME::makeCashPayment(amount : Real) {
 	
 	/* Precondition: There is a sale underway, the sale is ready to pay, and tendered amount is greater than or equal to the amount of current Sale*/
 	precondition: currentSale.IsComplete = false and  currentSale.IsReadytoPay = true and amount >= currentSale.Amount 
@@ -304,7 +304,7 @@ Contract ProcessSale::makeCashPayment(amount : Real) {
 	  
 }
 
-Contract ProcessSale::makeCardPayment(cardAccountNumber : Integer, expiryDate : Date) {
+Contract CoCoME::makeCardPayment(cardAccountNumber : Integer, expiryDate : Date) {
 	
 	/* Precondition: An underway sale exists and all items have been entered. */
 	precondition:  currentSale.IsComplete = false and currentSale.IsReadytoPay = true 
