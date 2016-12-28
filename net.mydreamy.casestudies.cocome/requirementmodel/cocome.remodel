@@ -96,7 +96,7 @@ Interaction ProcessSaleInteraction {
 		Operand::Cash(CashStart CardStart)
 		Operand::Card(CardStart PaymentMethodAltFinish)
 		
-	} 
+	} CombinedFragment: combinedFragement1 -> alt { [Participants: CoCoME ] combinedFragement1StartEnd -> combinedFragement1FinishEnd Operand:: condition1 ( condition1End condition2End ) Operand:: condition2 ( condition2End condition3End ) Operand:: condition3 ( condition3End condition4End ) Operand:: condition4 ( condition4End condition5End ) Operand:: condition5 ( condition5End combinedFragement1FinishEnd ) }
 	 
 	MessageEnd::makeNewSaleSender(Cashier makeNewSale)
 //	MessageEnd::makeNewSaleReceiver(makeNewSale makeNewSale)
@@ -137,8 +137,11 @@ Interaction ProcessSaleInteraction {
 		
 
 	
-}
-
+CombinedFragmentEnd:: combinedFragement1StartEnd ( combinedFragement1 ) 
+OperandEnd:: condition1End ( condition1 ) 
+ OperandEnd:: condition2End ( condition2 ) OperandEnd:: condition3End ( condition3 ) OperandEnd:: condition4End ( condition4 ) OperandEnd:: condition5End ( condition5 )
+CombinedFragmentEnd:: combinedFragement1FinishEnd ( combinedFragement1 )
+ }
 
 
 Entity Store {
