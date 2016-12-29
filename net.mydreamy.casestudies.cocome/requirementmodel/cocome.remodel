@@ -2,7 +2,7 @@ Actor Cashier {
 	UC::processSale() 
 } 
 
-Service CoCoME {
+Service CoCoMEProcessSale {
 	
 	[Operation]
 	makeNewSale()
@@ -15,6 +15,7 @@ Service CoCoME {
 	
 	
 	[TempProperty]
+	currentSaleLine : SalesLineItem
 	currentSale : Sale
 	currentCashDesk : CashDesk 
 	currentStore : Store
@@ -22,6 +23,20 @@ Service CoCoME {
 	 
 	[WorkFlow]
 	ProcessSaleWF
+}
+
+Service CoCoMEManagement {
+	
+	[Operation]
+	createStore(store)
+	createCashDesk(cashdesk)
+	createProductCatalog(catalog)
+	createItem(item)
+	
+	[TempProperty]
+	
+	[WorkFlow]
+	
 }
 
 Service ThridPartServices {
@@ -33,7 +48,7 @@ Service ThridPartServices {
 /* System Work Flow, Not for runing, protocol for Actor inter-active with System */
 Workflow ProcessSaleWF {
 	
-	[Cashier CoCoME]
+	[Cashier CoCoMEProcessSale]
 	
 	makeNewSale()
 	
@@ -52,7 +67,7 @@ Workflow ProcessSaleWF {
 
 Interaction ProcessSaleInteraction {
 	
-	[Participants: Cashier CoCoME]
+	[Participants: Cashier CoCoMEProcessSale]
 	
 	CallMessage:makeNewSale(makeNewSale makeNewSaleSender->makeNewSaleStart)
 	ReturnMessage:makeNewSaleReturn(makeNewSaleFinish->makeNewSaleReturnReceiver makeNewSale)
@@ -70,16 +85,16 @@ Interaction ProcessSaleInteraction {
 	ReturnMessage:makeCardPaymentReturn(makeCardPaymentFinish->makeCardPaymentReturnReceiver makeCardPayment)
 	 
 	
-	Execution:makeNewSale(CoCoME makeNewSaleStart makeNewSaleFinish)
-	Execution:enterItem(CoCoME enterItemStart enterItemFinish)
-	Execution:endSale(CoCoME endSaleStart endSaleFinish)	
-	Execution:makeCashPayment(CoCoME makeCashPaymentStart makeCashPaymentFinish)
-	Execution:makeCardPayment(CoCoME makeCardPaymentStart makeCardPaymentFinish)
+	Execution:makeNewSale(CoCoMEProcessSale makeNewSaleStart makeNewSaleFinish)
+	Execution:enterItem(CoCoMEProcessSale enterItemStart enterItemFinish)
+	Execution:endSale(CoCoMEProcessSale endSaleStart endSaleFinish)	
+	Execution:makeCashPayment(CoCoMEProcessSale makeCashPaymentStart makeCashPaymentFinish)
+	Execution:makeCardPayment(CoCoMEProcessSale makeCardPaymentStart makeCardPaymentFinish)
 	
 	 
 	CombinedFragment:enterItemLoop->loop {
 		
-		[Participants: Cashier CoCoME]
+		[Participants: Cashier CoCoMEProcessSale]
 		
 		enterItemLoopStart->enterItemLoopFinish
 		
@@ -89,58 +104,54 @@ Interaction ProcessSaleInteraction {
 	
 	CombinedFragment:PaymentMethodAlt->alt {
 		
-		[Participants: Cashier CoCoME]
+		[Participants: Cashier CoCoMEProcessSale]
 		
 		PaymentMethodAltStart->PaymentMethodAltFinish
 		
 		Operand::Cash(CashStart CardStart)
 		Operand::Card(CardStart PaymentMethodAltFinish)
 		
-	} CombinedFragment: combinedFragement1 -> alt { [Participants: CoCoME ] combinedFragement1StartEnd -> combinedFragement1FinishEnd Operand:: condition1 ( condition1End condition2End ) Operand:: condition2 ( condition2End condition3End ) Operand:: condition3 ( condition3End condition4End ) Operand:: condition4 ( condition4End condition5End ) Operand:: condition5 ( condition5End combinedFragement1FinishEnd ) }
+	} 
 	 
 	MessageEnd::makeNewSaleSender(Cashier makeNewSale)
 //	MessageEnd::makeNewSaleReceiver(makeNewSale makeNewSale)
 	
-	ExecutionEnd::makeNewSaleStart(CoCoME makeNewSale)
-	ExecutionEnd::makeNewSaleFinish(CoCoME makeNewSale)
+	ExecutionEnd::makeNewSaleStart(CoCoMEProcessSale makeNewSale)
+	ExecutionEnd::makeNewSaleFinish(CoCoMEProcessSale makeNewSale)
 	
 	MessageEnd::makeNewSaleReturnReceiver(Cashier makeNewSaleReturn)
 	
 	CombinedFragmentEnd::enterItemLoopStart(enterItemLoop)
 	OperandEnd::hasMoreItemsStart(hasMoreItems)	
 	MessageEnd::enterItemSender(Cashier enterItem)
-	ExecutionEnd::enterItemStart(CoCoME enterItem)
-	ExecutionEnd::enterItemFinish(CoCoME enterItem)
+	ExecutionEnd::enterItemStart(CoCoMEProcessSale enterItem)
+	ExecutionEnd::enterItemFinish(CoCoMEProcessSale enterItem)
 	MessageEnd::enterItemReturnReceiver(Cashier enterItemReturn)
 	CombinedFragmentEnd::enterItemLoopFinish(enterItemLoop)
 	
 	MessageEnd::endSaleSender(Cashier endSale)
 //	MessageEnd::endSaleReceiver(endSale endSale)
 	
-	ExecutionEnd::endSaleStart(CoCoME endSale)
-	ExecutionEnd::endSaleFinish(CoCoME endSale)
+	ExecutionEnd::endSaleStart(CoCoMEProcessSale endSale)
+	ExecutionEnd::endSaleFinish(CoCoMEProcessSale endSale)
 	
 	MessageEnd::endSaleReturnReceiver(Cashier endSaleReturn)
 	
 	CombinedFragmentEnd::PaymentMethodAltStart(PaymentMethodAlt)	
 	OperandEnd::CashStart(Cash)
 	MessageEnd::makeCashPaymentSender(Cashier makeCashPayment)
-	ExecutionEnd::makeCashPaymentStart(CoCoME makeCashPayment)
-	ExecutionEnd::makeCashPaymentFinish(CoCoME makeCashPayment)
+	ExecutionEnd::makeCashPaymentStart(CoCoMEProcessSale makeCashPayment)
+	ExecutionEnd::makeCashPaymentFinish(CoCoMEProcessSale makeCashPayment)
 	MessageEnd::makeCashPaymentReturnReceiver(Cashier makeCashPaymentReturn)
 	OperandEnd::CardStart(Card)
 	MessageEnd::makeCardPaymentSender(Cashier makeCardPayment)
-	ExecutionEnd::makeCardPaymentStart(CoCoME makeCardPayment)
-	ExecutionEnd::makeCardPaymentFinish(CoCoME makeCardPayment)
+	ExecutionEnd::makeCardPaymentStart(CoCoMEProcessSale makeCardPayment)
+	ExecutionEnd::makeCardPaymentFinish(CoCoMEProcessSale makeCardPayment)
 	MessageEnd::makeCardPaymentReturnReceiver(Cashier makeCardPaymentReturn)
 	CombinedFragmentEnd::PaymentMethodAltFinish(PaymentMethodAlt)	
 		
 
-	
-CombinedFragmentEnd:: combinedFragement1StartEnd ( combinedFragement1 ) 
-OperandEnd:: condition1End ( condition1 ) 
- OperandEnd:: condition2End ( condition2 ) OperandEnd:: condition3End ( condition3 ) OperandEnd:: condition4End ( condition4 ) OperandEnd:: condition5End ( condition5 )
-CombinedFragmentEnd:: combinedFragement1FinishEnd ( combinedFragement1 )
+
  }
 
 
@@ -159,7 +170,12 @@ Entity Store {
 }
 
 Entity ProductCatalog {
+	
+	Id : Integer
 	Name : String
+	
+	[Refer]
+	ContainedItems : Item*
 }
 
 Entity CashDesk {
@@ -226,12 +242,12 @@ Entity CashPayment extends Payment {
 }
 
 Entity CardPayment extends Payment {
-	CardAccountNumber : Integer
+	CardAccountNumber : String
 	ExpiryDate : Date
 }
 
  
-Contract CoCoME::makeNewSale()  {
+Contract CoCoMEProcessSale::makeNewSale()  {
 				 
 	/* preconditions:  none */
 	precondition: true
@@ -244,11 +260,11 @@ Contract CoCoME::makeNewSale()  {
 	 */ 
 	postcondition:  let s:Sale in s.oclIsNew() and 
 					s.BelongedCashDesk = currentCashDesk and currentCashDesk.ContainedSales->includes(s) and 
-					s.IsComplete = false and 
+					s.IsComplete = false and s.IsReadytoPay = false and
 					self.currentSale = s
 }
 
-Contract CoCoME::enterItem(barcode : Integer, quantity : Integer) {
+Contract CoCoMEProcessSale::enterItem(barcode : Integer, quantity : Integer) {
 	
 	/* Definition: find specific Item instance by barcode */
 	definition: item:Item = Item.allInstance()->any(i:Item | i.Barcode = barcode)
@@ -263,15 +279,16 @@ Contract CoCoME::enterItem(barcode : Integer, quantity : Integer) {
 	 * sli was associated with a Item (association formed). 
 	 * subamount became item.price * quantity 
 	 */
-	 postcondition : let sli:SalesLineItem in sli.oclIsNew() and 
+	 postcondition : let sli:SalesLineItem in sli.oclIsNew() and self.currentSaleLine = sli and
 	 				 sli.BelongedSale = currentSale and currentSale.ContainedSalesLine->includes(sli) and
 	 				 sli.Quantity = quantity and 
 	 				 sli.BelongedItem = item and 
-	 				 sli.Subamount = item.Price * quantity
+	 				 sli.Subamount = item.Price * quantity  
+	 				 
 }
 
 
-Contract CoCoME::endSale() {
+Contract CoCoMEProcessSale::endSale() {
 	
 	/* Precondition: there is a sale underway and no more items. */
 	precondition: currentSale.IsComplete = false and currentSale.IsReadytoPay = false
@@ -284,7 +301,7 @@ Contract CoCoME::endSale() {
 	postcondition: currentSale.ContainedSalesLine->forAll(sl : SalesLineItem | currentSale.Amount = currentSale.Amount@pre + sl.Subamount) and currentSale.IsReadytoPay = true
 }
 
-Contract CoCoME::makeCashPayment(amount : Real) {
+Contract CoCoMEProcessSale::makeCashPayment(amount : Real) {
 	
 	/* Precondition: There is a sale underway, the sale is ready to pay, and tendered amount is greater than or equal to the amount of current Sale*/
 	precondition: currentSale.IsComplete = false and  currentSale.IsReadytoPay = true and amount >= currentSale.Amount 
@@ -307,7 +324,7 @@ Contract CoCoME::makeCashPayment(amount : Real) {
 	  
 }
 
-Contract CoCoME::makeCardPayment(cardAccountNumber : Integer, expiryDate : Date) {
+Contract CoCoMEProcessSale::makeCardPayment(cardAccountNumber : String, expiryDate : Date) {
 	
 	/* Precondition: An underway sale exists and all items have been entered. */
 	precondition:  currentSale.IsComplete = false and currentSale.IsReadytoPay = true 
@@ -333,4 +350,31 @@ Contract CoCoME::makeCardPayment(cardAccountNumber : Integer, expiryDate : Date)
 Contract  ThridPartServices::thirdPartyCardPaymentService(cdp : CardPayment, expiryDate : Date, currentSale : Sale)  {
 	precondition: true
 	postcondition: true
+}
+
+Contract CoCoMEManagement::createStore(store : Store) {
+	
+	precondition: Store.allInstance()->excludes(store)
+	postcondition: Store.allInstance()->includes(store)
+	
+}
+
+Contract CoCoMEManagement::createCashDesk(cashdesk : CashDesk, storeid : Integer) {
+	
+	definition: store:Store = Store.allInstance()->any(s:Store | s.Id = storeid)
+	precondition: store.oclIsUndefined() = false and store.Cashdeskes->excludes(cashdesk) and CashDesk.allInstance()->excludes(cashdesk)
+	postcondition: store.Cashdeskes->includes(cashdesk) and cashdesk.BelongedStore = store and CashDesk.allInstance()->includes(cashdesk)
+	
+}
+
+Contract CoCoMEManagement::createProductCatalog(catalog : ProductCatalog) {
+	precondition: ProductCatalog.allInstance()->excludes(catalog)
+	postcondition: ProductCatalog.allInstance()->includes(catalog)
+}
+
+Contract CoCoMEManagement::createItem(item : Item, catalogid : Integer) {
+	
+	definition: catalog:ProductCatalog = ProductCatalog.allInstance()->any(pc:ProductCatalog | pc.Id = catalogid)
+	precondition: catalog.oclIsUndefined() = false and catalog.ContainedItems->excludes(item) and Item.allInstance()->excludes(item)
+	postcondition: item.BelongedCatalog = catalog and catalog.ContainedItems->includes(item) and Item.allInstance()->includes(item)
 }
