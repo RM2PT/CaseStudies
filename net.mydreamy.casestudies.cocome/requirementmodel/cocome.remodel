@@ -1,3 +1,4 @@
+
 Actor Cashier {
 	UC::processSale() 
 } 
@@ -8,7 +9,7 @@ Service CoCoMEProcessSale {
 	makeNewSale()
 	
 	enterItem(barcode, quantity)
-	endSale()
+	endSale() 
 
 	makeCashPayment(amount)
 	makeCardPayment(cardAccountNumber, expiryDate) 
@@ -260,8 +261,8 @@ Contract CoCoMEProcessSale::makeNewSale()  {
 	 */ 
 	postcondition:  let s:Sale in s.oclIsNew() and 
 					s.BelongedCashDesk = currentCashDesk and currentCashDesk.ContainedSales->includes(s) and 
-					s.IsComplete = false and s.IsReadytoPay = false and
-					self.currentSale = s
+					s.IsComplete = false and s.IsReadytoPay = false and 
+					self.currentSale = s  
 }
 
 Contract CoCoMEProcessSale::enterItem(barcode : Integer, quantity : Integer) {
@@ -279,10 +280,10 @@ Contract CoCoMEProcessSale::enterItem(barcode : Integer, quantity : Integer) {
 	 * sli was associated with a Item (association formed). 
 	 * subamount became item.price * quantity 
 	 */
-	 postcondition : let sli:SalesLineItem in sli.oclIsNew() and self.currentSaleLine = sli and
-	 				 sli.BelongedSale = currentSale and currentSale.ContainedSalesLine->includes(sli) and
+	 postcondition : let sli:SalesLineItem in sli.oclIsNew() and self.currentSaleLine = sli and 
+	 				 sli.BelongedSale = currentSale and currentSale.ContainedSalesLine->includes(sli) and 
 	 				 sli.Quantity = quantity and 
-	 				 sli.BelongedItem = item and 
+	 				 sli.BelongedItem = item and
 	 				 sli.Subamount = item.Price * quantity  
 	 				 
 }
@@ -298,7 +299,7 @@ Contract CoCoMEProcessSale::endSale() {
 	 * add all sub amount of SalesLineItem up to the Amount of currentSale (compute amount).
 	 * currentSale.IsReadytoPay became true
 	 */
-	postcondition: currentSale.ContainedSalesLine->forAll(sl : SalesLineItem | currentSale.Amount = currentSale.Amount@pre + sl.Subamount) and currentSale.IsReadytoPay = true
+	postcondition: currentSale.ContainedSalesLine->forAll(sl : SalesLineItem | currentSale.Amount = currentSale.Amount@pre + sl.Subamount) and currentSale.IsReadytoPay = true  
 }
 
 Contract CoCoMEProcessSale::makeCashPayment(amount : Real) {
@@ -319,8 +320,8 @@ Contract CoCoMEProcessSale::makeCashPayment(amount : Real) {
 	 				cp.AmountTendered = amount and 
 	 				cp.BelongedSale = currentSale and currentSale.AssoicatedPayment = cp  
 	 				and currentSale.Belongedstore = currentStore and currentStore.Sales->includes(currentSale) and 
-	 				currentSale.IsComplete = true and currentSale.Time = Now and 
-	 				cp.Balance = amount - currentSale.Amount 
+	 				currentSale.IsComplete = true and currentSale.Time = Now and  
+	 				cp.Balance = amount - currentSale.Amount  
 	  
 }
 
@@ -338,12 +339,12 @@ Contract CoCoMEProcessSale::makeCardPayment(cardAccountNumber : String, expiryDa
 	 * The current sale is complete
 	 * Sale.time became now 
 	 */
-	 postcondition: let cdp:CardPayment in cp.oclIsNew() and 
-	 				cdp.BelongedSale = currentSale and currentSale.AssoicatedPayment = cdp and
+	 postcondition: let cdp:CardPayment in cdp.oclIsNew() and 
+	 				cdp.BelongedSale = currentSale and currentSale.AssoicatedPayment = cdp and 
 	 				cdp.CardAccountNumber = cardAccountNumber and cdp.ExpiryDate = expiryDate and 
-	 				thirdPartyCardPaymentService(cdp, expiryDate, currentSale) and
+	 				thirdPartyCardPaymentService(cdp, expiryDate, currentSale) and 
 	 				currentSale.Belongedstore = currentStore and currentStore.Sales->includes(currentSale) and 
-	 				currentSale.IsComplete = true and currentSale.Time = Now
+	 				currentSale.IsComplete = true and currentSale.Time = Now 
 	 
 } 
 
@@ -355,7 +356,7 @@ Contract  ThridPartServices::thirdPartyCardPaymentService(cdp : CardPayment, exp
 Contract CoCoMEManagement::createStore(store : Store) {
 	
 	precondition: Store.allInstance()->excludes(store)
-	postcondition: Store.allInstance()->includes(store)
+	postcondition: Store.allInstance()->includes(store) 
 	
 }
 
@@ -363,7 +364,7 @@ Contract CoCoMEManagement::createCashDesk(cashdesk : CashDesk, storeid : Integer
 	
 	definition: store:Store = Store.allInstance()->any(s:Store | s.Id = storeid)
 	precondition: store.oclIsUndefined() = false and store.Cashdeskes->excludes(cashdesk) and CashDesk.allInstance()->excludes(cashdesk)
-	postcondition: store.Cashdeskes->includes(cashdesk) and cashdesk.BelongedStore = store and CashDesk.allInstance()->includes(cashdesk)
+	postcondition: store.Cashdeskes->includes(cashdesk) and cashdesk.BelongedStore = store and CashDesk.allInstance()->includes(cashdesk) 
 	
 }
 
