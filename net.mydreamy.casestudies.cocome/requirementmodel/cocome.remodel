@@ -283,7 +283,7 @@ Contract CoCoMEProcessSale::enterItem(barcode : Integer, quantity : Integer) {
 	 postcondition : let sli:SalesLineItem in sli.oclIsNew() and self.currentSaleLine = sli and 
 	 				 sli.BelongedSale = currentSale and currentSale.ContainedSalesLine->includes(sli) and 
 	 				 sli.Quantity = quantity and 
-	 				 sli.BelongedItem = item and
+	 				 sli.BelongedItem = item and 
 	 				 sli.Subamount = item.Price * quantity  
 	 				 
 }
