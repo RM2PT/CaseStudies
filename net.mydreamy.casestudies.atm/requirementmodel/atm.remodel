@@ -1,0 +1,12 @@
+Actor User {
+	
+	UC::WithdrawCash() include cardIdentification 
+	UC::CheckBalance() include cardIdentification 
+	UC::depositFunds() 
+	 
+} 
+
+UC::cardIdentification() 
+
+
+Service  Service1 { [Operation] op1 ( ) [TempProperty] attribute1 : String attribute2 : String } Service Service2 { [Operation] op1 ( ) [TempProperty] attribute1 : String } Service Service3 { } Service Service4 { [Operation] op1 ( ) op2 ( ) [TempProperty] attribute1 : String }
