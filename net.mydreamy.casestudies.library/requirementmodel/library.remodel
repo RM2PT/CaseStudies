@@ -181,7 +181,7 @@ Entity User {
 Entity Student extends User {
 	
 	Major : String
-	RegistrationStatus : StudentStatus[PROGRAMMING|GRADUATED]
+	RegistrationStatus : StudentStatus[GRADUATED|PROGRAMMING]
 	
 	[INV]
 	inv: Student.allInstance()->forAll(stu | stu.LoanedNumber < 12)
