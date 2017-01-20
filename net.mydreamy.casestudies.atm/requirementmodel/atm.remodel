@@ -1,12 +1,79 @@
 Actor User {
-	
-	UC::WithdrawCash() include cardIdentification 
-	UC::CheckBalance() include cardIdentification 
-	UC::depositFunds() 
-	 
-} 
 
-UC::cardIdentification() 
+	UC::WithdrawCash() include cardIdentification
+	UC::CheckBalance() include cardIdentification
+	UC::depositFunds()
 
+}
 
-Service  Service1 { [Operation] op1 ( ) [TempProperty] attribute1 : String attribute2 : String } Service Service2 { [Operation] op1 ( ) [TempProperty] attribute1 : String } Service Service3 { } Service Service4 { [Operation] op1 ( ) op2 ( ) [TempProperty] attribute1 : String }
+UC::cardIdentification()
+UC::usecase2() include usecase3
+UC::usecase3()
+UC::usecase4() include usecase3, usecase5
+UC::usecase5()
+
+Service Service1 {
+
+	[Operation]
+	fadfdsaf(adsfsdf, defaultValue)
+	op2(defaultValue, defaultValue, defaultValue)
+	op3(defaultValue)
+	op4(defaultValues)
+
+	[TempProperty]
+	asfd : Real
+	atm : String
+	attribute4 : String
+	attribute5 : Integer
+	aaafs : Entity4
+	attribute6 : Entity1
+	attribute7 : Entity2
+	attribute2 : EnumEntity1[ENUMITEM|ENUMITEMF]
+	attribute1 : EnumEntity1[ENUMITEM|ENUMITEMF]
+
+}
+
+Service Service2 {
+
+}
+
+Entity Entity1 {
+
+	[Refer]
+	relationname : Entity2
+
+}
+
+Entity Entity2 {
+
+	attribute2 : EnumEntity1[ENUMITEM|ENUMITEMF]
+	attribute3 : EnumEntity1[ENUMITEM|ENUMITEMF]
+
+}
+
+Entity Entity3 {
+
+	attribute1 : String
+	attribute2 : String
+	attribute3 : String
+
+	[Refer]
+	relationname : Entity2
+
+}
+
+Entity Entity4 {
+
+	attribute1 : String
+	attribute2 : String
+	attribute3 : Boolean
+
+	[Refer]
+	relationname : Entity3
+
+}
+
+Entity Entity5 extends Entity4 {
+
+}
+
