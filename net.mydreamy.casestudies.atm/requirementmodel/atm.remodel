@@ -7,73 +7,73 @@ Actor User {
 }
 
 UC::cardIdentification()
-UC::usecase2() include usecase3
-UC::usecase3()
-UC::usecase4() include usecase3, usecase5
-UC::usecase5()
 
-Service Service1 {
+Service ATMSystem {
 
 	[Operation]
-	fadfdsaf(adsfsdf, defaultValue)
-	op2(defaultValue, defaultValue, defaultValue)
-	op3(defaultValue)
-	op4(defaultValues)
+	checkBalance()
+	deposit(number)
+	inputCard(cardID)
+	inputPassword(password)
+	printReceipt()
+	ejectCard()
 
 	[TempProperty]
-	asfd : Real
-	atm : String
-	attribute4 : String
-	attribute5 : Integer
-	aaafs : Entity4
-	attribute6 : Entity1
-	attribute7 : Entity2
-	attribute2 : EnumEntity1[ENUMITEM|ENUMITEMF]
-	attribute1 : EnumEntity1[ENUMITEM|ENUMITEMF]
+	CardIDValidated : Boolean
+	PasswordValidated : Boolean
+	InputCard : BankCard
+	WithdrawedNumber : Integer
 
 }
 
-Service Service2 {
+Interaction WithdrawCashInteraction {
+	
+	[Participants: User ATMSystem]
+	
 
-}
 
-Entity Entity1 {
+CallMessage: callMessage1 ( inputCard callMessage1SendingEnd -> execution1StartEnd ) ReturnMessage: callMessage1Return ( execution1FinishEnd -> callMessage1ReturnReceivingEnd callMessage1 ) Execution: execution1 ( ATMSystem execution1StartEnd execution1FinishEnd ) ExecutionEnd:: execution1StartEnd ( ATMSystem execution1 ) ExecutionEnd:: execution1FinishEnd ( ATMSystem execution1 ) MessageEnd:: callMessage1SendingEnd ( User callMessage1 ) MessageEnd:: callMessage1ReturnReceivingEnd ( User callMessage1Return ) }
+
+
+Entity BankCard {
+
+	CardID : String
+	Password : String
+	CardStatus : CardStatus[NORMAL|SUSPEND|CANNEL]
+	balance : Real
 
 	[Refer]
-	relationname : Entity2
+	belongedUser : User
+	has : Transcation*
 
 }
 
-Entity Entity2 {
-
-	attribute2 : EnumEntity1[ENUMITEM|ENUMITEMF]
-	attribute3 : EnumEntity1[ENUMITEM|ENUMITEMF]
+Entity DespositCard extends BankCard {
 
 }
 
-Entity Entity3 {
+Entity CreditCard extends BankCard {
 
-	attribute1 : String
-	attribute2 : String
-	attribute3 : String
+}
+
+Entity User {
+
+	UserID : Integer
+	Name : String
+	Address : String
 
 	[Refer]
-	relationname : Entity2
+	ownedCard : BankCard*
 
 }
 
-Entity Entity4 {
+Entity Transcation {
 
-	attribute1 : String
-	attribute2 : String
-	attribute3 : Boolean
+	WithdrawedNum : Integer
+	BalanceAfterWithdraw : Real
 
 	[Refer]
-	relationname : Entity3
-
-}
-
-Entity Entity5 extends Entity4 {
+	involvedCard : BankCard
 
 }
 
