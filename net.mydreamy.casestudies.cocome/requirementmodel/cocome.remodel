@@ -1,144 +1,155 @@
 
 Actor Cashier {
-	UC::processSale() 
-} 
+
+	UC::processSale()
+
+}
 
 Service CoCoMEProcessSale {
-	
+
 	[Operation]
 	makeNewSale()
-	
 	enterItem(barcode, quantity)
-	endSale() 
-
+	endSale()
 	makeCashPayment(amount)
-	makeCardPayment(cardAccountNumber, expiryDate) 
-	
-	
+	makeCardPayment(cardAccountNumber, expiryDate)
+
 	[TempProperty]
 	currentSaleLine : SalesLineItem
 	currentSale : Sale
-	currentCashDesk : CashDesk 
+	currentCashDesk : CashDesk
 	currentStore : Store
 	currentPaymentMethod : PaymentMethod[CASH|CARD]
-	 
+
 	[WorkFlow]
 	ProcessSaleWF
 }
 
 Service CoCoMEManagement {
-	
+
 	[Operation]
 	createStore(store)
 	createCashDesk(cashdesk)
 	createProductCatalog(catalog)
 	createItem(item)
-	
+
 	[TempProperty]
-	
 	[WorkFlow]
-	
 }
 
 Service ThridPartServices {
-	
+
 	[Operation]
 	thirdPartyCardPaymentService(cdp, expiryDate, currentSale)
+
 }
 
 /* System Work Flow, Not for runing, protocol for Actor inter-active with System */
 Workflow ProcessSaleWF {
+
+	[Cashier ThridPartServices]
 	
-	[Cashier CoCoMEProcessSale]
+	Cashier {
+		
+		ActivityStart
+
+		makeNewSale	
 	
-	makeNewSale()
+     	
+     	
+     	endSale
 	
-	Loop -> hasMoreItems { 
-		enterItem(barcode, quantity)
+		ForkNode -> (createCashDesk createStore hasMoreItems newCondition)
+	
+		createCashDesk 
+	
+		
+		createStore
+	
+		Loop -> hasMoreItems {
+	
+			enterItem
+		}
+	
+		Switch -> newCondition {
+	
+			case: case1 -> createItem
+			case: case2 -> createProductCatalog
+		}
+		
+		(createCashDesk createItem createProductCatalog hasMoreItems createStore) -> JoinNode
+		
+		ActivityFinal
+		
+		
 	}
 	
-	endSale()
-	
-	Switch -> PaymentMethod {
-		case: PaymentMethod::CASH -> makeCashPayment(amount) 
-		case: PaymentMethod::CARD -> makeCardPayment(cardAccountNumber, expiryDate) 
+	ThridPartServices {
+		
+		thirdPartyCardPaymentService
+		
 	}
-	 
+
+
+
 }
 
 Interaction ProcessSaleInteraction {
-	
+
 	[Participants: Cashier CoCoMEProcessSale]
-	
-	CallMessage:makeNewSale(makeNewSale makeNewSaleSender->makeNewSaleStart)
-	ReturnMessage:makeNewSaleReturn(makeNewSaleFinish->makeNewSaleReturnReceiver makeNewSale)
-	
-	CallMessage:enterItem(enterItem enterItemSender->enterItemStart)
-	ReturnMessage:enterItemReturn(enterItemFinish->enterItemReturnReceiver enterItem)
-	
-	CallMessage:endSale(endSale endSaleSender->endSaleStart) 
-	ReturnMessage:endSaleReturn(endSaleFinish->endSaleReturnReceiver endSale)
-	
-	CallMessage:makeCashPayment(makeCashPayment makeCashPaymentSender->makeCashPaymentStart)
-	ReturnMessage:makeCashPaymentReturn(makeCashPaymentFinish->makeCashPaymentReturnReceiver makeCashPayment)
-	
-	CallMessage:makeCardPayment(makeCardPayment makeCardPaymentSender->makeCardPaymentStart)
-	ReturnMessage:makeCardPaymentReturn(makeCardPaymentFinish->makeCardPaymentReturnReceiver makeCardPayment)
-	 
-	
-	Execution:makeNewSale(CoCoMEProcessSale makeNewSaleStart makeNewSaleFinish)
-	Execution:enterItem(CoCoMEProcessSale enterItemStart enterItemFinish)
-	Execution:endSale(CoCoMEProcessSale endSaleStart endSaleFinish)	
-	Execution:makeCashPayment(CoCoMEProcessSale makeCashPaymentStart makeCashPaymentFinish)
-	Execution:makeCardPayment(CoCoMEProcessSale makeCardPaymentStart makeCardPaymentFinish)
-	
-	 
-	CombinedFragment:enterItemLoop->loop {
-		
+
+	CallMessage::makeNewSale(makeNewSale makeNewSaleSender->makeNewSaleStart)
+	ReturnMessage::makeNewSaleReturn(makeNewSaleFinish->makeNewSaleReturnReceiver makeNewSale)
+	CallMessage::enterItem(enterItem enterItemSender->enterItemStart)
+	ReturnMessage::enterItemReturn(enterItemFinish->enterItemReturnReceiver enterItem)
+	CallMessage::endSale(endSale endSaleSender->endSaleStart)
+	ReturnMessage::endSaleReturn(endSaleFinish->endSaleReturnReceiver endSale)
+	CallMessage::makeCashPayment(makeCashPayment makeCashPaymentSender->makeCashPaymentStart)
+	ReturnMessage::makeCashPaymentReturn(makeCashPaymentFinish->makeCashPaymentReturnReceiver makeCashPayment)
+	CallMessage::makeCardPayment(makeCardPayment makeCardPaymentSender->makeCardPaymentStart)
+	ReturnMessage::makeCardPaymentReturn(makeCardPaymentFinish->makeCardPaymentReturnReceiver makeCardPayment)
+
+	Execution::makeNewSale(CoCoMEProcessSale makeNewSaleStart makeNewSaleFinish)
+	Execution::enterItem(CoCoMEProcessSale enterItemStart enterItemFinish)
+	Execution::endSale(CoCoMEProcessSale endSaleStart endSaleFinish)
+	Execution::makeCashPayment(CoCoMEProcessSale makeCashPaymentStart makeCashPaymentFinish)
+	Execution::makeCardPayment(CoCoMEProcessSale makeCardPaymentStart makeCardPaymentFinish)
+
+	CombinedFragment::enterItemLoop->loop {
+
 		[Participants: Cashier CoCoMEProcessSale]
-		
+
 		enterItemLoopStart->enterItemLoopFinish
-		
+
 		Operand::hasMoreItems(hasMoreItemsStart enterItemLoopFinish)
-		
-	} 
-	
-	CombinedFragment:PaymentMethodAlt->alt {
-		
+	}
+
+	CombinedFragment::PaymentMethodAlt->alt {
+
 		[Participants: Cashier CoCoMEProcessSale]
-		
+
 		PaymentMethodAltStart->PaymentMethodAltFinish
-		
+
 		Operand::Cash(CashStart CardStart)
 		Operand::Card(CardStart PaymentMethodAltFinish)
-		
-	} 
-	 
+	}
+
 	MessageEnd::makeNewSaleSender(Cashier makeNewSale)
-//	MessageEnd::makeNewSaleReceiver(makeNewSale makeNewSale)
-	
 	ExecutionEnd::makeNewSaleStart(CoCoMEProcessSale makeNewSale)
 	ExecutionEnd::makeNewSaleFinish(CoCoMEProcessSale makeNewSale)
-	
 	MessageEnd::makeNewSaleReturnReceiver(Cashier makeNewSaleReturn)
-	
 	CombinedFragmentEnd::enterItemLoopStart(enterItemLoop)
-	OperandEnd::hasMoreItemsStart(hasMoreItems)	
+	OperandEnd::hasMoreItemsStart(hasMoreItems)
 	MessageEnd::enterItemSender(Cashier enterItem)
 	ExecutionEnd::enterItemStart(CoCoMEProcessSale enterItem)
 	ExecutionEnd::enterItemFinish(CoCoMEProcessSale enterItem)
 	MessageEnd::enterItemReturnReceiver(Cashier enterItemReturn)
 	CombinedFragmentEnd::enterItemLoopFinish(enterItemLoop)
-	
 	MessageEnd::endSaleSender(Cashier endSale)
-//	MessageEnd::endSaleReceiver(endSale endSale)
-	
 	ExecutionEnd::endSaleStart(CoCoMEProcessSale endSale)
 	ExecutionEnd::endSaleFinish(CoCoMEProcessSale endSale)
-	
 	MessageEnd::endSaleReturnReceiver(Cashier endSaleReturn)
-	
-	CombinedFragmentEnd::PaymentMethodAltStart(PaymentMethodAlt)	
+	CombinedFragmentEnd::PaymentMethodAltStart(PaymentMethodAlt)
 	OperandEnd::CashStart(Cash)
 	MessageEnd::makeCashPaymentSender(Cashier makeCashPayment)
 	ExecutionEnd::makeCashPaymentStart(CoCoMEProcessSale makeCashPayment)
@@ -149,105 +160,114 @@ Interaction ProcessSaleInteraction {
 	ExecutionEnd::makeCardPaymentStart(CoCoMEProcessSale makeCardPayment)
 	ExecutionEnd::makeCardPaymentFinish(CoCoMEProcessSale makeCardPayment)
 	MessageEnd::makeCardPaymentReturnReceiver(Cashier makeCardPaymentReturn)
-	CombinedFragmentEnd::PaymentMethodAltFinish(PaymentMethodAlt)	
-		
+	CombinedFragmentEnd::PaymentMethodAltFinish(PaymentMethodAlt)
 
-
- }
-
+}
 
 Entity Store {
+
 	Id : Integer
 	Name : String
 	Address : String
-	
+
 	[Refer]
 	Cashdeskes : CashDesk*
 	Productcatalogs : ProductCatalog*
 	Items : Item*
 	Cashiers : Cashier*
 	Sales : Sale*
-	
+
 }
 
 Entity ProductCatalog {
-	
+
 	Id : Integer
 	Name : String
-	
+
 	[Refer]
 	ContainedItems : Item*
+
 }
 
 Entity CashDesk {
-	
+
 	Id : Integer
-	
+
 	[Refer]
 	ContainedSales : Sale*
 	BelongedStore : Store
+
 }
 
 Entity Sale {
-	
+
 	Time : Date
 	IsComplete: Boolean
 	Amount : Real
 	IsReadytoPay : Boolean
-	
-    [Refer] 
-    Belongedstore : Store
-    BelongedCashDesk : CashDesk 
-    ContainedSalesLine : SalesLineItem*
-    AssoicatedPayment : Payment
+
+	[Refer]
+	Belongedstore : Store
+	BelongedCashDesk : CashDesk
+	ContainedSalesLine : SalesLineItem*
+	AssoicatedPayment : Payment
+
 }
 
 Entity Cashier {
+
 	Id : Integer
 	Name : String
-	
+
 	[Refer]
 	WorkedStore : Store
+
 }
 
-
 Entity SalesLineItem {
-	
+
 	Quantity : Integer
 	Subamount : Real
-	
+
 	[Refer]
 	BelongedSale : Sale
 	BelongedItem : Item
+
 }
 
 Entity Item {
+
 	Barcode : Integer
 	Description : String
 	Price : Real
-	
+
 	[Refer]
 	BelongedCatalog : ProductCatalog
+
 }
 
 Entity Payment {
-	
+
 	AmountTendered : Real
-	
+
 	[Refer]
 	BelongedSale : Sale
+
 }
 
 Entity CashPayment extends Payment {
+
 	Balance : Real
+
 }
 
 Entity CardPayment extends Payment {
+
 	CardAccountNumber : String
 	ExpiryDate : Date
+
 }
 
- 
 Contract CoCoMEProcessSale::makeNewSale()  {
 				 
 	/* preconditions:  none */
@@ -356,7 +376,7 @@ Contract  ThridPartServices::thirdPartyCardPaymentService(cdp : CardPayment, exp
 Contract CoCoMEManagement::createStore(store : Store) {
 	
 	precondition: Store.allInstance()->excludes(store)
-	postcondition: Store.allInstance()->includes(store) 
+	postcondition: Store.allInstance()->includes(store)  
 	
 }
 

@@ -12,11 +12,12 @@ Service ATMSystem {
 
 	[Operation]
 	checkBalance()
-	deposit(number)
+	deposit(quantity)
 	inputCard(cardID)
 	inputPassword(password)
 	printReceipt()
 	ejectCard()
+	withDraw(quantity)
 
 	[TempProperty]
 	CardIDValidated : Boolean
@@ -27,13 +28,64 @@ Service ATMSystem {
 }
 
 Interaction WithdrawCashInteraction {
-	
+
 	[Participants: User ATMSystem]
-	
 
+	CallMessage::callMessage1(inputCard callMessage1SendingEnd -> execution1StartEnd)
+	ReturnMessage::callMessage1Return(execution1FinishEnd -> callMessage1ReturnReceivingEnd callMessage1)
+	CallMessage::callMessage3(inputPassword callMessage3SendingEnd -> execution2StartEnd)
+	ReturnMessage::callMessage3Return(execution2FinishEnd -> callMessage3ReturnReceivingEnd callMessage3)
+	CallMessage::callMessage5(withDraw callMessage5SendingEnd -> execution3StartEnd)
+	ReturnMessage::callMessage5Return(execution3FinishEnd -> callMessage5ReturnReceivingEnd callMessage5)
+	CallMessage::callMessage7(printReceipt callMessage7SendingEnd -> execution4StartEnd)
+	ReturnMessage::callMessage7Return(execution4FinishEnd -> callMessage7ReturnReceivingEnd callMessage7)
+	CallMessage::callMessage9(ejectCard callMessage9SendingEnd -> execution5StartEnd)
+	ReturnMessage::callMessage9Return(execution5FinishEnd -> callMessage9ReturnReceivingEnd callMessage9)
 
-CallMessage: callMessage1 ( inputCard callMessage1SendingEnd -> execution1StartEnd ) ReturnMessage: callMessage1Return ( execution1FinishEnd -> callMessage1ReturnReceivingEnd callMessage1 ) Execution: execution1 ( ATMSystem execution1StartEnd execution1FinishEnd ) ExecutionEnd:: execution1StartEnd ( ATMSystem execution1 ) ExecutionEnd:: execution1FinishEnd ( ATMSystem execution1 ) MessageEnd:: callMessage1SendingEnd ( User callMessage1 ) MessageEnd:: callMessage1ReturnReceivingEnd ( User callMessage1Return ) }
+	Execution::execution1(ATMSystem execution1StartEnd execution1FinishEnd)
+	Execution::execution2(ATMSystem execution2StartEnd execution2FinishEnd)
+	Execution::execution3(ATMSystem execution3StartEnd execution3FinishEnd)
+	Execution::execution4(ATMSystem execution4StartEnd execution4FinishEnd)
+	Execution::execution5(ATMSystem execution5StartEnd execution5FinishEnd)
 
+	CombinedFragment:: combinedFragement1 -> alt {
+
+		[Participants: User ATMSystem]
+
+		combinedFragement1StartEnd -> combinedFragement1FinishEnd
+
+		Operand::condition1(condition1End condition3End)
+		Operand::condition2(condition2End combinedFragement1FinishEnd)
+		Operand::condition3(condition3End combinedFragement1FinishEnd)
+	}
+
+	MessageEnd::callMessage1SendingEnd(User callMessage1)
+	ExecutionEnd::execution1StartEnd(ATMSystem execution1)
+	ExecutionEnd::execution1FinishEnd(ATMSystem execution1)
+	MessageEnd::callMessage1ReturnReceivingEnd(User callMessage1Return)
+	MessageEnd::callMessage3SendingEnd(User callMessage3)
+	ExecutionEnd::execution2StartEnd(ATMSystem execution2)
+	ExecutionEnd::execution2FinishEnd(ATMSystem execution2)
+	MessageEnd::callMessage3ReturnReceivingEnd(User callMessage3Return)
+	MessageEnd::callMessage5SendingEnd(User callMessage5)
+	ExecutionEnd::execution3StartEnd(ATMSystem execution3)
+	ExecutionEnd::execution3FinishEnd(ATMSystem execution3)
+	MessageEnd::callMessage5ReturnReceivingEnd(User callMessage5Return)
+	MessageEnd::callMessage7SendingEnd(User callMessage7)
+	ExecutionEnd::execution4StartEnd(ATMSystem execution4)
+	ExecutionEnd::execution4FinishEnd(ATMSystem execution4)
+	MessageEnd::callMessage7ReturnReceivingEnd(User callMessage7Return)
+	MessageEnd::callMessage9SendingEnd(User callMessage9)
+	ExecutionEnd::execution5StartEnd(ATMSystem execution5)
+	ExecutionEnd::execution5FinishEnd(ATMSystem execution5)
+	MessageEnd::callMessage9ReturnReceivingEnd(User callMessage9Return)
+	CombinedFragmentEnd::combinedFragement1StartEnd(combinedFragement1)
+	OperandEnd::condition1End(condition1)
+	OperandEnd::condition3End(condition3)
+	OperandEnd::condition2End(condition2)
+	CombinedFragmentEnd::combinedFragement1FinishEnd(combinedFragement1)
+
+}
 
 Entity BankCard {
 
