@@ -1,0 +1,1332 @@
+Actor Cashier {
+
+	UC::processSale()
+	UC::openCashDesk()
+	UC::closeCashDesk()
+
+}
+
+Actor Administrator {
+
+	UC::createStore()
+	UC::queryStore()
+	UC::modifyStore()
+	UC::deleteStore()
+	UC::createProductCatalog()
+	UC::queryProductCatalog()
+	UC::modifyProductCatalog()
+	UC::deleteProductCatalog()
+	UC::createCashDesk()
+	UC::queryCashDesk()
+	UC::modifyCashDesk()
+	UC::deleteCashDesk()
+	UC::createCashier()
+	UC::queryCashier()
+	UC::modifyCashier()
+	UC::deleteCashier()
+	UC::createItem()
+	UC::queryItem()
+	UC::modifyItem()
+	UC::deleteItem()
+	UC::createSupplier()
+	UC::querySupplier()
+	UC::modifySupplier()
+	UC::deleteSupplier()
+
+}
+
+Actor StoreManager {
+
+	UC::orderProducts()
+	UC::receiveOrderedProduct()
+	UC::showStockReports()
+	UC::changePrice()
+	UC::listSuppliers()
+	UC::openStore()
+	UC::closeStore()
+
+}
+
+Service CoCoMEProcessSale {
+
+	[Operation]
+	makeNewSale()
+	enterItem(barcode, quantity)
+	endSale()
+	makeCashPayment(amount)
+	makeCardPayment(cardAccountNumber, expiryDate)
+	openCashDesk(cashdeskID)
+	closeCashDesk(cashDeskID)
+	openStore(storeID)
+	closeStore(storeID)
+
+	[TempProperty]
+	currentSaleLine : SalesLineItem
+	currentSale : Sale
+	currentCashDesk : CashDesk
+	currentStore : Store
+	currentPaymentMethod : PaymentMethod[CASH|CARD]
+
+	[WorkFlow]
+	ProcessSaleWF 
+}
+
+Service ThridPartServices {
+
+	[Operation]
+	thirdPartyCardPaymentService(cdp, expiryDate, fee)
+
+}
+
+Service EntityCURDService {
+
+	[Operation]
+	createStore(id, name, address)
+	queryStore(Id)
+	modifyStore(id, name, address)
+	deleteStore(Id)
+	createProductCatalog(id, name)
+	queryProductCatalog(Id)
+	modifyProductCatalog(id, name)
+	deleteProductCatalog(Id)
+	createCashDesk(id, name)
+	queryCashDesk(Id)
+	modifyCashDesk(id, name)
+	deleteCashDesk(Id)
+	createCashier(id, name)
+	queryCashier(Id)
+	modifyCashier(id, name)
+	deleteCashier(Id)
+	createItem(barcode, name, price, stocknumber, orderprice)
+	queryItem(Barcode)
+	modifyItem(barcode, name, price, stocknumber, orderprice)
+	deleteItem(Barcode)
+	createSupplier(id, name)
+	querySupplier(Id)
+	modifySupplier(id, name)
+	deleteSupplier(Id)
+
+}
+
+Service CoCoMEOrderProducts {
+
+	[Operation]
+	makeNewOrder()
+	listAllOutOfStoreProducts()
+	orderItem(itemID, quantity)
+	chooseSupplier(supplierID)
+	placeOrder()
+
+	[TempProperty]
+	currentOrderProduct : OrderProduct
+
+	[WorkFlow]
+	OrderProductWF
+
+}
+
+Service CoCoMESystem {
+
+	[Operation]
+	changePrice(ItemID, newPrice)
+	receiveOrderedProduct(orderID)
+	listSuppliers()
+	showStockReports()
+
+}
+
+/* System Work Flow, Not for runing, protocol for Actor inter-active with System */
+Workflow ProcessSaleWF {
+
+	[Cashier CoCoMEProcessSale]
+	
+	Cashier {
+		
+		ActivityStart
+
+	makeNewSale
+
+	Loop -> hasMoreItems {
+
+		enterItem
+	}
+
+	endSale
+
+	Switch -> newCondition {
+
+		case: cash -> makeCashPayment
+		case: card -> makeCardPayment
+	}
+
+	ActivityFinal
+
+	}
+
+}
+
+Workflow OrderProductWF {
+
+	[StoreManager CoCoMEOrderProducts]
+	
+	StoreManager {
+		
+		ActivityStart
+
+	makeNewOrder
+
+	listAllOutOfStoreProducts
+
+	Loop -> hasMoreItemsToOrder {
+
+		orderItem
+	}
+
+	chooseSupplier
+
+	placeOrder
+
+	ActivityFinal
+
+	}
+
+}
+
+//Workflow ProcessSaleWF {
+//
+//	[Cashier ThridPartServices]
+//	
+//	Cashier {
+//		
+//		ActivityStart
+//
+//		makeNewSale
+//	
+//		endSale
+//	
+//		ForkNode -> (createCashDesk createStore hasMoreItems newCondition)
+//	
+//		createCashDesk
+//	
+//		createStore
+//	
+//		Loop -> hasMoreItems {
+//	
+//			enterItem
+//		}
+//	
+//		Switch -> newCondition {
+//	
+//			case: case1 -> createProductCatalog
+//			case: case2 -> createProductCatalog
+//		}
+//	
+//		(createCashDesk createProductCatalog createProductCatalog hasMoreItems createStore) -> JoinNode
+//
+//		ActivityFinal
+//
+//	}
+//	
+//	ThridPartServices {
+//		
+//		thirdPartyCardPaymentService
+//
+//	}
+//
+//}
+Interaction ProcessSaleInteraction {
+
+	[Participants: Cashier CoCoMEProcessSale]
+
+	CallMessage::makeNewSale(makeNewSale makeNewSaleSender->makeNewSaleStart)
+	ReturnMessage::makeNewSaleReturn(makeNewSaleFinish->makeNewSaleReturnReceiver makeNewSale)
+	CallMessage::enterItem(enterItem enterItemSender->enterItemStart)
+	ReturnMessage::enterItemReturn(enterItemFinish->enterItemReturnReceiver enterItem)
+	CallMessage::endSale(endSale endSaleSender->endSaleStart)
+	ReturnMessage::endSaleReturn(endSaleFinish->endSaleReturnReceiver endSale)
+	CallMessage::makeCashPayment(makeCashPayment makeCashPaymentSender->makeCashPaymentStart)
+	ReturnMessage::makeCashPaymentReturn(makeCashPaymentFinish->makeCashPaymentReturnReceiver makeCashPayment)
+	CallMessage::makeCardPayment(makeCardPayment makeCardPaymentSender->makeCardPaymentStart)
+	ReturnMessage::makeCardPaymentReturn(makeCardPaymentFinish->makeCardPaymentReturnReceiver makeCardPayment)
+
+	Execution::makeNewSale(CoCoMEProcessSale makeNewSaleStart makeNewSaleFinish)
+	Execution::enterItem(CoCoMEProcessSale enterItemStart enterItemFinish)
+	Execution::endSale(CoCoMEProcessSale endSaleStart endSaleFinish)
+	Execution::makeCashPayment(CoCoMEProcessSale makeCashPaymentStart makeCashPaymentFinish)
+	Execution::makeCardPayment(CoCoMEProcessSale makeCardPaymentStart makeCardPaymentFinish)
+
+	CombinedFragment::enterItemLoop->loop {
+
+		[Participants: Cashier CoCoMEProcessSale]
+
+		enterItemLoopStart->enterItemLoopFinish
+
+		Operand::hasMoreItems(hasMoreItemsStart enterItemLoopFinish)
+	}
+
+	CombinedFragment::PaymentMethodAlt->alt {
+
+		[Participants: Cashier CoCoMEProcessSale]
+
+		PaymentMethodAltStart->PaymentMethodAltFinish
+
+		Operand::Cash(CashStart CardStart)
+		Operand::Card(CardStart PaymentMethodAltFinish)
+	}
+
+	MessageEnd::makeNewSaleSender(Cashier makeNewSale)
+	ExecutionEnd::makeNewSaleStart(CoCoMEProcessSale makeNewSale)
+	ExecutionEnd::makeNewSaleFinish(CoCoMEProcessSale makeNewSale)
+	MessageEnd::makeNewSaleReturnReceiver(Cashier makeNewSaleReturn)
+	CombinedFragmentEnd::enterItemLoopStart(enterItemLoop)
+	OperandEnd::hasMoreItemsStart(hasMoreItems)
+	MessageEnd::enterItemSender(Cashier enterItem)
+	ExecutionEnd::enterItemStart(CoCoMEProcessSale enterItem)
+	ExecutionEnd::enterItemFinish(CoCoMEProcessSale enterItem)
+	MessageEnd::enterItemReturnReceiver(Cashier enterItemReturn)
+	CombinedFragmentEnd::enterItemLoopFinish(enterItemLoop)
+	MessageEnd::endSaleSender(Cashier endSale)
+	ExecutionEnd::endSaleStart(CoCoMEProcessSale endSale)
+	ExecutionEnd::endSaleFinish(CoCoMEProcessSale endSale)
+	MessageEnd::endSaleReturnReceiver(Cashier endSaleReturn)
+	CombinedFragmentEnd::PaymentMethodAltStart(PaymentMethodAlt)
+	OperandEnd::CashStart(Cash)
+	MessageEnd::makeCashPaymentSender(Cashier makeCashPayment)
+	ExecutionEnd::makeCashPaymentStart(CoCoMEProcessSale makeCashPayment)
+	ExecutionEnd::makeCashPaymentFinish(CoCoMEProcessSale makeCashPayment)
+	MessageEnd::makeCashPaymentReturnReceiver(Cashier makeCashPaymentReturn)
+	OperandEnd::CardStart(Card)
+	MessageEnd::makeCardPaymentSender(Cashier makeCardPayment)
+	ExecutionEnd::makeCardPaymentStart(CoCoMEProcessSale makeCardPayment)
+	ExecutionEnd::makeCardPaymentFinish(CoCoMEProcessSale makeCardPayment)
+	MessageEnd::makeCardPaymentReturnReceiver(Cashier makeCardPaymentReturn)
+	CombinedFragmentEnd::PaymentMethodAltFinish(PaymentMethodAlt)
+
+}
+
+@AutoCRUD
+Entity Store {
+
+	Id : Integer
+	Name : String
+	Address : String
+	IsOpened : Boolean
+
+	[Refer]
+	Cashdeskes : CashDesk*
+	Productcatalogs : ProductCatalog*
+	Items : Item*
+	Cashiers : Cashier*
+	Sales : Sale*
+
+	[INV]
+	inv UniqueStoreId : Store.allInstance()->isUnique(s:Store | s.Id)
+
+}
+
+@AutoCRUD
+Entity ProductCatalog {
+
+	Id : Integer
+	Name : String
+
+	[Refer]
+	ContainedItems : Item*
+
+	[INV]
+	inv UniqueProductCatalogId : ProductCatalog.allInstance()->isUnique(p:ProductCatalog | p.Id)
+
+}
+
+@AutoCRUD
+Entity CashDesk {
+
+	Id : Integer
+	Name : String
+	IsOpened : Boolean
+
+	[Refer]
+	ContainedSales : Sale*
+	BelongedStore : Store
+
+	[INV]
+	inv UniqueCashDeskId : CashDesk.allInstance()->isUnique(c:CashDesk | c.Id)
+
+}
+
+Entity Sale {
+
+	Time : Date
+	IsComplete: Boolean
+	Amount : Real
+	IsReadytoPay : Boolean
+
+	[Refer]
+	Belongedstore : Store
+	BelongedCashDesk : CashDesk
+	ContainedSalesLine : SalesLineItem*
+	AssoicatedPayment : Payment
+
+	[INV]
+	inv AmountGreatAndEqualZero : Amount >= 0
+
+}
+
+@AutoCRUD
+Entity Cashier {
+
+	Id : Integer
+	Name : String
+
+	[Refer]
+	WorkedStore : Store
+
+	[INV]
+	inv UniqueCashierID : Cashier.allInstance()->isUnique(c:Cashier | c.Id)
+
+}
+
+Entity SalesLineItem {
+
+	Quantity : Integer
+	Subamount : Real
+
+	[Refer]
+	BelongedSale : Sale
+	BelongedItem : Item
+
+}
+
+@AutoCRUD
+Entity Item {
+
+	Barcode : Integer
+	Name : String
+	Price : Real
+	StockNumber : Integer
+	OrderPrice : Real
+
+	[Refer]
+	BelongedCatalog : ProductCatalog
+
+	[INV]
+	inv UniqueBarcode : Item.allInstance()->isUnique(u:Item | u.Barcode)
+	inv PriceGreatThanEqualZero : Price >= 0
+	inv StockNumberGreatThanEqualZero : StockNumber >= 0
+
+}
+
+Entity Payment {
+
+	AmountTendered : Real
+
+	[Refer]
+	BelongedSale : Sale
+
+}
+
+Entity CashPayment extends Payment {
+
+	Balance : Real
+
+}
+
+Entity CardPayment extends Payment {
+
+	CardAccountNumber : String
+	ExpiryDate : Date
+
+}
+
+Entity OrderEntry {
+
+	Quantity : Integer
+	SubAmount : Real
+
+	[Refer]
+	Item : Item
+
+}
+
+@AutoCRUD 
+Entity Supplier {
+
+	Id : Integer
+	Name : String
+
+	[INV]
+	inv UniqueSupplier : Supplier.allInstance()->isUnique(s:Supplier | s.Id)
+
+}
+
+Entity OrderProduct {
+
+	Id : Integer
+	Time : Date
+	OrderStatus : OrderStatus[A|RECEIVED|REQUESTED]
+	Amount : Real
+
+	[Refer]
+	Supplier : Supplier
+	ContainedEntries : OrderEntry*
+
+}
+
+Contract CoCoMEProcessSale::openStore(storeID : Integer) : Boolean {
+
+	definition:
+		sto:Store = Store.allInstance()->any(s:Store | s.Id = storeID)
+
+	precondition:
+		sto.oclIsUndefined() = false and
+		sto.IsOpened = false
+
+	postcondition:
+		self.currentStore = sto and
+		sto.IsOpened = true and
+		result = true
+
+}
+
+Contract CoCoMEProcessSale::closeStore(storeID : Integer) : Boolean {
+
+	definition:
+		sto:Store = Store.allInstance()->any(s:Store | s.Id = storeID)
+
+	precondition:
+		sto.oclIsUndefined() = false and
+		sto.IsOpened = true
+
+	postcondition:
+		sto.IsOpened = false and
+		result = true
+
+}
+
+Contract CoCoMEProcessSale::openCashDesk(cashDeskID : Integer) : Boolean {
+
+	definition:
+		cd:CashDesk = CashDesk.allInstance()->any(s:CashDesk | s.Id = cashDeskID)
+
+	precondition:
+		cd.oclIsUndefined() = false and
+		cd.IsOpened = false and
+		currentStore.oclIsUndefined() = false and
+		currentStore.IsOpened = true
+
+	postcondition:
+		self.currentCashDesk = cd and
+		cd.IsOpened = true and
+		result = true
+
+}
+
+Contract CoCoMEProcessSale::closeCashDesk(cashDeskID : Integer) : Boolean {
+
+	definition:
+		cd:CashDesk = CashDesk.allInstance()->any(s:CashDesk | s.Id = cashDeskID)
+
+	precondition:
+		cd.oclIsUndefined() = false and
+		cd.IsOpened = true and
+		currentStore.oclIsUndefined() = false and
+		currentStore.IsOpened = true
+
+	postcondition:
+		self.currentCashDesk = cd and
+		cd.IsOpened = false and
+		result = true
+
+}
+
+Contract CoCoMEProcessSale::makeNewSale() : Boolean {
+
+	/* preconditions:  none */
+	precondition:
+		currentCashDesk.oclIsUndefined() = false and
+		currentCashDesk.IsOpened = true and
+		(currentSale.oclIsUndefined() = true or
+			(currentSale.oclIsUndefined() = false and
+				currentSale.IsComplete = true
+			)
+		)
+
+	/* postconditions: 
+	 * A sale instance s was created (instance creation).
+	 * s was associated with the current CashDesk (association formed)
+	 * Attribute IsComplete of s was initialized as false. (object initialization)
+	 * currentSale became s
+	 */
+	postcondition:
+		let s:Sale in
+		s.oclIsNew() and
+		s.BelongedCashDesk = currentCashDesk and
+		currentCashDesk.ContainedSales->includes(s) and
+		s.IsComplete = false and
+		s.IsReadytoPay = false and
+		Sale.allInstance()->includes(s) and
+		self.currentSale = s and
+		result = true
+}
+
+Contract CoCoMEProcessSale::enterItem(barcode : Integer, quantity : Integer) : Boolean {
+
+	/* Definition: find specific Item instance by barcode */
+	definition:
+		item:Item = Item.allInstance()->any(i:Item | i.Barcode = barcode)
+
+	/* Precondition: there is a sale underway */
+	precondition:
+		currentSale.oclIsUndefined() = false and
+		currentSale.IsComplete = false
+
+	/**
+	 * A salesLineItem instance sli was created (instance creation).
+	 * sli was associated with the current Sale (association formed).
+	 * sli.quantity became quantity (attribute modification).
+	 * sli was associated with a Item (association formed). 
+	 * subamount became item.price * quantity 
+	 */
+	postcondition:
+		let sli:SalesLineItem in
+		sli.oclIsNew() and
+		self.currentSaleLine = sli and
+		sli.BelongedSale = currentSale and
+		currentSale.ContainedSalesLine->includes(sli) and
+		sli.Quantity = quantity and
+		sli.BelongedItem = item and
+		item.StockNumber = item.StockNumber@pre - quantity and
+		sli.Subamount = item.Price * quantity and
+		SalesLineItem.allInstance()->includes(sli) and
+		result = true
+
+}
+
+Contract CoCoMEProcessSale::endSale() : Real {
+
+	/* Precondition: there is a sale underway and no more items. */
+	precondition:
+		currentSale.oclIsUndefined() = false and
+		currentSale.IsComplete = false and
+		currentSale.IsReadytoPay = false
+
+	/**
+	 * Postcondition: 
+	 * add all sub amount of SalesLineItem up to the Amount of currentSale (compute amount).
+	 * currentSale.IsReadytoPay became true
+	 */
+	postcondition:
+		currentSale.ContainedSalesLine->forAll(sl:SalesLineItem |
+			currentSale.Amount = currentSale.Amount@pre + sl.Subamount)
+		and
+		currentSale.IsReadytoPay = true and
+		result = currentSale.Amount
+}
+
+Contract CoCoMEProcessSale::makeCashPayment(amount : Real) : Boolean {
+
+	/* Precondition: There is a sale underway, the sale is ready to pay, and tendered amount is greater than or equal to the amount of current Sale*/
+	precondition:
+		currentSale.oclIsUndefined() = false and
+		currentSale.IsComplete = false and
+		currentSale.IsReadytoPay = true and
+		amount >= currentSale.Amount
+
+	/**
+	 * A CashPayment instance cp was created (instance creation).
+	 * cp.amountTendered became amount (attribute modification).
+	 * cp was associated with the current Sale (association formed).
+	 * The current Sale was associated with the Store (association formed).
+	 * Sale.isComplete became true (attribute modification).
+	 * Sale.time became now  (attribute modification).
+	 * cp.Balance became the value of tendered amount minus current Sale amount
+	 */
+	postcondition:
+		let cp:CashPayment in
+		cp.oclIsNew() and
+		cp.AmountTendered = amount and
+		cp.BelongedSale = currentSale and
+		currentSale.AssoicatedPayment = cp and
+		currentSale.Belongedstore = currentStore and
+		currentStore.Sales->includes(currentSale) and
+		currentSale.IsComplete = true and
+		currentSale.Time = Now and
+		cp.Balance = amount - currentSale.Amount and
+		CashPayment.allInstance()->includes(cp) and
+		result = true
+
+}
+
+Contract CoCoMEProcessSale::makeCardPayment(cardAccountNumber : String, expiryDate : Date, fee: Real) : Boolean {
+
+	/* Precondition: An underway sale exists and all items have been entered. */
+	precondition:
+		currentSale.oclIsUndefined() = false and
+		currentSale.IsComplete = false and
+		currentSale.IsReadytoPay = true and
+		thirdPartyCardPaymentService(cardAccountNumber, expiryDate, fee)
+
+	/**
+	 * a CardPayment cdp was created
+	 * cdp was associated with the current Sale
+	 * cdp.CardAccountNumber = cardAccountNumber, cdp.expiryDate = expiryDate
+	 * invoke third party card payment service 
+	 * sale was associated with the Store as a completed sale
+	 * The current sale is complete
+	 * Sale.time became now 
+	 */
+	postcondition:
+		let cdp:CardPayment in
+		cdp.oclIsNew() and
+		cdp.BelongedSale = currentSale and
+		currentSale.AssoicatedPayment = cdp and
+		cdp.CardAccountNumber = cardAccountNumber and
+		cdp.ExpiryDate = expiryDate and
+		CardPayment.allInstance()->includes(cdp) and
+		currentSale.Belongedstore = currentStore and
+		currentStore.Sales->includes(currentSale) and
+		currentSale.IsComplete = true and
+		currentSale.Time = Now and
+		result = true
+
+}
+
+Contract  ThridPartServices::thirdPartyCardPaymentService(cardAccountNumber : String, expiryDate : Date, fee : Real) : Boolean {
+
+	precondition:
+		true
+	postcondition:
+		result = true
+}
+
+Contract CoCoMEOrderProducts::makeNewOrder(orderid : Integer) : Boolean {
+
+	precondition:
+		true
+
+	/* postcondition: the instance op of OrderProduct was created
+	 * the property ID became orderid
+	 * the property Time became now
+	 * the currentOrderProduct became op
+	 */
+	postcondition:
+		let op:OrderProduct in
+		op.oclIsNew() and
+		op.Id = orderid and
+		op.Time = Now and
+		OrderProduct.allInstance()->includes(op) and
+		self.currentOrderProduct = op and
+		result = true
+}
+
+//list all out of stock items
+Contract CoCoMEOrderProducts::listAllOutOfStoreProducts() : Set(Item) {
+
+	/* precondition: none */
+	precondition:
+		true
+
+	/* postcondition:  */
+	postcondition:
+		result = Item.allInstance()->select(item:Item | item.Price = 0)
+	
+}
+
+//order items
+Contract CoCoMEOrderProducts::orderItem(barcode: Integer, quantity : Integer) : Boolean {
+
+	/* definition: find item and supplier instances by barcode and supplierID */
+	definition:
+		item:Item = Item.allInstance()->any(i:Item | i.Barcode = barcode)
+
+	/* precondition: the instances item and sup are in the system */
+	precondition:
+		item.oclIsUndefined() = false
+
+	/* postcondition: 
+	 * the instance order of OrderRecord was created
+	 * the property order became requested
+	 * the property quantity became same as input value
+	 * the property subAmount became item.OrderPrice * quantity
+	 * the order was associated with currentOrderProduct
+	 * the order was associated with item
+	 * */
+	postcondition:
+		let order:OrderEntry in
+		order.oclIsNew() and
+		order.Quantity = quantity and
+		order.subAmount = item.OrderPrice * quantity and
+		order.Item = item and
+		OrderEntry.allInstance()->includes(order) and
+		currentOrderProduct.ContainedEntries->includes(order) and
+		result = true
+
+}
+
+Contract CoCoMEOrderProducts::chooseSupplier(supplierID : Integer) : Boolean {
+
+	/* find specific Supplier sup by supplierID */
+	definition:
+		sup:Supplier = Supplier.allInstance()->any(s:Supplier | s.Id = supplierID)
+
+	/* the instance sup is in the system and currentOrderProduct is not null*/
+	precondition:
+		sup.oclIsUndefined() = false and
+		currentOrderProduct.oclIsUndefined() = false
+
+	/* currentOrderProduct was associated with sup  */
+	postcondition:
+		currentOrderProduct.Supplier = sup and
+		result = true
+}
+
+Contract CoCoMEOrderProducts::placeOrder() : Boolean {
+
+	/* currentOrderProduct is not null */
+	precondition:
+		currentOrderProduct.oclIsUndefined() = false
+	/*
+	 * poscondition:
+	 * the property OrderStatus of currentOrderProduct became REQUESTED
+	 * compute total amount of order product
+	 */
+	postcondition:
+		currentOrderProduct.OrderStatus = OrderStatus::REQUESTED and
+		currentOrderProduct.ContainedEntries->forAll(o:OrderEntry |
+			currentOrderProduct.Amount = currentOrderProduct.Amount@pre + o.SubAmount)
+		and
+		result = true
+}
+
+Contract CoCoMESystem::changePrice(barcode : Integer, newPrice : Real) : Boolean {
+
+	/* definition: find item and supplier instances by barcode and supplierID */
+	definition:
+		item:Item = Item.allInstance()->any(i:Item | i.Barcode = barcode)
+
+	/* precondition: the instances item and sup are in the system */
+	precondition:
+		item.oclIsUndefined() = false
+
+	/* postcondition: the property Price of item became newPrice */
+	postcondition:
+		item.Price = newPrice and
+		result = true
+}
+
+Contract CoCoMESystem::receiveOrderedProduct(orderID : Integer) : Boolean {
+
+	/* definition: find OrderProduct instance op by orderID */
+	definition:
+		op:OrderProduct = OrderProduct.allInstance()->any(i:OrderProduct | i.Id = orderID)
+
+	/* precondition: the instances op is in the system */
+	precondition:
+		op.oclIsUndefined() = false
+	/* postcondition: the property OrderStatus of OrderProduct became RECEIVED */
+	postcondition:
+		op.OrderStatus = OrderStatus::RECEIVED and
+		op.ContainedEntries->forAll(oe:OrderEntry |
+			oe.Item.StockNumber = oe.Item.StockNumber@pre + oe.Quantity)
+		and
+		result = true
+}
+
+Contract CoCoMESystem::listSuppliers() : Set(Supplier) {
+
+	/* precondition: none */
+	precondition:
+		true
+
+	/* postcondition: return all instances of Supplier */
+	postcondition:
+		result = Supplier.allInstance()
+}
+
+Contract CoCoMESystem::showStockReports() : Set(Item) {
+
+	/* precondition: none */
+	precondition:
+		true
+
+	/* postcondition: return all instances of Supplier */
+	postcondition:
+		result = Item.allInstance()
+}
+
+//entity create operation 
+Contract EntityCURDService::createStore(id : Integer, name : String, address : String) : Boolean {
+
+	/* definition: find specific Store instance by id */
+	definition:
+		store:Store = Store.allInstance()->any(sto:Store | sto.Id = id)
+
+	/* precondition: the instance store was not found in the system */
+	precondition:
+		store.oclIsUndefined() = true
+
+	/* postcondition: 
+	 * A Store instance sto was created.
+	 * all properties of sto became the same values as inputs.
+	 */
+	postcondition:
+		let sto:Store in
+		sto.oclIsNew() and
+		sto.Id = id and
+		sto.Name = name and
+		sto.Address = address and
+		Store.allInstance()->includes(sto) and
+		result = true
+}
+
+//entity query operation 
+Contract EntityCURDService::queryStore(id : Integer) : Store {
+
+	/* definition: find specific Store instance by id */
+	definition:
+		store:Store = Store.allInstance()->any(sto:Store | sto.Id = id)
+
+	/* precondition: the instance store was found in the system */
+	precondition:
+		store.oclIsUndefined() = false
+
+	/* postcondition: return found the instance store */
+	postcondition:
+		result = store
+}
+
+//entity modify operation 
+Contract EntityCURDService::modifyStore(id : Integer, name : String, address : String) : Boolean {
+
+	/* definition: find specific Store instance by id */
+	definition:
+		store:Store = Store.allInstance()->any(sto:Store | sto.Id = id)
+
+	/* precondition: the instance store was found in the system */
+	precondition:
+		store.oclIsUndefined() = false
+
+	/* postcondition: all properties of sto became the same values as inputs. */
+	postcondition:
+		store.Id = id and
+		store.Name = name and
+		store.Address = address and
+		result = true
+}
+
+//entity delete operation 
+Contract EntityCURDService::deleteStore(id : Integer) : Boolean {
+
+	/* definition: find specific Store instance by id */
+	definition:
+		store:Store = Store.allInstance()->any(sto:Store | sto.Id = id)
+
+	/* precondition: the instance store was found in the system */
+	precondition:
+		store.oclIsUndefined() = false and
+		Store.allInstance()->includes(store)
+
+	/* postcondition: the instance store was deleted from the system */
+	postcondition:
+		Store.allInstance()->excludes(store) and
+		result = true
+}
+
+//entity create operation 
+Contract EntityCURDService::createProductCatalog(id : Integer, name : String) : Boolean {
+
+	/* definition: find specific ProductCatalog instance by id */
+	definition:
+		productcatalog:ProductCatalog = ProductCatalog.allInstance()->any(pro:ProductCatalog | pro.Id = id)
+
+	/* precondition: the instance productcatalog was not found in the system */
+	precondition:
+		productcatalog.oclIsUndefined() = true
+
+	/* postcondition: 
+	 * A ProductCatalog instance pro was created.
+	 * all properties of pro became the same values as inputs.
+	 */
+	postcondition:
+		let pro:ProductCatalog in
+		pro.oclIsNew() and
+		pro.Id = id and
+		pro.Name = name and
+		ProductCatalog.allInstance()->includes(pro) and
+		result = true
+}
+
+//entity query operation 
+Contract EntityCURDService::queryProductCatalog(id : Integer) : ProductCatalog {
+
+	/* definition: find specific ProductCatalog instance by id */
+	definition:
+		productcatalog:ProductCatalog = ProductCatalog.allInstance()->any(pro:ProductCatalog | pro.Id = id)
+
+	/* precondition: the instance productcatalog was found in the system */
+	precondition:
+		productcatalog.oclIsUndefined() = false
+
+	/* postcondition: return found the instance productcatalog */
+	postcondition:
+		result = productcatalog
+}
+
+//entity modify operation 
+Contract EntityCURDService::modifyProductCatalog(id : Integer, name : String) : Boolean {
+
+	/* definition: find specific ProductCatalog instance by id */
+	definition:
+		productcatalog:ProductCatalog = ProductCatalog.allInstance()->any(pro:ProductCatalog | pro.Id = id)
+
+	/* precondition: the instance productcatalog was found in the system */
+	precondition:
+		productcatalog.oclIsUndefined() = false
+
+	/* postcondition: all properties of pro became the same values as inputs. */
+	postcondition:
+		productcatalog.Id = id and
+		productcatalog.Name = name and
+		result = true
+}
+
+//entity delete operation 
+Contract EntityCURDService::deleteProductCatalog(id : Integer) : Boolean {
+
+	/* definition: find specific ProductCatalog instance by id */
+	definition:
+		productcatalog:ProductCatalog = ProductCatalog.allInstance()->any(pro:ProductCatalog | pro.Id = id)
+
+	/* precondition: the instance productcatalog was found in the system */
+	precondition:
+		productcatalog.oclIsUndefined() = false and
+		ProductCatalog.allInstance()->includes(productcatalog)
+
+	/* postcondition: the instance productcatalog was deleted from the system */
+	postcondition:
+		ProductCatalog.allInstance()->excludes(productcatalog) and
+		result = true
+}
+
+//entity create operation 
+Contract EntityCURDService::createCashDesk(id : Integer, name : String, storeID : Integer) : Boolean {
+
+	/* definition: find specific CashDesk instance by id */
+	definition:
+		cashdesk:CashDesk = CashDesk.allInstance()->any(cas:CashDesk | cas.Id = id),
+		sto:Store = Store.allInstance()->any(s:Store | s.Id = storeID)
+
+	/* precondition: the instance cashdesk was not found in the system */
+	precondition:
+		cashdesk.oclIsUndefined() = true and
+		sto.oclIsUndefined() = false
+
+	/* postcondition: 
+	 * A CashDesk instance cas was created.
+	 * all properties of cas became the same values as inputs.
+	 */
+	postcondition:
+		let cas:CashDesk in
+		cas.oclIsNew() and
+		cas.Id = id and
+		cas.Name = name and
+		cas.BelongedStore = sto and
+		sto.Cashdeskes->includes(cas) and
+		CashDesk.allInstance()->includes(cas) and
+		result = true
+}
+
+//entity query operation 
+Contract EntityCURDService::queryCashDesk(id : Integer) : CashDesk {
+
+	/* definition: find specific CashDesk instance by id */
+	definition:
+		cashdesk:CashDesk = CashDesk.allInstance()->any(cas:CashDesk | cas.Id = id)
+
+	/* precondition: the instance cashdesk was found in the system */
+	precondition:
+		cashdesk.oclIsUndefined() = false
+
+	/* postcondition: return found the instance cashdesk */
+	postcondition:
+		result = cashdesk
+}
+
+//entity modify operation 
+Contract EntityCURDService::modifyCashDesk(id : Integer, name : String) : Boolean {
+
+	/* definition: find specific CashDesk instance by id */
+	definition:
+		cashdesk:CashDesk = CashDesk.allInstance()->any(cas:CashDesk | cas.Id = id)
+
+	/* precondition: the instance cashdesk was found in the system */
+	precondition:
+		cashdesk.oclIsUndefined() = false
+
+	/* postcondition: all properties of cas became the same values as inputs. */
+	postcondition:
+		cashdesk.Id = id and
+		cashdesk.Name = name and
+		result = true
+}
+
+//entity delete operation 
+Contract EntityCURDService::deleteCashDesk(id : Integer) : Boolean {
+
+	/* definition: find specific CashDesk instance by id */
+	definition:
+		cashdesk:CashDesk = CashDesk.allInstance()->any(cas:CashDesk | cas.Id = id)
+
+	/* precondition: the instance cashdesk was found in the system */
+	precondition:
+		cashdesk.oclIsUndefined() = false and
+		CashDesk.allInstance()->includes(cashdesk)
+
+	/* postcondition: the instance cashdesk was deleted from the system */
+	postcondition:
+		CashDesk.allInstance()->excludes(cashdesk) and
+		result = true
+}
+
+//entity create operation 
+Contract EntityCURDService::createCashier(id : Integer, name : String, storeID : Integer) : Boolean {
+
+	/* definition: find specific Cashier instance by id */
+	definition:
+		cashier:Cashier = Cashier.allInstance()->any(cas:Cashier | cas.Id = id),
+		sto:Store = Store.allInstance()->any(s:Store | s.Id = storeID)
+
+	/* precondition: the instance cashier was not found in the system */
+	precondition:
+		cashier.oclIsUndefined() = true and
+		sto.oclIsUndefined() = false
+
+	/* postcondition: 
+	 * A Cashier instance cas was created.
+	 * all properties of cas became the same values as inputs.
+	 */
+	postcondition:
+		let cas:Cashier in
+		cas.oclIsNew() and
+		cas.Id = id and
+		cas.Name = name and
+		sto.Cashiers->includes(cas) and
+		cas.WorkedStore = sto and
+		Cashier.allInstance()->includes(cas) and
+		result = true
+}
+
+//entity query operation 
+Contract EntityCURDService::queryCashier(id : Integer) : Cashier {
+
+	/* definition: find specific Cashier instance by id */
+	definition:
+		cashier:Cashier = Cashier.allInstance()->any(cas:Cashier | cas.Id = id)
+
+	/* precondition: the instance cashier was found in the system */
+	precondition:
+		cashier.oclIsUndefined() = false
+
+	/* postcondition: return found the instance cashier */
+	postcondition:
+		result = cashier
+}
+
+//entity modify operation 
+Contract EntityCURDService::modifyCashier(id : Integer, name : String) : Boolean {
+
+	/* definition: find specific Cashier instance by id */
+	definition:
+		cashier:Cashier = Cashier.allInstance()->any(cas:Cashier | cas.Id = id)
+
+	/* precondition: the instance cashier was found in the system */
+	precondition:
+		cashier.oclIsUndefined() = false
+
+	/* postcondition: all properties of cas became the same values as inputs. */
+	postcondition:
+		cashier.Id = id and
+		cashier.Name = name and
+		result = true
+}
+
+//entity delete operation 
+Contract EntityCURDService::deleteCashier(id : Integer) : Boolean {
+
+	/* definition: find specific Cashier instance by id */
+	definition:
+		cashier:Cashier = Cashier.allInstance()->any(cas:Cashier | cas.Id = id)
+
+	/* precondition: the instance cashier was found in the system */
+	precondition:
+		cashier.oclIsUndefined() = false and
+		Cashier.allInstance()->includes(cashier)
+
+	/* postcondition: the instance cashier was deleted from the system */
+	postcondition:
+		Cashier.allInstance()->excludes(cashier) and
+		result = true
+}
+
+//entity create operation 
+Contract EntityCURDService::createItem(barcode : Integer, name : String, price : Real, stocknumber : Integer, orderprice : Real, catalogID : Integer) : Boolean {
+
+	/* definition: find specific Item instance by barcode */
+	definition:
+		item:Item = Item.allInstance()->any(ite:Item | ite.Barcode = barcode),
+		cata:ProductCatalog = ProductCatalog.allInstance()->any(c:ProductCatalog | c.Id = catalogID)
+
+	/* precondition: the instance item was not found in the system */
+	precondition:
+		item.oclIsUndefined() = true and
+		cata.oclIsUndefined() = false
+
+	/* postcondition: 
+	 * A Item instance ite was created.
+	 * all properties of ite became the same values as inputs.
+	 */
+	postcondition:
+		let ite:Item in
+		ite.oclIsNew() and
+		ite.Barcode = barcode and
+		ite.Name = name and
+		ite.Price = price and
+		ite.StockNumber = stocknumber and
+		ite.OrderPrice = orderprice and
+		ite.BelongedCatalog = cata and
+		cata.ContainedItems->includes(ite) and
+		Item.allInstance()->includes(ite) and
+		result = true
+}
+
+//entity query operation 
+Contract EntityCURDService::queryItem(barcode : Integer) : Item {
+
+	/* definition: find specific Item instance by barcode */
+	definition:
+		item:Item = Item.allInstance()->any(ite:Item | ite.Barcode = barcode)
+
+	/* precondition: the instance item was found in the system */
+	precondition:
+		item.oclIsUndefined() = false
+
+	/* postcondition: return found the instance item */
+	postcondition:
+		result = item
+}
+
+//entity modify operation 
+Contract EntityCURDService::modifyItem(barcode : Integer, name : String, price : Real, stocknumber : Integer, orderprice : Real) : Boolean {
+
+	/* definition: find specific Item instance by barcode */
+	definition:
+		item:Item = Item.allInstance()->any(ite:Item | ite.Barcode = barcode)
+
+	/* precondition: the instance item was found in the system */
+	precondition:
+		item.oclIsUndefined() = false
+
+	/* postcondition: all properties of ite became the same values as inputs. */
+	postcondition:
+		item.Barcode = barcode and
+		item.Name = name and
+		item.Price = price and
+		item.StockNumber = stocknumber and
+		item.OrderPrice = orderprice and
+		result = true
+}
+
+//entity delete operation 
+Contract EntityCURDService::deleteItem(barcode : Integer) : Boolean {
+
+	/* definition: find specific Item instance by barcode */
+	definition:
+		item:Item = Item.allInstance()->any(ite:Item | ite.Barcode = barcode)
+
+	/* precondition: the instance item was found in the system */
+	precondition:
+		item.oclIsUndefined() = false and
+		Item.allInstance()->includes(item)
+
+	/* postcondition: the instance item was deleted from the system */
+	postcondition:
+		Item.allInstance()->excludes(item) and
+		result = true
+}
+
+//entity create operation 
+Contract EntityCURDService::createSupplier(id : Integer, name : String) : Boolean {
+
+	/* definition: find specific Supplier instance by id */
+	definition:
+		supplier:Supplier = Supplier.allInstance()->any(sup:Supplier | sup.Id = id)
+
+	/* precondition: the instance supplier was not found in the system */
+	precondition:
+		supplier.oclIsUndefined() = true
+
+	/* postcondition: 
+	 * A Supplier instance sup was created.
+	 * all properties of sup became the same values as inputs.
+	 */
+	postcondition:
+		let sup:Supplier in
+		sup.oclIsNew() and
+		sup.Id = id and
+		sup.Name = name and
+		Supplier.allInstance()->includes(sup) and
+		result = true
+}
+
+//entity query operation 
+Contract EntityCURDService::querySupplier(id : Integer) : Supplier {
+
+	/* definition: find specific Supplier instance by id */
+	definition:
+		supplier:Supplier = Supplier.allInstance()->any(sup:Supplier | sup.Id = id)
+
+	/* precondition: the instance supplier was found in the system */
+	precondition:
+		supplier.oclIsUndefined() = false
+
+	/* postcondition: return found the instance supplier */
+	postcondition:
+		result = supplier
+}
+
+//entity modify operation 
+Contract EntityCURDService::modifySupplier(id : Integer, name : String) : Boolean {
+
+	/* definition: find specific Supplier instance by id */
+	definition:
+		supplier:Supplier = Supplier.allInstance()->any(sup:Supplier | sup.Id = id)
+
+	/* precondition: the instance supplier was found in the system */
+	precondition:
+		supplier.oclIsUndefined() = false
+
+	/* postcondition: all properties of sup became the same values as inputs. */
+	postcondition:
+		supplier.Id = id and
+		supplier.Name = name and
+		result = true
+}
+
+//entity delete operation 
+Contract EntityCURDService::deleteSupplier(id : Integer) : Boolean {
+
+	/* definition: find specific Supplier instance by id */
+	definition:
+		supplier:Supplier = Supplier.allInstance()->any(sup:Supplier | sup.Id = id)
+
+	/* precondition: the instance supplier was found in the system */
+	precondition:
+		supplier.oclIsUndefined() = false and
+		Supplier.allInstance()->includes(supplier)
+
+	/* postcondition: the instance supplier was deleted from the system */
+	postcondition:
+		Supplier.allInstance()->excludes(supplier) and
+		result = true
+}
+
