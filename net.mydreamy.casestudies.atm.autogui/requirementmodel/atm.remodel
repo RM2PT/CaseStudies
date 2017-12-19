@@ -34,9 +34,12 @@ Service ATMSystem {
 
 	[TempProperty]
 	PasswordValidated : Boolean
-	WithdrawedNumber : Integer
+	WithdrawedNumber : Real
 	InputCard : BankCard
 	CardIDValidated : Boolean
+	IsDeposit : Boolean
+	IsWithdraw : Boolean
+	DepositedNumber : Real
 
 }
 
@@ -180,21 +183,23 @@ Interaction CheckBalanceInteraction {
 Interaction DepositFundsInteraction {
 
 	[Participants: Customer ATMSystem]
-	
-	
-CallMessage::DepositFundsInteractionCallMessage1(inputCard DepositFundsInteractionCallMessage1SendingEnd -> DepositFundsInteractionExecution1StartEnd)
+
+	CallMessage::DepositFundsInteractionCallMessage1(inputCard DepositFundsInteractionCallMessage1SendingEnd -> DepositFundsInteractionExecution1StartEnd)
 	ReturnMessage::DepositFundsInteractionCallMessage1Return(DepositFundsInteractionExecution1FinishEnd -> DepositFundsInteractionCallMessage1ReturnReceivingEnd DepositFundsInteractionCallMessage1)
 	CallMessage::DepositFundsInteractionCallMessage3(inputPassword DepositFundsInteractionCallMessage3SendingEnd -> DepositFundsInteractionExecution2StartEnd)
 	ReturnMessage::DepositFundsInteractionCallMessage3Return(DepositFundsInteractionExecution2FinishEnd -> DepositFundsInteractionCallMessage3ReturnReceivingEnd DepositFundsInteractionCallMessage3)
 	CallMessage::DepositFundsInteractionCallMessage5(deposit DepositFundsInteractionCallMessage5SendingEnd -> DepositFundsInteractionExecution3StartEnd)
 	ReturnMessage::DepositFundsInteractionCallMessage5Return(DepositFundsInteractionExecution3FinishEnd -> DepositFundsInteractionCallMessage5ReturnReceivingEnd DepositFundsInteractionCallMessage5)
-	CallMessage::DepositFundsInteractionCallMessage7(ejectCard DepositFundsInteractionCallMessage7SendingEnd -> DepositFundsInteractionExecution4StartEnd)
+	CallMessage::DepositFundsInteractionCallMessage7(printReceipt DepositFundsInteractionCallMessage7SendingEnd -> DepositFundsInteractionExecution4StartEnd)
 	ReturnMessage::DepositFundsInteractionCallMessage7Return(DepositFundsInteractionExecution4FinishEnd -> DepositFundsInteractionCallMessage7ReturnReceivingEnd DepositFundsInteractionCallMessage7)
+	CallMessage::DepositFundsInteractionCallMessage9(ejectCard DepositFundsInteractionCallMessage9SendingEnd -> DepositFundsInteractionExecution5StartEnd)
+	ReturnMessage::DepositFundsInteractionCallMessage9Return(DepositFundsInteractionExecution5FinishEnd -> DepositFundsInteractionCallMessage9ReturnReceivingEnd DepositFundsInteractionCallMessage9)
 
 	Execution::DepositFundsInteractionExecution1(ATMSystem DepositFundsInteractionExecution1StartEnd DepositFundsInteractionExecution1FinishEnd)
 	Execution::DepositFundsInteractionExecution2(ATMSystem DepositFundsInteractionExecution2StartEnd DepositFundsInteractionExecution2FinishEnd)
 	Execution::DepositFundsInteractionExecution3(ATMSystem DepositFundsInteractionExecution3StartEnd DepositFundsInteractionExecution3FinishEnd)
 	Execution::DepositFundsInteractionExecution4(ATMSystem DepositFundsInteractionExecution4StartEnd DepositFundsInteractionExecution4FinishEnd)
+	Execution::DepositFundsInteractionExecution5(ATMSystem DepositFundsInteractionExecution5StartEnd DepositFundsInteractionExecution5FinishEnd)
 
 	MessageEnd::DepositFundsInteractionCallMessage1SendingEnd(Customer DepositFundsInteractionCallMessage1)
 	ExecutionEnd::DepositFundsInteractionExecution1StartEnd(ATMSystem DepositFundsInteractionExecution1)
@@ -212,9 +217,12 @@ CallMessage::DepositFundsInteractionCallMessage1(inputCard DepositFundsInteracti
 	ExecutionEnd::DepositFundsInteractionExecution4StartEnd(ATMSystem DepositFundsInteractionExecution4)
 	ExecutionEnd::DepositFundsInteractionExecution4FinishEnd(ATMSystem DepositFundsInteractionExecution4)
 	MessageEnd::DepositFundsInteractionCallMessage7ReturnReceivingEnd(Customer DepositFundsInteractionCallMessage7Return)
+	MessageEnd::DepositFundsInteractionCallMessage9SendingEnd(Customer DepositFundsInteractionCallMessage9)
+	ExecutionEnd::DepositFundsInteractionExecution5StartEnd(ATMSystem DepositFundsInteractionExecution5)
+	ExecutionEnd::DepositFundsInteractionExecution5FinishEnd(ATMSystem DepositFundsInteractionExecution5)
+	MessageEnd::DepositFundsInteractionCallMessage9ReturnReceivingEnd(Customer DepositFundsInteractionCallMessage9Return)
 
 }
-
 
 Entity BankCard {
 
@@ -262,7 +270,7 @@ Contract EntityCURDService::createBankCard(userid : Integer, cardid : Integer, c
 
 	/* precondition: the instance bankcard was not found in the system */
 	precondition:
-		bankcard.oclIsUndefined() = true and 
+		bankcard.oclIsUndefined() = true and
 		bu.oclIsUndefined() = false
 
 	/* postcondition: 
@@ -416,7 +424,6 @@ Contract EntityCURDService::deleteUser(userid : Integer) : Boolean {
 		result = true
 }
 
-
 //Contract ATMSystem::inputCard Skeleton
 Contract ATMSystem::inputCard(cardid :Integer) : Boolean {
 
@@ -474,7 +481,16 @@ Contract ATMSystem::printReceipt() : Real {
 
 	/* postcondition: skeleton */
 	postcondition:
-		result = self.WithdrawedNumber
+		if self.IsWithdraw = true 
+		then
+			result = self.WithdrawedNumber
+		else
+			if self.IsDeposit = true then
+				result = self.DepositedNumber
+			else
+				result = 0
+			endif
+		endif	
 }
 
 //Contract ATMSystem::checkBalance Skeleton
@@ -505,6 +521,10 @@ Contract ATMSystem::ejectCard() : Boolean {
 		self.InputCard = null and
 		self.PasswordValidated = false and
 		self.CardIDValidated = false and
+		self.IsWithdraw = false and
+		self.IsDeposit = false and
+		self.WithdrawedNumber = 0 and
+		self.DepositedNumber = 0 and
 		result = true
 }
 
@@ -520,14 +540,14 @@ Contract ATMSystem::withDraw(quantity : Integer) : Boolean {
 
 	/* postcondition: skeleton */
 	postcondition:
-		self.InputCard.Balance = self.InputCard.Balance@pre - quantity and self.WithdrawedNumber = quantity and
+		self.InputCard.Balance = self.InputCard.Balance@pre - quantity and
+		self.WithdrawedNumber = quantity and
+		self.IsWithdraw = true and
 		result = true
 }
 
-
 //Contract ATMSystem::deposit Skeleton
 Contract ATMSystem::deposit(quantity : Real) : Boolean {
-
 
 	/* precondition: skeleton */
 	precondition:
@@ -539,6 +559,8 @@ Contract ATMSystem::deposit(quantity : Real) : Boolean {
 	/* postcondition: skeleton */
 	postcondition:
 		self.InputCard.Balance = self.InputCard.Balance@pre + quantity and
+		self.IsDeposit = true and
+		self.DepositedNumber = quantity and
 		result = true
 }
 
