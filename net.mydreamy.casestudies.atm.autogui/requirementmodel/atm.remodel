@@ -215,7 +215,7 @@ CallMessage::DepositFundsInteractionCallMessage1(inputCard DepositFundsInteracti
 
 }
 
-@AutoCRUD
+
 Entity BankCard {
 
 	CardID : Integer
@@ -225,8 +225,8 @@ Entity BankCard {
 	Balance : Real
 
 	[Refer]
-	belongedUser : User
-	has : Transcation*
+	BelongedUser : User
+	Has : Transcation*
 
 }
 
@@ -238,7 +238,7 @@ Entity User {
 	Address : String
 
 	[Refer]
-	ownedCard : BankCard*
+	OwnedCard : BankCard*
 
 }
 
@@ -248,20 +248,22 @@ Entity Transcation {
 	BalanceAfterWithdraw : Real
 
 	[Refer]
-	involvedCard : BankCard
+	InvolvedCard : BankCard
 
 }
 
 //entity create operation 
-Contract EntityCURDService::createBankCard(cardid : Integer, cardstatus : CardStatus[NORMAL|SUSPEND|CANNEL], catalog : CardCatalog[CREDIT|DESPOSIT], password : Integer, balance : Real) : Boolean {
+Contract EntityCURDService::createBankCard(userid : Integer, cardid : Integer, cardstatus : CardStatus[NORMAL|SUSPEND|CANNEL], catalog : CardCatalog[CREDIT|DESPOSIT], password : Integer, balance : Real) : Boolean {
 
 	/* definition: find specific BankCard instance by cardid */
 	definition:
-		bankcard:BankCard = BankCard.allInstance()->any(ban:BankCard | ban.CardID = cardid)
+		bankcard:BankCard = BankCard.allInstance()->any(ban:BankCard | ban.CardID = cardid),
+		bu:User = User.allInstance()->any(u:User | u.UserID = userid)
 
 	/* precondition: the instance bankcard was not found in the system */
 	precondition:
-		bankcard.oclIsUndefined() = true
+		bankcard.oclIsUndefined() = true and 
+		bu.oclIsUndefined() = false
 
 	/* postcondition: 
 	 * A BankCard instance ban was created.
@@ -276,6 +278,8 @@ Contract EntityCURDService::createBankCard(cardid : Integer, cardstatus : CardSt
 		ban.Password = password and
 		ban.Balance = balance and
 		BankCard.allInstance()->includes(ban) and
+		ban.BelongedUser = bu and
+		bu.OwnedCard->includes(ban) and
 		result = true
 }
 
