@@ -1,0 +1,207 @@
+@actor_description:"a loan officer is an officer of the bank who has the designated responsibilitiy of evaluating requests for a loan"
+Actor LoanOfficer {
+
+	UC::EvaluateLoanRequest() @uc_description: "The loan officer reviews the online information about the pending loan request to determine whether the loan should be approved"
+
+}
+
+@actor_description: "The loan assistant is responsible for manually capturing and entering into the system the credit information"
+Actor LoanAssistant {
+
+	UC::EnterValidatedCreditReferences()
+
+@uc_description: "The loan assistant enters any credit reference information that was checked manually"
+
+}
+
+@actor_description: "The loan clerk is responsible for booking (recording and setting up) the loan"
+Actor LoanClerk {
+
+	UC::GenerateApprovalLetter() @uc_description: "a loan clerk has the system genereate an approval letter for the applicant"
+	UC::GenerateLoanAgreement() @uc_description: "a loan agreement is genereated based on the terms and conditions selected by the loan officer when evaluting the loan request"
+	UC::BookNewLoan() @uc_description: "Once a loan aggrement has been sighed by the customer and returned to the bank, the loan clerk has the system create a loan account based on the agreed-on terms and conditions"
+	UC::EnterLoanPaymentInformation() @uc_description: "Payment is received from the customer, the loan clerk enters the payment into the appropriate loan account"
+	UC::CloseOutLoan()
+	
+
+@uc_description: "The loan has been paid in full by the customer, and the loan will be closed"
+
+}
+
+Actor Scheduler {
+
+	UC::GenerateStandardPaymentNotice() @uc_description: "when the monthly billing time occurs, the loan system genereates the bill statements for mailing to the customer"
+	UC::GenerateLateNotice()
+
+@uc_description: "The loan system genereates the late notice for mailling to the customer"
+
+}
+
+@actor_description: "An applicant is an individual or organization who sumits an application for a loan to the bank"
+Actor Applicant {
+
+	UC::SubmitLoanRequest() 	@uc_description: "The applicant fills out a loan application and submits it to the bank for processing"
+
+}
+
+Service SubmitLoanRequestModule {
+
+	[Operation]
+	enterLoanInformation(name, loanamount, loanpurpose, income, phonenumber, zipcode, email, workreferences, creditreferences, checkingaccountnumber, securitynumber, status)
+	calculateScore(outstandingdebt, baddebits, balance, checkingaccountstatus, income)
+
+	[TempProperty]
+	CurrentLoanRequest : LoanRequest
+
+}
+
+Service ThirdPartService {
+
+	[Operation]
+	creditRequest(securitynumber, name)
+	accountStatusRequest(accountid)
+	sendEmail(emailaddress, title, content)
+	print(content)
+	createLoanAccount(id, loanamount, status)
+	TransferFunds(id, amount)
+
+}
+
+Service EnterValidatedCreditReferencesModule {
+
+	[Operation]
+	listSubmitedLoanRequest()
+	chooseLoanRequest(requestID)
+	markRequestValid()
+
+
+	[TempProperty]
+	CurrentLoanRequest : LoanRequest
+	CurrentLoanRequests : LoanRequest*
+}
+
+Service EvaluateLoanRequestModule {
+
+	[Operation]
+	listTenLoanRequest()
+	chooseOneForReview(requestID)
+	checkCreditHistory()
+	reviewCheckingAccount()
+	selectLoanTerms()
+	approveLoanRequest()
+
+	[TempProperty]
+	CurrentLoanRequest : LoanRequest
+	CurrentLoanRequests : LoanRequest*
+}
+
+Service GenerateLoanLetterAndAgreementModule {
+
+	[Operation]
+	listApprovalRequest()
+	genereateApprovalLetter(id)
+	emailToAppliant(id)
+	generateLoanAgreement()
+	printLoanAgreement()
+
+}
+
+Service LoanManagementModule {
+
+	[Operation]
+	bookNewLoan()
+	genereateMonthlyBillingStatement()
+	genereateLateNoticeStatement()
+	listBookedLoans()
+	loanPayment()
+	closeOutLoan()
+
+}
+
+// Submitted -> READYFORREVIEW -> REFERENCESVALIDATED -> APPROVED
+Entity LoanRequest {
+
+	RequestID : Integer
+	Name : String
+	LoanAmount : Real
+	LoanPurpose : String
+	Income : Real
+	PhoneNumber : Integer
+	PostalAddress : String
+	ZipCode : Integer
+	Email : String
+	WorkReferences : String
+	CreditReferences : String
+	CheckingAccountNumber : Integer
+	SecurityNumber : Integer
+	CreditScore : Integer
+	Status : LoanStatus[SUBMITTED|REFERENCESVALIDATED|APPROVED|READYFORREVIEW|INCOMPLETEINFORMATION]
+
+	[Refer]
+	ApprovalLoan : Loan
+	RelatedApprovalLetter : ApprovalLetter
+	RelatedLoanAgreement : LoanAgreement
+	RequestedCAHistory : CheckingAccount
+	RequestedCreditHistory : CreditHistory
+
+}
+
+Entity Loan {
+
+	LoanID : Integer
+	IsPaidinFull : Boolean
+	StartDate : Date
+	EndDate : Date
+	CurrentOverDueDate : Date
+
+	[Refer]
+	ReferedLoanRequest : LoanRequest
+	ContainLoanTerms : LoanTerm*
+	BelongedLoanAccount : LoanAccount
+	HasLateNotices : LateNoticeStatement*
+	HasMonthlyBillings : MonthlyBillingStatement*
+
+}
+
+Entity LoanTerm {
+
+}
+
+Entity CheckingAccount {
+
+	Balance : Real
+	Status : CheckingAccountStatus[GOODSTANDING|SUSPENDED]
+
+}
+
+Entity CreditHistory {
+
+	OutstandingDebt : Real
+	BadDebits : Integer
+
+}
+
+Entity LoanAccount {
+
+	LoanAccountID : Integer
+	Balance : Real
+	Status : LoanAccountStatus[NORMAL|HASPAIDINFULL]
+
+}
+
+Entity MonthlyBillingStatement {
+
+}
+
+Entity LoanAgreement {
+
+}
+
+Entity ApprovalLetter {
+
+}
+
+Entity LateNoticeStatement {
+
+}
+
