@@ -6,7 +6,22 @@ Actor User {
 
 }
 
-UC::cardIdentification()
+Actor Administrator {
+	
+	UC::createBankCard()
+	UC::queryBankCard()
+	UC::modifyBankCard()
+	UC::deleteBankCard()
+	
+	UC::createUser()
+	UC::queryUser()
+	UC::modifyUser()
+	UC::deleteUser()
+	
+}
+
+UC::cardIdentification() 
+
 
 Service ATMSystem {
 
@@ -26,6 +41,22 @@ Service ATMSystem {
 	WithdrawedNumber : Integer
 
 }
+
+Service EntityCURDService {
+	
+	[Operation]
+	createBankCard(cardid, password, cardstatus, balance)
+	queryBankCard(CardID)
+	modifyBankCard(cardid, password, cardstatus, balance)
+	deleteBankCard(CardID)
+	
+	createUser(userid, name, address)
+	queryUser(UserID)
+	modifyUser(userid, name, address)
+	deleteUser(UserID)
+	
+}
+
 
 Interaction WithdrawCashInteraction {
 
@@ -87,6 +118,7 @@ Interaction WithdrawCashInteraction {
 
 }
 
+@AutoCRUD
 Entity BankCard {
 
 	CardID : String
@@ -108,6 +140,7 @@ Entity CreditCard extends BankCard {
 
 }
 
+@AutoCRUD
 Entity User {
 
 	UserID : Integer
@@ -128,4 +161,5 @@ Entity Transcation {
 	involvedCard : BankCard
 
 }
+
 

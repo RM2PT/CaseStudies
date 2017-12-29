@@ -4,7 +4,6 @@ Actor Cashier {
 
 }
 
-
 Actor Administrator {
 	
 	UC::createStore()
@@ -27,6 +26,11 @@ Actor Administrator {
 	UC::modifyCashier()
 	UC::deleteCashier()
 	
+	UC::createItem()
+	UC::queryItem()
+	UC::modifyItem()
+	UC::deleteItem()
+	
 }
 
 
@@ -48,18 +52,6 @@ Service CoCoMEProcessSale {
 
 	[WorkFlow]
 	ProcessSaleWF 
-}
-
-Service CoCoMEManagement {
-
-	[Operation]
-	createStore(store)
-	createCashDesk(cashdesk)
-	createProductCatalog(catalog)
-	createItem(item) 
-
-	[TempProperty]
-	[WorkFlow]
 }
 
 Service ThridPartServices {
@@ -92,8 +84,12 @@ Service EntityCURDService {
 	modifyCashier(id, name)
 	deleteCashier(Id)
 	
+	createItem(barcode, description, price)
+	queryItem(Barcode)
+	modifyItem(barcode, description, price)
+	deleteItem(Barcode)
+	
 }
-
 
 
 /* System Work Flow, Not for runing, protocol for Actor inter-active with System */
@@ -107,26 +103,18 @@ Workflow ProcessSaleWF {
 
 	makeNewSale
 
-	endSale
-
-	ForkNode -> (createCashDesk createStore hasMoreItems newCondition)
-
-	createCashDesk
-
-	createStore
-
 	Loop -> hasMoreItems {
 
 		enterItem
 	}
 
+	endSale
+
 	Switch -> newCondition {
 
-		case: case1 -> createItem
-		case: case2 -> createProductCatalog
+		case: cash -> makeCashPayment
+		case: card -> makeCardPayment
 	}
-
-	(createCashDesk createItem createProductCatalog hasMoreItems createStore) -> JoinNode
 
 	ActivityFinal
 
@@ -138,10 +126,50 @@ Workflow ProcessSaleWF {
 
 	}
 
-
-
 }
 
+//Workflow ProcessSaleWF {
+//
+//	[Cashier ThridPartServices]
+//	
+//	Cashier {
+//		
+//		ActivityStart
+//
+//		makeNewSale
+//	
+//		endSale
+//	
+//		ForkNode -> (createCashDesk createStore hasMoreItems newCondition)
+//	
+//		createCashDesk
+//	
+//		createStore
+//	
+//		Loop -> hasMoreItems {
+//	
+//			enterItem
+//		}
+//	
+//		Switch -> newCondition {
+//	
+//			case: case1 -> createProductCatalog
+//			case: case2 -> createProductCatalog
+//		}
+//	
+//		(createCashDesk createProductCatalog createProductCatalog hasMoreItems createStore) -> JoinNode
+//
+//		ActivityFinal
+//
+//	}
+//	
+//	ThridPartServices {
+//		
+//		thirdPartyCardPaymentService
+//
+//	}
+//
+//}
 Interaction ProcessSaleInteraction {
 
 	[Participants: Cashier CoCoMEProcessSale]
@@ -210,7 +238,7 @@ Interaction ProcessSaleInteraction {
 	MessageEnd::makeCardPaymentReturnReceiver(Cashier makeCardPaymentReturn)
 	CombinedFragmentEnd::PaymentMethodAltFinish(PaymentMethodAlt)
 
-} 
+}
 
 @AutoCRUD
 Entity Store {
@@ -287,11 +315,14 @@ Entity SalesLineItem {
 
 }
 
+@AutoCRUD
 Entity Item {
 
 	Barcode : Integer
 	Description : String
 	Price : Real
+
+	StockNumber : Integer
 
 	[Refer]
 	BelongedCatalog : ProductCatalog
@@ -366,11 +397,10 @@ Contract CoCoMEProcessSale::enterItem(barcode : Integer, quantity : Integer) : B
 		self.currentSaleLine = sli and
 		sli.BelongedSale = currentSale and
 		currentSale.ContainedSalesLine->includes(sli) and
-		sli.Quantity = quantity and	  
+		sli.Quantity = quantity and
 		sli.BelongedItem = item and
-		sli.Subamount = item.Price * quantity and 
-		result = true 
-
+		sli.Subamount = item.Price * quantity and
+		result = true
 
 }
 
@@ -379,7 +409,7 @@ Contract CoCoMEProcessSale::endSale() : Boolean {
 	/* Precondition: there is a sale underway and no more items. */
 	precondition:
 		currentSale.IsComplete = false and
-		currentSale.IsReadytoPay = false 
+		currentSale.IsReadytoPay = false
 
 	/**
 	 * Postcondition: 
@@ -421,11 +451,11 @@ Contract CoCoMEProcessSale::makeCashPayment(amount : Real) : Boolean {
 		currentStore.Sales->includes(currentSale) and
 		currentSale.IsComplete = true and
 		currentSale.Time = Now and
-		cp.Balance = amount - currentSale.Amount and 
+		cp.Balance = amount - currentSale.Amount and
 		result = true
 
-} 
- 
+}
+
 Contract CoCoMEProcessSale::makeCardPayment(cardAccountNumber : String, expiryDate : Date, fee: Real) : Boolean {
 
 	/* Precondition: An underway sale exists and all items have been entered. */
@@ -453,12 +483,12 @@ Contract CoCoMEProcessSale::makeCardPayment(cardAccountNumber : String, expiryDa
 		currentSale.Belongedstore = currentStore and
 		currentStore.Sales->includes(currentSale) and
 		currentSale.IsComplete = true and
-		currentSale.Time = Now and 
+		currentSale.Time = Now and
 		result = true
 
 }
 
-Contract  ThridPartServices::thirdPartyCardPaymentService(cardAccountNumber : String, expiryDate : Date, fee : Real) : Boolean  {
+Contract  ThridPartServices::thirdPartyCardPaymentService(cardAccountNumber : String, expiryDate : Date, fee : Real) : Boolean {
 
 	precondition:
 		true
@@ -520,16 +550,20 @@ Contract  ThridPartServices::thirdPartyCardPaymentService(cardAccountNumber : St
 //
 //
 //entity create operation 
-//entity create operation 
-//entity create operation 
 Contract EntityCURDService::createStore(id : Integer, name : String, address : String) : Boolean {
 	
+	/* definition: find specific Store instance by id */
 	definition:
 		store:Store = Store.allInstance()->any(sto:Store | sto.Id = id)
-		
+	
+	/* precondition: the instance store was not found in the system */
 	precondition:
 		store.oclIsUndefined() = true
-		
+	
+	/* postcondition: 
+	 * A Store instance sto was created.
+	 * all properties of sto became the same values as inputs.
+	 */
 	postcondition:
 		let sto:Store in
 		sto.oclIsNew() and
@@ -543,12 +577,15 @@ Contract EntityCURDService::createStore(id : Integer, name : String, address : S
 //entity query operation 
 Contract EntityCURDService::queryStore(id : Integer) : Store {
 	
+	/* definition: find specific Store instance by id */
 	definition:
 		store:Store = Store.allInstance()->any(sto:Store | sto.Id = id)
-		
+	
+	/* precondition: the instance store was found in the system */	
 	precondition:
 		store.oclIsUndefined() = false
 		
+	/* postcondition: return found the instance store */
 	postcondition:
 		result = store
 }
@@ -557,12 +594,15 @@ Contract EntityCURDService::queryStore(id : Integer) : Store {
 //entity modify operation 
 Contract EntityCURDService::modifyStore(id : Integer, name : String, address : String) : Boolean {
 	
+	/* definition: find specific Store instance by id */
 	definition:
 		store:Store = Store.allInstance()->any(sto:Store | sto.Id = id)
-		
+	
+	/* precondition: the instance store was found in the system */
 	precondition:
 		store.oclIsUndefined() = false
-		
+	
+	/* postcondition: all properties of sto became the same values as inputs. */							
 	postcondition:
 		store.Id = id and
 		store.Name = name and
@@ -573,13 +613,16 @@ Contract EntityCURDService::modifyStore(id : Integer, name : String, address : S
 //entity delete operation 
 Contract EntityCURDService::deleteStore(id : Integer) : Boolean {
 	
+	/* definition: find specific Store instance by id */
 	definition:
 		store:Store = Store.allInstance()->any(sto:Store | sto.Id = id)
-		
+	
+	/* precondition: the instance store was found in the system */
 	precondition:
 		store.oclIsUndefined() = false and
 		Store.allInstance()->includes(store)
-		
+	
+	/* postcondition: the instance store was deleted from the system */
 	postcondition:
 		Store.allInstance()->excludes(store) and
 		result = true
@@ -588,12 +631,18 @@ Contract EntityCURDService::deleteStore(id : Integer) : Boolean {
 //entity create operation 
 Contract EntityCURDService::createProductCatalog(id : Integer, name : String) : Boolean {
 	
+	/* definition: find specific ProductCatalog instance by id */
 	definition:
 		productcatalog:ProductCatalog = ProductCatalog.allInstance()->any(pro:ProductCatalog | pro.Id = id)
-		
+	
+	/* precondition: the instance productcatalog was not found in the system */
 	precondition:
 		productcatalog.oclIsUndefined() = true
-		
+	
+	/* postcondition: 
+	 * A ProductCatalog instance pro was created.
+	 * all properties of pro became the same values as inputs.
+	 */
 	postcondition:
 		let pro:ProductCatalog in
 		pro.oclIsNew() and
@@ -606,12 +655,15 @@ Contract EntityCURDService::createProductCatalog(id : Integer, name : String) : 
 //entity query operation 
 Contract EntityCURDService::queryProductCatalog(id : Integer) : ProductCatalog {
 	
+	/* definition: find specific ProductCatalog instance by id */
 	definition:
 		productcatalog:ProductCatalog = ProductCatalog.allInstance()->any(pro:ProductCatalog | pro.Id = id)
-		
+	
+	/* precondition: the instance productcatalog was found in the system */	
 	precondition:
 		productcatalog.oclIsUndefined() = false
 		
+	/* postcondition: return found the instance productcatalog */
 	postcondition:
 		result = productcatalog
 }
@@ -620,12 +672,15 @@ Contract EntityCURDService::queryProductCatalog(id : Integer) : ProductCatalog {
 //entity modify operation 
 Contract EntityCURDService::modifyProductCatalog(id : Integer, name : String) : Boolean {
 	
+	/* definition: find specific ProductCatalog instance by id */
 	definition:
 		productcatalog:ProductCatalog = ProductCatalog.allInstance()->any(pro:ProductCatalog | pro.Id = id)
-		
+	
+	/* precondition: the instance productcatalog was found in the system */
 	precondition:
 		productcatalog.oclIsUndefined() = false
-		
+	
+	/* postcondition: all properties of pro became the same values as inputs. */							
 	postcondition:
 		productcatalog.Id = id and
 		productcatalog.Name = name and
@@ -635,13 +690,16 @@ Contract EntityCURDService::modifyProductCatalog(id : Integer, name : String) : 
 //entity delete operation 
 Contract EntityCURDService::deleteProductCatalog(id : Integer) : Boolean {
 	
+	/* definition: find specific ProductCatalog instance by id */
 	definition:
 		productcatalog:ProductCatalog = ProductCatalog.allInstance()->any(pro:ProductCatalog | pro.Id = id)
-		
+	
+	/* precondition: the instance productcatalog was found in the system */
 	precondition:
 		productcatalog.oclIsUndefined() = false and
 		ProductCatalog.allInstance()->includes(productcatalog)
-		
+	
+	/* postcondition: the instance productcatalog was deleted from the system */
 	postcondition:
 		ProductCatalog.allInstance()->excludes(productcatalog) and
 		result = true
@@ -650,12 +708,18 @@ Contract EntityCURDService::deleteProductCatalog(id : Integer) : Boolean {
 //entity create operation 
 Contract EntityCURDService::createCashDesk(id : Integer) : Boolean {
 	
+	/* definition: find specific CashDesk instance by id */
 	definition:
 		cashdesk:CashDesk = CashDesk.allInstance()->any(cas:CashDesk | cas.Id = id)
-		
+	
+	/* precondition: the instance cashdesk was not found in the system */
 	precondition:
 		cashdesk.oclIsUndefined() = true
-		
+	
+	/* postcondition: 
+	 * A CashDesk instance cas was created.
+	 * all properties of cas became the same values as inputs.
+	 */
 	postcondition:
 		let cas:CashDesk in
 		cas.oclIsNew() and
@@ -667,12 +731,15 @@ Contract EntityCURDService::createCashDesk(id : Integer) : Boolean {
 //entity query operation 
 Contract EntityCURDService::queryCashDesk(id : Integer) : CashDesk {
 	
+	/* definition: find specific CashDesk instance by id */
 	definition:
 		cashdesk:CashDesk = CashDesk.allInstance()->any(cas:CashDesk | cas.Id = id)
-		
+	
+	/* precondition: the instance cashdesk was found in the system */	
 	precondition:
 		cashdesk.oclIsUndefined() = false
 		
+	/* postcondition: return found the instance cashdesk */
 	postcondition:
 		result = cashdesk
 }
@@ -681,12 +748,15 @@ Contract EntityCURDService::queryCashDesk(id : Integer) : CashDesk {
 //entity modify operation 
 Contract EntityCURDService::modifyCashDesk(id : Integer) : Boolean {
 	
+	/* definition: find specific CashDesk instance by id */
 	definition:
 		cashdesk:CashDesk = CashDesk.allInstance()->any(cas:CashDesk | cas.Id = id)
-		
+	
+	/* precondition: the instance cashdesk was found in the system */
 	precondition:
 		cashdesk.oclIsUndefined() = false
-		
+	
+	/* postcondition: all properties of cas became the same values as inputs. */							
 	postcondition:
 		cashdesk.Id = id and
 		result = true
@@ -695,13 +765,16 @@ Contract EntityCURDService::modifyCashDesk(id : Integer) : Boolean {
 //entity delete operation 
 Contract EntityCURDService::deleteCashDesk(id : Integer) : Boolean {
 	
+	/* definition: find specific CashDesk instance by id */
 	definition:
 		cashdesk:CashDesk = CashDesk.allInstance()->any(cas:CashDesk | cas.Id = id)
-		
+	
+	/* precondition: the instance cashdesk was found in the system */
 	precondition:
 		cashdesk.oclIsUndefined() = false and
 		CashDesk.allInstance()->includes(cashdesk)
-		
+	
+	/* postcondition: the instance cashdesk was deleted from the system */
 	postcondition:
 		CashDesk.allInstance()->excludes(cashdesk) and
 		result = true
@@ -710,12 +783,18 @@ Contract EntityCURDService::deleteCashDesk(id : Integer) : Boolean {
 //entity create operation 
 Contract EntityCURDService::createCashier(id : Integer, name : String) : Boolean {
 	
+	/* definition: find specific Cashier instance by id */
 	definition:
 		cashier:Cashier = Cashier.allInstance()->any(cas:Cashier | cas.Id = id)
-		
+	
+	/* precondition: the instance cashier was not found in the system */
 	precondition:
 		cashier.oclIsUndefined() = true
-		
+	
+	/* postcondition: 
+	 * A Cashier instance cas was created.
+	 * all properties of cas became the same values as inputs.
+	 */
 	postcondition:
 		let cas:Cashier in
 		cas.oclIsNew() and
@@ -728,12 +807,15 @@ Contract EntityCURDService::createCashier(id : Integer, name : String) : Boolean
 //entity query operation 
 Contract EntityCURDService::queryCashier(id : Integer) : Cashier {
 	
+	/* definition: find specific Cashier instance by id */
 	definition:
 		cashier:Cashier = Cashier.allInstance()->any(cas:Cashier | cas.Id = id)
-		
+	
+	/* precondition: the instance cashier was found in the system */	
 	precondition:
 		cashier.oclIsUndefined() = false
 		
+	/* postcondition: return found the instance cashier */
 	postcondition:
 		result = cashier
 }
@@ -742,12 +824,15 @@ Contract EntityCURDService::queryCashier(id : Integer) : Cashier {
 //entity modify operation 
 Contract EntityCURDService::modifyCashier(id : Integer, name : String) : Boolean {
 	
+	/* definition: find specific Cashier instance by id */
 	definition:
 		cashier:Cashier = Cashier.allInstance()->any(cas:Cashier | cas.Id = id)
-		
+	
+	/* precondition: the instance cashier was found in the system */
 	precondition:
 		cashier.oclIsUndefined() = false
-		
+	
+	/* postcondition: all properties of cas became the same values as inputs. */							
 	postcondition:
 		cashier.Id = id and
 		cashier.Name = name and
@@ -757,15 +842,97 @@ Contract EntityCURDService::modifyCashier(id : Integer, name : String) : Boolean
 //entity delete operation 
 Contract EntityCURDService::deleteCashier(id : Integer) : Boolean {
 	
+	/* definition: find specific Cashier instance by id */
 	definition:
 		cashier:Cashier = Cashier.allInstance()->any(cas:Cashier | cas.Id = id)
-		
+	
+	/* precondition: the instance cashier was found in the system */
 	precondition:
 		cashier.oclIsUndefined() = false and
 		Cashier.allInstance()->includes(cashier)
-		
+	
+	/* postcondition: the instance cashier was deleted from the system */
 	postcondition:
 		Cashier.allInstance()->excludes(cashier) and
+		result = true
+}
+
+//entity create operation 
+Contract EntityCURDService::createItem(barcode : Integer, description : String, price : Real) : Boolean {
+	
+	/* definition: find specific Item instance by barcode */
+	definition:
+		item:Item = Item.allInstance()->any(ite:Item | ite.Barcode = barcode)
+	
+	/* precondition: the instance item was not found in the system */
+	precondition:
+		item.oclIsUndefined() = true
+	
+	/* postcondition: 
+	 * A Item instance ite was created.
+	 * all properties of ite became the same values as inputs.
+	 */
+	postcondition:
+		let ite:Item in
+		ite.oclIsNew() and
+		ite.Barcode = barcode and
+		ite.Description = description and
+		ite.Price = price and
+		Item.allInstance()->includes(ite) and
+		result = true
+}
+
+//entity query operation 
+Contract EntityCURDService::queryItem(barcode : Integer) : Item {
+	
+	/* definition: find specific Item instance by barcode */
+	definition:
+		item:Item = Item.allInstance()->any(ite:Item | ite.Barcode = barcode)
+	
+	/* precondition: the instance item was found in the system */	
+	precondition:
+		item.oclIsUndefined() = false
+		
+	/* postcondition: return found the instance item */
+	postcondition:
+		result = item
+}
+						
+
+//entity modify operation 
+Contract EntityCURDService::modifyItem(barcode : Integer, description : String, price : Real) : Boolean {
+	
+	/* definition: find specific Item instance by barcode */
+	definition:
+		item:Item = Item.allInstance()->any(ite:Item | ite.Barcode = barcode)
+	
+	/* precondition: the instance item was found in the system */
+	precondition:
+		item.oclIsUndefined() = false
+	
+	/* postcondition: all properties of ite became the same values as inputs. */							
+	postcondition:
+		item.Barcode = barcode and
+		item.Description = description and
+		item.Price = price and
+		result = true
+}
+
+//entity delete operation 
+Contract EntityCURDService::deleteItem(barcode : Integer) : Boolean {
+	
+	/* definition: find specific Item instance by barcode */
+	definition:
+		item:Item = Item.allInstance()->any(ite:Item | ite.Barcode = barcode)
+	
+	/* precondition: the instance item was found in the system */
+	precondition:
+		item.oclIsUndefined() = false and
+		Item.allInstance()->includes(item)
+	
+	/* postcondition: the instance item was deleted from the system */
+	postcondition:
+		Item.allInstance()->excludes(item) and
 		result = true
 }
 

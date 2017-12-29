@@ -1,33 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:description_2="http://www.eclipse.org/sirius/diagram/sequence/description/2.0.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:rEMODEL="http://www.mydreamy.net/requirementmodel/REMODEL" xmlns:sequence="http://www.eclipse.org/sirius/diagram/sequence/2.0.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://www.eclipse.org/sirius/diagram/sequence/description/2.0.0 http://www.eclipse.org/sirius/diagram/sequence/2.0.0#//description http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style">
-  <viewpoint:DAnalysis xmi:id="_VtiuAN1NEeaU5PhL56BYQQ" selectedViews="_Wasu8N1NEeaU5PhL56BYQQ" version="11.1.0.201608251200">
+  <viewpoint:DAnalysis xmi:id="_VtiuAN1NEeaU5PhL56BYQQ" selectedViews="_bFZLwNRLEeetP89v0SpOyQ" version="12.0.0.201704271200">
     <semanticResources>cocome.remodel</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_Wasu8N1NEeaU5PhL56BYQQ">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/resource/net.mydreamy.requirementmodel.design/description/requirementmodel.odesign#//@ownedViewpoints[name='RequirementModel']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_Yr7xwN1NEeaU5PhL56BYQQ" name="new Conceptual Class Diagram" representation="_Yr8Y0N1NEeaU5PhL56BYQQ">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_Yr7xwN1NEeaU5PhL56BYQQ" name="new Conceptual Class Diagram" repPath="#_Yr8Y0N1NEeaU5PhL56BYQQ">
         <description xmi:type="description_1:DiagramDescription" href="platform:/resource/net.mydreamy.requirementmodel.design/description/requirementmodel.odesign#//@ownedViewpoints[name='RequirementModel']/@ownedRepresentations[name='Conceptual%20Class%20Diagram']"/>
         <target xmi:type="rEMODEL:RequirementModel" href="cocome.remodel#/"/>
       </ownedRepresentationDescriptors>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_j1cc0N1NEeaU5PhL56BYQQ" name="new Service Diagram" representation="_j1cc0d1NEeaU5PhL56BYQQ">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_j1cc0N1NEeaU5PhL56BYQQ" name="new Service Diagram" repPath="#_j1cc0d1NEeaU5PhL56BYQQ">
         <description xmi:type="description_1:DiagramDescription" href="platform:/resource/net.mydreamy.requirementmodel.design/description/requirementmodel.odesign#//@ownedViewpoints[name='RequirementModel']/@ownedRepresentations[name='servicediagram']"/>
         <target xmi:type="rEMODEL:RequirementModel" href="cocome.remodel#/"/>
       </ownedRepresentationDescriptors>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_mSxa4N1NEeaU5PhL56BYQQ" name="new Use Case Diagram" representation="_mSyB8N1NEeaU5PhL56BYQQ">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_mSxa4N1NEeaU5PhL56BYQQ" name="new Use Case Diagram" repPath="#_mSyB8N1NEeaU5PhL56BYQQ">
         <description xmi:type="description_1:DiagramDescription" href="platform:/resource/net.mydreamy.requirementmodel.design/description/requirementmodel.odesign#//@ownedViewpoints[name='RequirementModel']/@ownedRepresentations[name='Use%20Case%20Diagram']"/>
         <target xmi:type="rEMODEL:RequirementModel" href="cocome.remodel#/"/>
       </ownedRepresentationDescriptors>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_oJsgQN1NEeaU5PhL56BYQQ" name="ProcessSaleInteraction" representation="_oJsgQd1NEeaU5PhL56BYQQ">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_oJsgQN1NEeaU5PhL56BYQQ" name="ProcessSaleInteraction" repPath="#_oJsgQd1NEeaU5PhL56BYQQ">
         <description xmi:type="description_2:SequenceDiagramDescription" href="platform:/resource/net.mydreamy.requirementmodel.design/description/requirementmodel.odesign#//@ownedViewpoints[name='RequirementModel']/@ownedRepresentations[name='SequenceDiagram']"/>
         <target xmi:type="rEMODEL:Interaction" href="cocome.remodel#//@interaction.0"/>
       </ownedRepresentationDescriptors>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_fb8i0F77Eee60_5K3TPqoA" name="new Activity Diagram" representation="_fb8i0V77Eee60_5K3TPqoA">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_fb8i0F77Eee60_5K3TPqoA" name="new Activity Diagram" repPath="#_fb8i0V77Eee60_5K3TPqoA">
         <description xmi:type="description_1:DiagramDescription" href="platform:/resource/net.mydreamy.requirementmodel.design/description/requirementmodel.odesign#//@ownedViewpoints[name='RequirementModel']/@ownedRepresentations[name='AD']"/>
         <target xmi:type="rEMODEL:Workflow" href="cocome.remodel#//@workflow.0"/>
       </ownedRepresentationDescriptors>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_4EhR4F85EeeJzcYX0D0tNw" name="new Activity Diagram" representation="_4Eh48F85EeeJzcYX0D0tNw">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_4EhR4F85EeeJzcYX0D0tNw" name="new Activity Diagram" repPath="#_4Eh48F85EeeJzcYX0D0tNw">
         <description xmi:type="description_1:DiagramDescription" href="platform:/resource/net.mydreamy.requirementmodel.design/description/requirementmodel.odesign#//@ownedViewpoints[name='RequirementModel']/@ownedRepresentations[name='AD']"/>
         <target xmi:type="rEMODEL:Workflow" href="cocome.remodel#//@workflow.1"/>
       </ownedRepresentationDescriptors>
+    </ownedViews>
+    <ownedViews xmi:type="viewpoint:DView" xmi:id="_bFZLwNRLEeetP89v0SpOyQ">
+      <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/net.mydreamy.requirementmodel.design/description/requirementmodel.odesign#//@ownedViewpoints[name='RequirementModel']"/>
     </ownedViews>
   </viewpoint:DAnalysis>
   <diagram:DSemanticDiagram xmi:id="_Yr8Y0N1NEeaU5PhL56BYQQ" name="new Conceptual Class Diagram">

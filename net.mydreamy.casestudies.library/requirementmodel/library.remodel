@@ -22,7 +22,7 @@ Actor User {
 Actor Student extends User {
 	
 	UC::studentLogin()
-	UC::studentLogout() 
+	UC::studentLogout()  
 	
 }
 

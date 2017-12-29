@@ -428,6 +428,9 @@ Entity Payment {
 Entity CashPayment extends Payment {
 
 	Balance : Real
+	
+	[INV]
+	inv BalanceGreatAndEqualZero : Balance >= 0
 
 }
 
@@ -578,8 +581,10 @@ Contract CoCoMEProcessSale::enterItem(barcode : Integer, quantity : Integer) : B
 	/* Precondition: there is a sale underway */
 	precondition:
 		currentSale.oclIsUndefined() = false and
-		currentSale.IsComplete = false
-
+		currentSale.IsComplete = false and 
+		item.oclIsUndefined() = false and
+    	item.StockNumber > 0
+		
 	/**
 	 * A salesLineItem instance sli was created (instance creation).
 	 * sli was associated with the current Sale (association formed).
@@ -728,7 +733,7 @@ Contract CoCoMEOrderProducts::listAllOutOfStoreProducts() : Set(Item) {
 
 	/* postcondition:  */
 	postcondition:
-		result = Item.allInstance()->select(item:Item | item.Price = 0)
+		result = Item.allInstance()->select(item:Item | item.StockNumber = 0)
 	
 }
 
