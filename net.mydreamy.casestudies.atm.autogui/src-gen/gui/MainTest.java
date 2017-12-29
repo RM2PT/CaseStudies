@@ -46,6 +46,9 @@ public class MainTest extends ApplicationTest {
     @Ignore
     public void TestTwoTabs() {
     	
+            //add delay for less power computer
+    		sleep(5000);
+    	
     		moveTo("System Function");
     		
     		sleep(1000);
