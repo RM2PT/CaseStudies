@@ -4,7 +4,15 @@
   <artifactId>net.mydreamy.casestudies.library.autogui</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <build>
-    <sourceDirectory>src</sourceDirectory>
+    <sourceDirectory>src-gen</sourceDirectory>
+    <resources>
+      <resource>
+        <directory>src-gen</directory>
+        <excludes>
+          <exclude>**/*.java</exclude>
+        </excludes>
+      </resource>
+    </resources>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -14,6 +22,38 @@
           <target>1.8</target>
         </configuration>
       </plugin>
+      <plugin>
+	    <groupId>com.zenjava</groupId>
+	    <artifactId>javafx-maven-plugin</artifactId>
+	    <version>8.8.3</version>
+	    <configuration>
+	        <vendor>MCloud</vendor>
+	        <appName>LoanProcessingSystem</appName>
+	        <mainClass>gui.Main</mainClass>
+	    </configuration>
+	  </plugin>
     </plugins>
   </build>
+  
+  <dependencies>
+    <dependency>
+        <groupId>org.testfx</groupId>
+        <artifactId>testfx-core</artifactId>
+        <version>4.0.10-alpha</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.testfx</groupId>
+        <artifactId>testfx-junit</artifactId> <!-- or testfx-junit5 -->
+        <version>4.0.10-alpha</version>
+        <scope>test</scope>
+    </dependency>
+        <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId> <!-- or testfx-junit5 -->
+        <version>4.12</version>
+        <scope>test</scope>
+    </dependency>
+  </dependencies>  
+    
 </project>
