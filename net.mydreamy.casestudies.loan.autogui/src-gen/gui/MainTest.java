@@ -1,11 +1,10 @@
 package gui;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.util.Map;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.testfx.api.FxAssert;
 import org.testfx.api.FxRobot;
@@ -26,7 +25,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
 public class MainTest extends ApplicationTest {
@@ -42,8 +40,7 @@ public class MainTest extends ApplicationTest {
     }
     
    
-    @Test
-    @Ignore
+
     public void TestTwoTabs() {
     	
     		moveTo("System Function");
@@ -71,7 +68,6 @@ public class MainTest extends ApplicationTest {
 //        verifyThat("#desktop", hasChildren(0, ".file"));
     }
     
-    @Test
     public void testPrepareData() {
     		
 		//create user Yilong
