@@ -48,12 +48,6 @@
         <version>4.0.10-alpha</version>
         <scope>test</scope>
     </dependency>
-        <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId> <!-- or testfx-junit5 -->
-        <version>4.12</version>
-        <scope>test</scope>
-    </dependency>
   </dependencies>  
     
 </project>

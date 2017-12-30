@@ -1,12 +1,12 @@
 package gui;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.*;
+
+import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.util.Map;
 
-import org.junit.Ignore;
-import org.junit.Test;
 import org.testfx.api.FxAssert;
 import org.testfx.api.FxRobot;
 import org.testfx.api.FxToolkit;
