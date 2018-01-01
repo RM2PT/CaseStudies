@@ -12,7 +12,7 @@ Actor LoanAssistant {
 
 @uc_description: "The loan assistant enters any credit reference information that was checked manually"
 
-}
+} 
 
 @actor_description: "The loan clerk is responsible for booking (recording and setting up) the loan"
 Actor LoanClerk {
@@ -48,6 +48,8 @@ Service SubmitLoanRequestModule {
 
 	[Operation]
 	enterLoanInformation(name, loanamount, loanpurpose, income, phonenumber, zipcode, email, workreferences, creditreferences, checkingaccountnumber, securitynumber, status)
+	creditRequest(securitynumber, name)
+	accountStatusRequest(accountid)
 	calculateScore(outstandingdebt, baddebits, balance, checkingaccountstatus, income)
 
 	[TempProperty]
@@ -55,17 +57,14 @@ Service SubmitLoanRequestModule {
 
 }
 
-
-
-Service ThridPartServices {
+Service ThirdPartServices {
 
 	[Operation]
-	creditRequest(securitynumber, name)
-	accountStatusRequest(accountid)
 	sendEmail(emailaddress, title, content)
 	print(content)
 	createLoanAccount(id, loanamount, status)
 	TransferFunds(id, amount)
+	getCreditHistory(securityid, name)
 
 }
 
@@ -107,7 +106,6 @@ Service GenerateLoanLetterAndAgreementModule {
 	emailToAppliant()
 	generateLoanAgreement()
 	printLoanAgreement()
-
 
 	[TempProperty]
 	CurrentApprovalLetter : ApprovalLetter
@@ -232,6 +230,7 @@ Interaction InteractionGenerateLoanLetterAndAgreement {
 }
 
 // Submitted -> READYFORREVIEW -> REFERENCESVALIDATED -> APPROVED
+@AutoCRUD
 Entity LoanRequest {
 
 	RequestID : Integer
@@ -254,8 +253,7 @@ Entity LoanRequest {
 	ApprovalLoan : Loan
 	RequestedCAHistory : CheckingAccount
 	RequestedCreditHistory : CreditHistory
-
-attachedApprovalLetter : ApprovalLetter
+	attachedApprovalLetter : ApprovalLetter
 	AttachedLoanAgreement : LoanAgreement
 
 }
@@ -316,3 +314,446 @@ Entity LoanAgreement {
 
 }
 
+//entity create operation 
+Contract  SubmitLoanRequestModule::enterLoanInformation(requestid : Integer, name : String, loanamount : Real, loanpurpose : String, income : Real, phonenumber : Integer, postaladdress : String, zipcode : Integer, email : String, workreferences : String, creditreferences : String, checkingaccountnumber : Integer, securitynumber : Integer) : Boolean {
+	
+	/* definition: find specific LoanRequest instance by requestid */
+	definition:	    
+		loanrequest:LoanRequest = LoanRequest.allInstance()->any(loa:LoanRequest | loa.RequestID = requestid)
+	
+	/* precondition: the instance loanrequest was not found in the system */
+	precondition:
+		loanrequest.oclIsUndefined() = true
+	
+	/* postcondition: 
+	 * A LoanRequest instance loa was created.
+	 * all properties of loa became the same values as inputs.
+	 */
+	postcondition:
+		let loa:LoanRequest in
+		loa.oclIsNew() and
+		loa.RequestID = requestid and
+		loa.Name = name and
+		loa.LoanAmount = loanamount and
+		loa.LoanPurpose = loanpurpose and
+		loa.Income = income and
+		loa.PhoneNumber = phonenumber and
+		loa.PostalAddress = postaladdress and
+		loa.ZipCode = zipcode and
+		loa.Email = email and
+		loa.WorkReferences = workreferences and
+		loa.CreditReferences = creditreferences and
+		loa.CheckingAccountNumber = checkingaccountnumber and
+		loa.SecurityNumber = securitynumber and
+		loa.Status = LoanStatus::SUBMITTED and
+		LoanRequest.allInstance()->includes(loa) and
+		self.CurrentLoanRequest = loa and
+		result = true
+}
+
+Contract SubmitLoanRequestModule::creditRequest() : Boolean {
+
+	/* precondition: skeleton */
+	precondition:
+		self.CurrentLoanRequest.oclIsUndefined() = false
+
+	/* postcondition: skeleton */
+	postcondition:
+		let his:CreditHistory in
+		his.oclIsNew() and
+		his = getCreditHistory(self.CurrentLoanRequest.SecurityNumber, CurrentLoanRequest.Name) and
+		self.CurrentLoanRequest.RequestedCreditHistory = his and
+		result = true
+
+}
+
+////Contract SubmitLoanRequestModule::accountStatusRequest Skeleton
+//Contract SubmitLoanRequestModule::accountStatusRequest(accountid ) : Boolean {
+//	
+//	/* definition skeleton */
+//	definition:
+//		//Please Specify Here:
+//	/* precondition: skeleton */
+//	precondition:
+//		//Please Specify Here:
+//	
+//	/* postcondition: skeleton */
+//	postcondition:
+//		//Please Specify Here:
+//}
+////Contract SubmitLoanRequestModule::calculateScore Skeleton
+//Contract SubmitLoanRequestModule::calculateScore(outstandingdebt,  baddebits,  balance,  checkingaccountstatus,  income ) : Boolean {
+//	
+//	/* definition skeleton */
+//	definition:
+//		//Please Specify Here:
+//	/* precondition: skeleton */
+//	precondition:
+//		//Please Specify Here:
+//	
+//	/* postcondition: skeleton */
+//	postcondition:
+//		//Please Specify Here:
+//}
+////Contract ThridPartServices::sendEmail Skeleton
+//Contract ThridPartServices::sendEmail(emailaddress,  title,  content ) : Boolean {
+//	
+//	/* definition skeleton */
+//	definition:
+//		//Please Specify Here:
+//	/* precondition: skeleton */
+//	precondition:
+//		//Please Specify Here:
+//	
+//	/* postcondition: skeleton */
+//	postcondition:
+//		//Please Specify Here:
+//}
+////Contract ThridPartServices::print Skeleton
+//Contract ThridPartServices::print(content ) : Boolean {
+//	
+//	/* definition skeleton */
+//	definition:
+//		//Please Specify Here:
+//	/* precondition: skeleton */
+//	precondition:
+//		//Please Specify Here:
+//	
+//	/* postcondition: skeleton */
+//	postcondition:
+//		//Please Specify Here:
+//}
+////Contract ThridPartServices::createLoanAccount Skeleton
+//Contract ThridPartServices::createLoanAccount(id,  loanamount,  status ) : Boolean {
+//	
+//	/* definition skeleton */
+//	definition:
+//		//Please Specify Here:
+//	/* precondition: skeleton */
+//	precondition:
+//		//Please Specify Here:
+//	
+//	/* postcondition: skeleton */
+//	postcondition:
+//		//Please Specify Here:
+//}
+////Contract ThridPartServices::TransferFunds Skeleton
+//Contract ThridPartServices::TransferFunds(id,  amount ) : Boolean {
+//	
+//	/* definition skeleton */
+//	definition:
+//		//Please Specify Here:
+//	/* precondition: skeleton */
+//	precondition:
+//		//Please Specify Here:
+//	
+//	/* postcondition: skeleton */
+//	postcondition:
+//		//Please Specify Here:
+//}
+//Contract ThridPartServices::getCreditHistory Skeleton
+Contract ThirdPartServices::getCreditHistory(securityid : Integer,  name :String) : CreditHistory {
+
+	/* precondition: skeleton */
+	precondition:
+		true
+
+	/* postcondition: skeleton */
+	postcondition:
+		true 
+}
+
+////Contract EnterValidatedCreditReferencesModule::listSubmitedLoanRequest Skeleton
+//Contract EnterValidatedCreditReferencesModule::listSubmitedLoanRequest() : Boolean {
+//	
+//	/* definition skeleton */
+//	definition:
+//		//Please Specify Here:
+//	/* precondition: skeleton */
+//	precondition:
+//		//Please Specify Here:
+//	
+//	/* postcondition: skeleton */
+//	postcondition:
+//		//Please Specify Here:
+//}
+////Contract EnterValidatedCreditReferencesModule::chooseLoanRequest Skeleton
+//Contract EnterValidatedCreditReferencesModule::chooseLoanRequest(requestid ) : Boolean {
+//	
+//	/* definition skeleton */
+//	definition:
+//		//Please Specify Here:
+//	/* precondition: skeleton */
+//	precondition:
+//		//Please Specify Here:
+//	
+//	/* postcondition: skeleton */
+//	postcondition:
+//		//Please Specify Here:
+//}
+////Contract EnterValidatedCreditReferencesModule::markRequestValid Skeleton
+//Contract EnterValidatedCreditReferencesModule::markRequestValid() : Boolean {
+//	
+//	/* definition skeleton */
+//	definition:
+//		//Please Specify Here:
+//	/* precondition: skeleton */
+//	precondition:
+//		//Please Specify Here:
+//	
+//	/* postcondition: skeleton */
+//	postcondition:
+//		//Please Specify Here:
+//}
+////Contract EvaluateLoanRequestModule::listTenLoanRequest Skeleton
+//Contract EvaluateLoanRequestModule::listTenLoanRequest() : Boolean {
+//	
+//	/* definition skeleton */
+//	definition:
+//		//Please Specify Here:
+//	/* precondition: skeleton */
+//	precondition:
+//		//Please Specify Here:
+//	
+//	/* postcondition: skeleton */
+//	postcondition:
+//		//Please Specify Here:
+//}
+////Contract EvaluateLoanRequestModule::chooseOneForReview Skeleton
+//Contract EvaluateLoanRequestModule::chooseOneForReview(requestid ) : Boolean {
+//	
+//	/* definition skeleton */
+//	definition:
+//		//Please Specify Here:
+//	/* precondition: skeleton */
+//	precondition:
+//		//Please Specify Here:
+//	
+//	/* postcondition: skeleton */
+//	postcondition:
+//		//Please Specify Here:
+//}
+////Contract EvaluateLoanRequestModule::checkCreditHistory Skeleton
+//Contract EvaluateLoanRequestModule::checkCreditHistory() : Boolean {
+//	
+//	/* definition skeleton */
+//	definition:
+//		//Please Specify Here:
+//	/* precondition: skeleton */
+//	precondition:
+//		//Please Specify Here:
+//	
+//	/* postcondition: skeleton */
+//	postcondition:
+//		//Please Specify Here:
+//}
+////Contract EvaluateLoanRequestModule::reviewCheckingAccount Skeleton
+//Contract EvaluateLoanRequestModule::reviewCheckingAccount() : Boolean {
+//	
+//	/* definition skeleton */
+//	definition:
+//		//Please Specify Here:
+//	/* precondition: skeleton */
+//	precondition:
+//		//Please Specify Here:
+//	
+//	/* postcondition: skeleton */
+//	postcondition:
+//		//Please Specify Here:
+//}
+////Contract EvaluateLoanRequestModule::listAvaiableLoanTerm Skeleton
+//Contract EvaluateLoanRequestModule::listAvaiableLoanTerm() : Boolean {
+//	
+//	/* definition skeleton */
+//	definition:
+//		//Please Specify Here:
+//	/* precondition: skeleton */
+//	precondition:
+//		//Please Specify Here:
+//	
+//	/* postcondition: skeleton */
+//	postcondition:
+//		//Please Specify Here:
+//}
+////Contract EvaluateLoanRequestModule::addLoanTerm Skeleton
+//Contract EvaluateLoanRequestModule::addLoanTerm(termid ) : Boolean {
+//	
+//	/* definition skeleton */
+//	definition:
+//		//Please Specify Here:
+//	/* precondition: skeleton */
+//	precondition:
+//		//Please Specify Here:
+//	
+//	/* postcondition: skeleton */
+//	postcondition:
+//		//Please Specify Here:
+//}
+////Contract EvaluateLoanRequestModule::approveLoanRequest Skeleton
+//Contract EvaluateLoanRequestModule::approveLoanRequest() : Boolean {
+//	
+//	/* definition skeleton */
+//	definition:
+//		//Please Specify Here:
+//	/* precondition: skeleton */
+//	precondition:
+//		//Please Specify Here:
+//	
+//	/* postcondition: skeleton */
+//	postcondition:
+//		//Please Specify Here:
+//}
+////Contract GenerateLoanLetterAndAgreementModule::listApprovalRequest Skeleton
+//Contract GenerateLoanLetterAndAgreementModule::listApprovalRequest() : Boolean {
+//	
+//	/* definition skeleton */
+//	definition:
+//		//Please Specify Here:
+//	/* precondition: skeleton */
+//	precondition:
+//		//Please Specify Here:
+//	
+//	/* postcondition: skeleton */
+//	postcondition:
+//		//Please Specify Here:
+//}
+////Contract GenerateLoanLetterAndAgreementModule::genereateApprovalLetter Skeleton
+//Contract GenerateLoanLetterAndAgreementModule::genereateApprovalLetter(id ) : Boolean {
+//	
+//	/* definition skeleton */
+//	definition:
+//		//Please Specify Here:
+//	/* precondition: skeleton */
+//	precondition:
+//		//Please Specify Here:
+//	
+//	/* postcondition: skeleton */
+//	postcondition:
+//		//Please Specify Here:
+//}
+////Contract GenerateLoanLetterAndAgreementModule::emailToAppliant Skeleton
+//Contract GenerateLoanLetterAndAgreementModule::emailToAppliant() : Boolean {
+//	
+//	/* definition skeleton */
+//	definition:
+//		//Please Specify Here:
+//	/* precondition: skeleton */
+//	precondition:
+//		//Please Specify Here:
+//	
+//	/* postcondition: skeleton */
+//	postcondition:
+//		//Please Specify Here:
+//}
+////Contract GenerateLoanLetterAndAgreementModule::generateLoanAgreement Skeleton
+//Contract GenerateLoanLetterAndAgreementModule::generateLoanAgreement() : Boolean {
+//	
+//	/* definition skeleton */
+//	definition:
+//		//Please Specify Here:
+//	/* precondition: skeleton */
+//	precondition:
+//		//Please Specify Here:
+//	
+//	/* postcondition: skeleton */
+//	postcondition:
+//		//Please Specify Here:
+//}
+////Contract GenerateLoanLetterAndAgreementModule::printLoanAgreement Skeleton
+//Contract GenerateLoanLetterAndAgreementModule::printLoanAgreement() : Boolean {
+//	
+//	/* definition skeleton */
+//	definition:
+//		//Please Specify Here:
+//	/* precondition: skeleton */
+//	precondition:
+//		//Please Specify Here:
+//	
+//	/* postcondition: skeleton */
+//	postcondition:
+//		//Please Specify Here:
+//}
+////Contract LoanManagementModule::BookNewLoan Skeleton
+//Contract LoanManagementModule::BookNewLoan(id ) : Boolean {
+//	
+//	/* definition skeleton */
+//	definition:
+//		//Please Specify Here:
+//	/* precondition: skeleton */
+//	precondition:
+//		//Please Specify Here:
+//	
+//	/* postcondition: skeleton */
+//	postcondition:
+//		//Please Specify Here:
+//}
+////Contract LoanManagementModule::genereateMonthlyBillingStatement Skeleton
+//Contract LoanManagementModule::genereateMonthlyBillingStatement() : Boolean {
+//	
+//	/* definition skeleton */
+//	definition:
+//		//Please Specify Here:
+//	/* precondition: skeleton */
+//	precondition:
+//		//Please Specify Here:
+//	
+//	/* postcondition: skeleton */
+//	postcondition:
+//		//Please Specify Here:
+//}
+////Contract LoanManagementModule::genereateLateNoticeStatement Skeleton
+//Contract LoanManagementModule::genereateLateNoticeStatement() : Boolean {
+//	
+//	/* definition skeleton */
+//	definition:
+//		//Please Specify Here:
+//	/* precondition: skeleton */
+//	precondition:
+//		//Please Specify Here:
+//	
+//	/* postcondition: skeleton */
+//	postcondition:
+//		//Please Specify Here:
+//}
+////Contract LoanManagementModule::listBookedLoans Skeleton
+//Contract LoanManagementModule::listBookedLoans() : Boolean {
+//	
+//	/* definition skeleton */
+//	definition:
+//		//Please Specify Here:
+//	/* precondition: skeleton */
+//	precondition:
+//		//Please Specify Here:
+//	
+//	/* postcondition: skeleton */
+//	postcondition:
+//		//Please Specify Here:
+//}
+////Contract LoanManagementModule::loanPayment Skeleton
+//Contract LoanManagementModule::loanPayment(id ) : Boolean {
+//	
+//	/* definition skeleton */
+//	definition:
+//		//Please Specify Here:
+//	/* precondition: skeleton */
+//	precondition:
+//		//Please Specify Here:
+//	
+//	/* postcondition: skeleton */
+//	postcondition:
+//		//Please Specify Here:
+//}
+////Contract LoanManagementModule::closeOutLoan Skeleton
+//Contract LoanManagementModule::closeOutLoan(id ) : Boolean {
+//	
+//	/* definition skeleton */
+//	definition:
+//		//Please Specify Here:
+//	/* precondition: skeleton */
+//	precondition:
+//		//Please Specify Here:
+//	
+//	/* postcondition: skeleton */
+//	postcondition:
+//		//Please Specify Here:
+//}
