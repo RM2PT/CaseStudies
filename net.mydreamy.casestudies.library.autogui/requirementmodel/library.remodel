@@ -136,7 +136,7 @@ Service LibraryManagementSystem {
 	[TempProperty]
 }
 
-Service ThridPartServices {
+Service ThirdPartServices {
 
 	[Operation]
 	sendNotificationEmail(user)
@@ -1121,7 +1121,7 @@ Contract LibraryManagementSystem::queryLibrarian(librarianID:String): Librarian 
 
 }
 
-Contract ThridPartServices::sendNotificationEmail(email: String) : Boolean {
+Contract ThirdPartServices::sendNotificationEmail(email: String) : Boolean {
 
 	precondition:
 		email <> ""

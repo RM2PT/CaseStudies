@@ -71,7 +71,7 @@ Service CoCoMEProcessSale {
 	ProcessSaleWF 
 }
 
-Service ThridPartServices {
+Service ThirdPartServices {
 
 	[Operation]
 	thirdPartyCardPaymentService(cdp, expiryDate, fee)
@@ -696,7 +696,7 @@ Contract CoCoMEProcessSale::makeCardPayment(cardAccountNumber : String, expiryDa
 
 }
 
-Contract  ThridPartServices::thirdPartyCardPaymentService(cardAccountNumber : String, expiryDate : Date, fee : Real) : Boolean {
+Contract  ThirdPartServices::thirdPartyCardPaymentService(cardAccountNumber : String, expiryDate : Date, fee : Real) : Boolean {
 
 	precondition:
 		true
