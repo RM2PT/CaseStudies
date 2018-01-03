@@ -1,47 +1,51 @@
-@actor_description:"a loan officer is an officer of the bank who has the designated responsibilitiy of evaluating requests for a loan"
-Actor LoanOfficer {
+UseCaseModel LoanProcessingSystem {
 
-	UC::evaluateLoanRequest() @uc_description: "The loan officer reviews the online information about the pending loan request to determine whether the loan should be approved"
-	UC::manageLoanTerm()
+	@actor_description:"a loan officer is an officer of the bank who has the designated responsibilitiy of evaluating requests for a loan"
+	Actor LoanOfficer {
 
-}
+		UC::evaluateLoanRequest() @uc_description: "The loan officer reviews the online information about the pending loan request to determine whether the loan should be approved"
+		UC::manageLoanTerm()
 
-@actor_description: "The loan assistant is responsible for manually capturing and entering into the system the credit information"
-Actor LoanAssistant {
+	}
 
-	UC::enterValidatedCreditReferences()
+	@actor_description: "The loan assistant is responsible for manually capturing and entering into the system the credit information"
+	Actor LoanAssistant {
+
+		UC::enterValidatedCreditReferences()
 
 
 @uc_description: "The loan assistant enters any credit reference information that was checked manually"
 
-}
+	}
 
-@actor_description: "The loan clerk is responsible for booking (recording and setting up) the loan"
-Actor LoanClerk {
+	@actor_description: "The loan clerk is responsible for booking (recording and setting up) the loan"
+	Actor LoanClerk {
 
-	UC::generateLoanLetterAndAgreement() @uc_description: "a loan clerk has the system genereate an approval letter for the applicant"
-	UC::bookNewLoan() @uc_description: "Once a loan aggrement has been sighed by the customer and returned to the bank, the loan clerk has the system create a loan account based on the agreed-on terms and conditions"
-	UC::loanPayment() @uc_description: "Payment is received from the customer, the loan clerk enters the payment into the appropriate loan account"
-	UC::closeOutLoan()
+		UC::generateLoanLetterAndAgreement() @uc_description: "a loan clerk has the system genereate an approval letter for the applicant"
+		UC::bookNewLoan() @uc_description: "Once a loan aggrement has been sighed by the customer and returned to the bank, the loan clerk has the system create a loan account based on the agreed-on terms and conditions"
+		UC::loanPayment() @uc_description: "Payment is received from the customer, the loan clerk enters the payment into the appropriate loan account"
+		UC::closeOutLoan()
 	
 
 @uc_description: "The loan has been paid in full by the customer, and the loan will be closed"
 
-}
+	}
 
-Actor Scheduler {
+	Actor Scheduler {
 
-	UC::generateStandardPaymentNotice() @uc_description: "when the monthly billing time occurs, the loan system genereates the bill statements for mailing to the customer"
-	UC::generateLateNotice()
+		UC::generateStandardPaymentNotice() @uc_description: "when the monthly billing time occurs, the loan system genereates the bill statements for mailing to the customer"
+		UC::generateLateNotice()
 
 @uc_description: "The loan system genereates the late notice for mailling to the customer"
 
-}
+	}
 
-@actor_description: "An applicant is an individual or organization who sumits an application for a loan to the bank"
-Actor Applicant {
+	@actor_description: "An applicant is an individual or organization who sumits an application for a loan to the bank"
+	Actor Applicant {
 
-	UC::submitLoanRequest() 	@uc_description: "The applicant fills out a loan application and submits it to the bank for processing"
+		UC::submitLoanRequest() 	@uc_description: "The applicant fills out a loan application and submits it to the bank for processing"
+
+	}
 
 }
 
@@ -259,7 +263,6 @@ Entity LoanRequest {
 	CheckingAccountNumber : Integer
 	SecurityNumber : Integer
 	CreditScore : Integer
-	
 
 	[Refer]
 	ApprovalLoan : Loan
@@ -282,7 +285,6 @@ Entity Loan {
 	CurrentOverDueDate : Date
 	RePaymentDays : Integer
 	RepaymentAmount : Real
-	
 
 	[Refer]
 	ReferedLoanRequest : LoanRequest

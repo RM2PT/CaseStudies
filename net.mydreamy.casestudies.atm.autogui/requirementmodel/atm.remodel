@@ -1,25 +1,23 @@
-Actor Customer {
+UseCaseModel AutomatedTellerMachine {
 
-	UC::withdrawCash() -> ATMSystem include cardIdentification
-	UC::checkBalance() -> ATMSystem include cardIdentification
-	UC::depositFunds() -> ATMSystem
+	Actor Customer {
+
+		UC::withdrawCash() -> ATMSystem include cardIdentification
+		UC::checkBalance() -> ATMSystem include cardIdentification
+		UC::depositFunds() -> ATMSystem
+
+	}
+
+	Actor BankClerk {
+
+		UC::manageBankCard()
+		UC::manageUser()
+
+	}
+
+	UC::cardIdentification()
 
 }
-
-Actor BankClerk {
-
-	UC::createBankCard()
-	UC::queryBankCard()
-	UC::modifyBankCard()
-	UC::deleteBankCard()
-	UC::createUser()
-	UC::queryUser()
-	UC::modifyUser()
-	UC::deleteUser()
-
-}
-
-UC::cardIdentification()
 
 Service ATMSystem {
 
@@ -43,23 +41,28 @@ Service ATMSystem {
 
 }
 
-Service EntityCURDService {
+
+Service ManageBankCardCRUDService {
 
 	[Operation]
-	createBankCard(cardid, password, cardstatus, balance)
+	createBankCard(cardid, cardstatus, catalog, password, balance)
 	queryBankCard(CardID)
-	modifyBankCard(cardid, password, cardstatus, balance)
+	modifyBankCard(cardid, cardstatus, catalog, password, balance)
 	deleteBankCard(CardID)
+	
+}
+Service ManageUserCRUDService {
+
+	[Operation]
 	createUser(userid, name, address)
 	queryUser(UserID)
 	modifyUser(userid, name, address)
 	deleteUser(UserID)
-
+	
 }
 
-Service ThridPartServices {
 
-}
+
 
 //Service BankSystem {
 //
@@ -224,6 +227,7 @@ Interaction DepositFundsInteraction {
 
 }
 
+@AutoCRUD
 Entity BankCard {
 
 	CardID : Integer
@@ -260,169 +264,8 @@ Entity Transcation {
 
 }
 
-//entity create operation 
-Contract EntityCURDService::createBankCard(userid : Integer, cardid : Integer, cardstatus : CardStatus[NORMAL|SUSPEND|CANNEL], catalog : CardCatalog[CREDIT|DESPOSIT], password : Integer, balance : Real) : Boolean {
 
-	/* definition: find specific BankCard instance by cardid */
-	definition:
-		bankcard:BankCard = BankCard.allInstance()->any(ban:BankCard | ban.CardID = cardid),
-		bu:User = User.allInstance()->any(u:User | u.UserID = userid)
 
-	/* precondition: the instance bankcard was not found in the system */
-	precondition:
-		bankcard.oclIsUndefined() = true and
-		bu.oclIsUndefined() = false
-
-	/* postcondition: 
-	 * A BankCard instance ban was created.
-	 * all properties of ban became the same values as inputs.
-	 */
-	postcondition:
-		let ban:BankCard in
-		ban.oclIsNew() and
-		ban.CardID = cardid and
-		ban.CardStatus = cardstatus and
-		ban.Catalog = catalog and
-		ban.Password = password and
-		ban.Balance = balance and
-		BankCard.allInstance()->includes(ban) and
-		ban.BelongedUser = bu and
-		bu.OwnedCard->includes(ban) and
-		result = true
-}
-
-//entity query operation 
-Contract EntityCURDService::queryBankCard(cardid : Integer) : BankCard {
-
-	/* definition: find specific BankCard instance by cardid */
-	definition:
-		bankcard:BankCard = BankCard.allInstance()->any(ban:BankCard | ban.CardID = cardid)
-
-	/* precondition: the instance bankcard was found in the system */
-	precondition:
-		bankcard.oclIsUndefined() = false
-
-	/* postcondition: return found the instance bankcard */
-	postcondition:
-		result = bankcard
-}
-
-//entity modify operation 
-Contract EntityCURDService::modifyBankCard(cardid : Integer, cardstatus : CardStatus[NORMAL|SUSPEND|CANNEL], catalog : CardCatalog[CREDIT|DESPOSIT], password : Integer, balance : Real) : Boolean {
-
-	/* definition: find specific BankCard instance by cardid */
-	definition:
-		bankcard:BankCard = BankCard.allInstance()->any(ban:BankCard | ban.CardID = cardid)
-
-	/* precondition: the instance bankcard was found in the system */
-	precondition:
-		bankcard.oclIsUndefined() = false
-
-	/* postcondition: all properties of ban became the same values as inputs. */
-	postcondition:
-		bankcard.CardID = cardid and
-		bankcard.CardStatus = cardstatus and
-		bankcard.Catalog = catalog and
-		bankcard.Password = password and
-		bankcard.Balance = balance and
-		result = true
-}
-
-//entity delete operation 
-Contract EntityCURDService::deleteBankCard(cardid : Integer) : Boolean {
-
-	/* definition: find specific BankCard instance by cardid */
-	definition:
-		bankcard:BankCard = BankCard.allInstance()->any(ban:BankCard | ban.CardID = cardid)
-
-	/* precondition: the instance bankcard was found in the system */
-	precondition:
-		bankcard.oclIsUndefined() = false and
-		BankCard.allInstance()->includes(bankcard)
-
-	/* postcondition: the instance bankcard was deleted from the system */
-	postcondition:
-		BankCard.allInstance()->excludes(bankcard) and
-		result = true
-}
-
-//entity create operation 
-Contract EntityCURDService::createUser(userid : Integer, name : String, address : String) : Boolean {
-
-	/* definition: find specific User instance by userid */
-	definition:
-		user:User = User.allInstance()->any(use:User | use.UserID = userid)
-
-	/* precondition: the instance user was not found in the system */
-	precondition:
-		user.oclIsUndefined() = true
-
-	/* postcondition: 
-	 * A User instance use was created.
-	 * all properties of use became the same values as inputs.
-	 */
-	postcondition:
-		let use:User in
-		use.oclIsNew() and
-		use.UserID = userid and
-		use.Name = name and
-		use.Address = address and
-		User.allInstance()->includes(use) and
-		result = true
-}
-
-//entity query operation 
-Contract EntityCURDService::queryUser(userid : Integer) : User {
-
-	/* definition: find specific User instance by userid */
-	definition:
-		user:User = User.allInstance()->any(use:User | use.UserID = userid)
-
-	/* precondition: the instance user was found in the system */
-	precondition:
-		user.oclIsUndefined() = false
-
-	/* postcondition: return found the instance user */
-	postcondition:
-		result = user
-}
-
-//entity modify operation 
-Contract EntityCURDService::modifyUser(userid : Integer, name : String, address : String) : Boolean {
-
-	/* definition: find specific User instance by userid */
-	definition:
-		user:User = User.allInstance()->any(use:User | use.UserID = userid)
-
-	/* precondition: the instance user was found in the system */
-	precondition:
-		user.oclIsUndefined() = false
-
-	/* postcondition: all properties of use became the same values as inputs. */
-	postcondition:
-		user.UserID = userid and
-		user.Name = name and
-		user.Address = address and
-		result = true
-}
-
-//entity delete operation 
-Contract EntityCURDService::deleteUser(userid : Integer) : Boolean {
-
-	/* definition: find specific User instance by userid */
-	definition:
-		user:User = User.allInstance()->any(use:User | use.UserID = userid)
-
-	/* precondition: the instance user was found in the system */
-	precondition:
-		user.oclIsUndefined() = false and
-		User.allInstance()->includes(user)
-
-	/* postcondition: the instance user was deleted from the system */
-	postcondition:
-		User.allInstance()->excludes(user) and
-		result = true
-}
 
 //Contract ATMSystem::inputCard Skeleton
 Contract ATMSystem::inputCard(cardid :Integer) : Boolean {
@@ -481,11 +324,14 @@ Contract ATMSystem::printReceipt() : Real {
 
 	/* postcondition: skeleton */
 	postcondition:
-		if self.IsWithdraw = true 
+		if
+			self.IsWithdraw = true
 		then
 			result = self.WithdrawedNumber
 		else
-			if self.IsDeposit = true then
+			if
+				self.IsDeposit = true
+			then
 				result = self.DepositedNumber
 			else
 				result = 0
@@ -563,4 +409,171 @@ Contract ATMSystem::deposit(quantity : Real) : Boolean {
 		self.DepositedNumber = quantity and
 		result = true
 }
+
+
+//entity create operation 
+Contract  ManageBankCardCRUDService::createBankCard(cardid : Integer, cardstatus : CardStatus[NORMAL|SUSPEND|CANNEL], catalog : CardCatalog[CREDIT|DESPOSIT], password : Integer, balance : Real) : Boolean {
+	
+	/* definition: find specific BankCard instance by cardid */
+	definition:
+		bankcard:BankCard = BankCard.allInstance()->any(ban:BankCard | ban.CardID = cardid)
+	
+	/* precondition: the instance bankcard was not found in the system */
+	precondition:
+		bankcard.oclIsUndefined() = true
+	
+	/* postcondition: 
+	 * A BankCard instance ban was created.
+	 * all properties of ban became the same values as inputs.
+	 */
+	postcondition:
+		let ban:BankCard in
+		ban.oclIsNew() and
+		ban.CardID = cardid and
+		ban.CardStatus = cardstatus and
+		ban.Catalog = catalog and
+		ban.Password = password and
+		ban.Balance = balance and
+		BankCard.allInstance()->includes(ban) and
+		result = true
+}
+
+//entity query operation 
+Contract  ManageBankCardCRUDService::queryBankCard(cardid : Integer) : BankCard {
+	
+	/* definition: find specific BankCard instance by cardid */
+	definition:
+		bankcard:BankCard = BankCard.allInstance()->any(ban:BankCard | ban.CardID = cardid)
+	
+	/* precondition: the instance bankcard was found in the system */	
+	precondition:
+		bankcard.oclIsUndefined() = false
+		
+	/* postcondition: return found the instance bankcard */
+	postcondition:
+		result = bankcard
+}
+						
+
+//entity modify operation 
+Contract  ManageBankCardCRUDService::modifyBankCard(cardid : Integer, cardstatus : CardStatus[NORMAL|SUSPEND|CANNEL], catalog : CardCatalog[CREDIT|DESPOSIT], password : Integer, balance : Real) : Boolean {
+	
+	/* definition: find specific BankCard instance by cardid */
+	definition:
+		bankcard:BankCard = BankCard.allInstance()->any(ban:BankCard | ban.CardID = cardid)
+	
+	/* precondition: the instance bankcard was found in the system */
+	precondition:
+		bankcard.oclIsUndefined() = false
+	
+	/* postcondition: all properties of ban became the same values as inputs. */							
+	postcondition:
+		bankcard.CardID = cardid and
+		bankcard.CardStatus = cardstatus and
+		bankcard.Catalog = catalog and
+		bankcard.Password = password and
+		bankcard.Balance = balance and
+		result = true
+}
+
+//entity delete operation 
+Contract  ManageBankCardCRUDService::deleteBankCard(cardid : Integer) : Boolean {
+	
+	/* definition: find specific BankCard instance by cardid */
+	definition:
+		bankcard:BankCard = BankCard.allInstance()->any(ban:BankCard | ban.CardID = cardid)
+	
+	/* precondition: the instance bankcard was found in the system */
+	precondition:
+		bankcard.oclIsUndefined() = false and
+		BankCard.allInstance()->includes(bankcard)
+	
+	/* postcondition: the instance bankcard was deleted from the system */
+	postcondition:
+		BankCard.allInstance()->excludes(bankcard) and
+		result = true
+}
+ 
+//entity create operation 
+Contract  ManageUserCRUDService::createUser(userid : Integer, name : String, address : String) : Boolean {
+	
+	/* definition: find specific User instance by userid */
+	definition:
+		user:User = User.allInstance()->any(use:User | use.UserID = userid)
+	
+	/* precondition: the instance user was not found in the system */
+	precondition:
+		user.oclIsUndefined() = true
+	
+	/* postcondition: 
+	 * A User instance use was created.
+	 * all properties of use became the same values as inputs.
+	 */
+	postcondition:
+		let use:User in
+		use.oclIsNew() and
+		use.UserID = userid and
+		use.Name = name and
+		use.Address = address and
+		User.allInstance()->includes(use) and
+		result = true
+}
+
+//entity query operation 
+Contract  ManageUserCRUDService::queryUser(userid : Integer) : User {
+	
+	/* definition: find specific User instance by userid */
+	definition:
+		user:User = User.allInstance()->any(use:User | use.UserID = userid)
+	
+	/* precondition: the instance user was found in the system */	
+	precondition:
+		user.oclIsUndefined() = false
+		
+	/* postcondition: return found the instance user */
+	postcondition:
+		result = user
+}
+						
+
+//entity modify operation 
+Contract  ManageUserCRUDService::modifyUser(userid : Integer, name : String, address : String) : Boolean {
+	
+	/* definition: find specific User instance by userid */
+	definition:
+		user:User = User.allInstance()->any(use:User | use.UserID = userid)
+	
+	/* precondition: the instance user was found in the system */
+	precondition:
+		user.oclIsUndefined() = false
+	
+	/* postcondition: all properties of use became the same values as inputs. */							
+	postcondition:
+		user.UserID = userid and
+		user.Name = name and
+		user.Address = address and
+		result = true
+}
+
+//entity delete operation 
+Contract  ManageUserCRUDService::deleteUser(userid : Integer) : Boolean {
+	
+	/* definition: find specific User instance by userid */
+	definition:
+		user:User = User.allInstance()->any(use:User | use.UserID = userid)
+	
+	/* precondition: the instance user was found in the system */
+	precondition:
+		user.oclIsUndefined() = false and
+		User.allInstance()->includes(user)
+	
+	/* postcondition: the instance user was deleted from the system */
+	postcondition:
+		User.allInstance()->excludes(user) and
+		result = true
+}
+ 
+
+
+
 
