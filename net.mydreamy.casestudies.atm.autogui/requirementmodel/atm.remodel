@@ -61,7 +61,9 @@ Service ManageUserCRUDService {
 	
 }
 
-
+Service ThirdPartServices {
+	
+}
 
 
 //Service BankSystem {
@@ -239,6 +241,10 @@ Entity BankCard {
 	[Refer]
 	BelongedUser : User
 	Has : Transcation*
+	
+	[INV]
+	inv UniqueCardID : BankCard.allInstance()->isUnique(b:BankCard | b.CardID)
+	inv BalanceGreatAndEqualZero : Balance >= 0
 
 }
 
@@ -251,6 +257,9 @@ Entity User {
 
 	[Refer]
 	OwnedCard : BankCard*
+	
+	[INV]
+	inv UniqueUserID : User.allInstance()->isUnique(u:User | u.UserID)
 
 }
 
@@ -261,6 +270,10 @@ Entity Transcation {
 
 	[Refer]
 	InvolvedCard : BankCard
+	
+	[INV]
+	inv WithdrawedNumGreatAndEqualZero : WithdrawedNum >= 0
+	inv BalanceAfterWithdrawGreatAndEqualZero : BalanceAfterWithdraw >= 0
 
 }
 

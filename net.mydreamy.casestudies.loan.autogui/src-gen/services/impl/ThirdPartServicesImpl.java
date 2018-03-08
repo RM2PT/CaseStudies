@@ -20,20 +20,11 @@ public class ThirdPartServicesImpl implements ThirdPartServices{
 	/* Generate buiness logic according to functional requirement */
 	@SuppressWarnings("unchecked")
 	public CreditHistory getCreditHistory(int securityid, String name) throws PreconditionException {
-		/* check precondition */
-		if (true) 
-		{ 
-			/* Logic here */
-			CreditHistory his =  new CreditHistory();
-			his.setBadDebits(0);
-			his.setOutstandingDebt(0);
-			return his;
-		}
-		else
-		{
-			throw new PreconditionException();				
-		}
-		//string parameters: [name]
+		/* Logic here */
+		CreditHistory his =  new CreditHistory();
+		his.setBadDebits(0);
+		his.setOutstandingDebt(0);
+		return his;
 	}
 	 
 	
@@ -43,5 +34,63 @@ public class ThirdPartServicesImpl implements ThirdPartServices{
 	
 	/* invarints checking*/
 	public final static ArrayList<String> allInvariantCheckingFunction = new ArrayList<String>(Arrays.asList());
+
+
+
+	@Override
+	public CheckingAccount getCheckingAccountStatus(int cid) throws PreconditionException {
+		// TODO Auto-generated method stub
+		
+		/* Logic here */
+		CheckingAccount ca =  new CheckingAccount();
+		ca.setBalance(10000);;
+		ca.setStatus(CheckingAccountStatus.GOODSTANDING);;
+		return ca;
+		
+		
+	}
+
+
+
+	@Override
+	public boolean sendEmail(String emailaddress, String title, String content) throws PreconditionException {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+
+
+	@Override
+	public boolean print(String content, int numbers) throws PreconditionException {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+
+
+
+
+
+	@Override
+	public LoanAccount createLoanAccount(int id) throws PreconditionException {
+		// TODO Auto-generated method stub
+		LoanAccount la = new LoanAccount();
+		la.setBalance(0);
+		la.setStatus(LoanAccountStatus.NORMAL);
+		
+		return new LoanAccount();
+	}
+
+
+
+	@Override
+	public boolean transferFunds(int id, float amount) throws PreconditionException {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+
+
+
 			
 }

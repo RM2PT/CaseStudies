@@ -271,6 +271,10 @@ Entity LoanRequest {
 	AttachedApprovalLetter : ApprovalLetter
 	AttachedLoanAgreement : LoanAgreement
 	AttachedLoanTerms : LoanTerm*
+	
+	[INV]
+	inv UniqueRequestID : LoanRequest.allInstance()->isUnique(l:LoanRequest | l.RequestID)
+	inv CreditScoreGreatAndEqualZero : CreditScore >= 0
 
 }
 
@@ -289,6 +293,13 @@ Entity Loan {
 	[Refer]
 	ReferedLoanRequest : LoanRequest
 	BelongedLoanAccount : LoanAccount
+	
+	[INV]
+	inv UniqueLoanID : Loan.allInstance()->isUnique(l:Loan | l.LoanID)
+	inv RemainAmountToPayGreatAndEqualZero : RemainAmountToPay >= 0
+	inv RepaymentAmountGreatAndEqualZero : RepaymentAmount >= 0
+	inv RePaymentDaysGreatAndEqualZero : RePaymentDays >= 0
+
 
 }
 
@@ -296,6 +307,9 @@ Entity LoanTerm {
 
 	ItemID : Integer
 	Content : String
+	
+	[INV]
+	inv UniqueLoanID : Loan.allInstance()->isUnique(l:Loan | l.LoanID)
 
 }
 
@@ -303,6 +317,9 @@ Entity CheckingAccount {
 
 	Balance : Real
 	Status : CheckingAccountStatus[GOODSTANDING|SUSPENDED]
+	
+	[INV]
+	inv BalanceGreatAndEqualZero : Balance >= 0
 
 }
 
@@ -310,6 +327,10 @@ Entity CreditHistory {
 
 	OutstandingDebt : Real
 	BadDebits : Integer
+	
+	[INV]
+	inv OutstandingDebtGreatAndEqualZero : OutstandingDebt >= 0
+	inv BadDebitsGreatAndEqualZero : BadDebits >= 0
 
 }
 
@@ -318,6 +339,10 @@ Entity LoanAccount {
 	LoanAccountID : Integer
 	Balance : Real
 	Status : LoanAccountStatus[NORMAL|HASPAIDINFULL]
+	
+	[INV]
+	inv UniqueLoanID : Loan.allInstance()->isUnique(l:Loan | l.LoanID)
+	inv BalanceGreatAndEqualZero : Balance >= 0
 
 }
 
