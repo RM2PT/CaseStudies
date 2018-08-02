@@ -75,15 +75,15 @@ public class MainTest extends ApplicationTest {
     }
     
     @Test
-    public void testPrepareData() {
+    public void a_TestPrepareData() {
     		
-		//create user Yilong
-    		new FxRobot().clickOn("#bankclerk").sleep(1000).clickOn("createUser").type(KeyCode.TAB).type(KeyCode.TAB).write("1");
+			//create user Yilong
+    		new FxRobot().clickOn("#bankclerk").sleep(1000).doubleClickOn("manageUser").clickOn("createUser").type(KeyCode.TAB).type(KeyCode.TAB).write("1");
         	
         	type(KeyCode.TAB);
         	write("Yilong Yang");
         	
-        type(KeyCode.TAB);
+        	type(KeyCode.TAB);
         	write("University of Macau");
         	
         	clickOn("#execute");
@@ -108,12 +108,12 @@ public class MainTest extends ApplicationTest {
     		clickOn("System Function");
     		
     		
-    		clickOn("createBankCard");
-   		clickOn("#operation_paras"); 
+    		doubleClickOn("manageBankCard").clickOn("createBankCard");
+    		clickOn("#operation_paras"); 
     		type(KeyCode.TAB);
     		write("1");
-    		type(KeyCode.TAB);
-    		write("1");
+//    		type(KeyCode.TAB);
+//    		write("1");
     		
     		type(KeyCode.TAB);
     		type(KeyCode.TAB);
@@ -159,7 +159,7 @@ public class MainTest extends ApplicationTest {
     }
     
     @Test
-    public void testWithDraw() {
+    public void b_TestWithDraw() {
     	
     		//input card with id 1
     		clickOn("#customer").sleep(1000).doubleClickOn("withdrawCash").clickOn("inputCard").type(KeyCode.TAB).type(KeyCode.TAB).type(KeyCode.TAB).write("1").clickOn("#execute").sleep(1000);
@@ -203,7 +203,7 @@ public class MainTest extends ApplicationTest {
     }
     
     @Test
-    public void testDeposit() {
+    public void c_TestDeposit() {
     	
     		//input card with id 1
     		doubleClickOn("depositFunds").clickOn("inputCard").type(KeyCode.TAB).type(KeyCode.TAB).type(KeyCode.TAB).write("1").clickOn("#execute").sleep(1000);
@@ -242,8 +242,6 @@ public class MainTest extends ApplicationTest {
     		//verify return result
         	FxAssert.verifyThat((TitledPane)lookup("#operation_return_pane").query(), NodeMatchers.isNotNull());
     		FxAssert.verifyThat(((TitledPane)lookup("#operation_return_pane").query()).getContent(), NodeMatchers.hasText("true"));
-    		
-    	    
-    		
+    			
     }
 }
