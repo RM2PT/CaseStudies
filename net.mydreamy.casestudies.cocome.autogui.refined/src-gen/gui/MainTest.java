@@ -47,7 +47,7 @@ public class MainTest extends ApplicationTest {
     public void TestTwoTabs() {
     	
             //add delay for less power computer
-    		sleep(5000);
+    		sleep(3000);
     	
     		moveTo("System Function");
     		
@@ -74,91 +74,90 @@ public class MainTest extends ApplicationTest {
 //        verifyThat("#desktop", hasChildren(0, ".file"));
     }
     
+    
+    public void validateAttribute(String attribute, String value) {
+    	
+   		TableView tvU = (TableView)((TitledPane)lookup("#object_statics").query()).getContent();
+		Map<String, String> obU = (Map<String, String>) tvU.getItems().get(0);
+		assertEquals(obU.get(attribute), value);
+    	
+    }
+    
+    public void validateAttribute(String attribute, String value, int order) {
+    	
+   		TableView tvU = (TableView)((TitledPane)lookup("#object_statics").query()).getContent();
+		Map<String, String> obU = (Map<String, String>) tvU.getItems().get(order);
+		assertEquals(obU.get(attribute), value);
+    	
+    }
+    
+    public void returnTrue() {
+    	
+    	FxAssert.verifyThat((TitledPane)lookup("#operation_return_pane").query(), NodeMatchers.isNotNull());
+		FxAssert.verifyThat(((TitledPane)lookup("#operation_return_pane").query()).getContent(), NodeMatchers.hasText("true"));
+		
+    }
+    
     @Test
     public void testPrepareData() {
     		
-		//create user Yilong
-    		new FxRobot().clickOn("#bankclerk").sleep(1000).clickOn("createUser").type(KeyCode.TAB).type(KeyCode.TAB).write("1");
-        	
-        	type(KeyCode.TAB);
-        	write("Yilong Yang");
-        	
-        type(KeyCode.TAB);
-        	write("University of Macau");
-        	
-        	clickOn("#execute");
-        	
-        	FxAssert.verifyThat((TitledPane)lookup("#operation_return_pane").query(), NodeMatchers.isNotNull());
-    		FxAssert.verifyThat(((TitledPane)lookup("#operation_return_pane").query()).getContent(), NodeMatchers.hasText("true"));
-
-    		sleep(1000);
-    		
-    		clickOn("System Status");
-    		clickOn("User");
-    		
-    		
-    		TableView tvU = (TableView)((TitledPane)lookup("#object_statics").query()).getContent();
-    		Map<String, String> obU = (Map<String, String>) tvU.getItems().get(0);
-    		assertEquals(obU.get("UserID"), "1");
-    		
-    		sleep(1000);
-    		
-    		
-    		//create bank card for user1
+			//create store UM
     		clickOn("System Function");
-    		
-    		
-    		clickOn("createBankCard");
-   		clickOn("#operation_paras"); 
-    		type(KeyCode.TAB);
-    		write("1");
-    		type(KeyCode.TAB);
-    		write("1");
-    		
-    		type(KeyCode.TAB);
-    		type(KeyCode.TAB);
-    		type(KeyCode.DOWN);
-    		type(KeyCode.DOWN);
-    		type(KeyCode.ENTER);
+    		new FxRobot().clickOn("#administrator").sleep(1000).doubleClickOn("manageStore").clickOn("createStore").type(KeyCode.TAB).type(KeyCode.TAB).write("1").type(KeyCode.TAB).write("UM Store").type(KeyCode.TAB).write("University of Macau").clickOn("#execute");
+    		returnTrue();
 
-    		type(KeyCode.TAB);
-    		write("123456");
-    		type(KeyCode.TAB);
-    		write("20000");
-    		
-//    		GridPane gp = ((GridPane)((TitledPane)lookup("#operation_paras").query()).getContent());
-//    		moveTo(((GridPane)((TitledPane)lookup("#operation_paras").query()).getContent()).getChildren().get(3));
-    		
-    		clickOn("#execute");
 
-    		FxAssert.verifyThat((TitledPane)lookup("#operation_return_pane").query(), NodeMatchers.isNotNull());
-    		FxAssert.verifyThat(((TitledPane)lookup("#operation_return_pane").query()).getContent(), NodeMatchers.hasText("true"));
-
-    		sleep(1000);
+			//create cashdesk
+    		new FxRobot().doubleClickOn("manageCashDesk").clickOn("createCashDesk").type(KeyCode.TAB).type(KeyCode.TAB).write("1").type(KeyCode.TAB).write("CashDeskA").clickOn("#execute");
+    		returnTrue();
     		
+			//create cashdesk
+    		new FxRobot().doubleClickOn("manageCashier").clickOn("createCashier").type(KeyCode.TAB).type(KeyCode.TAB).write("1").type(KeyCode.TAB).write("Alice").clickOn("#execute");
+    		returnTrue();
+    		
+    		//create catalog
+    		new FxRobot().doubleClickOn("manageProductCatalog").clickOn("createProductCatalog").type(KeyCode.TAB).type(KeyCode.TAB).write("1").type(KeyCode.TAB).write("Fruits").clickOn("#execute");
+    		returnTrue();
+    		
+    		//create catalog
+    		new FxRobot().doubleClickOn("manageItem").clickOn("createItem").type(KeyCode.TAB).type(KeyCode.TAB).write("1").type(KeyCode.TAB).write("Apple").type(KeyCode.TAB).write("10").type(KeyCode.TAB).write("1000").type(KeyCode.TAB).write("6").clickOn("#execute");
+    		returnTrue();
+    		new FxRobot().clickOn("createItem").type(KeyCode.TAB).type(KeyCode.TAB).write("2").type(KeyCode.TAB).write("PineApple").type(KeyCode.TAB).write("30").type(KeyCode.TAB).write("1000").type(KeyCode.TAB).write("20").clickOn("#execute");
+    		returnTrue();
+
+    		//Check value
     		clickOn("System Status");
-    		type(KeyCode.TAB);
-    		type(KeyCode.TAB);
-    		type(KeyCode.UP);
-    		
-    		
-    		TableView tv = (TableView)((TitledPane)lookup("#object_statics").query()).getContent();
-    		Map<String, String> ob = (Map<String, String>) tv.getItems().get(0);
-    		assertEquals(ob.get("CardID"), "1");
-    		
+   
+    		clickOn("Store");
+    		validateAttribute("Id", "1");
+    		validateAttribute("Name", "UM Store");
     		sleep(1000);
     		
-//    		//save status
-//    		clickOn("Save Status");
-//    		sleep(2000);
-//    		write("ATM");
-//    		push(KeyCode.ENTER);
-//    		sleep(2000);
+    		type(KeyCode.DOWN);
+    		validateAttribute("Id", "1");
+    		validateAttribute("Name", "Fruits");
+    		sleep(1000);
+    		
+    		type(KeyCode.DOWN);
+    		validateAttribute("Id", "1");
+    		validateAttribute("Name", "CashDeskA");
+    		sleep(1000);
+    		
+    		type(KeyCode.DOWN);
+    		type(KeyCode.DOWN);
+    		type(KeyCode.DOWN);
+    		type(KeyCode.DOWN);
+    		validateAttribute("Barcode", "1");
+    		validateAttribute("Name", "Apple");
+    		validateAttribute("Barcode", "2", 1);
+    		validateAttribute("Name", "PineApple", 1);
+    		sleep(1000);
     		
     		
     }
     
     @Test
+    @Ignore
     public void testWithDraw() {
     	
     		//input card with id 1
@@ -203,6 +202,7 @@ public class MainTest extends ApplicationTest {
     }
     
     @Test
+    @Ignore
     public void testDeposit() {
     	
     		//input card with id 1
