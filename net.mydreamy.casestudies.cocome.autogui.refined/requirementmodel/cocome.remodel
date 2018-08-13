@@ -482,7 +482,7 @@ Entity OrderProduct {
 
 	Id : Integer
 	Time : Date
-	OrderStatus : OrderStatus[A|RECEIVED|REQUESTED]
+	OrderStatus : OrderStatus[NEW|RECEIVED|REQUESTED]
 	Amount : Real
 
 	[Refer]
@@ -734,6 +734,7 @@ Contract CoCoMEOrderProducts::makeNewOrder(orderid : Integer) : Boolean {
 	postcondition:
 		let op:OrderProduct in
 		op.oclIsNew() and
+		op.OrderStatus = OrderStatus::NEW and
 		op.Id = orderid and
 		op.Time = Now and
 		OrderProduct.allInstance()->includes(op) and
