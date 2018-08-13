@@ -699,6 +699,7 @@ Contract CoCoMEProcessSale::makeCardPayment(cardAccountNumber : String, expiryDa
 	postcondition:
 		let cdp:CardPayment in
 		cdp.oclIsNew() and
+		cdp.AmountTendered = fee and
 		cdp.BelongedSale = currentSale and
 		currentSale.AssoicatedPayment = cdp and
 		cdp.CardAccountNumber = cardAccountNumber and

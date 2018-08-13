@@ -43,6 +43,18 @@ public class MainTest extends ApplicationTest {
     
    
     @Test
+    public void test() {
+    	
+    	clickOn("System Status");
+    	clickOn("Load Status");
+    	type(KeyCode.DOWN);
+    	type(KeyCode.ENTER);    	
+
+    	
+    }
+    
+    
+    @Test
     @Ignore
     public void TestTwoTabs() {
     	
@@ -98,8 +110,15 @@ public class MainTest extends ApplicationTest {
 		
     }
     
+    public void returnValue(String re) {
+    	
+    	FxAssert.verifyThat((TitledPane)lookup("#operation_return_pane").query(), NodeMatchers.isNotNull());
+		FxAssert.verifyThat(((TitledPane)lookup("#operation_return_pane").query()).getContent(), NodeMatchers.hasText(re));
+		
+    }
+    
     @Test
-    public void testPrepareData() {
+    public void a_testPrepareData() {
     		
 			//create store UM
     		clickOn("System Function");
@@ -153,8 +172,232 @@ public class MainTest extends ApplicationTest {
     		validateAttribute("Name", "PineApple", 1);
     		sleep(1000);
     		
+        	clickOn("System Status");
+        	clickOn("Save Status");
+        	sleep(2000);
+        	type(KeyCode.C);
+        	type(KeyCode.O);
+        	type(KeyCode.C);
+        	type(KeyCode.O);
+        	type(KeyCode.M);
+        	type(KeyCode.E);
+        	sleep(1000);
+        	type(KeyCode.ENTER);
+        	sleep(1000);
+    		
     		
     }
+    
+    @Test 
+    public void b_testProcessSale_CashPay() {
+    	
+    	//load data
+    	clickOn("System Status");
+    	clickOn("Load Status");
+    	sleep(1000);
+    	type(KeyCode.DOWN);
+    	type(KeyCode.ENTER);  
+    	
+    	
+    	//open store
+    	clickOn("System Function");
+    	new FxRobot().clickOn("#storemanager").sleep(1000).clickOn("openStore").doubleClickOn("#operation_paras").write("1").clickOn("#execute").sleep(500);
+    	returnTrue();
+    	clickOn("System Status");
+    	clickOn("Store");
+    	validateAttribute("IsOpened", "true");
+    	sleep(1500);
+    	
+    	//open cashdesk
+    	clickOn("System Function");
+    	new FxRobot().clickOn("#cashier").sleep(1000).clickOn("openCashDesk").clickOn("#operation_paras").write("1").clickOn("#execute").sleep(500);
+    	returnTrue();
+    	clickOn("System Status");
+    	type(KeyCode.TAB);
+		type(KeyCode.TAB);
+    	type(KeyCode.DOWN);
+		type(KeyCode.DOWN);
+    	validateAttribute("IsOpened", "true");
+    	sleep(1500);
+    	
+    	//make a new sale
+		clickOn("System Function");	
+		new FxRobot().doubleClickOn("processSale").clickOn("makeNewSale").clickOn("#execute");
+		returnTrue();
+		clickOn("System Status");
+		type(KeyCode.TAB);
+		type(KeyCode.TAB);
+    	type(KeyCode.DOWN);
+    	validateAttribute("IsComplete", "false");
+    	validateAttribute("IsReadytoPay", "false");
+    	sleep(1000);
+		
+    	//make enterItem (10 apple, 2 pine apple)
+    	clickOn("System Function");	
+    	new FxRobot().clickOn("enterItem").clickOn("#operation_paras").write("1").type(KeyCode.TAB).write("10").clickOn("#execute");
+    	returnTrue();
+    	clickOn("System Status");
+		type(KeyCode.TAB);
+		type(KeyCode.TAB);
+		type(KeyCode.DOWN);
+		type(KeyCode.DOWN);
+		validateAttribute("Quantity", "10");
+    	validateAttribute("Subamount", "100.0");
+		sleep(1000);
+		
+    	clickOn("System Function");	
+    	new FxRobot().clickOn("enterItem").doubleClickOn("#operation_paras").write("2").type(KeyCode.TAB).write("2").clickOn("#execute");
+    	returnTrue();
+    	clickOn("System Status");
+		type(KeyCode.TAB);
+		type(KeyCode.TAB);
+		type(KeyCode.UP);
+		type(KeyCode.DOWN);
+		validateAttribute("Quantity", "2", 1);
+    	validateAttribute("Subamount", "60.0", 1);
+		sleep(1000);
+		
+		//end sale 	
+		clickOn("System Function");	
+		new FxRobot().clickOn("endSale").clickOn("#execute");
+		returnValue("160.0");
+		sleep(1000);
+		clickOn("System Status");
+		type(KeyCode.TAB);
+		type(KeyCode.TAB);
+    	type(KeyCode.UP);
+    	type(KeyCode.UP);
+    	validateAttribute("IsComplete", "false");
+    	validateAttribute("IsReadytoPay", "true");
+    	validateAttribute("Amount", "160.0");
+    	sleep(1000);
+    	 	
+		//make cash payment	
+		clickOn("System Function");	
+		new FxRobot().clickOn("makeCashPayment").doubleClickOn("#operation_paras").write("200").clickOn("#execute");
+		returnTrue();
+		sleep(1000);
+		clickOn("System Status");
+		type(KeyCode.TAB);
+		type(KeyCode.TAB);
+    	type(KeyCode.DOWN, 5);
+    	validateAttribute("AmountTendered", "200.0");
+    	validateAttribute("Balance", "40.0");
+    	sleep(1000);   
+    	
+    	type(KeyCode.UP, 5);
+    	validateAttribute("IsComplete", "true");
+    	validateAttribute("IsReadytoPay", "true");
+    	validateAttribute("Amount", "160.0");
+    	sleep(1000);  	
+    	
+    }
+    
+    @Test 
+    public void b_testProcessSale_CardPay() {
+    	
+    	//load data
+    	clickOn("System Status");
+    	clickOn("Load Status");
+    	sleep(1000);
+    	type(KeyCode.DOWN);
+    	type(KeyCode.ENTER);  
+    	
+    	
+    	//open store
+    	clickOn("System Function");
+    	new FxRobot().clickOn("#storemanager").sleep(1000).clickOn("openStore").doubleClickOn("#operation_paras").write("1").clickOn("#execute").sleep(500);
+    	returnTrue();
+    	clickOn("System Status");
+    	clickOn("Store");
+    	validateAttribute("IsOpened", "true");
+    	sleep(1500);
+    	
+    	//open cashdesk
+    	clickOn("System Function");
+    	new FxRobot().clickOn("#cashier").sleep(1000).clickOn("openCashDesk").clickOn("#operation_paras").write("1").clickOn("#execute").sleep(500);
+    	returnTrue();
+    	clickOn("System Status");
+    	type(KeyCode.TAB);
+		type(KeyCode.TAB);
+    	type(KeyCode.DOWN);
+		type(KeyCode.DOWN);
+    	validateAttribute("IsOpened", "true");
+    	sleep(1500);
+    	
+    	//make a new sale
+		clickOn("System Function");	
+		new FxRobot().doubleClickOn("processSale").clickOn("makeNewSale").clickOn("#execute");
+		returnTrue();
+		clickOn("System Status");
+		type(KeyCode.TAB);
+		type(KeyCode.TAB);
+    	type(KeyCode.DOWN);
+    	validateAttribute("IsComplete", "false");
+    	validateAttribute("IsReadytoPay", "false");
+    	sleep(1000);
+		
+    	//make enterItem (10 apple, 2 pine apple)
+    	clickOn("System Function");	
+    	new FxRobot().clickOn("enterItem").clickOn("#operation_paras").write("1").type(KeyCode.TAB).write("10").clickOn("#execute");
+    	returnTrue();
+    	clickOn("System Status");
+		type(KeyCode.TAB);
+		type(KeyCode.TAB);
+		type(KeyCode.DOWN);
+		type(KeyCode.DOWN);
+		validateAttribute("Quantity", "10");
+    	validateAttribute("Subamount", "100.0");
+		sleep(1000);
+		
+    	clickOn("System Function");	
+    	new FxRobot().clickOn("enterItem").doubleClickOn("#operation_paras").write("2").type(KeyCode.TAB).write("2").clickOn("#execute");
+    	returnTrue();
+    	clickOn("System Status");
+		type(KeyCode.TAB);
+		type(KeyCode.TAB);
+		type(KeyCode.UP);
+		type(KeyCode.DOWN);
+		validateAttribute("Quantity", "2", 1);
+    	validateAttribute("Subamount", "60.0", 1);
+		sleep(1000);
+		
+		//end sale 	
+		clickOn("System Function");	
+		new FxRobot().clickOn("endSale").clickOn("#execute");
+		returnValue("160.0");
+		sleep(1000);
+		clickOn("System Status");
+		type(KeyCode.TAB);
+		type(KeyCode.TAB);
+    	type(KeyCode.UP);
+    	type(KeyCode.UP);
+    	validateAttribute("IsComplete", "false");
+    	validateAttribute("IsReadytoPay", "true");
+    	validateAttribute("Amount", "160.0");
+    	sleep(1000);
+    	 	
+		//make cash payment	
+		clickOn("System Function");	
+		new FxRobot().clickOn("makeCardPayment").type(KeyCode.TAB, 4).write("23124331222122316540").type(KeyCode.TAB).write("2018-08-10").type(KeyCode.TAB).write("40").clickOn("#execute");
+		returnTrue();
+		sleep(1000);
+		clickOn("System Status");
+		type(KeyCode.TAB);
+		type(KeyCode.TAB);
+    	type(KeyCode.DOWN, 6);
+    	validateAttribute("AmountTendered", "40.0");
+    	validateAttribute("CardAccountNumber", "23124331222122316540");
+    	sleep(1000);   
+    	
+    	type(KeyCode.UP, 6);
+    	validateAttribute("IsComplete", "true");
+    	validateAttribute("IsReadytoPay", "true");
+    	validateAttribute("Amount", "160.0");
+    	sleep(1000);  	
+    	
+    }    
+    
     
     @Test
     @Ignore
