@@ -671,7 +671,7 @@ Contract CoCoMEProcessSale::makeCashPayment(amount : Real) : Boolean {
 		currentSale.Belongedstore = currentStore and
 		currentStore.Sales->includes(currentSale) and
 		currentSale.IsComplete = true and
-		currentSale.Time = Now and
+		currentSale.Time.isEqual(Now) and
 		cp.Balance = amount - currentSale.Amount and
 		CashPayment.allInstance()->includes(cp) and
 		result = true
@@ -708,7 +708,7 @@ Contract CoCoMEProcessSale::makeCardPayment(cardAccountNumber : String, expiryDa
 		currentSale.Belongedstore = currentStore and
 		currentStore.Sales->includes(currentSale) and
 		currentSale.IsComplete = true and
-		currentSale.Time = Now and
+		currentSale.Time.isEqual(Now) and
 		result = true
 
 }
@@ -736,7 +736,7 @@ Contract CoCoMEOrderProducts::makeNewOrder(orderid : Integer) : Boolean {
 		op.oclIsNew() and
 		op.OrderStatus = OrderStatus::NEW and
 		op.Id = orderid and
-		op.Time = Now and
+		op.Time.isEqual(Now) and
 		OrderProduct.allInstance()->includes(op) and
 		self.currentOrderProduct = op and
 		result = true
