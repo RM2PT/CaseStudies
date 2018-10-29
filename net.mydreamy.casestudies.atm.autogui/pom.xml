@@ -32,6 +32,29 @@
 	        <mainClass>gui.Main</mainClass>
 	    </configuration>
 	</plugin>
+		<plugin>
+		    <artifactId>maven-clean-plugin</artifactId>
+		    <version>3.1.0</version>
+		    <configuration>
+		      <filesets>
+		        <fileset>
+		          <directory>src-gen</directory>
+		          <includes>
+		            <include>**/*.java</include>
+		            <include>**/*.fxml</include>
+		            <include>**/*.css</include>
+		            <include>**/*.fxgraph</include>
+		          </includes>
+		          <excludes>
+		            <exclude>**/MainTest.java</exclude>
+		            <exclude>**/ThirdPartServices.java</exclude>
+		            <exclude>**/ThirdPartServicesImpl.java</exclude>	            
+		          </excludes>
+		          <followSymlinks>false</followSymlinks>
+		        </fileset>
+		      </filesets>
+		    </configuration>
+		  </plugin>
     </plugins>    
   </build>
 
@@ -54,5 +77,10 @@
         <version>4.12</version>
         <scope>test</scope>
     </dependency>
+    <dependency>
+	  <groupId>org.apache.commons</groupId>
+	  <artifactId>commons-lang3</artifactId>
+	  <version>3.8.1</version>
+	</dependency>
   </dependencies>
 </project>

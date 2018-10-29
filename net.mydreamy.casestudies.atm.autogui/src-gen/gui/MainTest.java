@@ -202,7 +202,7 @@ public class MainTest extends ApplicationTest {
     	
     }
     
-    @Test
+    
     public void c_TestDeposit() {
     	
     		//input card with id 1

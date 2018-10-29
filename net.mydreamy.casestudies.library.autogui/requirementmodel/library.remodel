@@ -10,17 +10,19 @@ UseCaseModel LibraryManagementSystem {
 
 	}
 
+	Actor Faculty extends User {
+
+		// UC::FacultyLogout(in()  
+		// UC::FacultyLog)   
+	}
+
 	Actor Student extends User {
 
 		// UC::studentLogin()  
 		// UC::studentLogout()   
 	}
 
-	Actor Faculty extends User {
 
-		// UC::FacultyLogout(in()  
-		// UC::FacultyLog)   
-	}
 
 	Actor Administrator {
 
@@ -418,7 +420,7 @@ Contract LibraryManagementSystem::makeReservation(uid:String, barcode:String) : 
 		res.oclIsNew() and
 		copy.IsReserved = true and
 		res.IsReserveClosed = false and
-		res.ReserveDate = Today and
+		res.ReserveDate.isEqual(Today) and
 		res.ReservedUser = user and
 		res.ReservedCopy = copy and
 		user.ReservedBook->includes(res) and
@@ -622,12 +624,13 @@ Contract LibraryManagementSystem::payOverDueFee(uid:String, fee:Real) : Boolean 
 
 Contract LibraryManagementSystem::dueSoonNotification()  {
 
+	definition:
+		users:Set(User) = User.allInstance()->select(user:User | user.LoanedBook->exists(loan:Loan | loan.IsReturned = false and Today.After(3).isAfter(loan.DueDate))) 
+
 	precondition:
 		true
 
 	postcondition:
-		let users:Set(User) = User.allInstance()->select(user:User | user.LoanedBook->exists(loan:Loan | 
-			loan.IsReturned = false and Today.After(3).isAfter(loan.DueDate))) in
 		users->forAll(u:User |
 			sendNotificationEmail(u.Email))
 }
@@ -686,11 +689,15 @@ Contract LibraryManagementSystem::checkOverDueandComputeOverDueFee() {
 
 Contract LibraryManagementSystem::countDownSuspensionDay() {
 
+	definition:
+	
+		users:Set(User) = User.allInstance()->select(u:User | u.SuspensionDays > 0)
+
 	precondition:
 		true
 
 	postcondition:
-		let users:Set(User) = User.allInstance()->select(u:User | u.SuspensionDays > 0) in
+
 		users->forAll(u:User |
 			u.SuspensionDays = u.SuspensionDays@pre - 1 and
 			if

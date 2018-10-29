@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Map;
 
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.testfx.api.FxAssert;
 import org.testfx.api.FxRobot;
@@ -161,9 +162,21 @@ public class MainTest extends ApplicationTest {
     	clickOn("printLoanAgreement").sleep(1000).type(KeyCode.TAB).type(KeyCode.TAB).type(KeyCode.TAB).type(KeyCode.TAB).write("1").sleep(1000).clickOn("#execute").sleep(1000);
     	
     	//check result
-    	clickOn("System Status").sleep(1000).clickOn("ApprovalLetter").sleep(2000).clickOn("LoanAgreement").sleep(2000);
+//    	clickOn("System Status").sleep(1000).clickOn("ApprovalLetter").sleep(2000).clickOn("LoanAgreement").sleep(2000);
+//    	
+//    	clickOn("System Status");
+//    	clickOn("Save Status");
+//    	sleep(2000);
+//    	type(KeyCode.L);
+//    	type(KeyCode.O);
+//    	type(KeyCode.A);
+//    	type(KeyCode.N);
+//    	sleep(1000);
+//    	type(KeyCode.ENTER);
+//    	sleep(1000);
     	
     }
+    
     
     @Test
     public void ftestLoanManagementModule() {

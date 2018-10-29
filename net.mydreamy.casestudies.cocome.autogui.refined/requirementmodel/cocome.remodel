@@ -625,6 +625,11 @@ Contract CoCoMEProcessSale::enterItem(barcode : Integer, quantity : Integer) : B
 
 Contract CoCoMEProcessSale::endSale() : Real {
 
+	definition:
+	
+		sls:Set(SalesLineItem) = currentSale.ContainedSalesLine,
+		sub:Set(Real) = sls->collect(s:SalesLineItem | s.Subamount) 
+
 	/* Precondition: there is a sale underway and no more items. */
 	precondition:
 		currentSale.oclIsUndefined() = false and
@@ -636,10 +641,8 @@ Contract CoCoMEProcessSale::endSale() : Real {
 	 * add all sub amount of SalesLineItem up to the Amount of currentSale (compute amount).
 	 * currentSale.IsReadytoPay became true
 	 */
-	postcondition:
-		currentSale.ContainedSalesLine->forAll(sl:SalesLineItem |
-			currentSale.Amount = currentSale.Amount@pre + sl.Subamount)
-		and
+	postcondition: 
+		currentSale.Amount = sub.sum() and
 		currentSale.IsReadytoPay = true and
 		result = currentSale.Amount
 }

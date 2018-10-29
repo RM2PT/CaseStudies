@@ -397,7 +397,7 @@ public class MainTest extends ApplicationTest {
 
 		clickOn("BookCopy");
 		type(KeyCode.UP).type(KeyCode.DOWN);
-		validateAttribute("IsReserved", "true");
+		validateAttribute("IsReserved", "true", 0);
 		sleep(2000);
 		
 		
@@ -435,9 +435,9 @@ public class MainTest extends ApplicationTest {
     	test_PrepareData();
     	test_searchBook();
     	test_borrowBook();
-    	test_reservation();
+//    	test_reservation();
     	test_returnBook();
-    	test_borrowBook("2", "1234567", "false", "true");
+//    	test_borrowBook("2", "1234567", "false", "true");
     	sleep(2000);
     	
     	

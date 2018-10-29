@@ -16,7 +16,7 @@
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.7.0</version>
+        <version>3.8.0</version>
         <configuration>
           <source>1.8</source>
           <target>1.8</target>
@@ -28,14 +28,60 @@
 	    <version>8.8.3</version>
 	    <configuration>
 	        <vendor>MCloud</vendor>
-	        <appName>LoanProcessingSystem</appName>
+	        <appName>LibMS</appName>
 	        <mainClass>gui.Main</mainClass>
 	    </configuration>
 	  </plugin>
+		<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.18.1</version>
+                <configuration>
+                    <additionalClasspathElements>
+                        <additionalClasspathElement>${java.home}/lib/ext/jfxrt.jar</additionalClasspathElement>
+                    </additionalClasspathElements>
+                </configuration>
+          </plugin>
+		  <plugin>
+		    <artifactId>maven-clean-plugin</artifactId>
+		    <version>3.1.0</version>
+		    <configuration>
+		      <filesets>
+		        <fileset>
+		          <directory>src-gen</directory>
+		          <includes>
+		            <include>**/*.java</include>
+		            <include>**/*.fxml</include>
+		            <include>**/*.css</include>
+		            <include>**/*.fxgraph</include>
+		          </includes>
+		          <excludes>
+		            <exclude>**/MainTest.java</exclude>
+		            <exclude>**/ThirdPartServices.java</exclude>
+		            <exclude>**/ThirdPartServicesImpl.java</exclude>	            
+		          </excludes>
+		          <followSymlinks>false</followSymlinks>
+		        </fileset>
+		      </filesets>
+		    </configuration>
+		  </plugin>          
     </plugins>
   </build>
+
   
   <dependencies>
+
+   <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+	    <groupId>junit</groupId>
+	    <artifactId>junit-dep</artifactId>
+	    <version>4.8.2</version>
+	</dependency>
     <dependency>
         <groupId>org.testfx</groupId>
         <artifactId>testfx-core</artifactId>
@@ -48,6 +94,18 @@
         <version>4.0.10-alpha</version>
         <scope>test</scope>
     </dependency>
+    <dependency>
+    <groupId>org.testfx</groupId>
+    <artifactId>openjfx-monocle</artifactId>
+    <version>8u76-b04</version>
+    <scope>test</scope>
+	</dependency>
+    <dependency>
+	  <groupId>org.apache.commons</groupId>
+	  <artifactId>commons-lang3</artifactId>
+	  <version>3.8.1</version>
+	</dependency>
+
   </dependencies>  
     
 </project>

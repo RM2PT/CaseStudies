@@ -404,8 +404,9 @@ Contract SubmitLoanRequestModule::creditRequest() : Boolean {
 	postcondition:
 		let his:CreditHistory in
 		his.oclIsNew() and
-		his = getCreditHistory(self.CurrentLoanRequest.SecurityNumber, CurrentLoanRequest.Name) and
-		self.CurrentLoanRequest.RequestedCreditHistory = his and
+		his = getCreditHistory(CurrentLoanRequest.SecurityNumber, CurrentLoanRequest.Name) and
+		CurrentLoanRequest.RequestedCreditHistory = his and
+
 		CreditHistory.allInstance()->includes(his) and
 		result = true
 
@@ -728,12 +729,13 @@ Contract  LoanManagementModule::bookNewLoan(requestid : Integer, loanid : Intege
 			la.oclIsUndefined() = true
 		then
 			lacc = createLoanAccount(accountid) and
-			LoanAccount.allInstance()->includes(lacc) and
-			la = lacc
+			LoanAccount.allInstance()->includes(lacc) and		
+			lacc.Balance = r.LoanAmount and
+			loa.BelongedLoanAccount = lacc
+		else
+			la.Balance = la.Balance@pre + r.LoanAmount 	
 		endif and
-		loa.BelongedLoanAccount = la and
-		transferFunds(accountid, r.LoanAmount) and
-		la.Balance = la.Balance@pre + r.LoanAmount and
+		transferFunds(accountid, r.LoanAmount) and	
 		loa.RemainAmountToPay = r.LoanAmount and
 		Loan.allInstance()->includes(loa) and
 		r.ApprovalLoan = loa and

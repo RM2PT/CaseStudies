@@ -588,13 +588,13 @@ public class MainTest extends ApplicationTest {
     	
     	integrationTest = true;
     	
-//    	test_PrepareData();
+    	test_PrepareData();
 //    	saveData();
-    	loadData();
+//    	loadData();
     	
     	test_OpenStoreAndCashiDesk();
     	test_ProcessSale_CashPay();
-//    	test_ProductManagers();
+    	test_ProductManagers();
     	
 //    	saveDataFinal();
     	
