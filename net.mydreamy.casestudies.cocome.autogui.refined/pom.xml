@@ -55,6 +55,68 @@
 		      </filesets>
 		    </configuration>
 		  </plugin>
+		  
+		  
+		  <plugin>
+			<groupId>org.eclipse.xtext</groupId>
+			<artifactId>xtext-maven-plugin</artifactId>
+			<version>2.15.0</version>
+			<executions>
+				<execution>
+					<goals>
+						<goal>generate</goal>
+					</goals>
+				</execution>
+			</executions>
+			<configuration>
+				<languages>
+					<language>
+						<setup>net.mydreamy.requirementmodel.REMODELStandaloneSetup</setup>
+						<outputConfigurations>
+							<outputConfiguration>
+								<outputDirectory>src-gen</outputDirectory>
+							</outputConfiguration>
+						</outputConfigurations>
+					</language>
+				</languages>
+			</configuration>
+			<dependencies>
+				<dependency>
+					<groupId>net.mydreamy.requirementmodel</groupId>
+					<artifactId>net.mydreamy.requirementmodel</artifactId>
+					<version>1.0.1-SNAPSHOT</version>
+				</dependency>
+			</dependencies>
+		</plugin>
+		  
+		  
+		  
+		  
+		  
+		    <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>gui.Main</mainClass>
+                </configuration>
+            </plugin>
+             <plugin>
+	            <groupId>org.apache.maven.plugins</groupId>
+	            <artifactId>maven-surefire-plugin</artifactId>
+	            <version>3.0.0-M1</version>	            
+	            <configuration>
+	            	<test>gui.MainTest#integrationTest</test>	                
+	            </configuration>
+	        </plugin>      
+		  
     </plugins>
   </build>
   
@@ -71,6 +133,11 @@
         <version>4.0.10-alpha</version>
         <scope>test</scope>
     </dependency>
+	<dependency>
+	    <groupId>junit</groupId>
+	    <artifactId>junit</artifactId>
+	    <version>4.12</version>
+	</dependency>
     <dependency>
 	  <groupId>org.apache.commons</groupId>
 	  <artifactId>commons-lang3</artifactId>
@@ -81,6 +148,13 @@
         <artifactId>bootstrapfx-core</artifactId>
         <version>0.2.4</version>
     </dependency>
+    
+    <dependency>
+	    <groupId>org.testfx</groupId>
+	    <artifactId>openjfx-monocle</artifactId>
+	    <version>8u76-b04</version> <!-- jdk-9+181 for Java 9, jdk-11+26 for Java 11 -->
+	    <scope>test</scope>
+	</dependency>
   </dependencies>
   
 </project>
