@@ -65,7 +65,7 @@ public class MainTest extends ApplicationTest {
     		
     		sleep(1000);
     		
-    		clickOn("System Status");
+    		clickOn("System State");
     		
     		sleep(1000);
     		
@@ -150,7 +150,7 @@ public class MainTest extends ApplicationTest {
     
     public void loadData() {
     	
-    	clickOn("System Status");
+    	clickOn("System State");
     	clickOn("Load Status");
     	sleep(1000);
     	type(KeyCode.DOWN);
@@ -160,7 +160,7 @@ public class MainTest extends ApplicationTest {
     
     public void saveData() {
     	
-    	clickOn("System Status");
+    	clickOn("System State");
     	clickOn("Save Status");
     	sleep(2000);
     	type(KeyCode.C);
@@ -176,7 +176,7 @@ public class MainTest extends ApplicationTest {
     
    public void saveDataFinal() {
     	
-    	clickOn("System Status");
+    	clickOn("System State");
     	clickOn("Save Status");
     	sleep(2000);
     	type(KeyCode.C);
@@ -205,14 +205,17 @@ public class MainTest extends ApplicationTest {
 			//create cashdesk
     		new FxRobot().doubleClickOn("manageCashDesk").clickOn("createCashDesk").type(KeyCode.TAB).type(KeyCode.TAB).write("1").type(KeyCode.TAB).write("CashDeskA").clickOn("#execute");
     		returnTrue();
+    		new FxRobot().doubleClickOn("manageCashDesk");
     		
 			//create cashdesk
     		new FxRobot().doubleClickOn("manageCashier").clickOn("createCashier").type(KeyCode.TAB).type(KeyCode.TAB).write("1").type(KeyCode.TAB).write("Alice").clickOn("#execute");
     		returnTrue();
+    		new FxRobot().doubleClickOn("manageCashier");
     		
     		//create catalog
     		new FxRobot().doubleClickOn("manageProductCatalog").clickOn("createProductCatalog").type(KeyCode.TAB).type(KeyCode.TAB).write("1").type(KeyCode.TAB).write("Fruits").clickOn("#execute");
     		returnTrue();
+    		new FxRobot().doubleClickOn("manageProductCatalog");
     		
     		//create item
     		new FxRobot().doubleClickOn("manageItem").clickOn("createItem").type(KeyCode.TAB).type(KeyCode.TAB).write("1").type(KeyCode.TAB).write("Apple").type(KeyCode.TAB).write("10").type(KeyCode.TAB).write("1000").type(KeyCode.TAB).write("6").clickOn("#execute");
@@ -221,6 +224,7 @@ public class MainTest extends ApplicationTest {
     		returnTrue();
     		new FxRobot().clickOn("createItem").type(KeyCode.TAB).type(KeyCode.TAB).write("3").type(KeyCode.TAB).write("Peach").type(KeyCode.TAB).write("12").type(KeyCode.TAB).write("0").type(KeyCode.TAB).write("8").clickOn("#execute");
     		returnTrue();
+    		new FxRobot().doubleClickOn("manageItem");
     		
     		//create supplier
     		new FxRobot().doubleClickOn("manageSupplier").clickOn("createSupplier").type(KeyCode.TAB).type(KeyCode.TAB).write("1").type(KeyCode.TAB).write("UM").clickOn("#execute");
@@ -228,7 +232,7 @@ public class MainTest extends ApplicationTest {
     		
 
     		//Check value
-    		clickOn("System Status");
+    		clickOn("System State");
    
     		clickOn("Store");
     		validateAttribute("Id", "1");
@@ -272,7 +276,7 @@ public class MainTest extends ApplicationTest {
     	clickOn("System Function");
     	new FxRobot().clickOn("#storemanager").sleep(1000).clickOn("openStore").doubleClickOn("#operation_paras").write("1").clickOn("#execute").sleep(500);
     	returnTrue();
-    	clickOn("System Status");
+    	clickOn("System State");
     	clickOn("Store");
     	validateAttribute("IsOpened", "true");
     	sleep(1500);
@@ -281,7 +285,7 @@ public class MainTest extends ApplicationTest {
     	clickOn("System Function");
     	new FxRobot().clickOn("#cashier").sleep(1000).clickOn("openCashDesk").clickOn("#operation_paras").write("1").clickOn("#execute").sleep(500);
     	returnTrue();
-    	clickOn("System Status");
+    	clickOn("System State");
     	type(KeyCode.TAB);
 		type(KeyCode.TAB);
     	type(KeyCode.DOWN);
@@ -302,7 +306,7 @@ public class MainTest extends ApplicationTest {
 	    	clickOn("System Function");
 	    	new FxRobot().clickOn("#storemanager").sleep(1000).clickOn("openStore").doubleClickOn("#operation_paras").write("1").clickOn("#execute").sleep(500);
 	    	returnTrue();
-	    	clickOn("System Status");
+	    	clickOn("System State");
 	    	clickOn("Store");
 	    	validateAttribute("IsOpened", "true");
 	    	sleep(1500);
@@ -311,7 +315,7 @@ public class MainTest extends ApplicationTest {
 	    	clickOn("System Function");
 	    	new FxRobot().clickOn("#cashier").sleep(1000).clickOn("openCashDesk").clickOn("#operation_paras").write("1").clickOn("#execute").sleep(500);
 	    	returnTrue();
-	    	clickOn("System Status");
+	    	clickOn("System State");
 	    	type(KeyCode.TAB);
 			type(KeyCode.TAB);
 	    	type(KeyCode.DOWN);
@@ -324,7 +328,7 @@ public class MainTest extends ApplicationTest {
 		clickOn("System Function");	
 		new FxRobot().doubleClickOn("processSale").clickOn("makeNewSale").clickOn("#execute");
 		returnTrue();
-		clickOn("System Status");
+		clickOn("System State");
 		type(KeyCode.TAB);
 		type(KeyCode.TAB);
     	type(KeyCode.DOWN);
@@ -336,7 +340,7 @@ public class MainTest extends ApplicationTest {
     	clickOn("System Function");	
     	new FxRobot().clickOn("enterItem").clickOn("#operation_paras").write("1").type(KeyCode.TAB).write("10").clickOn("#execute");
     	returnTrue();
-    	clickOn("System Status");
+    	clickOn("System State");
 		type(KeyCode.TAB);
 		type(KeyCode.TAB);
 		type(KeyCode.DOWN);
@@ -348,7 +352,7 @@ public class MainTest extends ApplicationTest {
     	clickOn("System Function");	
     	new FxRobot().clickOn("enterItem").doubleClickOn("#operation_paras").write("2").type(KeyCode.TAB).write("2").clickOn("#execute");
     	returnTrue();
-    	clickOn("System Status");
+    	clickOn("System State");
 		type(KeyCode.TAB);
 		type(KeyCode.TAB);
 		type(KeyCode.UP);
@@ -362,7 +366,7 @@ public class MainTest extends ApplicationTest {
 		new FxRobot().clickOn("endSale").clickOn("#execute");
 		returnValue("160.0");
 		sleep(1000);
-		clickOn("System Status");
+		clickOn("System State");
 		type(KeyCode.TAB);
 		type(KeyCode.TAB);
     	type(KeyCode.UP);
@@ -377,7 +381,7 @@ public class MainTest extends ApplicationTest {
 		new FxRobot().clickOn("makeCashPayment").doubleClickOn("#operation_paras").write("200").clickOn("#execute");
 		returnTrue();
 		sleep(1000);
-		clickOn("System Status");
+		clickOn("System State");
 		type(KeyCode.TAB);
 		type(KeyCode.TAB);
     	type(KeyCode.DOWN, 5);
@@ -393,7 +397,7 @@ public class MainTest extends ApplicationTest {
     	
     }
     
-    @Test 
+    
     public void test_ProcessSale_CardPay() {
     	
     	if (integrationTest == false) {
@@ -405,7 +409,7 @@ public class MainTest extends ApplicationTest {
 	    	clickOn("System Function");
 	    	new FxRobot().clickOn("#storemanager").sleep(1000).clickOn("openStore").doubleClickOn("#operation_paras").write("1").clickOn("#execute").sleep(500);
 	    	returnTrue();
-	    	clickOn("System Status");
+	    	clickOn("System State");
 	    	clickOn("Store");
 	    	validateAttribute("IsOpened", "true");
 	    	sleep(1500);
@@ -414,7 +418,7 @@ public class MainTest extends ApplicationTest {
 	    	clickOn("System Function");
 	    	new FxRobot().clickOn("#cashier").sleep(1000).clickOn("openCashDesk").clickOn("#operation_paras").write("1").clickOn("#execute").sleep(500);
 	    	returnTrue();
-	    	clickOn("System Status");
+	    	clickOn("System State");
 	    	type(KeyCode.TAB);
 			type(KeyCode.TAB);
 	    	type(KeyCode.DOWN);
@@ -427,7 +431,7 @@ public class MainTest extends ApplicationTest {
 		clickOn("System Function");	
 		new FxRobot().doubleClickOn("processSale").clickOn("makeNewSale").clickOn("#execute");
 		returnTrue();
-		clickOn("System Status");
+		clickOn("System State");
 		type(KeyCode.TAB);
 		type(KeyCode.TAB);
     	type(KeyCode.DOWN);
@@ -439,7 +443,7 @@ public class MainTest extends ApplicationTest {
     	clickOn("System Function");	
     	new FxRobot().clickOn("enterItem").clickOn("#operation_paras").write("1").type(KeyCode.TAB).write("10").clickOn("#execute");
     	returnTrue();
-    	clickOn("System Status");
+    	clickOn("System State");
 		type(KeyCode.TAB);
 		type(KeyCode.TAB);
 		type(KeyCode.DOWN);
@@ -451,7 +455,7 @@ public class MainTest extends ApplicationTest {
     	clickOn("System Function");	
     	new FxRobot().clickOn("enterItem").doubleClickOn("#operation_paras").write("2").type(KeyCode.TAB).write("2").clickOn("#execute");
     	returnTrue();
-    	clickOn("System Status");
+    	clickOn("System State");
 		type(KeyCode.TAB);
 		type(KeyCode.TAB);
 		type(KeyCode.UP);
@@ -465,7 +469,7 @@ public class MainTest extends ApplicationTest {
 		new FxRobot().clickOn("endSale").clickOn("#execute");
 		returnValue("160.0");
 		sleep(1000);
-		clickOn("System Status");
+		clickOn("System State");
 		type(KeyCode.TAB);
 		type(KeyCode.TAB);
     	type(KeyCode.UP);
@@ -480,7 +484,7 @@ public class MainTest extends ApplicationTest {
 		new FxRobot().clickOn("makeCardPayment").type(KeyCode.TAB, 4).write("23124331222122316540").type(KeyCode.TAB).write("2018-08-10").type(KeyCode.TAB).write("40").clickOn("#execute");
 		returnTrue();
 		sleep(1000);
-		clickOn("System Status");
+		clickOn("System State");
 		type(KeyCode.TAB);
 		type(KeyCode.TAB);
     	type(KeyCode.DOWN, 6);
@@ -497,7 +501,7 @@ public class MainTest extends ApplicationTest {
     }    
     
     
-    @Test
+
     public void test_ProductManagers() {
     	
     	if (integrationTest == false) {
@@ -518,7 +522,7 @@ public class MainTest extends ApplicationTest {
     	returnTrue();
     	
     	//check order
-    	clickOn("System Status");
+    	clickOn("System State");
     	clickOn("OrderProduct");
     	validateAttribute("OrderStatus", "NEW");
     	sleep(1000);
@@ -533,7 +537,7 @@ public class MainTest extends ApplicationTest {
     	returnTrue();
     	
     	//check order item
-    	clickOn("System Status");
+    	clickOn("System State");
     	type(KeyCode.TAB, 2);
     	type(KeyCode.UP, 2);
     	validateAttribute("Quantity", "1000");
@@ -545,7 +549,7 @@ public class MainTest extends ApplicationTest {
     	new FxRobot().clickOn("chooseSupplier").doubleClickOn("#operation_paras").write("1").clickOn("#execute").sleep(1000);
     	returnTrue();
     
-    	clickOn("System Status");
+    	clickOn("System State");
     	type(KeyCode.TAB, 2);
     	type(KeyCode.DOWN, 2);
     	validateAssociation("Supplier", 1);
@@ -556,7 +560,7 @@ public class MainTest extends ApplicationTest {
     	new FxRobot().clickOn("placeOrder").clickOn("#execute").sleep(1000);
     	returnTrue();
     	
-    	clickOn("System Status");
+    	clickOn("System State");
     	type(KeyCode.TAB, 2);
     	type(KeyCode.UP, 1);
     	type(KeyCode.DOWN, 1);
@@ -568,7 +572,7 @@ public class MainTest extends ApplicationTest {
     	new FxRobot().clickOn("receiveOrderedProduct").doubleClickOn("#operation_paras").write("1").clickOn("#execute").sleep(1000);
     	returnTrue();
     	
-    	clickOn("System Status");
+    	clickOn("System State");
     	type(KeyCode.TAB, 2);
     	type(KeyCode.UP, 1);
     	type(KeyCode.DOWN, 1);

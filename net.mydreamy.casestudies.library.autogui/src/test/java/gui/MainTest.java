@@ -106,7 +106,7 @@ public class MainTest extends ApplicationTest {
     
     public void loadData() {
     	
-    	clickOn("System Status");
+    	clickOn("System State");
     	clickOn("Load Status");
     	sleep(1000);
     	type(KeyCode.DOWN);
@@ -116,7 +116,7 @@ public class MainTest extends ApplicationTest {
     
     public void saveData() {
     	
-    	clickOn("System Status");
+    	clickOn("System State");
     	clickOn("Save Status");
     	sleep(2000);
     	type(KeyCode.L);
@@ -133,7 +133,7 @@ public class MainTest extends ApplicationTest {
     
     public void saveData_borrow() {
     	
-    	clickOn("System Status");
+    	clickOn("System State");
     	clickOn("Save Status");
     	sleep(2000);
     	type(KeyCode.L);
@@ -151,7 +151,7 @@ public class MainTest extends ApplicationTest {
     
    public void saveDataFinal() {
     	
-    	clickOn("System Status");
+    	clickOn("System State");
     	clickOn("Save Status");
     	sleep(2000);
     	type(KeyCode.L);
@@ -178,23 +178,31 @@ public class MainTest extends ApplicationTest {
     		returnTrue();
     		new FxRobot().clickOn("#administrator").sleep(1000).clickOn("createStudent").type(KeyCode.TAB, 5).write("2").type(KeyCode.TAB).write("Alice").type(KeyCode.TAB).type(KeyCode.TAB).write("123456").type(KeyCode.TAB).write("alice@gmail.com").type(KeyCode.TAB).write("FST").type(KeyCode.TAB).write("Software Engineering").type(KeyCode.TAB).type(KeyCode.UP, 2).type(KeyCode.ENTER).type(KeyCode.TAB).type(KeyCode.ENTER).clickOn("#execute");
     		returnTrue();
+    		new FxRobot().doubleClickOn("manageUser").sleep(1000);
+    		
+    		
     		
     		//create librarian
     		new FxRobot().sleep(1000).doubleClickOn("manageLibrarian").clickOn("createLibrarian").type(KeyCode.TAB, 5).write("1").type(KeyCode.TAB).write("Alice").type(KeyCode.TAB).write("123456").clickOn("#execute");
     		returnTrue();
+    		new FxRobot().sleep(1000).doubleClickOn("manageLibrarian");
 
     		//create book
     		new FxRobot().sleep(1000).doubleClickOn("manageBook").clickOn("createBook").type(KeyCode.TAB, 5).write("QA76.758").type(KeyCode.TAB).write("Software engineering").type(KeyCode.TAB).write("6th ed").type(KeyCode.TAB).write("Ian Sommerville").type(KeyCode.TAB).write("Addison-Wesley").type(KeyCode.TAB).write("Computer Science Series").type(KeyCode.TAB).write("9781932159943").type(KeyCode.TAB).write("0").clickOn("#execute");
     		returnTrue();   		
+    		new FxRobot().sleep(1000).doubleClickOn("manageBook");
     		
     		//create bookcopy
     		new FxRobot().sleep(1000).doubleClickOn("manageBookCopy").clickOn("addBookCopy").type(KeyCode.TAB, 5).write("QA76.758").type(KeyCode.TAB).write("1234567").type(KeyCode.TAB).write("3/F A2 Science & Medicine").clickOn("#execute");
     		returnTrue(); 
     		new FxRobot().sleep(1000).clickOn("addBookCopy").type(KeyCode.TAB, 5).write("QA76.758").type(KeyCode.TAB).write("7654321").type(KeyCode.TAB).write("3/F A2 Science & Medicine").clickOn("#execute");
     		returnTrue(); 
+    		new FxRobot().sleep(1000).doubleClickOn("manageBookCopy").sleep(2000);
+    		
+    		new FxRobot().clickOn("#administrator").sleep(1000);
     		
     		//Check value
-    		clickOn("System Status");
+    		clickOn("System State");
    
     		clickOn("Student");
     		validateAttribute("UserID", "1");
@@ -238,6 +246,10 @@ public class MainTest extends ApplicationTest {
 		
 		new FxRobot().clickOn("searchBookByAuthor").type(KeyCode.TAB, 6).write("Ian Sommerville").clickOn("#execute").sleep(1000);
 		returnTable("CallNo", "QA76.758", 0);
+		
+		new FxRobot().doubleClickOn("searchBook");
+		
+		new FxRobot().clickOn("#student").sleep(1000);
     	
     }
     
@@ -255,7 +267,7 @@ public class MainTest extends ApplicationTest {
 		returnTrue();
 		
 		//Check value
-		clickOn("System Status");
+		clickOn("System State");
 
 		clickOn("Loan");
 		validateAssociation("LoanedUser", 1);
@@ -291,7 +303,7 @@ public class MainTest extends ApplicationTest {
 		returnTrue();
 		
 		//Check value
-		clickOn("System Status");
+		clickOn("System State");
 
 		clickOn("Loan");
 //		validateAssociation("LoanedUser", 1);
@@ -343,7 +355,7 @@ public class MainTest extends ApplicationTest {
 		
 		if (isItegrationTest == false) {
 			//Check value
-			clickOn("System Status");
+			clickOn("System State");
 	
 			clickOn("BookCopy");
 			validateAttribute("Status", "AVAILABLE");
@@ -369,7 +381,7 @@ public class MainTest extends ApplicationTest {
 		returnTrue();
 		
 		//Check value
-		clickOn("System Status");
+		clickOn("System State");
 
 		clickOn("Loan");
 		validateAssociation("LoanedUser", 1);
@@ -393,7 +405,7 @@ public class MainTest extends ApplicationTest {
 		returnTrue();
 		
 		//Check value
-		clickOn("System Status");
+		clickOn("System State");
 
 		clickOn("BookCopy");
 		type(KeyCode.UP).type(KeyCode.DOWN);

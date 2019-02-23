@@ -52,7 +52,7 @@ public class MainTest extends ApplicationTest {
     		
     		sleep(1000);
     		
-    		clickOn("System Status");
+    		clickOn("System State");
     		
     		sleep(1000);
     		
@@ -71,25 +71,25 @@ public class MainTest extends ApplicationTest {
     	clickOn("#applicant").sleep(1000).doubleClickOn("submitLoanRequest").clickOn("enterLoanInformation").type(KeyCode.TAB).type(KeyCode.TAB).write("1").type(KeyCode.TAB).write("Yilong Yang").type(KeyCode.TAB).write("10000").type(KeyCode.TAB).write("Buy Car").type(KeyCode.TAB).write("20000").type(KeyCode.TAB).write("65583353").type(KeyCode.TAB).write("University of Macau").type(KeyCode.TAB).write("100000").type(KeyCode.TAB).write("yylonly@gmail.com").type(KeyCode.TAB).write("work references").type(KeyCode.TAB).write("credit references").type(KeyCode.TAB).write("1111").type(KeyCode.TAB).write("2222").clickOn("#execute").sleep(2000);
     	
     	//check result
-    	clickOn("System Status").clickOn("LoanRequest").sleep(1000);
+    	clickOn("System State").clickOn("LoanRequest").sleep(1000);
     	
     	//creditRequest
     	clickOn("System Function").sleep(1000).clickOn("creditRequest").sleep(1000).clickOn("#execute").sleep(1000);
     	
     	//check result
-    	clickOn("System Status").sleep(1000).type(KeyCode.TAB).type(KeyCode.TAB).type(KeyCode.DOWN).type(KeyCode.DOWN).type(KeyCode.DOWN).type(KeyCode.DOWN).sleep(1000).clickOn("LoanRequest").sleep(1000).clickOn("RequestedCreditHistory").sleep(2000);
+    	clickOn("System State").sleep(1000).type(KeyCode.TAB).type(KeyCode.TAB).type(KeyCode.DOWN).type(KeyCode.DOWN).type(KeyCode.DOWN).type(KeyCode.DOWN).sleep(1000).clickOn("LoanRequest").sleep(1000).clickOn("RequestedCreditHistory").sleep(2000);
     	
     	//accountStatusRequest
     	clickOn("System Function").sleep(1000).clickOn("accountStatusRequest").sleep(1000).clickOn("#execute").sleep(1000);
     	
        	//check result
-    	clickOn("System Status").sleep(1000).type(KeyCode.TAB).type(KeyCode.TAB).type(KeyCode.DOWN).type(KeyCode.DOWN).type(KeyCode.DOWN).sleep(1000).clickOn("LoanRequest").sleep(1000).clickOn("RequestedCAHistory").sleep(2000);
+    	clickOn("System State").sleep(1000).type(KeyCode.TAB).type(KeyCode.TAB).type(KeyCode.DOWN).type(KeyCode.DOWN).type(KeyCode.DOWN).sleep(1000).clickOn("LoanRequest").sleep(1000).clickOn("RequestedCAHistory").sleep(2000);
 
     	//accountStatusRequest
     	clickOn("System Function").sleep(1000).clickOn("calculateScore").sleep(1000).clickOn("#execute").sleep(1000);
     	
        	//check result
-    	clickOn("System Status").sleep(1000).type(KeyCode.TAB).type(KeyCode.TAB).type(KeyCode.DOWN).type(KeyCode.UP).sleep(2000);
+    	clickOn("System State").sleep(1000).type(KeyCode.TAB).type(KeyCode.TAB).type(KeyCode.DOWN).type(KeyCode.UP).sleep(2000);
     	
     }
     
@@ -106,7 +106,7 @@ public class MainTest extends ApplicationTest {
     	clickOn("markRequestValid").sleep(1000).clickOn("#execute").sleep(1000);
     	
     	//check result
-    	clickOn("System Status").sleep(1000).type(KeyCode.TAB).type(KeyCode.TAB).type(KeyCode.DOWN).type(KeyCode.UP).sleep(2000);
+    	clickOn("System State").sleep(1000).type(KeyCode.TAB).type(KeyCode.TAB).type(KeyCode.DOWN).type(KeyCode.UP).sleep(2000);
 
     }
     
@@ -138,7 +138,7 @@ public class MainTest extends ApplicationTest {
     	clickOn("approveLoanRequest").sleep(1000).clickOn("#execute").sleep(1000);
     	
     	//check result
-    	clickOn("System Status").sleep(1000).type(KeyCode.TAB).type(KeyCode.TAB).type(KeyCode.DOWN).type(KeyCode.UP).sleep(2000);
+    	clickOn("System State").sleep(1000).type(KeyCode.TAB).type(KeyCode.TAB).type(KeyCode.DOWN).type(KeyCode.UP).sleep(2000);
 
     }
     
@@ -162,9 +162,9 @@ public class MainTest extends ApplicationTest {
     	clickOn("printLoanAgreement").sleep(1000).type(KeyCode.TAB).type(KeyCode.TAB).type(KeyCode.TAB).type(KeyCode.TAB).write("1").sleep(1000).clickOn("#execute").sleep(1000);
     	
     	//check result
-//    	clickOn("System Status").sleep(1000).clickOn("ApprovalLetter").sleep(2000).clickOn("LoanAgreement").sleep(2000);
+//    	clickOn("System State").sleep(1000).clickOn("ApprovalLetter").sleep(2000).clickOn("LoanAgreement").sleep(2000);
 //    	
-//    	clickOn("System Status");
+//    	clickOn("System State");
 //    	clickOn("Save Status");
 //    	sleep(2000);
 //    	type(KeyCode.L);
@@ -185,7 +185,7 @@ public class MainTest extends ApplicationTest {
     	clickOn("System Function").sleep(1000).clickOn("#loanclerk").sleep(1000).clickOn("bookNewLoan").type(KeyCode.TAB).type(KeyCode.TAB).type(KeyCode.TAB).type(KeyCode.TAB).write("1").type(KeyCode.TAB).write("1").type(KeyCode.TAB).write("1").type(KeyCode.TAB).write("2018-02-01").type(KeyCode.TAB).write("2018-03-01").type(KeyCode.TAB).write("30").clickOn("#execute").sleep(1000);
 
     	//check result
-    	clickOn("System Status").sleep(1000).clickOn("Loan").sleep(2000).clickOn("LoanAccount").sleep(2000);
+    	clickOn("System State").sleep(1000).clickOn("Loan").sleep(2000).clickOn("LoanAccount").sleep(2000);
     	
     	//generateStandardPaymentNotice and generateLateNotice
     	clickOn("System Function").sleep(1000).clickOn("#scheduler").sleep(2000).clickOn("generateStandardPaymentNotice").clickOn("#execute").sleep(1000).clickOn("generateLateNotice").clickOn("#execute").sleep(1000);
@@ -194,13 +194,13 @@ public class MainTest extends ApplicationTest {
     	clickOn("#loanclerk").sleep(1000).clickOn("loanPayment").type(KeyCode.TAB).type(KeyCode.TAB).type(KeyCode.TAB).type(KeyCode.TAB).write("1").clickOn("#execute").sleep(1000);
     	
     	//check result
-    	clickOn("System Status").sleep(1000).type(KeyCode.TAB).type(KeyCode.TAB).type(KeyCode.DOWN).type(KeyCode.UP).sleep(2000);
+    	clickOn("System State").sleep(1000).type(KeyCode.TAB).type(KeyCode.TAB).type(KeyCode.DOWN).type(KeyCode.UP).sleep(2000);
 
     	//generateStandardPaymentNotice and generateLateNotice
     	clickOn("System Function").sleep(1000).clickOn("#loanclerk").sleep(1000).clickOn("closeOutLoan").type(KeyCode.TAB).type(KeyCode.TAB).type(KeyCode.TAB).type(KeyCode.TAB).write("1").clickOn("#execute").sleep(1000);
 
     	//check result
-    	clickOn("System Status").sleep(1000).type(KeyCode.TAB).type(KeyCode.TAB).type(KeyCode.DOWN).type(KeyCode.UP).sleep(2000);
+    	clickOn("System State").sleep(1000).type(KeyCode.TAB).type(KeyCode.TAB).type(KeyCode.DOWN).type(KeyCode.UP).sleep(2000);
     }
     
     
@@ -223,7 +223,7 @@ public class MainTest extends ApplicationTest {
 //
 //    		sleep(1000);
 //    		
-//    		clickOn("System Status");
+//    		clickOn("System State");
 //    		clickOn("User");
 //    		
 //    		
@@ -265,7 +265,7 @@ public class MainTest extends ApplicationTest {
 //
 //    		sleep(1000);
 //    		
-//    		clickOn("System Status");
+//    		clickOn("System State");
 //    		type(KeyCode.TAB);
 //    		type(KeyCode.TAB);
 //    		type(KeyCode.UP);
@@ -303,8 +303,8 @@ public class MainTest extends ApplicationTest {
 //        	FxAssert.verifyThat((TitledPane)lookup("#operation_return_pane").query(), NodeMatchers.isNotNull());
 //    		FxAssert.verifyThat(((TitledPane)lookup("#operation_return_pane").query()).getContent(), NodeMatchers.hasText("true"));
 //    		
-//    		//check system status of balances
-//    		clickOn("System Status").clickOn("BankCard").sleep(1000);
+//    		//check System State of balances
+//    		clickOn("System State").clickOn("BankCard").sleep(1000);
 //    		
 //    		//print recipt
 //    		clickOn("System Function").clickOn("printReceipt").clickOn("#execute").sleep(1000);
@@ -347,8 +347,8 @@ public class MainTest extends ApplicationTest {
 //        	FxAssert.verifyThat((TitledPane)lookup("#operation_return_pane").query(), NodeMatchers.isNotNull());
 //    		FxAssert.verifyThat(((TitledPane)lookup("#operation_return_pane").query()).getContent(), NodeMatchers.hasText("true"));
 //    		
-//    		//check system status of balances
-//    		clickOn("System Status").clickOn("BankCard").sleep(1000);
+//    		//check System State of balances
+//    		clickOn("System State").clickOn("BankCard").sleep(1000);
 //    		
 //    		//print recipt
 //    		clickOn("System Function").clickOn("printReceipt").clickOn("#execute").sleep(1000);

@@ -16,6 +16,7 @@ import org.testfx.matcher.control.LabeledMatchers;
 import org.testfx.matcher.control.TableViewMatchers;
 import org.testfx.matcher.control.TextMatchers;
 
+import gui.Main;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.input.KeyCode;
@@ -42,8 +43,7 @@ public class MainTest extends ApplicationTest {
     }
     
    
-    @Test
-    @Ignore
+  
     public void TestTwoTabs() {
     	
             //add delay for less power computer
@@ -53,7 +53,7 @@ public class MainTest extends ApplicationTest {
     		
     		sleep(1000);
     		
-    		clickOn("System Status");
+    		clickOn("System State");
     		
     		sleep(1000);
     		
@@ -93,7 +93,7 @@ public class MainTest extends ApplicationTest {
 
     		sleep(1000);
     		
-    		clickOn("System Status");
+    		clickOn("System State");
     		clickOn("User");
     		
     		
@@ -136,7 +136,7 @@ public class MainTest extends ApplicationTest {
 
     		sleep(1000);
     		
-    		clickOn("System Status");
+    		clickOn("System State");
     		type(KeyCode.TAB);
     		type(KeyCode.TAB);
     		type(KeyCode.UP);
@@ -182,8 +182,8 @@ public class MainTest extends ApplicationTest {
         	FxAssert.verifyThat((TitledPane)lookup("#operation_return_pane").query(), NodeMatchers.isNotNull());
     		FxAssert.verifyThat(((TitledPane)lookup("#operation_return_pane").query()).getContent(), NodeMatchers.hasText("true"));
     		
-    		//check system status of balances
-    		clickOn("System Status").clickOn("BankCard").sleep(1000);
+    		//check System State of balances
+    		clickOn("System State").clickOn("BankCard").sleep(1000);
     		
     		//print recipt
     		clickOn("System Function").clickOn("printReceipt").clickOn("#execute").sleep(1000);
@@ -226,8 +226,8 @@ public class MainTest extends ApplicationTest {
         	FxAssert.verifyThat((TitledPane)lookup("#operation_return_pane").query(), NodeMatchers.isNotNull());
     		FxAssert.verifyThat(((TitledPane)lookup("#operation_return_pane").query()).getContent(), NodeMatchers.hasText("true"));
     		
-    		//check system status of balances
-    		clickOn("System Status").clickOn("BankCard").sleep(1000);
+    		//check System State of balances
+    		clickOn("System State").clickOn("BankCard").sleep(1000);
     		
     		//print recipt
     		clickOn("System Function").clickOn("printReceipt").clickOn("#execute").sleep(1000);
