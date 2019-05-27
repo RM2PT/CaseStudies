@@ -1,12 +1,37 @@
 UseCaseModel LibraryManagementSystem {
 
+	UC::searchBook()
+	UC::listBookHistory()
+	UC::makeReservation()
+	UC::recommendBook()
+	UC::cancelReservation()
+		
+	UC::manageUser()
+	UC::manageBook()
+	UC::manageSubject()
+	UC::manageBookCopy()
+	UC::manageLibrarian()
+	UC::listRecommendBook()
+		
+	UC::borrowBook()
+	UC::renewBook()
+	UC::payOverDueFee()
+	UC::returnBook()
+		
+	UC::checkOverDueandComputeOverDueFee()
+	UC::dueSoonNotification()
+	UC::countDownSuspensionDay()
+		
+	UC::sendNotificationEmail()
+				
+
 	Actor User {
 
-		UC::searchBook()
-		UC::listBookHistory()
-		UC::makeReservation()
-		UC::recommendBook()
-		UC::cancelReservation()
+		searchBook
+		listBookHistory
+		makeReservation
+		recommendBook
+		cancelReservation
 
 	}
 
@@ -26,38 +51,229 @@ UseCaseModel LibraryManagementSystem {
 
 	Actor Administrator {
 
-		UC::manageUser()
-		UC::manageBook()
-		UC::manageSubject()
-		UC::manageBookCopy()
-		UC::manageLibrarian()
-		UC::listRecommendBook()
+		manageUser
+		manageBook
+		manageSubject
+		manageBookCopy
+		manageLibrarian
+		listRecommendBook
 
 	}
 
 	Actor Librarian {
 
-		UC::borrowBook()
-		UC::renewBook()
-		UC::payOverDueFee()
-		UC::returnBook()
+		borrowBook
+		renewBook
+		payOverDueFee
+		returnBook
 
 	}
 
 	Actor Scheduler {
 
-		UC::checkOverDueandComputeOverDueFee()
-		UC::dueSoonNotification()
-		UC::countDownSuspensionDay()
+		checkOverDueandComputeOverDueFee
+		dueSoonNotification
+		countDownSuspensionDay
 
 	}
 
 	Actor ThirdPartSystem {
 
-		UC::sendNotificationEmail()
+		sendNotificationEmail
 
 	}
 
+}
+
+DomainModel LibraryManagementSystem {
+
+	/* Domain Model */
+	@AutoCRUD
+	Entity User {
+	
+		/* Basic information */
+		UserID : String
+		Name : String
+		Sex : Sex[M|F]
+		Password : String
+		Email : String
+		Faculty : String
+		/* Library related information */
+		LoanedNumber : Integer
+		BorrowStatus : BorrowStatus[NORMAL|SUSPEND]
+		SuspensionDays : Integer
+		OverDueFee : Real
+	
+		[Refer]
+		LoanedBook : Loan* (Association)
+		ReservedBook : Reserve* (Association)
+		RecommendedBook : RecommendBook* (Association)
+	
+		[INV]
+		inv UniqueUserID : User.allInstance()->isUnique(u:User | u.UserID)
+		inv OverDueFeeGreatThanEqualZero : OverDueFee >= 0
+		inv LoanedNumberGreatThanEqualZero : LoanedNumber >= 0
+		inv SuspensionDaysGreatThanEqualZero : SuspensionDays >= 0
+	
+	}
+	
+	Entity Student extends User {
+	
+		Major : String
+		Programme : Programme[BACHELOR|MASTER|PHD]
+		RegistrationStatus : StudentStatus[GRADUATED|PROGRAMMING]
+	
+		[INV]
+		inv StudentLoanLessThanEqualTwelve: Student.allInstance()->forAll(stu : Student | stu.LoanedNumber <= 12)
+		inv StudentLoanedBookAssociationInvariants : super.LoanedBook.size() <= 12 ASSOCINV
+	
+	}
+	
+	Entity Faculty extends User {
+	
+		Position : FacultyPosition[ASSISTANTPROFESSORS|ASSOCIATEPROFESSOR|PROFESSOR|CHAIRPROFESSOR]
+		Status : FacultyStatus[HASRETIRED|INPOSITION]
+	
+		[INV]
+		inv FacultyLoanLessthanEqualTwentyFour: Student.allInstance()->forAll(stu : Student | stu.LoanedNumber <= 24)
+		inv FacultyLoanedBookAssociationInvariants : super.LoanedBook.size() <= 24 ASSOCINV
+	
+	}
+	
+	@AutoCRUD
+	Entity Book {
+	
+		CallNo : String
+		Title : String
+		Edition : String
+		Author : String
+		Publisher : String
+		Description : String
+		ISBn : String
+		CopyNum: Integer
+	
+		[Refer] 
+		Copys : BookCopy* ! ( Association)
+		Subject : Subject* (Association)
+	
+		[INV]
+		inv BookCallNoUnique : Book.allInstance()->isUnique(b:Book | b.CallNo)
+		inv BookISBNUnique : Book.allInstance()->isUnique(b:Book | b.ISBn)
+		inv BookCopyNumGreatThanEqualZero : CopyNum >= 0
+	
+	}
+	
+	@AutoCRUD
+	Entity Subject {
+	
+		Name : String
+	
+		[Refer]
+		SuperSubject : Subject ! ( Association)
+		SubSubject : Subject* (Association)
+	
+	}
+	
+	@AutoCRUD
+	Entity BookCopy {
+	
+		Barcode : String
+		Status : CopyStatus[AVAILABLE|INPROCESSING|LIBUSEONLY|ONHOLDSHELF|LOANED]
+		Location : String
+		IsReserved : Boolean
+	
+		[Refer]
+		BookBelongs : Book (Association)
+		LoanedRecord : Loan* (Association)
+		ReservationRecord : Reserve* (Association)
+	
+		[INV]
+		inv BarCodeUnique : BookCopy.allInstance()->isUnique(bc:BookCopy | bc.Barcode)
+	
+	}
+	
+	Entity Loan {
+	
+		LoanDate : Date
+		RenewDate : Date
+		DueDate : Date
+		ReturnDate : Date
+		RenewedTimes : Integer
+		IsReturned : Boolean // for list loaning book and loaned book
+		OverDueFee : Real
+		OverDue3Days : Boolean
+		OverDue10Days : Boolean
+		OverDue17Days : Boolean
+		OverDue31Days : Boolean
+	
+		[Refer]
+		LoanedUser : User ! ( Association)
+		LoanedCopy : BookCopy ! ( Association)
+		LoanLibrarian : Librarian (Association)
+		ReturnLibrarian : Librarian (Association)
+	
+		[INV]
+		inv OverDueFeeGreatThanEqualZero : OverDueFee >= 0
+		inv RenewedTimesLessThanEqualSix :  RenewedTimes >=0 and RenewedTimes <= 6
+		inv LoanOverDueFeeGreatThanEqualZero : OverDueFee >= 0
+		inv RenewDataAfterLoanDate : if (RenewDate.oclIsUndefined() = false) then RenewDate.isAfter(LoanDate) endif
+		inv DueDateAfterLoanDate : DueDate.isAfter(LoanDate)
+		inv ReturnDateAfterORSameLoanDate : if (ReturnDate.oclIsUndefined() = false) then ReturnDate.isAfter(LoanDate) or ReturnDate.isEqual(LoanDate) endif
+		inv DueDateAfterORSameRenewDate : if (RenewDate.oclIsUndefined() = false) then DueDate.isAfter(RenewDate) or DueDate.isEqual(RenewDate) endif
+		inv ReturnDateSameORAfterRenewDate : if (RenewDate.oclIsUndefined() = false and ReturnDate.oclIsUndefined() = false) then ReturnDate.isAfter(RenewDate) or ReturnDate.isEqual(RenewDate) endif
+	
+	}
+	
+	Entity Reserve {
+	
+		ReserveDate : Date
+		IsReserveClosed : Boolean // for list all reserving book and reserved book 
+	
+		[Refer]
+		ReservedCopy : BookCopy ! ( Association)
+		ReservedUser : User ! ( Association)
+	
+	}
+	
+	Entity RecommendBook extends Book {
+	
+		RecommendDate : Date
+	
+		[Refer]
+		RecommendUser : User ! ( Association)
+	
+		[INV]
+		inv BookCallNoUnique : Book.allInstance()->isUnique(b:Book | b.CallNo)
+		inv BookISBNUnique : Book.allInstance()->isUnique(b:Book | b.ISBn)
+		inv BookCopyNumGreatThanEqualZero : super.CopyNum >= 0
+	
+	}
+	
+	Entity Administrator {
+	
+		AdminID : String
+		UserName : String
+		Password : String
+	
+		[INV]
+		inv AdministratorIDUnique : Administrator.allInstance()->isUnique(a : Administrator | a.AdminID)
+	
+	}
+	
+	@AutoCRUD
+	Entity Librarian {
+	
+		LibrarianID : String
+		Name : String
+		Password : String
+	
+		[INV] 
+		inv LibrarianIDUnique : Librarian.allInstance()->isUnique(l:Librarian | l.LibrarianID)
+	
+	}
+
+
+	
 }
 
 /* System Controller */
@@ -169,191 +385,6 @@ Service ManageLibrarianCRUDService {
 
 
 
-
-/* Domain Model */
-@AutoCRUD
-Entity User {
-
-	/* Basic information */
-	UserID : String
-	Name : String
-	Sex : Sex[M|F]
-	Password : String
-	Email : String
-	Faculty : String
-	/* Library related information */
-	LoanedNumber : Integer
-	BorrowStatus : BorrowStatus[NORMAL|SUSPEND]
-	SuspensionDays : Integer
-	OverDueFee : Real
-
-	[Refer]
-	LoanedBook : Loan*
-	ReservedBook : Reserve*
-	RecommendedBook : RecommendBook*
-
-	[INV]
-	inv UniqueUserID : User.allInstance()->isUnique(u:User | u.UserID)
-	inv OverDueFeeGreatThanEqualZero : OverDueFee >= 0
-	inv LoanedNumberGreatThanEqualZero : LoanedNumber >= 0
-	inv SuspensionDaysGreatThanEqualZero : SuspensionDays >= 0
-
-}
-
-Entity Student extends User {
-
-	Major : String
-	Programme : Programme[BACHELOR|MASTER|PHD]
-	RegistrationStatus : StudentStatus[GRADUATED|PROGRAMMING]
-
-	[INV]
-	inv StudentLoanLessThanEqualTwelve: Student.allInstance()->forAll(stu : Student | stu.LoanedNumber <= 12)
-	inv StudentLoanedBookAssociationInvariants : super.LoanedBook.size() <= 12 ASSOCINV
-
-}
-
-Entity Faculty extends User {
-
-	Position : FacultyPosition[ASSISTANTPROFESSORS|ASSOCIATEPROFESSOR|PROFESSOR|CHAIRPROFESSOR]
-	Status : FacultyStatus[HASRETIRED|INPOSITION]
-
-	[INV]
-	inv FacultyLoanLessthanEqualTwentyFour: Student.allInstance()->forAll(stu : Student | stu.LoanedNumber <= 24)
-	inv FacultyLoanedBookAssociationInvariants : super.LoanedBook.size() <= 24 ASSOCINV
-
-}
-
-@AutoCRUD
-Entity Book {
-
-	CallNo : String
-	Title : String
-	Edition : String
-	Author : String
-	Publisher : String
-	Description : String
-	ISBn : String
-	CopyNum: Integer
-
-	[Refer]
-	Copys : BookCopy*
-	Subject : Subject*
-
-	[INV]
-	inv BookCallNoUnique : Book.allInstance()->isUnique(b:Book | b.CallNo)
-	inv BookISBNUnique : Book.allInstance()->isUnique(b:Book | b.ISBn)
-	inv BookCopyNumGreatThanEqualZero : CopyNum >= 0
-
-}
-
-@AutoCRUD
-Entity Subject {
-
-	Name : String
-
-	[Refer]
-	SuperSubject : Subject
-	SubSubject : Subject*
-
-}
-
-@AutoCRUD
-Entity BookCopy {
-
-	Barcode : String
-	Status : CopyStatus[AVAILABLE|INPROCESSING|LIBUSEONLY|ONHOLDSHELF|LOANED]
-	Location : String
-	IsReserved : Boolean
-
-	[Refer]
-	BookBelongs : Book
-	LoanedRecord : Loan*
-	ReservationRecord : Reserve*
-
-	[INV]
-	inv BarCodeUnique : BookCopy.allInstance()->isUnique(bc:BookCopy | bc.Barcode)
-
-}
-
-Entity Loan {
-
-	LoanDate : Date
-	RenewDate : Date
-	DueDate : Date
-	ReturnDate : Date
-	RenewedTimes : Integer
-	IsReturned : Boolean // for list loaning book and loaned book
-	OverDueFee : Real
-	OverDue3Days : Boolean
-	OverDue10Days : Boolean
-	OverDue17Days : Boolean
-	OverDue31Days : Boolean
-
-	[Refer]
-	LoanedUser : User
-	LoanedCopy : BookCopy
-	LoanLibrarian : Librarian
-	ReturnLibrarian : Librarian
-
-	[INV]
-	inv OverDueFeeGreatThanEqualZero : OverDueFee >= 0
-	inv RenewedTimesLessThanEqualSix :  RenewedTimes >=0 and RenewedTimes <= 6
-	inv LoanOverDueFeeGreatThanEqualZero : OverDueFee >= 0
-	inv RenewDataAfterLoanDate : if (RenewDate.oclIsUndefined() = false) then RenewDate.isAfter(LoanDate) endif
-	inv DueDateAfterLoanDate : DueDate.isAfter(LoanDate)
-	inv ReturnDateAfterORSameLoanDate : if (ReturnDate.oclIsUndefined() = false) then ReturnDate.isAfter(LoanDate) or ReturnDate.isEqual(LoanDate) endif
-	inv DueDateAfterORSameRenewDate : if (RenewDate.oclIsUndefined() = false) then DueDate.isAfter(RenewDate) or DueDate.isEqual(RenewDate) endif
-	inv ReturnDateSameORAfterRenewDate : if (RenewDate.oclIsUndefined() = false and ReturnDate.oclIsUndefined() = false) then ReturnDate.isAfter(RenewDate) or ReturnDate.isEqual(RenewDate) endif
-
-}
-
-Entity Reserve {
-
-	ReserveDate : Date
-	IsReserveClosed : Boolean // for list all reserving book and reserved book 
-
-	[Refer]
-	ReservedCopy : BookCopy
-	ReservedUser : User
-
-}
-
-Entity RecommendBook extends Book {
-
-	RecommendDate : Date
-
-	[Refer]
-	RecommendUser : User
-
-	[INV]
-	inv BookCallNoUnique : Book.allInstance()->isUnique(b:Book | b.CallNo)
-	inv BookISBNUnique : Book.allInstance()->isUnique(b:Book | b.ISBn)
-	inv BookCopyNumGreatThanEqualZero : super.CopyNum >= 0
-
-}
-
-Entity Administrator {
-
-	AdminID : String
-	UserName : String
-	Password : String
-
-	[INV]
-	inv AdministratorIDUnique : Administrator.allInstance()->isUnique(a : Administrator | a.AdminID)
-
-}
-
-@AutoCRUD
-Entity Librarian {
-
-	LibrarianID : String
-	Name : String
-	Password : String
-
-	[INV] 
-	inv LibrarianIDUnique : Librarian.allInstance()->isUnique(l:Librarian | l.LibrarianID)
-
-}
 
 /* -------------------- Contracts ----------------------*/
 /* Search book */

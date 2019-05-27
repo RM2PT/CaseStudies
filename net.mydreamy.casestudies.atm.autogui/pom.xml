@@ -55,6 +55,30 @@
 		      </filesets>
 		    </configuration>
 		  </plugin>
+		  	  		    <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>gui.Main</mainClass>
+                </configuration>
+            </plugin>
+             <plugin>
+	            <groupId>org.apache.maven.plugins</groupId>
+	            <artifactId>maven-surefire-plugin</artifactId>
+	            <version>3.0.0-M1</version>	            
+	            <configuration>
+	            	<test>gui.MainTest</test>	                
+	            </configuration>
+	        </plugin> 
+		 
     </plugins>    
   </build>
 
