@@ -1,38 +1,231 @@
 UseCaseModel CoCoME {
 
+	UC::processSale()
+	UC::openCashDesk()
+	UC::closeCashDesk()
+	UC::orderProducts()
+	UC::receiveOrderedProduct()
+	UC::showStockReports()
+	UC::changePrice()
+	UC::listSuppliers()
+	UC::openStore()
+	UC::closeStore()
+	UC::manageStore()
+	UC::manageProductCatalog()
+	UC::manageCashDesk()
+	UC::manageCashier()
+	UC::manageItem()
+	UC::manageSupplier()
+	
 	Actor Cashier {
 
-		UC::processSale()
-		UC::openCashDesk()
-		UC::closeCashDesk()
+		processSale
+		openCashDesk
+		closeCashDesk
 
 	}
 
 	Actor StoreManager {
 
-		UC::orderProducts()
-		UC::receiveOrderedProduct()
-		UC::showStockReports()
-		UC::changePrice()
-		UC::listSuppliers()
-		UC::openStore()
-		UC::closeStore()
+		orderProducts
+		receiveOrderedProduct
+		showStockReports
+		changePrice
+		listSuppliers
+		openStore
+		closeStore
 
 	}
 
 	Actor Administrator {
 
-		UC::manageStore()
-		UC::manageProductCatalog()
-		UC::manageCashDesk()
-		UC::manageCashier()
-		UC::manageItem()
-		UC::manageSupplier()
+		manageStore
+		manageProductCatalog
+		manageCashDesk
+		manageCashier
+		manageItem
+		manageSupplier
 
 	}
+	
+	
 
 }
 
+DomainModel CoCoME {
+	
+	@AutoCRUD
+	Entity Store {
+	
+		Id : Integer
+		Name : String
+		Address : String
+		IsOpened : Boolean
+	
+		[Refer]
+		AssociationCashdeskes : CashDesk* (Association)
+		Productcatalogs : ProductCatalog* (Association)
+		Items : Item* (Association)
+		Cashiers : Cashier* (Association)
+		Sales : Sale* ! ( Association)
+	
+		[INV]
+		inv UniqueStoreId : Store.allInstance()->isUnique(s:Store | s.Id)
+	
+	}
+	
+	@AutoCRUD
+	Entity ProductCatalog {
+	
+		Id : Integer
+		Name : String
+	
+		[Refer]
+		ContainedItems : Item* (Association)
+	
+		[INV]
+		inv UniqueProductCatalogId : ProductCatalog.allInstance()->isUnique(p:ProductCatalog | p.Id)
+	
+	}
+	
+	@AutoCRUD
+	Entity CashDesk {
+	
+		Id : Integer
+		Name : String
+		IsOpened : Boolean
+	
+		[Refer]
+		ContainedSales : Sale* (Association)
+		BelongedStore : Store ! ( Association)
+	 
+		[INV]
+		inv UniqueCashDeskId : CashDesk.allInstance()->isUnique(c:CashDesk | c.Id)
+	
+	}
+	
+	Entity Sale {
+	
+		Time : Date
+		IsComplete: Boolean
+		Amount : Real
+		IsReadytoPay : Boolean
+	
+		[Refer]
+		Belongedstore : Store (Association)
+		BelongedCashDesk : CashDesk ! ( Association)
+		ContainedSalesLine : SalesLineItem* (Association)
+		AssoicatedPayment : Payment (Association)
+	
+		[INV]
+		inv AmountGreatAndEqualZero : Amount >= 0
+	
+	}
+	
+	@AutoCRUD
+	Entity Cashier {
+	
+		Id : Integer
+		Name : String
+	
+		[Refer]
+		WorkedStore : Store ! ( Association)
+	
+		[INV]
+		inv UniqueCashierID : Cashier.allInstance()->isUnique(c:Cashier | c.Id)
+	
+	}
+	
+	Entity SalesLineItem {
+	
+		Quantity : Integer
+		Subamount : Real
+	
+		[Refer]
+		BelongedSale : Sale ! ( Association)
+		BelongedItem : Item (Association)
+	
+	}
+	
+	@AutoCRUD
+	Entity Item {
+	
+		Barcode : Integer
+		Name : String
+		Price : Real
+		StockNumber : Integer
+		OrderPrice : Real
+	
+		[Refer]
+		BelongedCatalog : ProductCatalog ! ( Association)
+	
+		[INV]
+		inv UniqueBarcode : Item.allInstance()->isUnique(u:Item | u.Barcode)
+		inv PriceGreatThanEqualZero : Price >= 0
+		inv StockNumberGreatThanEqualZero : StockNumber >= 0
+	
+	}
+	
+	Entity Payment {
+	
+		AmountTendered : Real
+	
+		[Refer] 
+		BelongedSale : Sale ! ( Association)
+	
+	}
+	
+	Entity CashPayment extends Payment {
+	
+		Balance : Real
+	
+		[INV]
+		inv BalanceGreatAndEqualZero : Balance >= 0
+	
+	}
+	
+	Entity CardPayment extends Payment {
+	
+		CardAccountNumber : String
+		ExpiryDate : Date
+	
+	}
+	
+	Entity OrderEntry {
+	
+		Quantity : Integer
+		SubAmount : Real
+	
+		[Refer]
+		Item : Item (Association)
+	
+	}
+	
+	@AutoCRUD 
+	Entity Supplier {
+	
+		Id : Integer
+		Name : String
+	
+		[INV]
+		inv UniqueSupplier : Supplier.allInstance()->isUnique(s:Supplier | s.Id)
+	
+	}
+	
+	Entity OrderProduct {
+	
+		Id : Integer
+		Time : Date
+		OrderStatus : OrderStatus[NEW|RECEIVED|REQUESTED]
+		Amount : Real
+	
+		[Refer]
+		Supplier : Supplier (Association)
+		ContainedEntries : OrderEntry* (Association)
+	
+	}
+	
+}
 Service CoCoMEProcessSale {
 
 	[Operation]
@@ -320,176 +513,6 @@ Interaction ProcessSaleInteraction {
 
 }
 
-@AutoCRUD
-Entity Store {
-
-	Id : Integer
-	Name : String
-	Address : String
-	IsOpened : Boolean
-
-	[Refer]
-	Cashdeskes : CashDesk*
-	Productcatalogs : ProductCatalog*
-	Items : Item*
-	Cashiers : Cashier*
-	Sales : Sale*
-
-	[INV]
-	inv UniqueStoreId : Store.allInstance()->isUnique(s:Store | s.Id)
-
-}
-
-@AutoCRUD
-Entity ProductCatalog {
-
-	Id : Integer
-	Name : String
-
-	[Refer]
-	ContainedItems : Item*
-
-	[INV]
-	inv UniqueProductCatalogId : ProductCatalog.allInstance()->isUnique(p:ProductCatalog | p.Id)
-
-}
-
-@AutoCRUD
-Entity CashDesk {
-
-	Id : Integer
-	Name : String
-	IsOpened : Boolean
-
-	[Refer]
-	ContainedSales : Sale*
-	BelongedStore : Store
-
-	[INV]
-	inv UniqueCashDeskId : CashDesk.allInstance()->isUnique(c:CashDesk | c.Id)
-
-}
-
-Entity Sale {
-
-	Time : Date
-	IsComplete: Boolean
-	Amount : Real
-	IsReadytoPay : Boolean
-
-	[Refer]
-	Belongedstore : Store
-	BelongedCashDesk : CashDesk
-	ContainedSalesLine : SalesLineItem*
-	AssoicatedPayment : Payment
-
-	[INV]
-	inv AmountGreatAndEqualZero : Amount >= 0
-
-}
-
-@AutoCRUD
-Entity Cashier {
-
-	Id : Integer
-	Name : String
-
-	[Refer]
-	WorkedStore : Store
-
-	[INV]
-	inv UniqueCashierID : Cashier.allInstance()->isUnique(c:Cashier | c.Id)
-
-}
-
-Entity SalesLineItem {
-
-	Quantity : Integer
-	Subamount : Real
-
-	[Refer]
-	BelongedSale : Sale
-	BelongedItem : Item
-
-}
-
-@AutoCRUD
-Entity Item {
-
-	Barcode : Integer
-	Name : String
-	Price : Real
-	StockNumber : Integer
-	OrderPrice : Real
-
-	[Refer]
-	BelongedCatalog : ProductCatalog
-
-	[INV]
-	inv UniqueBarcode : Item.allInstance()->isUnique(u:Item | u.Barcode)
-	inv PriceGreatThanEqualZero : Price >= 0
-	inv StockNumberGreatThanEqualZero : StockNumber >= 0
-
-}
-
-Entity Payment {
-
-	AmountTendered : Real
-
-	[Refer]
-	BelongedSale : Sale
-
-}
-
-Entity CashPayment extends Payment {
-
-	Balance : Real
-
-	[INV]
-	inv BalanceGreatAndEqualZero : Balance >= 0
-
-}
-
-Entity CardPayment extends Payment {
-
-	CardAccountNumber : String
-	ExpiryDate : Date
-
-}
-
-Entity OrderEntry {
-
-	Quantity : Integer
-	SubAmount : Real
-
-	[Refer]
-	Item : Item
-
-}
-
-@AutoCRUD 
-Entity Supplier {
-
-	Id : Integer
-	Name : String
-
-	[INV]
-	inv UniqueSupplier : Supplier.allInstance()->isUnique(s:Supplier | s.Id)
-
-}
-
-Entity OrderProduct {
-
-	Id : Integer
-	Time : Date
-	OrderStatus : OrderStatus[NEW|RECEIVED|REQUESTED]
-	Amount : Real
-
-	[Refer]
-	Supplier : Supplier
-	ContainedEntries : OrderEntry*
-
-}
 
 Contract CoCoMEProcessSale::openStore(storeID : Integer) : Boolean {
 
@@ -1224,7 +1247,7 @@ Contract  ManageItemCRUDService::createItem(barcode : Integer, name : String, pr
 //entity query operation 
 Contract  ManageItemCRUDService::queryItem(barcode : Integer) : Item {
 	
-	/* definition: find specific Item instance by barcode */
+	/* definition: find a specific Item by barcode */
 	definition:
 		item:Item = Item.allInstance()->any(ite:Item | ite.Barcode = barcode)
 	
