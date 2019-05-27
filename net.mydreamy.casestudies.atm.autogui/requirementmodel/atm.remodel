@@ -1,22 +1,78 @@
 UseCaseModel AutomatedTellerMachine {
 
+	UC::withdrawCash() -> ATMSystem include cardIdentification
+	UC::checkBalance() -> ATMSystem include cardIdentification
+	UC::depositFunds() -> ATMSystem
+	UC::manageBankCard()
+	UC::manageUser()
+	UC::cardIdentification()
+
 	Actor Customer {
 
-		UC::withdrawCash() -> ATMSystem include cardIdentification
-		UC::checkBalance() -> ATMSystem include cardIdentification
-		UC::depositFunds() -> ATMSystem
+		withdrawCash 
+		checkBalance 
+		depositFunds
 
 	}
 
 	Actor BankClerk {
 
-		UC::manageBankCard()
-		UC::manageUser()
+		manageBankCard
+		manageUser
 
 	}
 
-	UC::cardIdentification()
+}
 
+DomainModel ATM {
+
+	@AutoCRUD
+	Entity BankCard {
+	
+		CardID : Integer
+		CardStatus : CardStatus[NORMAL|SUSPEND|CANNEL]
+		Catalog : CardCatalog[CREDIT|DESPOSIT]
+		Password : Integer
+		Balance : Real
+	
+		[Refer]
+		BelongedUser : User (Association)
+		Has : Transcation* (Association)
+		
+		[INV]
+		inv UniqueCardID : BankCard.allInstance()->isUnique(b:BankCard | b.CardID)
+		inv BalanceGreatAndEqualZero : Balance >= 0
+	
+	}
+	
+	@AutoCRUD
+	Entity User {
+	
+		UserID : Integer
+		Name : String
+		Address : String
+	
+		[Refer]
+		OwnedCard : BankCard* ! ( Association)
+		
+		[INV]
+		inv UniqueUserID : User.allInstance()->isUnique(u:User | u.UserID)
+	
+	}
+	
+	Entity Transcation {
+	
+		WithdrawedNum : Integer
+		BalanceAfterWithdraw : Real
+	
+		[Refer]
+		InvolvedCard : BankCard ! ( Association)
+		
+		[INV]
+		inv WithdrawedNumGreatAndEqualZero : WithdrawedNum >= 0
+		inv BalanceAfterWithdrawGreatAndEqualZero : BalanceAfterWithdraw >= 0
+	
+	}
 }
 
 Service ATMSystem {
@@ -229,53 +285,6 @@ Interaction DepositFundsInteraction {
 
 }
 
-@AutoCRUD
-Entity BankCard {
-
-	CardID : Integer
-	CardStatus : CardStatus[NORMAL|SUSPEND|CANNEL]
-	Catalog : CardCatalog[CREDIT|DESPOSIT]
-	Password : Integer
-	Balance : Real
-
-	[Refer]
-	BelongedUser : User
-	Has : Transcation*
-	
-	[INV]
-	inv UniqueCardID : BankCard.allInstance()->isUnique(b:BankCard | b.CardID)
-	inv BalanceGreatAndEqualZero : Balance >= 0
-
-}
-
-@AutoCRUD
-Entity User {
-
-	UserID : Integer
-	Name : String
-	Address : String
-
-	[Refer]
-	OwnedCard : BankCard*
-	
-	[INV]
-	inv UniqueUserID : User.allInstance()->isUnique(u:User | u.UserID)
-
-}
-
-Entity Transcation {
-
-	WithdrawedNum : Integer
-	BalanceAfterWithdraw : Real
-
-	[Refer]
-	InvolvedCard : BankCard
-	
-	[INV]
-	inv WithdrawedNumGreatAndEqualZero : WithdrawedNum >= 0
-	inv BalanceAfterWithdrawGreatAndEqualZero : BalanceAfterWithdraw >= 0
-
-}
 
 
 
