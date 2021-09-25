@@ -78,7 +78,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 <h3>3.1.1   User Requirements</h3>
 <h4>3.1.1.1 Use Case Diagram</h4>
 
-![](Use Case Diagram.jpg)
+![Use Case Diagram](https://github.com/Tians996/CaseStudies/blob/master/CoCoMEwithDocument/Document/Use%20Case%20Diagram.jpg)
 
 <h4>3.1.1.2 Requirements Description</h4>
 <b>Cashier</b>
@@ -238,7 +238,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td><ol></ol></td>
 	</tr>
 </table>
-![](ProcessSaleSSD.jpg)
+
+![ProcessSaleSSD](https://github.com/Tians996/CaseStudies/blob/master/CoCoMEwithDocument/Document/ProcessSaleSSD.jpg)
+
 <b>UC 2 - openCashDesk</b>
 
 <table>
@@ -752,7 +754,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 </table>
 <h4>3.1.2.2   Entity analysis</h4>
 <b>Conceptual Class Diagram</b> 
-![](Conceptual Class Diagram.jpg)
+
+![Conceptual Class Diagram](https://github.com/Tians996/CaseStudies/blob/master/CoCoMEwithDocument/Document/Conceptual%20Class%20Diagram.jpg)
+
 <b>Store</b>
 <table>
 	<tr>
