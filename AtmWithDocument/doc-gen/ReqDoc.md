@@ -58,7 +58,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 ## 3.1  Functional requirements
 ### 3.1.1   User Requirements
 <b>Use Case Diagram</b>
-![Use Case Diagram](images/Use Case Diagram.jpg)
+![Use Case Diagram](https://github.com/Tians996/CaseStudies/blob/master/AtmWithDocument/doc-gen/images/Use%20Case%20Diagram.jpg)
 
 <b>A1 - Customer</b>
 <table>
@@ -157,7 +157,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
-![WithdrawCashSSD](images/WithdrawCashSSD.jpg)
+	
+![WithdrawCashSSD](https://github.com/Tians996/CaseStudies/blob/master/AtmWithDocument/doc-gen/images/WithdrawCashInteraction.jpg)
+
 <b>UC2 - checkBalance</b>
  
 <table>
@@ -194,7 +196,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
-![CheckBalanceSSD](images/CheckBalanceSSD.jpg)
+	
+![CheckBalanceSSD](https://github.com/Tians996/CaseStudies/blob/master/AtmWithDocument/doc-gen/images/CheckBalanceInteraction.jpg)
+
 <b>UC3 - depositFunds</b>
  
 <table>
@@ -231,7 +235,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
-![DepositFundsSSD](images/DepositFundsSSD.jpg)
+	
+![DepositFundsSSD](https://github.com/Tians996/CaseStudies/blob/master/AtmWithDocument/doc-gen/images/DepositFundsInteraction.jpg)
+
 <b>UC4 - manageBankCard</b>
  
 <table>
@@ -342,7 +348,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</table>
 #### 3.1.2.2   Entity Analysis
 <b>Conceptual Class Diagram</b> 
-![Conceptual Class Diagram](images/Conceptual Class Diagram.jpg)
+
+![Conceptual Class Diagram](https://github.com/Tians996/CaseStudies/blob/master/AtmWithDocument/doc-gen/images/Conceptual%20Class%20Diagram.jpg)
+
 <b>E1 - BankCard</b>
  
 <table>
