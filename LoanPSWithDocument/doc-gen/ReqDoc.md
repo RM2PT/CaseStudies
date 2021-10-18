@@ -58,8 +58,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 ## 3.1  Functional requirements
 ### 3.1.1   User Requirements
 <b>Use Case Diagram</b>
-![Use Case Diagram](images/Use Case Diagram.jpg)
-
+ 
+![Use Case Diagram](https://github.com/Tians996/CaseStudies/blob/master/AtmWithDocument/doc-gen/images/Use%20Case%20Diagram.jpg)
+ 
 <b>A1 - LoanOfficer</b>
 <table>
 	<tr>
@@ -234,7 +235,8 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
-![EvaluateLoanRequestSSD](images/EvaluateLoanRequestSSD.jpg)
+ 
+![EvaluateLoanRequestSSD](https://github.com/Tians996/CaseStudies/blob/master/AtmWithDocument/doc-gen/images/EvaluateLoanRequestSSD.jpg)
 <b>UC2 - manageLoanTerm</b>
  
 <table>
@@ -271,6 +273,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
 <b>UC3 - enterValidatedCreditReferences</b>
  
 <table>
@@ -307,6 +310,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
 <b>UC4 - generateLoanLetterAndAgreement</b>
  
 <table>
@@ -343,7 +347,8 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
-![GenerateLoanLetterAndAgreementSSD](images/GenerateLoanLetterAndAgreementSSD.jpg)
+ 
+![GenerateLoanLetterAndAgreementSSD](https://github.com/Tians996/CaseStudies/blob/master/AtmWithDocument/doc-gen/images/GenerateLoanLetterAndAgreementSSD.jpg)
 <b>UC5 - bookNewLoan</b>
  
 <table>
@@ -380,6 +385,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
 <b>UC6 - loanPayment</b>
  
 <table>
@@ -416,6 +422,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
 <b>UC7 - closeOutLoan</b>
  
 <table>
@@ -452,6 +459,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
 <b>UC8 - generateStandardPaymentNotice</b>
  
 <table>
@@ -488,6 +496,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
 <b>UC9 - generateLateNotice</b>
  
 <table>
@@ -524,6 +533,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
 <b>UC10 - submitLoanRequest</b>
  
 <table>
@@ -560,9 +570,13 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
+ 
 #### 3.1.2.2   Entity Analysis
 <b>Conceptual Class Diagram</b> 
-![Conceptual Class Diagram](images/Conceptual Class Diagram.jpg)
+ 
+![Conceptual Class Diagram](https://github.com/Tians996/CaseStudies/blob/master/AtmWithDocument/doc-gen/images/Conceptual%20Class%20Diagram.jpg)
+ 
 <b>E1 - LoanRequest</b>
  
 <table>
@@ -974,6 +988,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 					</tr>
 	</table>
 	 
+ 
 #### 3.1.2.3   System Interfaces
 ##### System Interfaces
 <b>SI1 - SubmitLoanRequestModule</b>
@@ -1168,6 +1183,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
 	 
+ 
 ##### System Operation Description
 <b>OP1 - enterLoanInformation</b>
 <table>
@@ -3400,6 +3416,7 @@ The return value was true
 
 
 
+ 
 ## 3.2  External interface requirements
 User interfaces
 Hardware interfaces
