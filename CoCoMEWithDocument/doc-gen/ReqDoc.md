@@ -59,7 +59,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 ### 3.1.1   User Requirements
 <b>Use Case Diagram</b>
  
-![Use Case Diagram](https://github.com/Tians996/CaseStudies/blob/master/AtmWithDocument/doc-gen/images/Use%20Case%20Diagram.jpg)
+![Use Case Diagram](https://github.com/Tians996/CaseStudies/blob/master/CoCoMEWithDocument/doc-gen/images/Use%20Case%20Diagram.jpg)
  
 <b>A1 - Cashier</b>
 <table>
@@ -222,7 +222,8 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
-![ProcessSaleSSD](https://github.com/Tians996/CaseStudies/blob/master/AtmWithDocument/doc-gen/images/ProcessSaleSSD.jpg)
+![ProcessSaleSSD](https://github.com/Tians996/CaseStudies/blob/master/CoCoMEWithDocument/doc-gen/images/ProcessSaleSSD.jpg)
+
 <b>UC2 - openCashDesk</b>
  
 <table>
@@ -782,7 +783,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 #### 3.1.2.2   Entity Analysis
 <b>Conceptual Class Diagram</b> 
  
-![Conceptual Class Diagram](https://github.com/Tians996/CaseStudies/blob/master/AtmWithDocument/doc-gen/images/Conceptual%20Class%20Diagram.jpg)
+![Conceptual Class Diagram](https://github.com/Tians996/CaseStudies/blob/master/CoCoMEWithDocument/doc-gen/images/Conceptual%20Class%20Diagram.jpg)
  
 <b>E1 - Store</b>
  
