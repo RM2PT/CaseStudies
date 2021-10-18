@@ -58,8 +58,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 ## 3.1  Functional requirements
 ### 3.1.1   User Requirements
 <b>Use Case Diagram</b>
-![Use Case Diagram](images/Use Case Diagram.jpg)
-
+ 
+![Use Case Diagram](https://github.com/Tians996/CaseStudies/blob/master/AtmWithDocument/doc-gen/images/Use%20Case%20Diagram.jpg)
+ 
 <b>A1 - Cashier</b>
 <table>
 	<tr>
@@ -220,7 +221,8 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
-![ProcessSaleSSD](images/ProcessSaleSSD.jpg)
+ 
+![ProcessSaleSSD](https://github.com/Tians996/CaseStudies/blob/master/AtmWithDocument/doc-gen/images/ProcessSaleSSD.jpg)
 <b>UC2 - openCashDesk</b>
  
 <table>
@@ -257,6 +259,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
 <b>UC3 - closeCashDesk</b>
  
 <table>
@@ -293,6 +296,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
 <b>UC4 - orderProducts</b>
  
 <table>
@@ -329,6 +333,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
 <b>UC5 - receiveOrderedProduct</b>
  
 <table>
@@ -365,6 +370,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
 <b>UC6 - showStockReports</b>
  
 <table>
@@ -401,6 +407,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
 <b>UC7 - changePrice</b>
  
 <table>
@@ -437,6 +444,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
 <b>UC8 - listSuppliers</b>
  
 <table>
@@ -473,6 +481,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
 <b>UC9 - openStore</b>
  
 <table>
@@ -509,6 +518,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
 <b>UC10 - closeStore</b>
  
 <table>
@@ -545,6 +555,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
 <b>UC11 - manageStore</b>
  
 <table>
@@ -581,6 +592,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
 <b>UC12 - manageProductCatalog</b>
  
 <table>
@@ -617,6 +629,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
 <b>UC13 - manageCashDesk</b>
  
 <table>
@@ -653,6 +666,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
 <b>UC14 - manageCashier</b>
  
 <table>
@@ -689,6 +703,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
 <b>UC15 - manageItem</b>
  
 <table>
@@ -725,6 +740,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
 <b>UC16 - manageSupplier</b>
  
 <table>
@@ -761,9 +777,13 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
+ 
 #### 3.1.2.2   Entity Analysis
 <b>Conceptual Class Diagram</b> 
-![Conceptual Class Diagram](images/Conceptual Class Diagram.jpg)
+ 
+![Conceptual Class Diagram](https://github.com/Tians996/CaseStudies/blob/master/AtmWithDocument/doc-gen/images/Conceptual%20Class%20Diagram.jpg)
+ 
 <b>E1 - Store</b>
  
 <table>
@@ -1408,6 +1428,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
 	 
+ 
 #### 3.1.2.3   System Interfaces
 ##### System Interfaces
 <b>SI1 - CoCoMESystem</b>
@@ -1646,6 +1667,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 					</tr>
 	</table>
 	 
+ 
 ##### System Operation Description
 <b>OP1 - openStore</b>
 <table>
@@ -4596,6 +4618,7 @@ The return value was true
 
 
 
+ 
 ## 3.2  External interface requirements
 User interfaces
 Hardware interfaces
