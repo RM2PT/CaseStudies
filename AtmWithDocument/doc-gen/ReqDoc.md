@@ -349,6 +349,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
  
 #### 3.1.2.2   Entity Analysis
 <b>Conceptual Class Diagram</b> 
+
 ![Conceptual Class Diagram](https://github.com/Tians996/CaseStudies/blob/master/AtmWithDocument/doc-gen/images/Conceptual%20Class%20Diagram.jpg)
  
 <b>E1 - BankCard</b>
