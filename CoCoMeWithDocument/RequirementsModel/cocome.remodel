@@ -1,0 +1,1590 @@
+
+
+UseCaseModel CoCoME {
+
+	UC::processSale() definedBySSD(ProcessSaleSSD) relatedService(ProcessSaleService) @Description( "The cashier checks out items" )
+	UC::openCashDesk() @Description( "The cashier opens cash desk" )
+	UC::closeCashDesk() @Description( "The cashier closes cash desk" )
+	UC::orderProducts() @Description( "The store manager places an order for purchase" )
+	UC::receiveOrderedProduct() @Description( "The store manager receives the order for purchase" )
+	UC::showStockReports() @Description( "The store manager views the stock report" )
+	UC::changePrice() @Description( "The store manager changes the price of item" )
+	UC::listSuppliers() @Description( "The store manager views all suppliers" )
+	UC::openStore() @Description( "The store manager opens the store" )
+	UC::closeStore() @Description( "The store manager closes the store" )
+	UC::manageStore() @Description( "The administrator manages store information, including entering, inquiring, modifying and deleting of store information" )
+	UC::manageProductCatalog() @Description( "The administrator manages catalogues of items, including entering, inquiring, modifying and deleting of catalogue information" )
+	UC::manageCashDesk() @Description( "The administrator manages cash desk information, including entering, inquiring, modifying and deleting of cash desk information" )
+	UC::manageCashier() @Description( "The administrator manages cashier information, including entering, inquiring, modifying and deleting of cashier information" )
+	UC::manageItem() @Description( "The administrator manages item information, including entering, inquiring, modifying and deleting of item information" )
+	UC::manageSupplier() @Description( "The administrator manages supplier information, including entering, inquiring, modifying and deleting of supplier information" )
+
+	Actor Cashier("Cashier") {
+		@Description( "The cashier is responsible for opening or closing the cash desk and the checkout of items") processSale
+		openCashDesk
+		closeCashDesk
+	}
+
+	Actor StoreManager("StoreManager") {
+		@Description( "The store manager is responsible for procurement and price setting of items,and opening or closing the store") orderProducts
+		receiveOrderedProduct
+		showStockReports
+		changePrice
+		listSuppliers
+		openStore
+		closeStore
+	}
+
+	Actor Administrator("Administrator") {
+		@Description( "The system administrator is responsible for managing information, including store information, cash desk information, cashier information, item information, item catalogue information and supplier information") manageStore
+		manageProductCatalog
+		manageCashDesk
+		manageCashier
+		manageItem
+		manageSupplier
+	}
+
+	Interaction ProcessSaleSSD {
+
+		[Participants: Cashier ProcessSaleService]
+
+		CallMessage::makeNewSale(makeNewSale makeNewSaleSender->makeNewSaleStart)
+		ReturnMessage::makeNewSaleReturn(makeNewSaleFinish->makeNewSaleReturnReceiver makeNewSale)
+		CallMessage::enterItem(enterItem enterItemSender->enterItemStart)
+		ReturnMessage::enterItemReturn(enterItemFinish->enterItemReturnReceiver enterItem)
+		CallMessage::endSale(endSale endSaleSender->endSaleStart)
+		ReturnMessage::endSaleReturn(endSaleFinish->endSaleReturnReceiver endSale)
+		CallMessage::makeCashPayment(makeCashPayment makeCashPaymentSender->makeCashPaymentStart)
+		ReturnMessage::makeCashPaymentReturn(makeCashPaymentFinish->makeCashPaymentReturnReceiver makeCashPayment)
+		CallMessage::makeCardPayment(makeCardPayment makeCardPaymentSender->makeCardPaymentStart)
+		ReturnMessage::makeCardPaymentReturn(makeCardPaymentFinish->makeCardPaymentReturnReceiver makeCardPayment)
+
+		Execution::makeNewSale(ProcessSaleService makeNewSaleStart makeNewSaleFinish)
+		Execution::enterItem(ProcessSaleService enterItemStart enterItemFinish)
+		Execution::endSale(ProcessSaleService endSaleStart endSaleFinish)
+		Execution::makeCashPayment(ProcessSaleService makeCashPaymentStart makeCashPaymentFinish)
+		Execution::makeCardPayment(ProcessSaleService makeCardPaymentStart makeCardPaymentFinish)
+
+		CombinedFragment::enterItemLoop->loop {
+
+			[Participants: Cashier ProcessSaleService]
+
+			enterItemLoopStart->enterItemLoopFinish
+
+			Operand::hasMoreItems(hasMoreItemsStart enterItemLoopFinish)
+		}
+
+		CombinedFragment::paymentMethodAlt->alt {
+
+			[Participants: Cashier ProcessSaleService]
+
+			PaymentMethodAltStart->PaymentMethodAltFinish
+
+			Operand::cash(CashStart CardStart)
+			Operand::card(CardStart PaymentMethodAltFinish)
+		}
+
+		MessageEnd::makeNewSaleSender(Cashier makeNewSale)
+		ExecutionEnd::makeNewSaleStart(ProcessSaleService makeNewSale)
+		ExecutionEnd::makeNewSaleFinish(ProcessSaleService makeNewSale)
+		MessageEnd::makeNewSaleReturnReceiver(Cashier makeNewSaleReturn)
+		CombinedFragmentEnd::enterItemLoopStart(enterItemLoop)
+		OperandEnd::hasMoreItemsStart(hasMoreItems)
+		MessageEnd::enterItemSender(Cashier enterItem)
+		ExecutionEnd::enterItemStart(ProcessSaleService enterItem)
+		ExecutionEnd::enterItemFinish(ProcessSaleService enterItem)
+		MessageEnd::enterItemReturnReceiver(Cashier enterItemReturn)
+		CombinedFragmentEnd::enterItemLoopFinish(enterItemLoop)
+		MessageEnd::endSaleSender(Cashier endSale)
+		ExecutionEnd::endSaleStart(ProcessSaleService endSale)
+		ExecutionEnd::endSaleFinish(ProcessSaleService endSale)
+		MessageEnd::endSaleReturnReceiver(Cashier endSaleReturn)
+		CombinedFragmentEnd::PaymentMethodAltStart(paymentMethodAlt)
+		OperandEnd::CashStart(cash)
+		MessageEnd::makeCashPaymentSender(Cashier makeCashPayment)
+		ExecutionEnd::makeCashPaymentStart(ProcessSaleService makeCashPayment)
+		ExecutionEnd::makeCashPaymentFinish(ProcessSaleService makeCashPayment)
+		MessageEnd::makeCashPaymentReturnReceiver(Cashier makeCashPaymentReturn)
+		OperandEnd::CardStart(card)
+		MessageEnd::makeCardPaymentSender(Cashier makeCardPayment)
+		ExecutionEnd::makeCardPaymentStart(ProcessSaleService makeCardPayment)
+		ExecutionEnd::makeCardPaymentFinish(ProcessSaleService makeCardPayment)
+		MessageEnd::makeCardPaymentReturnReceiver(Cashier makeCardPaymentReturn)
+		CombinedFragmentEnd::PaymentMethodAltFinish(paymentMethodAlt)
+
+	}
+
+	Service CoCoMESystem {
+
+		[Operation]
+		openCashDesk(cashDeskID)
+		closeCashDesk(cashDeskID)
+		openStore(storeID)
+		closeStore(storeID)
+		changePrice(barcode, newPrice)
+		receiveOrderedProduct(orderID)
+		listSuppliers()
+		showStockReports()
+
+		[TempProperty]
+		currentCashDesk : CashDesk
+		currentStore : Store
+
+	}
+
+	Service ThirdPartyServices {
+
+		[Operation]
+		thirdPartyCardPaymentService(cardAccountNumber, expiryDate, fee)
+
+	}
+
+	Service ProcessSaleService {
+
+		[Operation]
+		makeNewSale()
+		enterItem(barcode, quantity)
+		endSale()
+		makeCashPayment(amount)
+		makeCardPayment(cardAccountNumber, expiryDate, fee)
+
+		[TempProperty]
+		currentSaleLine : SalesLineItem
+		currentSale : Sale
+		currentPaymentMethod : PaymentMethod[CASH|CARD]
+
+	}
+
+	Service ManageStoreCRUDService {
+
+		[Operation]
+		createStore(id, name, address, isopened)
+		queryStore(id)
+		modifyStore(id, name, address, isopened)
+		deleteStore(id)
+
+	}
+
+	Service ManageProductCatalogCRUDService {
+
+		[Operation]
+		createProductCatalog(id, name)
+		queryProductCatalog(id)
+		modifyProductCatalog(id, name)
+		deleteProductCatalog(id)
+
+	}
+
+	Service ManageCashDeskCRUDService {
+
+		[Operation]
+		createCashDesk(id, name, isopened)
+		queryCashDesk(id)
+		modifyCashDesk(id, name, isopened)
+		deleteCashDesk(id)
+
+	}
+
+	Service ManageCashierCRUDService {
+
+		[Operation]
+		createCashier(id, name)
+		queryCashier(id)
+		modifyCashier(id, name)
+		deleteCashier(id)
+
+	}
+
+	Service ManageItemCRUDService {
+
+		[Operation]
+		createItem(barcode, name, price, stocknumber, orderprice)
+		queryItem(barcode)
+		modifyItem(barcode, name, price, stocknumber, orderprice)
+		deleteItem(barcode)
+
+	}
+
+	Service ManageSupplierCRUDService {
+
+		[Operation]
+		createSupplier(id, name)
+		querySupplier(id)
+		modifySupplier(id, name)
+		deleteSupplier(id)
+
+	}
+
+	Service CoCoMEOrderProducts {
+
+		[Operation]
+		makeNewOrder(orderid)
+		listAllOutOfStoreProducts()
+		orderItem(barcode, quantity)
+		chooseSupplier(supplierID)
+		placeOrder()
+
+		[TempProperty]
+		currentOrderProduct : OrderProduct
+
+//	[WorkFlow]
+//	OrderProductWF
+	}
+
+	Contract CoCoMESystem::openStore(storeID : Integer) : Boolean {
+
+		definition:
+			/*
+			 * sto represents the object of class Store whose attribute Id is storeID
+			 */
+			sto:Store = Store.allInstance()->any(s:Store | s.Id = storeID)
+
+		precondition:
+			/*
+			 * The object sto exists 
+			 *  The attribute IsOpened of object sto is equal to false
+			 */
+			sto.oclIsUndefined() = false and
+			sto.IsOpened = false
+
+		postcondition:
+			/*
+			 * The currentStore became object sto 
+			 *  The attribute IsOpened of object sto became true 
+			 *  The return value was true
+			 */
+			self.currentStore = sto and
+			sto.IsOpened = true and
+			result = true
+
+	}
+
+	Contract CoCoMESystem::closeStore(storeID : Integer) : Boolean {
+
+		definition:
+			/*
+			 * sto represents the object of class Store whose attribute Id is storeID
+			 */
+			sto:Store = Store.allInstance()->any(s:Store | s.Id = storeID)
+
+		precondition:
+			/*
+			 * The object sto exists 
+			 *  The attribute IsOpened of object sto is equal to true
+			 */
+			sto.oclIsUndefined() = false and
+			sto.IsOpened = true
+
+		postcondition:
+			/*
+			 * The attribute IsOpened of object sto became false 
+			 *  The return value was true
+			 */
+			sto.IsOpened = false and
+			result = true
+
+	}
+
+	Contract CoCoMESystem::openCashDesk(cashDeskID : Integer) : Boolean {
+
+		definition:
+			/*
+			 * cd represents the object of class CashDesk whose attribute Id is cashDeskID
+			 */
+			cd:CashDesk = CashDesk.allInstance()->any(s:CashDesk | s.Id = cashDeskID)
+
+		precondition:
+			/*
+			 * The object cd exists 
+			 *  The attribute IsOpened of object cd is equal to false 
+			 *  The currentStore exists 
+			 *  The attribute IsOpened of currentStore is equal to true
+			 */
+			cd.oclIsUndefined() = false and
+			cd.IsOpened = false and
+			currentStore.oclIsUndefined() = false and
+			currentStore.IsOpened = true
+
+		postcondition:
+			/*
+			 * The currentCashDesk became object cd 
+			 *  The attribute IsOpened of object cd became true 
+			 *  The return value was true
+			 */
+			self.currentCashDesk = cd and
+			cd.IsOpened = true and
+			result = true
+
+	}
+
+	Contract CoCoMESystem::closeCashDesk(cashDeskID : Integer) : Boolean {
+
+		definition:
+			/*
+			 * cd represents the object of class CashDesk whose attribute Id is cashDeskID
+			 */
+			cd:CashDesk = CashDesk.allInstance()->any(s:CashDesk | s.Id = cashDeskID)
+
+		precondition:
+			/*
+			 * The object cd exists 
+			 *  The attribute IsOpened of object cd is equal to true 
+			 *  The currentStore exists 
+			 *  The attribute IsOpened of currentStore is equal to true
+			 */
+			cd.oclIsUndefined() = false and
+			cd.IsOpened = true and
+			currentStore.oclIsUndefined() = false and
+			currentStore.IsOpened = true
+
+		postcondition:
+			/*
+			 * The currentCashDesk became object cd 
+			 *  The attribute IsOpened of object cd became false 
+			 *  The return value was true
+			 */
+			self.currentCashDesk = cd and
+			cd.IsOpened = false and
+			result = true
+
+	}
+
+	Contract ProcessSaleService::makeNewSale() : Boolean {
+
+		precondition:
+			/*
+			 * The currentCashDesk exists 
+			 *  The attribute IsOpened of currentCashDesk is equal to true 
+			 *  The currentSale doesn't exists , or The currentSale exists and The attribute IsComplete of currentSale is equal to true
+			 */
+			currentCashDesk.oclIsUndefined() = false and
+			currentCashDesk.IsOpened = true and
+			(currentSale.oclIsUndefined() = true or
+				(currentSale.oclIsUndefined() = false and
+					currentSale.IsComplete = true
+				)
+			)
+
+		postcondition:
+			/*
+			 * The object s of class Sale was created 
+			 *  The object s was linked to currentCashDesk 
+			 *  The currentCashDesk was linked to object s 
+			 *  The attribute IsComplete of object s became false 
+			 *  The attribute IsReadytoPay of object s became false 
+			 *  The all instance of class Sale included object s 
+			 *  The currentSale became object s 
+			 *  The return value was true
+			 */
+			let s:Sale in
+			s.oclIsNew() and
+			s.BelongedCashDesk = currentCashDesk and
+			currentCashDesk.ContainedSales->includes(s) and
+			s.IsComplete = false and
+			s.IsReadytoPay = false and
+			Sale.allInstance()->includes(s) and
+			self.currentSale = s and
+			result = true
+
+	}
+
+	Contract ProcessSaleService::enterItem(barcode : Integer, quantity : Integer) : Boolean {
+
+		definition:
+			/*
+			 * item represents the object of class Item whose attribute Barcode is barcode
+			 */
+			item:Item = Item.allInstance()->any(i:Item | i.Barcode = barcode)
+
+		precondition:
+			currentSale.oclIsUndefined() = false and
+			currentSale.IsComplete = false and
+			item.oclIsUndefined() = false and
+			item.StockNumber > 0
+
+		postcondition:
+			let sli:SalesLineItem in
+			sli.oclIsNew() and
+			self.currentSaleLine = sli and
+			sli.BelongedSale = currentSale and
+			currentSale.ContainedSalesLine->includes(sli) and
+			sli.Quantity = quantity and
+			sli.BelongedItem = item and
+			item.StockNumber = item.StockNumber@pre - quantity and
+			sli.Subamount = item.Price * quantity and
+			SalesLineItem.allInstance()->includes(sli) and
+			result = true
+
+	}
+
+	Contract ProcessSaleService::endSale() : Real {
+
+		definition:
+			/*
+			 * sls represents the set of class SalesLineItem , including all objects of class SalesLineItem which currentSale is linked to 
+			 *  sub represents the set of Real , including the value of attribute Subamount of all objects in set sls
+			 */
+			sls:Set(SalesLineItem) = currentSale.ContainedSalesLine,
+			sub:Set(Real) = sls->collect(s:SalesLineItem | s.Subamount)
+
+		precondition:
+			/*
+			 * The currentSale exists 
+			 *  The attribute IsComplete of currentSale is equal to false 
+			 *  The attribute IsReadytoPay of currentSale is equal to false
+			 */
+			currentSale.oclIsUndefined() = false and
+			currentSale.IsComplete = false and
+			currentSale.IsReadytoPay = false
+
+		postcondition:
+			/*
+			 * The attribute Amount of currentSale became sum of sub 
+			 *  The attribute IsReadytoPay of currentSale became true 
+			 *  The return value was attribute Amount of currentSale
+			 */
+			currentSale.Amount = sub.sum() and
+			currentSale.IsReadytoPay = true and
+			result = currentSale.Amount
+
+	}
+
+	Contract ProcessSaleService::makeCashPayment(amount : Real) : Boolean {
+
+		precondition:
+			/*
+			 * The currentSale exists 
+			 *  The attribute IsComplete of currentSale is equal to false 
+			 *  The attribute IsReadytoPay of currentSale is equal to true 
+			 *  The amount is greater than or equal to attribute Amount of currentSale
+			 */
+			currentSale.oclIsUndefined() = false and
+			currentSale.IsComplete = false and
+			currentSale.IsReadytoPay = true and
+			amount >= currentSale.Amount
+
+		postcondition:
+			/*
+			 * The object cp of class CashPayment was created 
+			 *  The attribute AmountTendered of object cp became amount 
+			 *  The object cp was linked to currentSale 
+			 *  The currentSale was linked to object cp 
+			 *  The currentSale was linked to currentStore 
+			 *  The currentStore was linked to currentSale 
+			 *  The attribute IsComplete of currentSale became true 
+			 *  The attribute Time of currentSale was equal to Now 
+			 *  The attribute Balance of object cp became amount minus attribute Amount of currentSale 
+			 *  The all instance of class CashPayment included object cp 
+			 *  The return value was true
+			 */
+			let cp:CashPayment in
+			cp.oclIsNew() and
+			cp.AmountTendered = amount and
+			cp.BelongedSale = currentSale and
+			currentSale.AssoicatedPayment = cp and
+			currentSale.Belongedstore = currentStore and
+			currentStore.Sales->includes(currentSale) and
+			currentSale.IsComplete = true and
+			currentSale.Time.isEqual(Now) and
+			cp.Balance = amount - currentSale.Amount and
+			CashPayment.allInstance()->includes(cp) and
+			result = true
+
+	}
+
+	Contract ProcessSaleService::makeCardPayment(cardAccountNumber : String, expiryDate : Date, fee: Real) : Boolean {
+
+		precondition:
+			/*
+			 * The currentSale exists 
+			 *  The attribute IsComplete of currentSale is equal to false 
+			 *  The attribute IsReadytoPay of currentSale is equal to true 
+			 *  Perform operation thirdPartyCardPaymentService ( cardAccountNumber , expiryDate , fee )
+			 */
+			currentSale.oclIsUndefined() = false and
+			currentSale.IsComplete = false and
+			currentSale.IsReadytoPay = true and
+			thirdPartyCardPaymentService(cardAccountNumber, expiryDate, fee)
+
+		postcondition:
+			/*
+			 * The object cdp of class CardPayment was created 
+			 *  The attribute AmountTendered of object cdp became fee 
+			 *  The object cdp was linked to currentSale 
+			 *  The currentSale was linked to object cdp 
+			 *  The attribute CardAccountNumber of object cdp became cardAccountNumber 
+			 *  The attribute ExpiryDate of object cdp became expiryDate 
+			 *  The all instance of class CardPayment included object cdp 
+			 *  The currentSale was linked to currentStore 
+			 *  The currentStore was linked to currentSale 
+			 *  The attribute IsComplete of currentSale became true 
+			 *  The attribute Time of currentSale was equal to Now 
+			 *  The return value was true
+			 */
+			let cdp:CardPayment in
+			cdp.oclIsNew() and
+			cdp.AmountTendered = fee and
+			cdp.BelongedSale = currentSale and
+			currentSale.AssoicatedPayment = cdp and
+			cdp.CardAccountNumber = cardAccountNumber and
+			cdp.ExpiryDate = expiryDate and
+			CardPayment.allInstance()->includes(cdp) and
+			currentSale.Belongedstore = currentStore and
+			currentStore.Sales->includes(currentSale) and
+			currentSale.IsComplete = true and
+			currentSale.Time.isEqual(Now) and
+			result = true
+
+	}
+
+	Contract  ThirdPartyServices::thirdPartyCardPaymentService(cardAccountNumber : String, expiryDate : Date, fee : Real) : Boolean {
+
+		precondition:
+			/*
+			 * null
+			 */
+			true
+
+		postcondition:
+			/*
+			 * The return value was true
+			 */
+			result = true
+
+	}
+
+	Contract CoCoMEOrderProducts::makeNewOrder(orderid : Integer) : Boolean {
+
+		precondition:
+			/*
+			 * null
+			 */
+			true
+
+		postcondition:
+			/*
+			 * The object op of class OrderProduct was created 
+			 *  The attribute OrderStatus of object op became NEW 
+			 *  The attribute Id of object op became orderid 
+			 *  The attribute Time of object op was equal to Now 
+			 *  The all instance of class OrderProduct included object op 
+			 *  The currentOrderProduct became object op 
+			 *  The return value was true
+			 */
+			let op:OrderProduct in
+			op.oclIsNew() and
+			op.OrderStatus = OrderStatus::NEW and
+			op.Id = orderid and
+			op.Time.isEqual(Now) and
+			OrderProduct.allInstance()->includes(op) and
+			self.currentOrderProduct = op and
+			result = true
+
+	}
+
+//list all out of stock items
+	Contract CoCoMEOrderProducts::listAllOutOfStoreProducts() : Set(Item) {
+
+		precondition:
+			/*
+			 * null
+			 */
+			true
+
+		postcondition:
+			/*
+			 * The return value was all instance of class Item whose attribute StockNumber was 0
+			 */
+			result = Item.allInstance()->select(item:Item | item.StockNumber = 0)
+
+	}
+
+//order items
+	Contract CoCoMEOrderProducts::orderItem(barcode: Integer, quantity : Integer) : Boolean {
+
+		definition:
+			/*
+			 * item represents the object of class Item whose attribute Barcode is barcode
+			 */
+			item:Item = Item.allInstance()->any(i:Item | i.Barcode = barcode)
+
+		precondition:
+			/*
+			 * The object item exists
+			 */
+			item.oclIsUndefined() = false
+
+		postcondition:
+			/*
+			 * The object order of class OrderEntry was created 
+			 *  The attribute Quantity of object order became quantity 
+			 *  The attribute subAmount of object order became the product of attribute OrderPrice of object item and quantity 
+			 *  The object order was linked to object item 
+			 *  The all instance of class OrderEntry included object order 
+			 *  The currentOrderProduct was linked to object order 
+			 *  The return value was true
+			 */
+			let order:OrderEntry in
+			order.oclIsNew() and
+			order.Quantity = quantity and
+			order.subAmount = item.OrderPrice * quantity and
+			order.Item = item and
+			OrderEntry.allInstance()->includes(order) and
+			currentOrderProduct.ContainedEntries->includes(order) and
+			result = true
+
+	}
+
+	Contract CoCoMEOrderProducts::chooseSupplier(supplierID : Integer) : Boolean {
+
+		definition:
+			/*
+			 * sup represents the object of class Supplier whose attribute Id is supplierID
+			 */
+			sup:Supplier = Supplier.allInstance()->any(s:Supplier | s.Id = supplierID)
+
+		precondition:
+			/*
+			 * The object sup exists 
+			 *  The currentOrderProduct exists
+			 */
+			sup.oclIsUndefined() = false and
+			currentOrderProduct.oclIsUndefined() = false
+
+		postcondition:
+			/*
+			 * The currentOrderProduct was linked to object sup 
+			 *  The return value was true
+			 */
+			currentOrderProduct.Supplier = sup and
+			result = true
+
+	}
+
+	Contract CoCoMEOrderProducts::placeOrder() : Boolean {
+
+		precondition:
+			/*
+			 * The currentOrderProduct exists
+			 */
+			currentOrderProduct.oclIsUndefined() = false
+
+		postcondition:
+			/*
+			 * The attribute OrderStatus of currentOrderProduct became REQUESTED 
+			 *  The attribute Amount of currentOrderProduct became the sum of previous attribute Amount of currentOrderProduct and all attribute SubAmount of class OrderEntry 
+			 *  The return value was true
+			 */
+			currentOrderProduct.OrderStatus = OrderStatus::REQUESTED and
+			currentOrderProduct.ContainedEntries->forAll(o:OrderEntry |
+				currentOrderProduct.Amount = currentOrderProduct.Amount@pre + o.SubAmount)
+			and
+			result = true
+
+	}
+
+	Contract CoCoMESystem::changePrice(barcode : Integer, newPrice : Real) : Boolean {
+
+		definition:
+			/*
+			 * item represents the object of class Item whose attribute Barcode is barcode
+			 */
+			item:Item = Item.allInstance()->any(i:Item | i.Barcode = barcode)
+
+		precondition:
+			/*
+			 * The object item exists
+			 */
+			item.oclIsUndefined() = false
+
+		postcondition:
+			/*
+			 * The attribute Price of object item became newPrice 
+			 *  The return value was true
+			 */
+			item.Price = newPrice and
+			result = true
+
+	}
+
+	Contract CoCoMESystem::receiveOrderedProduct(orderID : Integer) : Boolean {
+
+		definition:
+			/*
+			 * op represents the object of class OrderProduct whose attribute Id is orderID
+			 */
+			op:OrderProduct = OrderProduct.allInstance()->any(i:OrderProduct | i.Id = orderID)
+
+		precondition:
+			/*
+			 * The object op exists
+			 */
+			op.oclIsUndefined() = false
+
+		postcondition:
+			/*
+			 * The attribute OrderStatus of object op became RECEIVED 
+			 *  The attribute StockNumber of all Item in object op was updated, which became the sum of previous attribute StockNumber of Item and attribute Quantity of class OrderEntry 
+			 *  The return value was true
+			 */
+			op.OrderStatus = OrderStatus::RECEIVED and
+			op.ContainedEntries->forAll(oe:OrderEntry |
+				oe.Item.StockNumber = oe.Item.StockNumber@pre + oe.Quantity)
+			and
+			result = true
+
+	}
+
+	Contract CoCoMESystem::listSuppliers() : Set(Supplier) {
+
+		precondition:
+			/*
+			 * null
+			 */
+			true
+
+		postcondition:
+			/*
+			 * The return value was all instance of class Supplier
+			 */
+			result = Supplier.allInstance()
+
+	}
+
+	Contract CoCoMESystem::showStockReports() : Set(Item) {
+
+		precondition:
+			/*
+			 * null
+			 */
+			true
+
+		postcondition:
+			/*
+			 * The return value was all instance of class Item
+			 */
+			result = Item.allInstance()
+
+	}
+
+//entity create operation 
+	Contract  ManageStoreCRUDService::createStore(id : Integer, name : String, address : String, isopened : Boolean) : Boolean {
+
+		definition:
+			/*
+			 * store represents the object of class Store whose attribute Id is id
+			 */
+			store:Store = Store.allInstance()->any(sto:Store | sto.Id = id)
+
+		precondition:
+			/*
+			 * The object store doesn't exists
+			 */
+			store.oclIsUndefined() = true
+
+		postcondition:
+			/*
+			 * The object sto of class Store was created 
+			 *  The attribute Id of object sto became id 
+			 *  The attribute Name of object sto became name 
+			 *  The attribute Address of object sto became address 
+			 *  The attribute IsOpened of object sto became isopened 
+			 *  The all instance of class Store included object sto 
+			 *  The return value was true
+			 */
+			let sto:Store in
+			sto.oclIsNew() and
+			sto.Id = id and
+			sto.Name = name and
+			sto.Address = address and
+			sto.IsOpened = isopened and
+			Store.allInstance()->includes(sto) and
+			result = true
+
+	}
+
+//entity query operation 
+	Contract  ManageStoreCRUDService::queryStore(id : Integer) : Store {
+
+		definition:
+			/*
+			 * store represents the object of class Store whose attribute Id is id
+			 */
+			store:Store = Store.allInstance()->any(sto:Store | sto.Id = id)
+
+		precondition:
+			/*
+			 * The object store exists
+			 */
+			store.oclIsUndefined() = false
+
+		postcondition:
+			/*
+			 * The return value was store
+			 */
+			result = store
+
+	}
+
+//entity modify operation 
+	Contract  ManageStoreCRUDService::modifyStore(id : Integer, name : String, address : String, isopened : Boolean) : Boolean {
+
+		definition:
+			/*
+			 * store represents the object of class Store whose attribute Id is id
+			 */
+			store:Store = Store.allInstance()->any(sto:Store | sto.Id = id)
+
+		precondition:
+			/*
+			 * The object store exists
+			 */
+			store.oclIsUndefined() = false
+
+		postcondition:
+			/*
+			 * The attribute Id of object store became id 
+			 *  The attribute Name of object store became name 
+			 *  The attribute Address of object store became address 
+			 *  The attribute IsOpened of object store became isopened 
+			 *  The return value was true
+			 */
+			store.Id = id and
+			store.Name = name and
+			store.Address = address and
+			store.IsOpened = isopened and
+			result = true
+
+	}
+
+//entity delete operation 
+	Contract  ManageStoreCRUDService::deleteStore(id : Integer) : Boolean {
+
+		definition:
+			/*
+			 * store represents the object of class Store whose attribute Id is id
+			 */
+			store:Store = Store.allInstance()->any(sto:Store | sto.Id = id)
+
+		precondition:
+			/*
+			 * The object store exists 
+			 *  The all instance of class Store includes object store
+			 */
+			store.oclIsUndefined() = false and
+			Store.allInstance()->includes(store)
+
+		postcondition:
+			/*
+			 * The object store was deleted from all instance of class Store 
+			 *  The return value was true
+			 */
+			Store.allInstance()->excludes(store) and
+			result = true
+
+	}
+
+//entity create operation 
+	Contract  ManageProductCatalogCRUDService::createProductCatalog(id : Integer, name : String) : Boolean {
+
+		definition:
+			/*
+			 * productcatalog represents the object of class ProductCatalog whose attribute Id is id
+			 */
+			productcatalog:ProductCatalog = ProductCatalog.allInstance()->any(pro:ProductCatalog | pro.Id = id)
+
+		precondition:
+			/*
+			 * The object productcatalog doesn't exists
+			 */
+			productcatalog.oclIsUndefined() = true
+
+		postcondition:
+			/*
+			 * The object pro of class ProductCatalog was created 
+			 *  The attribute Id of object pro became id 
+			 *  The attribute Name of object pro became name 
+			 *  The all instance of class ProductCatalog included object pro 
+			 *  The return value was true
+			 */
+			let pro:ProductCatalog in
+			pro.oclIsNew() and
+			pro.Id = id and
+			pro.Name = name and
+			ProductCatalog.allInstance()->includes(pro) and
+			result = true
+
+	}
+
+//entity query operation 
+	Contract  ManageProductCatalogCRUDService::queryProductCatalog(id : Integer) : ProductCatalog {
+
+		definition:
+			/*
+			 * productcatalog represents the object of class ProductCatalog whose attribute Id is id
+			 */
+			productcatalog:ProductCatalog = ProductCatalog.allInstance()->any(pro:ProductCatalog | pro.Id = id)
+
+		precondition:
+			/*
+			 * The object productcatalog exists
+			 */
+			productcatalog.oclIsUndefined() = false
+
+		postcondition:
+			/*
+			 * The return value was productcatalog
+			 */
+			result = productcatalog
+
+	}
+
+//entity modify operation 
+	Contract  ManageProductCatalogCRUDService::modifyProductCatalog(id : Integer, name : String) : Boolean {
+
+		definition:
+			/*
+			 * productcatalog represents the object of class ProductCatalog whose attribute Id is id
+			 */
+			productcatalog:ProductCatalog = ProductCatalog.allInstance()->any(pro:ProductCatalog | pro.Id = id)
+
+		precondition:
+			/*
+			 * The object productcatalog exists
+			 */
+			productcatalog.oclIsUndefined() = false
+
+		postcondition:
+			/*
+			 * The attribute Id of object productcatalog became id 
+			 *  The attribute Name of object productcatalog became name 
+			 *  The return value was true
+			 */
+			productcatalog.Id = id and
+			productcatalog.Name = name and
+			result = true
+
+	}
+
+//entity delete operation 
+	Contract  ManageProductCatalogCRUDService::deleteProductCatalog(id : Integer) : Boolean {
+
+		definition:
+			/*
+			 * productcatalog represents the object of class ProductCatalog whose attribute Id is id
+			 */
+			productcatalog:ProductCatalog = ProductCatalog.allInstance()->any(pro:ProductCatalog | pro.Id = id)
+
+		precondition:
+			/*
+			 * The object productcatalog exists 
+			 *  The all instance of class ProductCatalog includes object productcatalog
+			 */
+			productcatalog.oclIsUndefined() = false and
+			ProductCatalog.allInstance()->includes(productcatalog)
+
+		postcondition:
+			/*
+			 * The object productcatalog was deleted from all instance of class ProductCatalog 
+			 *  The return value was true
+			 */
+			ProductCatalog.allInstance()->excludes(productcatalog) and
+			result = true
+
+	}
+
+//entity create operation 
+	Contract  ManageCashDeskCRUDService::createCashDesk(id : Integer, name : String, isopened : Boolean) : Boolean {
+
+		definition:
+			/*
+			 * cashdesk represents the object of class CashDesk whose attribute Id is id
+			 */
+			cashdesk:CashDesk = CashDesk.allInstance()->any(cas:CashDesk | cas.Id = id)
+
+		precondition:
+			/*
+			 * The object cashdesk doesn't exists
+			 */
+			cashdesk.oclIsUndefined() = true
+
+		postcondition:
+			/*
+			 * The object cas of class CashDesk was created 
+			 *  The attribute Id of object cas became id 
+			 *  The attribute Name of object cas became name 
+			 *  The attribute IsOpened of object cas became isopened 
+			 *  The all instance of class CashDesk included object cas 
+			 *  The return value was true
+			 */
+			let cas:CashDesk in
+			cas.oclIsNew() and
+			cas.Id = id and
+			cas.Name = name and
+			cas.IsOpened = isopened and
+			CashDesk.allInstance()->includes(cas) and
+			result = true
+
+	}
+
+//entity query operation 
+	Contract  ManageCashDeskCRUDService::queryCashDesk(id : Integer) : CashDesk {
+
+		definition:
+			/*
+			 * cashdesk represents the object of class CashDesk whose attribute Id is id
+			 */
+			cashdesk:CashDesk = CashDesk.allInstance()->any(cas:CashDesk | cas.Id = id)
+
+		precondition:
+			/*
+			 * The object cashdesk exists
+			 */
+			cashdesk.oclIsUndefined() = false
+
+		postcondition:
+			/*
+			 * The return value was cashdesk
+			 */
+			result = cashdesk
+
+	}
+
+//entity modify operation 
+	Contract  ManageCashDeskCRUDService::modifyCashDesk(id : Integer, name : String, isopened : Boolean) : Boolean {
+
+		definition:
+			/*
+			 * cashdesk represents the object of class CashDesk whose attribute Id is id
+			 */
+			cashdesk:CashDesk = CashDesk.allInstance()->any(cas:CashDesk | cas.Id = id)
+
+		precondition:
+			/*
+			 * The object cashdesk exists
+			 */
+			cashdesk.oclIsUndefined() = false
+
+		postcondition:
+			/*
+			 * The attribute Id of object cashdesk became id 
+			 *  The attribute Name of object cashdesk became name 
+			 *  The attribute IsOpened of object cashdesk became isopened 
+			 *  The return value was true
+			 */
+			cashdesk.Id = id and
+			cashdesk.Name = name and
+			cashdesk.IsOpened = isopened and
+			result = true
+
+	}
+
+//entity delete operation 
+	Contract  ManageCashDeskCRUDService::deleteCashDesk(id : Integer) : Boolean {
+
+		definition:
+			/*
+			 * cashdesk represents the object of class CashDesk whose attribute Id is id
+			 */
+			cashdesk:CashDesk = CashDesk.allInstance()->any(cas:CashDesk | cas.Id = id)
+
+		precondition:
+			/*
+			 * The object cashdesk exists 
+			 *  The all instance of class CashDesk includes object cashdesk
+			 */
+			cashdesk.oclIsUndefined() = false and
+			CashDesk.allInstance()->includes(cashdesk)
+
+		postcondition:
+			/*
+			 * The object cashdesk was deleted from all instance of class CashDesk 
+			 *  The return value was true
+			 */
+			CashDesk.allInstance()->excludes(cashdesk) and
+			result = true
+
+	}
+
+//entity create operation 
+	Contract  ManageCashierCRUDService::createCashier(id : Integer, name : String) : Boolean {
+
+		definition:
+			/*
+			 * cashier represents the object of class Cashier whose attribute Id is id
+			 */
+			cashier:Cashier = Cashier.allInstance()->any(cas:Cashier | cas.Id = id)
+
+		precondition:
+			/*
+			 * The object cashier doesn't exists
+			 */
+			cashier.oclIsUndefined() = true
+
+		postcondition:
+			/*
+			 * The object cas of class Cashier was created 
+			 *  The attribute Id of object cas became id 
+			 *  The attribute Name of object cas became name 
+			 *  The all instance of class Cashier included object cas 
+			 *  The return value was true
+			 */
+			let cas:Cashier in
+			cas.oclIsNew() and
+			cas.Id = id and
+			cas.Name = name and
+			Cashier.allInstance()->includes(cas) and
+			result = true
+
+	}
+
+//entity query operation 
+	Contract  ManageCashierCRUDService::queryCashier(id : Integer) : Cashier {
+
+		definition:
+			/*
+			 * cashier represents the object of class Cashier whose attribute Id is id
+			 */
+			cashier:Cashier = Cashier.allInstance()->any(cas:Cashier | cas.Id = id)
+
+		precondition:
+			/*
+			 * The object cashier exists
+			 */
+			cashier.oclIsUndefined() = false
+
+		postcondition:
+			/*
+			 * The return value was cashier
+			 */
+			result = cashier
+
+	}
+
+//entity modify operation 
+	Contract  ManageCashierCRUDService::modifyCashier(id : Integer, name : String) : Boolean {
+
+		definition:
+			/*
+			 * cashier represents the object of class Cashier whose attribute Id is id
+			 */
+			cashier:Cashier = Cashier.allInstance()->any(cas:Cashier | cas.Id = id)
+
+		precondition:
+			/*
+			 * The object cashier exists
+			 */
+			cashier.oclIsUndefined() = false
+
+		postcondition:
+			/*
+			 * The attribute Id of object cashier became id 
+			 *  The attribute Name of object cashier became name 
+			 *  The return value was true
+			 */
+			cashier.Id = id and
+			cashier.Name = name and
+			result = true
+
+	}
+
+//entity delete operation 
+	Contract  ManageCashierCRUDService::deleteCashier(id : Integer) : Boolean {
+
+		definition:
+			/*
+			 * cashier represents the object of class Cashier whose attribute Id is id
+			 */
+			cashier:Cashier = Cashier.allInstance()->any(cas:Cashier | cas.Id = id)
+
+		precondition:
+			/*
+			 * The object cashier exists 
+			 *  The all instance of class Cashier includes object cashier
+			 */
+			cashier.oclIsUndefined() = false and
+			Cashier.allInstance()->includes(cashier)
+
+		postcondition:
+			/*
+			 * The object cashier was deleted from all instance of class Cashier 
+			 *  The return value was true
+			 */
+			Cashier.allInstance()->excludes(cashier) and
+			result = true
+
+	}
+
+//entity create operation 
+	Contract  ManageItemCRUDService::createItem(barcode : Integer, name : String, price : Real, stocknumber : Integer, orderprice : Real) : Boolean {
+
+		definition:
+			/*
+			 * item represents the object of class Item whose attribute Barcode is barcode
+			 */
+			item:Item = Item.allInstance()->any(ite:Item | ite.Barcode = barcode)
+
+		precondition:
+			/*
+			 * The object item doesn't exists
+			 */
+			item.oclIsUndefined() = true
+
+		postcondition:
+			/*
+			 * The object ite of class Item was created 
+			 *  The attribute Barcode of object ite became barcode 
+			 *  The attribute Name of object ite became name 
+			 *  The attribute Price of object ite became price 
+			 *  The attribute StockNumber of object ite became stocknumber 
+			 *  The attribute OrderPrice of object ite became orderprice 
+			 *  The all instance of class Item included object ite 
+			 *  The return value was true
+			 */
+			let ite:Item in
+			ite.oclIsNew() and
+			ite.Barcode = barcode and
+			ite.Name = name and
+			ite.Price = price and
+			ite.StockNumber = stocknumber and
+			ite.OrderPrice = orderprice and
+			Item.allInstance()->includes(ite) and
+			result = true
+
+	}
+
+//entity query operation 
+	Contract  ManageItemCRUDService::queryItem(barcode : Integer) : Item {
+
+		definition:
+			/*
+			 * item represents the object of class Item whose attribute Barcode is barcode
+			 */
+			item:Item = Item.allInstance()->any(ite:Item | ite.Barcode = barcode)
+
+		precondition:
+			/*
+			 * The object item exists
+			 */
+			item.oclIsUndefined() = false
+
+		postcondition:
+			/*
+			 * The return value was item
+			 */
+			result = item
+
+	}
+
+//entity modify operation 
+	Contract  ManageItemCRUDService::modifyItem(barcode : Integer, name : String, price : Real, stocknumber : Integer, orderprice : Real) : Boolean {
+
+		definition:
+			/*
+			 * item represents the object of class Item whose attribute Barcode is barcode
+			 */
+			item:Item = Item.allInstance()->any(ite:Item | ite.Barcode = barcode)
+
+		precondition:
+			/*
+			 * The object item exists
+			 */
+			item.oclIsUndefined() = false
+
+		postcondition:
+			/*
+			 * The attribute Barcode of object item became barcode 
+			 *  The attribute Name of object item became name 
+			 *  The attribute Price of object item became price 
+			 *  The attribute StockNumber of object item became stocknumber 
+			 *  The attribute OrderPrice of object item became orderprice 
+			 *  The return value was true
+			 */
+			item.Barcode = barcode and
+			item.Name = name and
+			item.Price = price and
+			item.StockNumber = stocknumber and
+			item.OrderPrice = orderprice and
+			result = true
+
+	}
+
+//entity delete operation 
+	Contract  ManageItemCRUDService::deleteItem(barcode : Integer) : Boolean {
+
+		definition:
+			/*
+			 * item represents the object of class Item whose attribute Barcode is barcode
+			 */
+			item:Item = Item.allInstance()->any(ite:Item | ite.Barcode = barcode)
+
+		precondition:
+			/*
+			 * The object item exists 
+			 *  The all instance of class Item includes object item
+			 */
+			item.oclIsUndefined() = false and
+			Item.allInstance()->includes(item)
+
+		postcondition:
+			/*
+			 * The object item was deleted from all instance of class Item 
+			 *  The return value was true
+			 */
+			Item.allInstance()->excludes(item) and
+			result = true
+
+	}
+
+//entity create operation 
+	Contract  ManageSupplierCRUDService::createSupplier(id : Integer, name : String) : Boolean {
+
+		definition:
+			/*
+			 * supplier represents the object of class Supplier whose attribute Id is id
+			 */
+			supplier:Supplier = Supplier.allInstance()->any(sup:Supplier | sup.Id = id)
+
+		precondition:
+			/*
+			 * The object supplier doesn't exists
+			 */
+			supplier.oclIsUndefined() = true
+
+		postcondition:
+			/*
+			 * The object sup of class Supplier was created 
+			 *  The attribute Id of object sup became id 
+			 *  The attribute Name of object sup became name 
+			 *  The all instance of class Supplier included object sup 
+			 *  The return value was true
+			 */
+			let sup:Supplier in
+			sup.oclIsNew() and
+			sup.Id = id and
+			sup.Name = name and
+			Supplier.allInstance()->includes(sup) and
+			result = true
+
+	}
+
+//entity query operation 
+	Contract  ManageSupplierCRUDService::querySupplier(id : Integer) : Supplier {
+
+		definition:
+			/*
+			 * supplier represents the object of class Supplier whose attribute Id is id
+			 */
+			supplier:Supplier = Supplier.allInstance()->any(sup:Supplier | sup.Id = id)
+
+		precondition:
+			/*
+			 * The object supplier exists
+			 */
+			supplier.oclIsUndefined() = false
+
+		postcondition:
+			/*
+			 * The return value was supplier
+			 */
+			result = supplier
+
+	}
+
+//entity modify operation 
+	Contract  ManageSupplierCRUDService::modifySupplier(id : Integer, name : String) : Boolean {
+
+		definition:
+			/*
+			 * supplier represents the object of class Supplier whose attribute Id is id
+			 */
+			supplier:Supplier = Supplier.allInstance()->any(sup:Supplier | sup.Id = id)
+
+		precondition:
+			/*
+			 * The object supplier exists
+			 */
+			supplier.oclIsUndefined() = false
+
+		postcondition:
+			/*
+			 * The attribute Id of object supplier became id 
+			 *  The attribute Name of object supplier became name 
+			 *  The return value was true
+			 */
+			supplier.Id = id and
+			supplier.Name = name and
+			result = true
+
+	}
+
+//entity delete operation 
+	Contract  ManageSupplierCRUDService::deleteSupplier(id : Integer) : Boolean {
+
+		definition:
+			/*
+			 * supplier represents the object of class Supplier whose attribute Id is id
+			 */
+			supplier:Supplier = Supplier.allInstance()->any(sup:Supplier | sup.Id = id)
+
+		precondition:
+			/*
+			 * The object supplier exists 
+			 *  The all instance of class Supplier includes object supplier
+			 */
+			supplier.oclIsUndefined() = false and
+			Supplier.allInstance()->includes(supplier)
+
+		postcondition:
+			/*
+			 * The object supplier was deleted from all instance of class Supplier 
+			 *  The return value was true
+			 */
+			Supplier.allInstance()->excludes(supplier) and
+			result = true
+
+	}
+
+}
+
+DomainModel CoCoME {
+
+	@AutoCRUD
+	Entity Store {
+		@Description( "The place where items are sold" ) Id : Integer
+		Name : String
+		Address : String
+		IsOpened : Boolean
+
+		[Refer]
+		AssociationCashdeskes : CashDesk* Association
+		Productcatalogs : ProductCatalog* Association
+		Items : Item* Association
+		Cashiers : Cashier* Association
+		Sales : Sale* ! Association
+		[INV]
+		inv UniqueStoreId : Store.allInstance()->isUnique(s:Store | s.Id)
+	}
+
+	@AutoCRUD
+	Entity ProductCatalog {
+		@Description( "The catalogue of items" ) Id : Integer
+		Name : String
+
+		[Refer]
+		ContainedItems : Item* Association
+		[INV]
+		inv UniqueProductCatalogId : ProductCatalog.allInstance()->isUnique(p:ProductCatalog | p.Id)
+	}
+
+	@AutoCRUD
+	Entity CashDesk {
+		@Description( "The cash desk in store" ) Id : Integer
+		Name : String
+		IsOpened : Boolean
+
+		[Refer]
+		ContainedSales : Sale* Association
+		BelongedStore : Store ! Association
+		[INV]
+		inv UniqueCashDeskId : CashDesk.allInstance()->isUnique(c:CashDesk | c.Id)
+	}
+
+	Entity Sale {
+		@Description( "The sales order for items" ) Time : Date
+		IsComplete: Boolean
+		Amount : Real
+		IsReadytoPay : Boolean
+
+		[Refer]
+		Belongedstore : Store Association
+		BelongedCashDesk : CashDesk ! Association
+		ContainedSalesLine : SalesLineItem* Association
+		AssoicatedPayment : Payment Association
+		[INV]
+		inv AmountGreatAndEqualZero : Amount >= 0
+	}
+
+	@AutoCRUD
+	Entity Cashier {
+		@Description( "The cashier in store" ) Id : Integer
+		Name : String
+
+		[Refer]
+		WorkedStore : Store ! Association
+		[INV]
+		inv UniqueCashierID : Cashier.allInstance()->isUnique(c:Cashier | c.Id)
+	}
+
+	Entity SalesLineItem {
+		@Description( "The sales order for a item" ) Quantity : Integer
+		Subamount : Real
+
+		[Refer]
+		BelongedSale : Sale ! Association
+		BelongedItem : Item Association
+	}
+
+	@AutoCRUD
+	Entity Item {
+		@Description( "The item to be sold" ) Barcode : Integer
+		Name : String
+		Price : Real
+		StockNumber : Integer
+		OrderPrice : Real
+
+		[Refer]
+		BelongedCatalog : ProductCatalog ! Association
+		[INV]
+		inv UniqueBarcode : Item.allInstance()->isUnique(u:Item | u.Barcode)
+		inv PriceGreatThanEqualZero : Price >= 0
+		inv StockNumberGreatThanEqualZero : StockNumber >= 0
+	}
+
+	Entity Payment {
+		@Description( "The bill for the goods sold" ) AmountTendered : Real
+
+		[Refer]
+		BelongedSale : Sale ! Association
+	}
+
+	Entity CashPayment extends Payment {
+		@Description( "Pay in cash" ) Balance : Real
+		[INV]
+		inv BalanceGreatAndEqualZero : Balance >= 0
+	}
+
+	Entity CardPayment extends Payment {
+		@Description( "Pay in card" ) CardAccountNumber : String
+		ExpiryDate : Date
+	}
+
+	Entity OrderEntry {
+		@Description( "The purchase order for a item" ) Quantity : Integer
+		SubAmount : Real
+
+		[Refer]
+		Item : Item Association
+	}
+
+	@AutoCRUD 
+	Entity Supplier {
+		@Description( "The supplier of items" ) Id : Integer
+		Name : String
+		[INV]
+		inv UniqueSupplier : Supplier.allInstance()->isUnique(s:Supplier | s.Id)
+	}
+
+	Entity OrderProduct {
+		@Description( "The purchase order for items" ) Id : Integer
+		Time : Date
+		OrderStatus : OrderStatus[NEW|RECEIVED|REQUESTED]
+		Amount : Real
+
+		[Refer]
+		Supplier : Supplier Association
+		ContainedEntries : OrderEntry* Association
+	}
+
+}
+
