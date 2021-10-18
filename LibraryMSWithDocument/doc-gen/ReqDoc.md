@@ -58,8 +58,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 ## 3.1  Functional requirements
 ### 3.1.1   User Requirements
 <b>Use Case Diagram</b>
-![Use Case Diagram](images/Use Case Diagram.jpg)
-
+ 
+![Use Case Diagram](https://github.com/Tians996/CaseStudies/blob/master/AtmWithDocument/doc-gen/images/Use%20Case%20Diagram.jpg)
+ 
 <b>A1 - User</b>
 <table>
 	<tr>
@@ -348,6 +349,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
 <b>UC2 - listBookHistory</b>
  
 <table>
@@ -384,6 +386,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
 <b>UC3 - makeReservation</b>
  
 <table>
@@ -420,6 +423,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
 <b>UC4 - recommendBook</b>
  
 <table>
@@ -456,6 +460,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
 <b>UC5 - cancelReservation</b>
  
 <table>
@@ -492,6 +497,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
 <b>UC6 - manageUser</b>
  
 <table>
@@ -528,6 +534,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
 <b>UC7 - manageBook</b>
  
 <table>
@@ -564,6 +571,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
 <b>UC8 - manageSubject</b>
  
 <table>
@@ -600,6 +608,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
 <b>UC9 - manageBookCopy</b>
  
 <table>
@@ -636,6 +645,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
 <b>UC10 - manageLibrarian</b>
  
 <table>
@@ -672,6 +682,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
 <b>UC11 - listRecommendBook</b>
  
 <table>
@@ -708,6 +719,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
 <b>UC12 - borrowBook</b>
  
 <table>
@@ -744,6 +756,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
 <b>UC13 - renewBook</b>
  
 <table>
@@ -780,6 +793,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
 <b>UC14 - payOverDueFee</b>
  
 <table>
@@ -816,6 +830,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
 <b>UC15 - returnBook</b>
  
 <table>
@@ -852,6 +867,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
 <b>UC16 - checkOverDueandComputeOverDueFee</b>
  
 <table>
@@ -888,6 +904,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
 <b>UC17 - dueSoonNotification</b>
  
 <table>
@@ -924,6 +941,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
 <b>UC18 - countDownSuspensionDay</b>
  
 <table>
@@ -960,6 +978,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
 <b>UC19 - sendNotificationEmail</b>
  
 <table>
@@ -996,9 +1015,13 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
+ 
 #### 3.1.2.2   Entity Analysis
 <b>Conceptual Class Diagram</b> 
-![Conceptual Class Diagram](images/Conceptual Class Diagram.jpg)
+ 
+![Conceptual Class Diagram](https://github.com/Tians996/CaseStudies/blob/master/AtmWithDocument/doc-gen/images/Conceptual%20Class%20Diagram.jpg)
+ 
 <b>E1 - User</b>
  
 <table>
@@ -1637,6 +1660,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 					</tr>
 	</table>
 	 
+ 
 #### 3.1.2.3   System Interfaces
 ##### System Interfaces
 <b>SI1 - LibraryManagementSystemSystem</b>
@@ -1819,6 +1843,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
 	 
+ 
 ##### System Operation Description
 <b>OP1 - searchBookByBarCode</b>
 <table>
@@ -5280,6 +5305,7 @@ The return value was true
 
 
 
+ 
 ## 3.2  External interface requirements
 User interfaces
 Hardware interfaces
