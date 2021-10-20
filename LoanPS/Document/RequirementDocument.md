@@ -58,8 +58,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 ## 3.1  Functional requirements
 ### 3.1.1   User Requirements
 <b>Use Case Diagram</b>
-![Use Case Diagram](images/Use Case Diagram.jpg)
-
+ 
+![Use Case Diagram](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/项目名/Use Case Diagram.jpg)
+ 
 <b>A1 - LoanOfficer</b>
 <table>
 	<tr>
@@ -234,7 +235,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
-![EvaluateLoanRequestSSD](images/EvaluateLoanRequestSSD.jpg)
+ 
+![EvaluateLoanRequestSSD](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/项目名/EvaluateLoanRequestSSD.jpg)
+ 
 <b>UC2 - manageLoanTerm</b>
  
 <table>
@@ -271,6 +274,8 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
+ 
 <b>UC3 - enterValidatedCreditReferences</b>
  
 <table>
@@ -307,6 +312,8 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
+ 
 <b>UC4 - generateLoanLetterAndAgreement</b>
  
 <table>
@@ -343,7 +350,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
-![GenerateLoanLetterAndAgreementSSD](images/GenerateLoanLetterAndAgreementSSD.jpg)
+ 
+![GenerateLoanLetterAndAgreementSSD](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/项目名/GenerateLoanLetterAndAgreementSSD.jpg)
+ 
 <b>UC5 - bookNewLoan</b>
  
 <table>
@@ -380,6 +389,8 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
+ 
 <b>UC6 - loanPayment</b>
  
 <table>
@@ -416,6 +427,8 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
+ 
 <b>UC7 - closeOutLoan</b>
  
 <table>
@@ -452,6 +465,8 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
+ 
 <b>UC8 - generateStandardPaymentNotice</b>
  
 <table>
@@ -488,6 +503,8 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
+ 
 <b>UC9 - generateLateNotice</b>
  
 <table>
@@ -524,6 +541,8 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
+ 
 <b>UC10 - submitLoanRequest</b>
  
 <table>
@@ -560,9 +579,14 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
+ 
+ 
 #### 3.1.2.2   Entity Analysis
 <b>Conceptual Class Diagram</b> 
-![Conceptual Class Diagram](images/Conceptual Class Diagram.jpg)
+ 
+![Conceptual Class Diagram](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/项目名/Conceptual Class Diagram.jpg)
+ 
 <b>E1 - LoanRequest</b>
  
 <table>
@@ -974,6 +998,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 					</tr>
 	</table>
 	 
+ 
 #### 3.1.2.3   System Interfaces
 ##### System Interfaces
 <b>SI1 - SubmitLoanRequestModule</b>
@@ -999,8 +1024,8 @@ This subsection of the SRS should identify requirements that may be delayed unti
 			<td><b>Variable Description</b></td>
 	</tr>
 	<tr>
-		<td><span name ="SubmitLoanRequestModulecurrentLoanRequest">currentLoanRequest</span></td>
-		<td>currentLoanRequest is a object of <a href="#CLASSLoanRequest">LoanRequest</a></td>
+		<td><span name ="SubmitLoanRequestModuleCurrentLoanRequest">CurrentLoanRequest</span></td>
+		<td>CurrentLoanRequest is a object of <a href="#CLASSLoanRequest">LoanRequest</a></td>
 					</tr>
 	</table>
 	 
@@ -1047,12 +1072,12 @@ This subsection of the SRS should identify requirements that may be delayed unti
 			<td><b>Variable Description</b></td>
 	</tr>
 	<tr>
-		<td><span name ="EnterValidatedCreditReferencesModulecurrentLoanRequest">currentLoanRequest</span></td>
-		<td>currentLoanRequest is a object of <a href="#CLASSLoanRequest">LoanRequest</a></td>
+		<td><span name ="EnterValidatedCreditReferencesModuleCurrentLoanRequest">CurrentLoanRequest</span></td>
+		<td>CurrentLoanRequest is a object of <a href="#CLASSLoanRequest">LoanRequest</a></td>
 					</tr>
 	<tr>
-		<td><span name ="EnterValidatedCreditReferencesModulecurrentLoanRequests">currentLoanRequests</span></td>
-		<td>currentLoanRequests is a set of <a href="#CLASSLoanRequest">LoanRequest</a></td>
+		<td><span name ="EnterValidatedCreditReferencesModuleCurrentLoanRequests">CurrentLoanRequests</span></td>
+		<td>CurrentLoanRequests is a set of <a href="#CLASSLoanRequest">LoanRequest</a></td>
 					</tr>
 	</table>
 	 
@@ -1079,12 +1104,12 @@ This subsection of the SRS should identify requirements that may be delayed unti
 			<td><b>Variable Description</b></td>
 	</tr>
 	<tr>
-		<td><span name ="EvaluateLoanRequestModulecurrentLoanRequest">currentLoanRequest</span></td>
-		<td>currentLoanRequest is a object of <a href="#CLASSLoanRequest">LoanRequest</a></td>
+		<td><span name ="EvaluateLoanRequestModuleCurrentLoanRequest">CurrentLoanRequest</span></td>
+		<td>CurrentLoanRequest is a object of <a href="#CLASSLoanRequest">LoanRequest</a></td>
 					</tr>
 	<tr>
-		<td><span name ="EvaluateLoanRequestModulecurrentLoanRequests">currentLoanRequests</span></td>
-		<td>currentLoanRequests is a set of <a href="#CLASSLoanRequest">LoanRequest</a></td>
+		<td><span name ="EvaluateLoanRequestModuleCurrentLoanRequests">CurrentLoanRequests</span></td>
+		<td>CurrentLoanRequests is a set of <a href="#CLASSLoanRequest">LoanRequest</a></td>
 					</tr>
 	</table>
 	 
@@ -1111,20 +1136,20 @@ This subsection of the SRS should identify requirements that may be delayed unti
 			<td><b>Variable Description</b></td>
 	</tr>
 	<tr>
-		<td><span name ="GenerateLoanLetterAndAgreementModulecurrentApprovalLetter">currentApprovalLetter</span></td>
-		<td>currentApprovalLetter is a object of <a href="#CLASSApprovalLetter">ApprovalLetter</a></td>
+		<td><span name ="GenerateLoanLetterAndAgreementModuleCurrentApprovalLetter">CurrentApprovalLetter</span></td>
+		<td>CurrentApprovalLetter is a object of <a href="#CLASSApprovalLetter">ApprovalLetter</a></td>
 					</tr>
 	<tr>
-		<td><span name ="GenerateLoanLetterAndAgreementModulecurrentLoanAgreement">currentLoanAgreement</span></td>
-		<td>currentLoanAgreement is a object of <a href="#CLASSLoanAgreement">LoanAgreement</a></td>
+		<td><span name ="GenerateLoanLetterAndAgreementModuleCurrentLoanAgreement">CurrentLoanAgreement</span></td>
+		<td>CurrentLoanAgreement is a object of <a href="#CLASSLoanAgreement">LoanAgreement</a></td>
 					</tr>
 	<tr>
-		<td><span name ="GenerateLoanLetterAndAgreementModulecurrentLoanRequest">currentLoanRequest</span></td>
-		<td>currentLoanRequest is a object of <a href="#CLASSLoanRequest">LoanRequest</a></td>
+		<td><span name ="GenerateLoanLetterAndAgreementModuleCurrentLoanRequest">CurrentLoanRequest</span></td>
+		<td>CurrentLoanRequest is a object of <a href="#CLASSLoanRequest">LoanRequest</a></td>
 					</tr>
 	<tr>
-		<td><span name ="GenerateLoanLetterAndAgreementModulecurrentLoanRequests">currentLoanRequests</span></td>
-		<td>currentLoanRequests is a set of <a href="#CLASSLoanRequest">LoanRequest</a></td>
+		<td><span name ="GenerateLoanLetterAndAgreementModuleCurrentLoanRequests">CurrentLoanRequests</span></td>
+		<td>CurrentLoanRequests is a set of <a href="#CLASSLoanRequest">LoanRequest</a></td>
 					</tr>
 	</table>
 	 
@@ -1168,6 +1193,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
 	 
+ 
 ##### System Operation Description
 <b>OP1 - enterLoanInformation</b>
 <table>
@@ -1189,7 +1215,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p>1. <i>requestid</i>, type: Integer</p><p>2. <i>name</i>, type: String</p><p>3. <i>loanamount</i>, type: Real</p><p>4. <i>loanpurpose</i>, type: String</p><p>5. <i>income</i>, type: Real</p><p>6. <i>phonenumber</i>, type: Integer</p><p>7. <i>postaladdress</i>, type: String</p><p>8. <i>zipcode</i>, type: Integer</p><p>9. <i>email</i>, type: String</p><p>10. <i>workreferences</i>, type: String</p><p>11. <i>creditreferences</i>, type: String</p><p>12. <i>checkingaccountnumber</i>, type: Integer</p><p>13. <i>securitynumber</i>, type: Integer</p></td>
+<td><p>1. name: <i>requestid</i>, type: Integer</p><p>2. name: <i>name</i>, type: String</p><p>3. name: <i>loanamount</i>, type: Real</p><p>4. name: <i>loanpurpose</i>, type: String</p><p>5. name: <i>income</i>, type: Real</p><p>6. name: <i>phonenumber</i>, type: Integer</p><p>7. name: <i>postaladdress</i>, type: String</p><p>8. name: <i>zipcode</i>, type: Integer</p><p>9. name: <i>email</i>, type: String</p><p>10. name: <i>workreferences</i>, type: String</p><p>11. name: <i>creditreferences</i>, type: String</p><p>12. name: <i>checkingaccountnumber</i>, type: Integer</p><p>13. name: <i>securitynumber</i>, type: Integer</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -1205,7 +1231,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 </tr>
 	<tr>
 		<td><b>Postconditions:</b></td>
-	<td><p>1. <i>loa</i> represented the object of class <a href="#CLASSLoanRequest">LoanRequest</a></p><p>2. The object <i>loa</i> was created</p><p>3. The attribute <i>RequestID</i> of the object <i>loa</i> became <i>requestid</i></p><p>4. The attribute <i>Name</i> of the object <i>loa</i> became <i>name</i></p><p>5. The attribute <i>LoanAmount</i> of the object <i>loa</i> became <i>loanamount</i></p><p>6. The attribute <i>LoanPurpose</i> of the object <i>loa</i> became <i>loanpurpose</i></p><p>7. The attribute <i>Income</i> of the object <i>loa</i> became <i>income</i></p><p>8. The attribute <i>PhoneNumber</i> of the object <i>loa</i> became <i>phonenumber</i></p><p>9. The attribute <i>PostalAddress</i> of the object <i>loa</i> became <i>postaladdress</i></p><p>10. The attribute <i>ZipCode</i> of the object <i>loa</i> became <i>zipcode</i></p><p>11. The attribute <i>Email</i> of the object <i>loa</i> became <i>email</i></p><p>12. The attribute <i>WorkReferences</i> of the object <i>loa</i> became <i>workreferences</i></p><p>13. The attribute <i>CreditReferences</i> of the object <i>loa</i> became <i>creditreferences</i></p><p>14. The attribute <i>CheckingAccountNumber</i> of the object <i>loa</i> became <i>checkingaccountnumber</i></p><p>15. The attribute <i>SecurityNumber</i> of the object <i>loa</i> became <i>securitynumber</i></p><p>16. The object <i>loa</i> was put into the instance set of class <a href="#CLASSLoanRequest">LoanRequest</a></p><p>17. The object <a href="#SubmitLoanRequestModulecurrentLoanRequest">currentLoanRequest</a> became <i>loa</i></p><p>18. The return value was <b>true</b></p></td>
+	<td><p>1. <i>loa</i> represented the object of class <a href="#CLASSLoanRequest">LoanRequest</a></p><p>2. The object <i>loa</i> was created</p><p>3. The attribute <i>RequestID</i> of the object <i>loa</i> became <i>requestid</i></p><p>4. The attribute <i>Name</i> of the object <i>loa</i> became <i>name</i></p><p>5. The attribute <i>LoanAmount</i> of the object <i>loa</i> became <i>loanamount</i></p><p>6. The attribute <i>LoanPurpose</i> of the object <i>loa</i> became <i>loanpurpose</i></p><p>7. The attribute <i>Income</i> of the object <i>loa</i> became <i>income</i></p><p>8. The attribute <i>PhoneNumber</i> of the object <i>loa</i> became <i>phonenumber</i></p><p>9. The attribute <i>PostalAddress</i> of the object <i>loa</i> became <i>postaladdress</i></p><p>10. The attribute <i>ZipCode</i> of the object <i>loa</i> became <i>zipcode</i></p><p>11. The attribute <i>Email</i> of the object <i>loa</i> became <i>email</i></p><p>12. The attribute <i>WorkReferences</i> of the object <i>loa</i> became <i>workreferences</i></p><p>13. The attribute <i>CreditReferences</i> of the object <i>loa</i> became <i>creditreferences</i></p><p>14. The attribute <i>CheckingAccountNumber</i> of the object <i>loa</i> became <i>checkingaccountnumber</i></p><p>15. The attribute <i>SecurityNumber</i> of the object <i>loa</i> became <i>securitynumber</i></p><p>16. The object <i>loa</i> was put into the instance set of class <a href="#CLASSLoanRequest">LoanRequest</a></p><p>17. The object <a href="#SubmitLoanRequestModuleCurrentLoanRequest">CurrentLoanRequest</a> became <i>loa</i></p><p>18. The return value was <b>true</b></p></td>
 	</tr>
 </table>
  
@@ -1213,37 +1239,40 @@ This subsection of the SRS should identify requirements that may be delayed unti
  
 ```java
 Contract  SubmitLoanRequestModule::enterLoanInformation(requestid : Integer, name : String, loanamount : Real, loanpurpose : String, income : Real, phonenumber : Integer, postaladdress : String, zipcode : Integer, email : String, workreferences : String, creditreferences : String, checkingaccountnumber : Integer, securitynumber : Integer) : Boolean {
-/* definition:
-loanrequest is the object loa in the instance set of class LoanRequest. loa represents an object of class LoanRequest, and loa meets:
-    The attribute RequestID of the object loa is equal to requestid
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * loanrequest is the object loa in the instance set of class LoanRequest. loa represents an object of class LoanRequest, and loa meets:
+		 *     The attribute RequestID of the object loa is equal to requestid
+		 */
 		definition:
 			loanrequest:LoanRequest = LoanRequest.allInstance()->any(loa:LoanRequest | loa.RequestID = requestid)
-/* precondition:
-loanrequest doesn't exist
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * loanrequest doesn't exist
+		 */
 		precondition:
 			loanrequest.oclIsUndefined() = true
-/* postcondition:
-loa represented the object of class LoanRequest
-The object loa was created
-The attribute RequestID of the object loa became requestid
-The attribute Name of the object loa became name
-The attribute LoanAmount of the object loa became loanamount
-The attribute LoanPurpose of the object loa became loanpurpose
-The attribute Income of the object loa became income
-The attribute PhoneNumber of the object loa became phonenumber
-The attribute PostalAddress of the object loa became postaladdress
-The attribute ZipCode of the object loa became zipcode
-The attribute Email of the object loa became email
-The attribute WorkReferences of the object loa became workreferences
-The attribute CreditReferences of the object loa became creditreferences
-The attribute CheckingAccountNumber of the object loa became checkingaccountnumber
-The attribute SecurityNumber of the object loa became securitynumber
-The object loa was put into the instance set of class LoanRequest
-The object currentLoanRequest became loa
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * loa represented the object of class LoanRequest
+		 * The object loa was created
+		 * The attribute RequestID of the object loa became requestid
+		 * The attribute Name of the object loa became name
+		 * The attribute LoanAmount of the object loa became loanamount
+		 * The attribute LoanPurpose of the object loa became loanpurpose
+		 * The attribute Income of the object loa became income
+		 * The attribute PhoneNumber of the object loa became phonenumber
+		 * The attribute PostalAddress of the object loa became postaladdress
+		 * The attribute ZipCode of the object loa became zipcode
+		 * The attribute Email of the object loa became email
+		 * The attribute WorkReferences of the object loa became workreferences
+		 * The attribute CreditReferences of the object loa became creditreferences
+		 * The attribute CheckingAccountNumber of the object loa became checkingaccountnumber
+		 * The attribute SecurityNumber of the object loa became securitynumber
+		 * The object loa was put into the instance set of class LoanRequest
+		 * The object CurrentLoanRequest became loa
+		 * The return value was true
+		 */
 		postcondition:
 			let loa:LoanRequest in
 			loa.oclIsNew() and
@@ -1261,7 +1290,7 @@ The return value was true
 			loa.CheckingAccountNumber = checkingaccountnumber and
 			loa.SecurityNumber = securitynumber and
 			LoanRequest.allInstance()->includes(loa) and
-			self.currentLoanRequest = loa and
+			self.CurrentLoanRequest = loa and
 			result = true
 }
 ```
@@ -1294,11 +1323,11 @@ The return value was true
 </tr>
 	<tr>
 <td><b>Preconditions:</b></td>
-		<td><p>The object <a href="#SubmitLoanRequestModulecurrentLoanRequest">currentLoanRequest</a> exists</p></td>
+		<td><p>The object <a href="#SubmitLoanRequestModuleCurrentLoanRequest">CurrentLoanRequest</a> exists</p></td>
 </tr>
 	<tr>
 		<td><b>Postconditions:</b></td>
-	<td><p>1. <i>his</i> represented the object of class <a href="#CLASSCreditHistory">CreditHistory</a></p><p>2. The object <i>his</i> was created</p><p>3. <i>his</i> became the return value of system operation <a href="#OPgetCreditHistory">getCreditHistory</a></p><p>4. The object <i>currentLoanRequest</i> was linked to the object <i>his</i> by <i>RequestedCreditHistory</i></p><p>5. The object <i>his</i> was put into the instance set of class <a href="#CLASSCreditHistory">CreditHistory</a></p><p>6. The return value was <b>true</b></p></td>
+	<td><p>1. <i>his</i> represented the object of class <a href="#CLASSCreditHistory">CreditHistory</a></p><p>2. The object <i>his</i> was created</p><p>3. <i>his</i> became the return value of system operation <a href="#OPgetCreditHistory">getCreditHistory</a></p><p>4. The object <i>CurrentLoanRequest</i> was linked to the object <i>his</i> by <i>RequestedCreditHistory</i></p><p>5. The object <i>his</i> was put into the instance set of class <a href="#CLASSCreditHistory">CreditHistory</a></p><p>6. The return value was <b>true</b></p></td>
 	</tr>
 </table>
  
@@ -1306,24 +1335,26 @@ The return value was true
  
 ```java
 Contract SubmitLoanRequestModule::creditRequest() : Boolean {
-/* precondition:
-The object currentLoanRequest exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * The object CurrentLoanRequest exists
+		 */
 		precondition:
-			self.currentLoanRequest.oclIsUndefined() = false
-/* postcondition:
-his represented the object of class CreditHistory
-The object his was created
-his became the return value of system operation getCreditHistory
-The object currentLoanRequest was linked to the object his by RequestedCreditHistory
-The object his was put into the instance set of class CreditHistory
-The return value was true
-*/
+			self.CurrentLoanRequest.oclIsUndefined() = false
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * his represented the object of class CreditHistory
+		 * The object his was created
+		 * his became the return value of system operation getCreditHistory
+		 * The object CurrentLoanRequest was linked to the object his by RequestedCreditHistory
+		 * The object his was put into the instance set of class CreditHistory
+		 * The return value was true
+		 */
 		postcondition:
 			let his:CreditHistory in
 			his.oclIsNew() and
-			his = getCreditHistory(currentLoanRequest.SecurityNumber, currentLoanRequest.Name) and
-			currentLoanRequest.RequestedCreditHistory = his and
+			his = getCreditHistory(CurrentLoanRequest.SecurityNumber, CurrentLoanRequest.Name) and
+			CurrentLoanRequest.RequestedCreditHistory = his and
 			CreditHistory.allInstance()->includes(his) and
 			result = true
 }
@@ -1357,11 +1388,11 @@ The return value was true
 </tr>
 	<tr>
 <td><b>Preconditions:</b></td>
-		<td><p>The object <a href="#SubmitLoanRequestModulecurrentLoanRequest">currentLoanRequest</a> exists</p></td>
+		<td><p>The object <a href="#SubmitLoanRequestModuleCurrentLoanRequest">CurrentLoanRequest</a> exists</p></td>
 </tr>
 	<tr>
 		<td><b>Postconditions:</b></td>
-	<td><p>1. <i>ca</i> represented the object of class <a href="#CLASSCheckingAccount">CheckingAccount</a></p><p>2. The object <i>ca</i> was created</p><p>3. <i>ca</i> became the return value of system operation <a href="#OPgetCheckingAccountStatus">getCheckingAccountStatus</a></p><p>4. The object <a href="#SubmitLoanRequestModulecurrentLoanRequest">currentLoanRequest</a> was linked to the object <i>ca</i> by <i>RequestedCAHistory</i></p><p>5. The object <i>ca</i> was put into the instance set of class <a href="#CLASSCheckingAccount">CheckingAccount</a></p><p>6. The return value was <b>true</b></p></td>
+	<td><p>1. <i>ca</i> represented the object of class <a href="#CLASSCheckingAccount">CheckingAccount</a></p><p>2. The object <i>ca</i> was created</p><p>3. <i>ca</i> became the return value of system operation <a href="#OPgetCheckingAccountStatus">getCheckingAccountStatus</a></p><p>4. The object <a href="#SubmitLoanRequestModuleCurrentLoanRequest">CurrentLoanRequest</a> was linked to the object <i>ca</i> by <i>RequestedCAHistory</i></p><p>5. The object <i>ca</i> was put into the instance set of class <a href="#CLASSCheckingAccount">CheckingAccount</a></p><p>6. The return value was <b>true</b></p></td>
 	</tr>
 </table>
  
@@ -1369,24 +1400,26 @@ The return value was true
  
 ```java
 Contract SubmitLoanRequestModule::accountStatusRequest() : Boolean {
-/* precondition:
-The object currentLoanRequest exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * The object CurrentLoanRequest exists
+		 */
 		precondition:
-			self.currentLoanRequest.oclIsUndefined() = false
-/* postcondition:
-ca represented the object of class CheckingAccount
-The object ca was created
-ca became the return value of system operation getCheckingAccountStatus
-The object currentLoanRequest was linked to the object ca by RequestedCAHistory
-The object ca was put into the instance set of class CheckingAccount
-The return value was true
-*/
+			self.CurrentLoanRequest.oclIsUndefined() = false
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * ca represented the object of class CheckingAccount
+		 * The object ca was created
+		 * ca became the return value of system operation getCheckingAccountStatus
+		 * The object CurrentLoanRequest was linked to the object ca by RequestedCAHistory
+		 * The object ca was put into the instance set of class CheckingAccount
+		 * The return value was true
+		 */
 		postcondition:
 			let ca:CheckingAccount in
 			ca.oclIsNew() and
-			ca = getCheckingAccountStatus(self.currentLoanRequest.CheckingAccountNumber) and
-			self.currentLoanRequest.RequestedCAHistory = ca and
+			ca = getCheckingAccountStatus(self.CurrentLoanRequest.CheckingAccountNumber) and
+			self.CurrentLoanRequest.RequestedCAHistory = ca and
 			CheckingAccount.allInstance()->includes(ca) and
 			result = true
 }
@@ -1420,11 +1453,11 @@ The return value was true
 </tr>
 	<tr>
 <td><b>Preconditions:</b></td>
-		<td><p>1. The object <a href="#SubmitLoanRequestModulecurrentLoanRequest">currentLoanRequest</a> exists</p><p>2. <i>currentLoanRequest</i> exists</p><p>3. <i>currentLoanRequest</i> exists</p></td>
+		<td><p>1. The object <a href="#SubmitLoanRequestModuleCurrentLoanRequest">CurrentLoanRequest</a> exists</p><p>2. <i>CurrentLoanRequest</i> exists</p><p>3. <i>CurrentLoanRequest</i> exists</p></td>
 </tr>
 	<tr>
 		<td><b>Postconditions:</b></td>
-	<td><p>1. The attribute <i>CreditScore</i> of the object <a href="#SubmitLoanRequestModulecurrentLoanRequest">currentLoanRequest</a> became <b>100</b></p><p>2. The attribute <i>Status</i> of the object <a href="#SubmitLoanRequestModulecurrentLoanRequest">currentLoanRequest</a> became <b>SUBMITTED</b></p><p>3. The return value was the attribute <i>CreditScore</i> of the object <a href="#SubmitLoanRequestModulecurrentLoanRequest">currentLoanRequest</a></p></td>
+	<td><p>1. The attribute <i>CreditScore</i> of the object <a href="#SubmitLoanRequestModuleCurrentLoanRequest">CurrentLoanRequest</a> became <b>100</b></p><p>2. The attribute <i>Status</i> of the object <a href="#SubmitLoanRequestModuleCurrentLoanRequest">CurrentLoanRequest</a> became <b>SUBMITTED</b></p><p>3. The return value was the attribute <i>CreditScore</i> of the object <a href="#SubmitLoanRequestModuleCurrentLoanRequest">CurrentLoanRequest</a></p></td>
 	</tr>
 </table>
  
@@ -1432,25 +1465,27 @@ The return value was true
  
 ```java
 Contract SubmitLoanRequestModule::calculateScore() : Integer {
-/* precondition:
-The object currentLoanRequest exists
-currentLoanRequest exists
-currentLoanRequest exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * The object CurrentLoanRequest exists
+		 * CurrentLoanRequest exists
+		 * CurrentLoanRequest exists
+		 */
 		precondition:
-			self.currentLoanRequest.oclIsUndefined() = false and
-			currentLoanRequest.RequestedCAHistory.oclIsUndefined() = false and
-			currentLoanRequest.RequestedCreditHistory.oclIsUndefined() = false
-/* postcondition:
-The attribute CreditScore of the object currentLoanRequest became 100
-The attribute Status of the object currentLoanRequest became SUBMITTED
-The return value was the attribute CreditScore of the object currentLoanRequest
-*/
+			self.CurrentLoanRequest.oclIsUndefined() = false and
+			CurrentLoanRequest.RequestedCAHistory.oclIsUndefined() = false and
+			CurrentLoanRequest.RequestedCreditHistory.oclIsUndefined() = false
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The attribute CreditScore of the object CurrentLoanRequest became 100
+		 * The attribute Status of the object CurrentLoanRequest became SUBMITTED
+		 * The return value was the attribute CreditScore of the object CurrentLoanRequest
+		 */
 		postcondition:
 			// outstandingdebt,  baddebits,  balance,  checkingaccountstatus,  income 
-			self.currentLoanRequest.CreditScore = 100 and
-			self.currentLoanRequest.Status = LoanRequestStatus::SUBMITTED and
-			result = self.currentLoanRequest.CreditScore
+			self.CurrentLoanRequest.CreditScore = 100 and
+			self.CurrentLoanRequest.Status = LoanRequestStatus::SUBMITTED and
+			result = self.CurrentLoanRequest.CreditScore
 }
 ```
 
@@ -1490,7 +1525,7 @@ The return value was the attribute CreditScore of the object currentLoanRequest
 </tr>
 	<tr>
 		<td><b>Postconditions:</b></td>
-	<td><p>1. The value of temporary variable <a href="#EnterValidatedCreditReferencesModulecurrentLoanRequests">currentLoanRequests</a> became <i>rs</i></p><p>2. The return value was <i>rs</i></p></td>
+	<td><p>1. The value of temporary variable <a href="#EnterValidatedCreditReferencesModuleCurrentLoanRequests">CurrentLoanRequests</a> became <i>rs</i></p><p>2. The return value was <i>rs</i></p></td>
 	</tr>
 </table>
  
@@ -1498,23 +1533,26 @@ The return value was the attribute CreditScore of the object currentLoanRequest
  
 ```java
 Contract EnterValidatedCreditReferencesModule::listSubmitedLoanRequest() : Set(LoanRequest) {
-/* definition:
-rs is the set of class LoanRequest, including all r in the instance set of class LoanRequest. r represents an object of class LoanRequest, and r meets:
-    The attribute Status of the object r is equal to SUBMITTED
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * rs is the set of class LoanRequest, including all r in the instance set of class LoanRequest. r represents an object of class LoanRequest, and r meets:
+		 *     The attribute Status of the object r is equal to SUBMITTED
+		 */
 		definition:
 			rs:Set(LoanRequest) = LoanRequest.allInstance()->select(r:LoanRequest | r.Status =  LoanRequestStatus::SUBMITTED)
-/* precondition:
-The size of rs is greater than 0
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * The size of rs is greater than 0
+		 */
 		precondition:
 			rs.size() > 0
-/* postcondition:
-The value of temporary variable currentLoanRequests became rs
-The return value was rs
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The value of temporary variable CurrentLoanRequests became rs
+		 * The return value was rs
+		 */
 		postcondition:
-			self.currentLoanRequests = rs and
+			self.CurrentLoanRequests = rs and
 			result = rs
 }
 ```
@@ -1539,7 +1577,7 @@ The return value was rs
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>requestid</i>, type: Integer</p></td>
+<td><p>name: <i>requestid</i>, type: Integer</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -1547,7 +1585,7 @@ The return value was rs
 </tr>
 <tr>
 			<td><b>Definition:</b></td>
-<td><p><i>rs</i> is the object <i>r</i> in the set <a href="#EnterValidatedCreditReferencesModulecurrentLoanRequests">currentLoanRequests</a>. <i>r</i> represents an object of class <a href="#CLASSLoanRequest">LoanRequest</a>, and <i>r</i> meets:</p><p>&emsp;&emsp;The attribute <i>RequestID</i> of the object <i>r</i> is equal to <i>requestid</i></p></td>
+<td><p><i>rs</i> is the object <i>r</i> in the set <a href="#EnterValidatedCreditReferencesModuleCurrentLoanRequests">CurrentLoanRequests</a>. <i>r</i> represents an object of class <a href="#CLASSLoanRequest">LoanRequest</a>, and <i>r</i> meets:</p><p>&emsp;&emsp;The attribute <i>RequestID</i> of the object <i>r</i> is equal to <i>requestid</i></p></td>
 	</tr>
 	<tr>
 <td><b>Preconditions:</b></td>
@@ -1555,7 +1593,7 @@ The return value was rs
 </tr>
 	<tr>
 		<td><b>Postconditions:</b></td>
-	<td><p>1. The object <a href="#EnterValidatedCreditReferencesModulecurrentLoanRequest">currentLoanRequest</a> became <i>rs</i></p><p>2. The return value was <i>rs</i></p></td>
+	<td><p>1. The object <a href="#EnterValidatedCreditReferencesModuleCurrentLoanRequest">CurrentLoanRequest</a> became <i>rs</i></p><p>2. The return value was <i>rs</i></p></td>
 	</tr>
 </table>
  
@@ -1563,23 +1601,26 @@ The return value was rs
  
 ```java
 Contract EnterValidatedCreditReferencesModule::chooseLoanRequest(requestid : Integer) : LoanRequest {
-/* definition:
-rs is the object r in the set currentLoanRequests. r represents an object of class LoanRequest, and r meets:
-    The attribute RequestID of the object r is equal to requestid
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * rs is the object r in the set CurrentLoanRequests. r represents an object of class LoanRequest, and r meets:
+		 *     The attribute RequestID of the object r is equal to requestid
+		 */
 		definition:
-			rs:LoanRequest = self.currentLoanRequests->any(r:LoanRequest | r.RequestID = requestid)
-/* precondition:
-rs exists
-*/
+			rs:LoanRequest = self.CurrentLoanRequests->any(r:LoanRequest | r.RequestID = requestid)
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * rs exists
+		 */
 		precondition:
 			rs.oclIsUndefined() = false
-/* postcondition:
-The object currentLoanRequest became rs
-The return value was rs
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The object CurrentLoanRequest became rs
+		 * The return value was rs
+		 */
 		postcondition:
-			self.currentLoanRequest = rs and
+			self.CurrentLoanRequest = rs and
 			result = rs
 }
 ```
@@ -1612,11 +1653,11 @@ The return value was rs
 </tr>
 	<tr>
 <td><b>Preconditions:</b></td>
-		<td><p>The object <a href="#EnterValidatedCreditReferencesModulecurrentLoanRequest">currentLoanRequest</a> exists</p></td>
+		<td><p>The object <a href="#EnterValidatedCreditReferencesModuleCurrentLoanRequest">CurrentLoanRequest</a> exists</p></td>
 </tr>
 	<tr>
 		<td><b>Postconditions:</b></td>
-	<td><p>1. The attribute <i>Status</i> of the object <a href="#EnterValidatedCreditReferencesModulecurrentLoanRequest">currentLoanRequest</a> became <b>REFERENCESVALIDATED</b></p><p>2. The return value was <b>true</b></p></td>
+	<td><p>1. The attribute <i>Status</i> of the object <a href="#EnterValidatedCreditReferencesModuleCurrentLoanRequest">CurrentLoanRequest</a> became <b>REFERENCESVALIDATED</b></p><p>2. The return value was <b>true</b></p></td>
 	</tr>
 </table>
  
@@ -1624,17 +1665,19 @@ The return value was rs
  
 ```java
 Contract EnterValidatedCreditReferencesModule::markRequestValid() : Boolean {
-/* precondition:
-The object currentLoanRequest exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * The object CurrentLoanRequest exists
+		 */
 		precondition:
-			self.currentLoanRequest.oclIsUndefined() = false
-/* postcondition:
-The attribute Status of the object currentLoanRequest became REFERENCESVALIDATED
-The return value was true
-*/
+			self.CurrentLoanRequest.oclIsUndefined() = false
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The attribute Status of the object CurrentLoanRequest became REFERENCESVALIDATED
+		 * The return value was true
+		 */
 		postcondition:
-			self.currentLoanRequest.Status = LoanRequestStatus::REFERENCESVALIDATED and
+			self.CurrentLoanRequest.Status = LoanRequestStatus::REFERENCESVALIDATED and
 			result = true
 }
 ```
@@ -1675,7 +1718,7 @@ The return value was true
 </tr>
 	<tr>
 		<td><b>Postconditions:</b></td>
-	<td><p>1. The value of temporary variable <a href="#EvaluateLoanRequestModulecurrentLoanRequests">currentLoanRequests</a> became <i>rs</i></p><p>2. The return value was <i>rs</i></p></td>
+	<td><p>1. The value of temporary variable <a href="#EvaluateLoanRequestModuleCurrentLoanRequests">CurrentLoanRequests</a> became <i>rs</i></p><p>2. The return value was <i>rs</i></p></td>
 	</tr>
 </table>
  
@@ -1683,23 +1726,26 @@ The return value was true
  
 ```java
 Contract EvaluateLoanRequestModule::listTenLoanRequest() : Set(LoanRequest) {
-/* definition:
-rs is the set of class LoanRequest, including all r in the instance set of class LoanRequest. r represents an object of class LoanRequest, and r meets:
-    The attribute Status of the object r is equal to REFERENCESVALIDATED
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * rs is the set of class LoanRequest, including all r in the instance set of class LoanRequest. r represents an object of class LoanRequest, and r meets:
+		 *     The attribute Status of the object r is equal to REFERENCESVALIDATED
+		 */
 		definition:
 			rs:Set(LoanRequest) = LoanRequest.allInstance()->select(r:LoanRequest | r.Status =  LoanRequestStatus::REFERENCESVALIDATED)
-/* precondition:
-rs exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * rs exists
+		 */
 		precondition:
 			rs.oclIsUndefined() = false
-/* postcondition:
-The value of temporary variable currentLoanRequests became rs
-The return value was rs
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The value of temporary variable CurrentLoanRequests became rs
+		 * The return value was rs
+		 */
 		postcondition:
-			self.currentLoanRequests = rs and
+			self.CurrentLoanRequests = rs and
 			result = rs
 }
 ```
@@ -1724,7 +1770,7 @@ The return value was rs
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>requestid</i>, type: Integer</p></td>
+<td><p>name: <i>requestid</i>, type: Integer</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -1732,7 +1778,7 @@ The return value was rs
 </tr>
 <tr>
 			<td><b>Definition:</b></td>
-<td><p><i>rs</i> is the object <i>r</i> in the set <a href="#EvaluateLoanRequestModulecurrentLoanRequests">currentLoanRequests</a>. <i>r</i> represents an object of class <a href="#CLASSLoanRequest">LoanRequest</a>, and <i>r</i> meets:</p><p>&emsp;&emsp;The attribute <i>RequestID</i> of the object <i>r</i> is equal to <i>requestid</i></p></td>
+<td><p><i>rs</i> is the object <i>r</i> in the set <a href="#EvaluateLoanRequestModuleCurrentLoanRequests">CurrentLoanRequests</a>. <i>r</i> represents an object of class <a href="#CLASSLoanRequest">LoanRequest</a>, and <i>r</i> meets:</p><p>&emsp;&emsp;The attribute <i>RequestID</i> of the object <i>r</i> is equal to <i>requestid</i></p></td>
 	</tr>
 	<tr>
 <td><b>Preconditions:</b></td>
@@ -1740,7 +1786,7 @@ The return value was rs
 </tr>
 	<tr>
 		<td><b>Postconditions:</b></td>
-	<td><p>1. The object <a href="#EvaluateLoanRequestModulecurrentLoanRequest">currentLoanRequest</a> became <i>rs</i></p><p>2. The return value was <i>rs</i></p></td>
+	<td><p>1. The object <a href="#EvaluateLoanRequestModuleCurrentLoanRequest">CurrentLoanRequest</a> became <i>rs</i></p><p>2. The return value was <i>rs</i></p></td>
 	</tr>
 </table>
  
@@ -1748,23 +1794,26 @@ The return value was rs
  
 ```java
 Contract EvaluateLoanRequestModule::chooseOneForReview(requestid : Integer) : LoanRequest {
-/* definition:
-rs is the object r in the set currentLoanRequests. r represents an object of class LoanRequest, and r meets:
-    The attribute RequestID of the object r is equal to requestid
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * rs is the object r in the set CurrentLoanRequests. r represents an object of class LoanRequest, and r meets:
+		 *     The attribute RequestID of the object r is equal to requestid
+		 */
 		definition:
-			rs:LoanRequest = self.currentLoanRequests->any(r:LoanRequest | r.RequestID = requestid)
-/* precondition:
-rs exists
-*/
+			rs:LoanRequest = self.CurrentLoanRequests->any(r:LoanRequest | r.RequestID = requestid)
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * rs exists
+		 */
 		precondition:
 			rs.oclIsUndefined() = false
-/* postcondition:
-The object currentLoanRequest became rs
-The return value was rs
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The object CurrentLoanRequest became rs
+		 * The return value was rs
+		 */
 		postcondition:
-			self.currentLoanRequest = rs and
+			self.CurrentLoanRequest = rs and
 			result = rs
 }
 ```
@@ -1797,11 +1846,11 @@ The return value was rs
 </tr>
 	<tr>
 <td><b>Preconditions:</b></td>
-		<td><p>1. The object <a href="#EvaluateLoanRequestModulecurrentLoanRequest">currentLoanRequest</a> exists</p><p>2. <i>currentLoanRequest</i> exists</p></td>
+		<td><p>1. The object <a href="#EvaluateLoanRequestModuleCurrentLoanRequest">CurrentLoanRequest</a> exists</p><p>2. <i>CurrentLoanRequest</i> exists</p></td>
 </tr>
 	<tr>
 		<td><b>Postconditions:</b></td>
-	<td><p>The return value was the object which <i>currentLoanRequest</i> was linked to by <i>RequestedCreditHistory</i></p></td>
+	<td><p>The return value was the object which <i>CurrentLoanRequest</i> was linked to by <i>RequestedCreditHistory</i></p></td>
 	</tr>
 </table>
  
@@ -1809,18 +1858,20 @@ The return value was rs
  
 ```java
 Contract EvaluateLoanRequestModule::checkCreditHistory() : CreditHistory {
-/* precondition:
-The object currentLoanRequest exists
-currentLoanRequest exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * The object CurrentLoanRequest exists
+		 * CurrentLoanRequest exists
+		 */
 		precondition:
-			self.currentLoanRequest.oclIsUndefined() = false and
-			currentLoanRequest.RequestedCreditHistory.oclIsUndefined() = false
-/* postcondition:
-The return value was the object which currentLoanRequest was linked to by RequestedCreditHistory
-*/
+			self.CurrentLoanRequest.oclIsUndefined() = false and
+			CurrentLoanRequest.RequestedCreditHistory.oclIsUndefined() = false
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The return value was the object which CurrentLoanRequest was linked to by RequestedCreditHistory
+		 */
 		postcondition:
-			result = currentLoanRequest.RequestedCreditHistory
+			result = CurrentLoanRequest.RequestedCreditHistory
 }
 ```
 
@@ -1852,11 +1903,11 @@ The return value was the object which currentLoanRequest was linked to by Reques
 </tr>
 	<tr>
 <td><b>Preconditions:</b></td>
-		<td><p>1. The object <a href="#EvaluateLoanRequestModulecurrentLoanRequest">currentLoanRequest</a> exists</p><p>2. <i>currentLoanRequest</i> exists</p></td>
+		<td><p>1. The object <a href="#EvaluateLoanRequestModuleCurrentLoanRequest">CurrentLoanRequest</a> exists</p><p>2. <i>CurrentLoanRequest</i> exists</p></td>
 </tr>
 	<tr>
 		<td><b>Postconditions:</b></td>
-	<td><p>The return value was the object which <i>currentLoanRequest</i> was linked to by <i>RequestedCAHistory</i></p></td>
+	<td><p>The return value was the object which <i>CurrentLoanRequest</i> was linked to by <i>RequestedCAHistory</i></p></td>
 	</tr>
 </table>
  
@@ -1864,18 +1915,20 @@ The return value was the object which currentLoanRequest was linked to by Reques
  
 ```java
 Contract EvaluateLoanRequestModule::reviewCheckingAccount() : CheckingAccount {
-/* precondition:
-The object currentLoanRequest exists
-currentLoanRequest exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * The object CurrentLoanRequest exists
+		 * CurrentLoanRequest exists
+		 */
 		precondition:
-			self.currentLoanRequest.oclIsUndefined() = false and
-			currentLoanRequest.RequestedCAHistory.oclIsUndefined() = false
-/* postcondition:
-The return value was the object which currentLoanRequest was linked to by RequestedCAHistory
-*/
+			self.CurrentLoanRequest.oclIsUndefined() = false and
+			CurrentLoanRequest.RequestedCAHistory.oclIsUndefined() = false
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The return value was the object which CurrentLoanRequest was linked to by RequestedCAHistory
+		 */
 		postcondition:
-			result = currentLoanRequest.RequestedCAHistory
+			result = CurrentLoanRequest.RequestedCAHistory
 }
 ```
 
@@ -1919,14 +1972,16 @@ The return value was the object which currentLoanRequest was linked to by Reques
  
 ```java
 Contract EvaluateLoanRequestModule::listAvaiableLoanTerm() : Set(LoanTerm) {
-/* precondition:
-None
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * None
+		 */
 		precondition:
 			true
-/* postcondition:
-The return value was the instance set of class LoanTerm
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The return value was the instance set of class LoanTerm
+		 */
 		postcondition:
 			result = LoanTerm.allInstance()
 }
@@ -1952,7 +2007,7 @@ The return value was the instance set of class LoanTerm
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>termid</i>, type: Integer</p></td>
+<td><p>name: <i>termid</i>, type: Integer</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -1964,11 +2019,11 @@ The return value was the instance set of class LoanTerm
 	</tr>
 	<tr>
 <td><b>Preconditions:</b></td>
-		<td><p>1. The object <a href="#EvaluateLoanRequestModulecurrentLoanRequest">currentLoanRequest</a> exists</p><p>2. <i>loanterm</i> exists</p></td>
+		<td><p>1. The object <a href="#EvaluateLoanRequestModuleCurrentLoanRequest">CurrentLoanRequest</a> exists</p><p>2. <i>loanterm</i> exists</p></td>
 </tr>
 	<tr>
 		<td><b>Postconditions:</b></td>
-	<td><p>1. The object <i>currentLoanRequest</i> was linked to the object <i>loanterm</i> by <i>AttachedLoanTerms</i></p><p>2. The return value was <b>true</b></p></td>
+	<td><p>1. The object <i>CurrentLoanRequest</i> was linked to the object <i>loanterm</i> by <i>AttachedLoanTerms</i></p><p>2. The return value was <b>true</b></p></td>
 	</tr>
 </table>
  
@@ -1976,25 +2031,28 @@ The return value was the instance set of class LoanTerm
  
 ```java
 Contract EvaluateLoanRequestModule::addLoanTerm(termid : Integer) : Boolean {
-/* definition:
-loanterm is the object loa in the instance set of class LoanTerm. loa represents an object of class LoanTerm, and loa meets:
-    The attribute ItemID of the object loa is equal to termid
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * loanterm is the object loa in the instance set of class LoanTerm. loa represents an object of class LoanTerm, and loa meets:
+		 *     The attribute ItemID of the object loa is equal to termid
+		 */
 		definition:
 			loanterm:LoanTerm = LoanTerm.allInstance()->any(loa:LoanTerm | loa.ItemID = termid)
-/* precondition:
-The object currentLoanRequest exists
-loanterm exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * The object CurrentLoanRequest exists
+		 * loanterm exists
+		 */
 		precondition:
-			self.currentLoanRequest.oclIsUndefined() = false and
+			self.CurrentLoanRequest.oclIsUndefined() = false and
 			loanterm.oclIsUndefined() = false
-/* postcondition:
-The object currentLoanRequest was linked to the object loanterm by AttachedLoanTerms
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The object CurrentLoanRequest was linked to the object loanterm by AttachedLoanTerms
+		 * The return value was true
+		 */
 		postcondition:
-			currentLoanRequest.AttachedLoanTerms->includes(loanterm) and
+			CurrentLoanRequest.AttachedLoanTerms->includes(loanterm) and
 			result = true
 }
 ```
@@ -2027,11 +2085,11 @@ The return value was true
 </tr>
 	<tr>
 <td><b>Preconditions:</b></td>
-		<td><p>The object <a href="#EvaluateLoanRequestModulecurrentLoanRequest">currentLoanRequest</a> exists</p></td>
+		<td><p>The object <a href="#EvaluateLoanRequestModuleCurrentLoanRequest">CurrentLoanRequest</a> exists</p></td>
 </tr>
 	<tr>
 		<td><b>Postconditions:</b></td>
-	<td><p>1. The attribute <i>Status</i> of the object <a href="#EvaluateLoanRequestModulecurrentLoanRequest">currentLoanRequest</a> became <b>APPROVED</b></p><p>2. The return value was <b>true</b></p></td>
+	<td><p>1. The attribute <i>Status</i> of the object <a href="#EvaluateLoanRequestModuleCurrentLoanRequest">CurrentLoanRequest</a> became <b>APPROVED</b></p><p>2. The return value was <b>true</b></p></td>
 	</tr>
 </table>
  
@@ -2039,17 +2097,19 @@ The return value was true
  
 ```java
 Contract EvaluateLoanRequestModule::approveLoanRequest() : Boolean {
-/* precondition:
-The object currentLoanRequest exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * The object CurrentLoanRequest exists
+		 */
 		precondition:
-			self.currentLoanRequest.oclIsUndefined() = false
-/* postcondition:
-The attribute Status of the object currentLoanRequest became APPROVED
-The return value was true
-*/
+			self.CurrentLoanRequest.oclIsUndefined() = false
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The attribute Status of the object CurrentLoanRequest became APPROVED
+		 * The return value was true
+		 */
 		postcondition:
-			self.currentLoanRequest.Status = LoanRequestStatus::APPROVED and
+			self.CurrentLoanRequest.Status = LoanRequestStatus::APPROVED and
 			result = true
 }
 ```
@@ -2090,7 +2150,7 @@ The return value was true
 </tr>
 	<tr>
 		<td><b>Postconditions:</b></td>
-	<td><p>1. The value of temporary variable <a href="#GenerateLoanLetterAndAgreementModulecurrentLoanRequests">currentLoanRequests</a> became <i>rs</i></p><p>2. The return value was <i>rs</i></p></td>
+	<td><p>1. The value of temporary variable <a href="#GenerateLoanLetterAndAgreementModuleCurrentLoanRequests">CurrentLoanRequests</a> became <i>rs</i></p><p>2. The return value was <i>rs</i></p></td>
 	</tr>
 </table>
  
@@ -2098,23 +2158,26 @@ The return value was true
  
 ```java
 Contract GenerateLoanLetterAndAgreementModule::listApprovalRequest() : Set(LoanRequest) {
-/* definition:
-rs is the set of class LoanRequest, including all r in the instance set of class LoanRequest. r represents an object of class LoanRequest, and r meets:
-    The attribute Status of the object r is equal to APPROVED
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * rs is the set of class LoanRequest, including all r in the instance set of class LoanRequest. r represents an object of class LoanRequest, and r meets:
+		 *     The attribute Status of the object r is equal to APPROVED
+		 */
 		definition:
 			rs:Set(LoanRequest) = LoanRequest.allInstance()->select(r:LoanRequest | r.Status =  LoanRequestStatus::APPROVED)
-/* precondition:
-rs exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * rs exists
+		 */
 		precondition:
 			rs.oclIsUndefined() = false
-/* postcondition:
-The value of temporary variable currentLoanRequests became rs
-The return value was rs
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The value of temporary variable CurrentLoanRequests became rs
+		 * The return value was rs
+		 */
 		postcondition:
-			self.currentLoanRequests = rs and
+			self.CurrentLoanRequests = rs and
 			result = rs
 }
 ```
@@ -2139,7 +2202,7 @@ The return value was rs
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>id</i>, type: Integer</p></td>
+<td><p>name: <i>id</i>, type: Integer</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -2155,7 +2218,7 @@ The return value was rs
 </tr>
 	<tr>
 		<td><b>Postconditions:</b></td>
-	<td><p>1. <i>l</i> represented the object of class <a href="#CLASSApprovalLetter">ApprovalLetter</a></p><p>2. The object <i>l</i> was created</p><p>3. The attribute <i>Content</i> of the object <i>l</i> became <b>"ApprovalLetterContent"</b></p><p>4. The object <i>r</i> was linked to the object <i>l</i> by <i>AttachedApprovalLetter</i></p><p>5. The object <a href="#GenerateLoanLetterAndAgreementModulecurrentLoanRequest">currentLoanRequest</a> became <i>r</i></p><p>6. The object <i>l</i> was put into the instance set of class <a href="#CLASSApprovalLetter">ApprovalLetter</a></p><p>7. The return value was <b>true</b></p></td>
+	<td><p>1. <i>l</i> represented the object of class <a href="#CLASSApprovalLetter">ApprovalLetter</a></p><p>2. The object <i>l</i> was created</p><p>3. The attribute <i>Content</i> of the object <i>l</i> became <b>"ApprovalLetterContent"</b></p><p>4. The object <i>r</i> was linked to the object <i>l</i> by <i>AttachedApprovalLetter</i></p><p>5. The object <a href="#GenerateLoanLetterAndAgreementModuleCurrentLoanRequest">CurrentLoanRequest</a> became <i>r</i></p><p>6. The object <i>l</i> was put into the instance set of class <a href="#CLASSApprovalLetter">ApprovalLetter</a></p><p>7. The return value was <b>true</b></p></td>
 	</tr>
 </table>
  
@@ -2163,32 +2226,35 @@ The return value was rs
  
 ```java
 Contract GenerateLoanLetterAndAgreementModule::genereateApprovalLetter(id : Integer) : Boolean {
-/* definition:
-r is the object lr in the instance set of class LoanRequest. lr represents an object of class LoanRequest, and lr meets:
-    The attribute RequestID of the object lr is equal to id
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * r is the object lr in the instance set of class LoanRequest. lr represents an object of class LoanRequest, and lr meets:
+		 *     The attribute RequestID of the object lr is equal to id
+		 */
 		definition:
 			r:LoanRequest = LoanRequest.allInstance()->any(lr:LoanRequest | lr.RequestID = id)
-/* precondition:
-r exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * r exists
+		 */
 		precondition:
 			r.oclIsUndefined() = false
-/* postcondition:
-l represented the object of class ApprovalLetter
-The object l was created
-The attribute Content of the object l became "ApprovalLetterContent"
-The object r was linked to the object l by AttachedApprovalLetter
-The object currentLoanRequest became r
-The object l was put into the instance set of class ApprovalLetter
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * l represented the object of class ApprovalLetter
+		 * The object l was created
+		 * The attribute Content of the object l became "ApprovalLetterContent"
+		 * The object r was linked to the object l by AttachedApprovalLetter
+		 * The object CurrentLoanRequest became r
+		 * The object l was put into the instance set of class ApprovalLetter
+		 * The return value was true
+		 */
 		postcondition:
 			let l:ApprovalLetter in
 			l.oclIsNew() and
 			l.Content = "ApprovalLetterContent" and
 			r.AttachedApprovalLetter = l and
-			self.currentLoanRequest = r and
+			self.CurrentLoanRequest = r and
 			ApprovalLetter.allInstance()->includes(l) and
 			result = true
 }
@@ -2222,7 +2288,7 @@ The return value was true
 </tr>
 	<tr>
 <td><b>Preconditions:</b></td>
-		<td><p>The object <a href="#GenerateLoanLetterAndAgreementModulecurrentLoanRequest">currentLoanRequest</a> exists</p></td>
+		<td><p>The object <a href="#GenerateLoanLetterAndAgreementModuleCurrentLoanRequest">CurrentLoanRequest</a> exists</p></td>
 </tr>
 	<tr>
 		<td><b>Postconditions:</b></td>
@@ -2234,18 +2300,20 @@ The return value was true
  
 ```java
 Contract GenerateLoanLetterAndAgreementModule::emailToAppliant() : Boolean {
-/* precondition:
-The object currentLoanRequest exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * The object CurrentLoanRequest exists
+		 */
 		precondition:
-			self.currentLoanRequest.oclIsUndefined() = false
-/* postcondition:
-The system operation sendEmail was executed
-The return value was true
-*/
+			self.CurrentLoanRequest.oclIsUndefined() = false
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The system operation sendEmail was executed
+		 * The return value was true
+		 */
 		postcondition:
 			// "Your Loan Request was approved"
-			sendEmail(currentLoanRequest.Email, currentLoanRequest.Name, "Your Loan Request was approved") and
+			sendEmail(CurrentLoanRequest.Email, CurrentLoanRequest.Name, "Your Loan Request was approved") and
 			result = true
 }
 ```
@@ -2278,11 +2346,11 @@ The return value was true
 </tr>
 	<tr>
 <td><b>Preconditions:</b></td>
-		<td><p>The object <a href="#GenerateLoanLetterAndAgreementModulecurrentLoanRequest">currentLoanRequest</a> exists</p></td>
+		<td><p>The object <a href="#GenerateLoanLetterAndAgreementModuleCurrentLoanRequest">CurrentLoanRequest</a> exists</p></td>
 </tr>
 	<tr>
 		<td><b>Postconditions:</b></td>
-	<td><p>1. <i>la</i> represented the object of class <a href="#CLASSLoanAgreement">LoanAgreement</a></p><p>2. The object <i>la</i> was created</p><p>3. The attribute <i>Content</i> of the object <i>la</i> became <b>"Loan Agreement"</b></p><p>4. The object <a href="#GenerateLoanLetterAndAgreementModulecurrentLoanRequest">currentLoanRequest</a> was linked to the object <i>la</i> by <i>AttachedLoanAgreement</i></p><p>5. The object <i>la</i> was put into the instance set of class <a href="#CLASSLoanAgreement">LoanAgreement</a></p><p>6. The return value was <b>true</b></p></td>
+	<td><p>1. <i>la</i> represented the object of class <a href="#CLASSLoanAgreement">LoanAgreement</a></p><p>2. The object <i>la</i> was created</p><p>3. The attribute <i>Content</i> of the object <i>la</i> became <b>"Loan Agreement"</b></p><p>4. The object <a href="#GenerateLoanLetterAndAgreementModuleCurrentLoanRequest">CurrentLoanRequest</a> was linked to the object <i>la</i> by <i>AttachedLoanAgreement</i></p><p>5. The object <i>la</i> was put into the instance set of class <a href="#CLASSLoanAgreement">LoanAgreement</a></p><p>6. The return value was <b>true</b></p></td>
 	</tr>
 </table>
  
@@ -2290,24 +2358,26 @@ The return value was true
  
 ```java
 Contract GenerateLoanLetterAndAgreementModule::generateLoanAgreement() : Boolean {
-/* precondition:
-The object currentLoanRequest exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * The object CurrentLoanRequest exists
+		 */
 		precondition:
-			self.currentLoanRequest.oclIsUndefined() = false
-/* postcondition:
-la represented the object of class LoanAgreement
-The object la was created
-The attribute Content of the object la became "Loan Agreement"
-The object currentLoanRequest was linked to the object la by AttachedLoanAgreement
-The object la was put into the instance set of class LoanAgreement
-The return value was true
-*/
+			self.CurrentLoanRequest.oclIsUndefined() = false
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * la represented the object of class LoanAgreement
+		 * The object la was created
+		 * The attribute Content of the object la became "Loan Agreement"
+		 * The object CurrentLoanRequest was linked to the object la by AttachedLoanAgreement
+		 * The object la was put into the instance set of class LoanAgreement
+		 * The return value was true
+		 */
 		postcondition:
 			let la:LoanAgreement in
 			la.oclIsNew() and
 			la.Content = "Loan Agreement" and
-			self.currentLoanRequest.AttachedLoanAgreement = la and
+			self.CurrentLoanRequest.AttachedLoanAgreement = la and
 			LoanAgreement.allInstance()->includes(la) and
 			result = true
 }
@@ -2333,7 +2403,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>number</i>, type: Integer</p></td>
+<td><p>name: <i>number</i>, type: Integer</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -2341,7 +2411,7 @@ The return value was true
 </tr>
 	<tr>
 <td><b>Preconditions:</b></td>
-		<td><p>The object <a href="#GenerateLoanLetterAndAgreementModulecurrentLoanRequest">currentLoanRequest</a> exists</p></td>
+		<td><p>The object <a href="#GenerateLoanLetterAndAgreementModuleCurrentLoanRequest">CurrentLoanRequest</a> exists</p></td>
 </tr>
 	<tr>
 		<td><b>Postconditions:</b></td>
@@ -2353,17 +2423,19 @@ The return value was true
  
 ```java
 Contract GenerateLoanLetterAndAgreementModule::printLoanAgreement(number : Integer) : Boolean {
-/* precondition:
-The object currentLoanRequest exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * The object CurrentLoanRequest exists
+		 */
 		precondition:
-			self.currentLoanRequest.oclIsUndefined() = false
-/* postcondition:
-The system operation print was executed
-The return value was true
-*/
+			self.CurrentLoanRequest.oclIsUndefined() = false
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The system operation print was executed
+		 * The return value was true
+		 */
 		postcondition:
-			print(currentLoanRequest.AttachedLoanAgreement.Content, number) and
+			print(CurrentLoanRequest.AttachedLoanAgreement.Content, number) and
 			result = true
 }
 ```
@@ -2388,7 +2460,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p>1. <i>requestid</i>, type: Integer</p><p>2. <i>loanid</i>, type: Integer</p><p>3. <i>accountid</i>, type: Integer</p><p>4. <i>startdate</i>, type: LocalDate</p><p>5. <i>enddate</i>, type: LocalDate</p><p>6. <i>repaymentdays</i>, type: Integer</p></td>
+<td><p>1. name: <i>requestid</i>, type: Integer</p><p>2. name: <i>loanid</i>, type: Integer</p><p>3. name: <i>accountid</i>, type: Integer</p><p>4. name: <i>startdate</i>, type: LocalDate</p><p>5. name: <i>enddate</i>, type: LocalDate</p><p>6. name: <i>repaymentdays</i>, type: Integer</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -2412,50 +2484,53 @@ The return value was true
  
 ```java
 Contract  LoanProcessingSystemSystem::bookNewLoan(requestid : Integer, loanid : Integer, accountid: Integer, startdate : Date, enddate : Date, repaymentdays : Integer) : Boolean {
-/* definition:
-loan is the object loa in the instance set of class Loan. loa represents an object of class Loan, and loa meets:
-    The attribute LoanID of the object loa is equal to loanid
-r is the object lr in the instance set of class LoanRequest. lr represents an object of class LoanRequest, and lr meets:
-    The attribute RequestID of the object lr is equal to requestid
-la is the object lacc in the instance set of class LoanAccount. lacc represents an object of class LoanAccount, and lacc meets:
-    The attribute LoanAccountID of the object lacc is equal to accountid
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * loan is the object loa in the instance set of class Loan. loa represents an object of class Loan, and loa meets:
+		 *     The attribute LoanID of the object loa is equal to loanid
+		 * r is the object lr in the instance set of class LoanRequest. lr represents an object of class LoanRequest, and lr meets:
+		 *     The attribute RequestID of the object lr is equal to requestid
+		 * la is the object lacc in the instance set of class LoanAccount. lacc represents an object of class LoanAccount, and lacc meets:
+		 *     The attribute LoanAccountID of the object lacc is equal to accountid
+		 */
 		definition:
 			loan:Loan = Loan.allInstance()->any(loa:Loan | loa.LoanID = loanid),
 			r:LoanRequest = LoanRequest.allInstance()->any(lr:LoanRequest | lr.RequestID = requestid),
 			la:LoanAccount = LoanAccount.allInstance()->any(lacc:LoanAccount | lacc.LoanAccountID = accountid)
-/* precondition:
-loan doesn't exist
-r exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * loan doesn't exist
+		 * r exists
+		 */
 		precondition:
 			loan.oclIsUndefined() = true and
 			r.oclIsUndefined() = false
-/* postcondition:
-loa represented the object of class Loan
-lacc represented the object of class LoanAccount
-The object loa was created
-The attribute LoanID of the object loa became loanid
-The attribute StartDate of the object loa became startdate
-The attribute EndDate of the object loa became enddate
-The attribute RePaymentDays of the object loa became repaymentdays
-The attribute Status of the object loa became LSOPEN
-The attribute RepaymentAmount of the object loa became the attribute LoanAmount of the object r
-The attribute CurrentOverDueDate of the object loa became the day repaymentdays after startdate
-If la didn't exist, take the following as postcondition(s):
-    lacc became the return value of system operation createLoanAccount
-    The object lacc was put into the instance set of class LoanAccount
-    The attribute Balance of the object lacc became the attribute LoanAmount of the object r
-    The object loa was linked to the object lacc by BelongedLoanAccount
-Otherwise, take the following as postcondition(s):
-    The attribute Balance of the object la became the previous value of the attribute Balance of the object la plus the attribute LoanAmount of the object r
-The system operation transferFunds was executed
-The attribute RemainAmountToPay of the object loa became the attribute LoanAmount of the object r
-The object loa was put into the instance set of class Loan
-The object r was linked to the object loa by ApprovalLoan
-The object loa was linked to the object r by ReferedLoanRequest
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * loa represented the object of class Loan
+		 * lacc represented the object of class LoanAccount
+		 * The object loa was created
+		 * The attribute LoanID of the object loa became loanid
+		 * The attribute StartDate of the object loa became startdate
+		 * The attribute EndDate of the object loa became enddate
+		 * The attribute RePaymentDays of the object loa became repaymentdays
+		 * The attribute Status of the object loa became LSOPEN
+		 * The attribute RepaymentAmount of the object loa became the attribute LoanAmount of the object r
+		 * The attribute CurrentOverDueDate of the object loa became the day repaymentdays after startdate
+		 * If la didn't exist, take the following as postcondition(s):
+		 *     lacc became the return value of system operation createLoanAccount
+		 *     The object lacc was put into the instance set of class LoanAccount
+		 *     The attribute Balance of the object lacc became the attribute LoanAmount of the object r
+		 *     The object loa was linked to the object lacc by BelongedLoanAccount
+		 * Otherwise, take the following as postcondition(s):
+		 *     The attribute Balance of the object la became the previous value of the attribute Balance of the object la plus the attribute LoanAmount of the object r
+		 * The system operation transferFunds was executed
+		 * The attribute RemainAmountToPay of the object loa became the attribute LoanAmount of the object r
+		 * The object loa was put into the instance set of class Loan
+		 * The object r was linked to the object loa by ApprovalLoan
+		 * The object loa was linked to the object r by ReferedLoanRequest
+		 * The return value was true
+		 */
 		postcondition:
 			let loa:Loan, lacc:LoanAccount in
 			loa.oclIsNew() and
@@ -2529,23 +2604,26 @@ The return value was true
  
 ```java
 Contract LoanProcessingSystemSystem::generateStandardPaymentNotice() : Boolean {
-/* definition:
-loans is the set of class Loan, including all loa in the instance set of class Loan. loa represents an object of class Loan, and loa meets:
-    The attribute Status of the object loa is equal to LSOPEN
-    The day 3 days after Today is after the attribute CurrentOverDueDate of the object loa
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * loans is the set of class Loan, including all loa in the instance set of class Loan. loa represents an object of class Loan, and loa meets:
+		 *     The attribute Status of the object loa is equal to LSOPEN
+		 *     The day 3 days after Today is after the attribute CurrentOverDueDate of the object loa
+		 */
 		definition:
 			loans:Set(Loan) = Loan.allInstance()->select(loa:Loan | loa.Status = LoanStatus::LSOPEN and Today.After(3).isAfter(loa.CurrentOverDueDate))
-/* precondition:
-loans exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * loans exists
+		 */
 		precondition:
 			loans.oclIsUndefined() = false
-/* postcondition:
-For each object of class Loan in the set loans, l represented it(the object) and the following operations were performed:
-    The system operation sendEmail was executed
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * For each object of class Loan in the set loans, l represented it(the object) and the following operations were performed:
+		 *     The system operation sendEmail was executed
+		 * The return value was true
+		 */
 		postcondition:
 			loans->forAll(l:Loan |
 				sendEmail(l.ReferedLoanRequest.Email, "OverDueSoon", "You account is OverDueSoon"))
@@ -2598,23 +2676,26 @@ The return value was true
  
 ```java
 Contract LoanProcessingSystemSystem::generateLateNotice() : Boolean {
-/* definition:
-loans is the set of class Loan, including all loa in the instance set of class Loan. loa represents an object of class Loan, and loa meets:
-    The attribute Status of the object loa is equal to LSOPEN
-    Today is after the attribute CurrentOverDueDate of the object loa
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * loans is the set of class Loan, including all loa in the instance set of class Loan. loa represents an object of class Loan, and loa meets:
+		 *     The attribute Status of the object loa is equal to LSOPEN
+		 *     Today is after the attribute CurrentOverDueDate of the object loa
+		 */
 		definition:
 			loans:Set(Loan) = Loan.allInstance()->select(loa:Loan | loa.Status = LoanStatus::LSOPEN and Today.isAfter(loa.CurrentOverDueDate))
-/* precondition:
-loans exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * loans exists
+		 */
 		precondition:
 			loans.oclIsUndefined() = false
-/* postcondition:
-For each object of class Loan in the set loans, l represented it(the object) and the following operations were performed:
-    The system operation sendEmail was executed
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * For each object of class Loan in the set loans, l represented it(the object) and the following operations were performed:
+		 *     The system operation sendEmail was executed
+		 * The return value was true
+		 */
 		postcondition:
 			loans->forAll(l:Loan |
 				sendEmail(l.ReferedLoanRequest.Email, "OverDued", "You are overdued, please repayment ASAP"))
@@ -2643,7 +2724,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>loanid</i>, type: Integer</p></td>
+<td><p>name: <i>loanid</i>, type: Integer</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -2667,23 +2748,26 @@ The return value was true
  
 ```java
 Contract LoanProcessingSystemSystem::loanPayment(loanid : Integer) : Boolean {
-/* definition:
-loan is the object loa in the instance set of class Loan. loa represents an object of class Loan, and loa meets:
-    The attribute LoanID of the object loa is equal to loanid
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * loan is the object loa in the instance set of class Loan. loa represents an object of class Loan, and loa meets:
+		 *     The attribute LoanID of the object loa is equal to loanid
+		 */
 		definition:
 			loan:Loan = Loan.allInstance()->any(loa:Loan | loa.LoanID = loanid)
-/* precondition:
-loan exists
-The attribute Status of the object loan is equal to LSOPEN
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * loan exists
+		 * The attribute Status of the object loan is equal to LSOPEN
+		 */
 		precondition:
 			loan.oclIsUndefined() = false and
 			loan.Status = LoanStatus::LSOPEN
-/* postcondition:
-The attribute RemainAmountToPay of the object loan became the previous value of the attribute RemainAmountToPay of the object loan minus the attribute RepaymentAmount of the object loan
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The attribute RemainAmountToPay of the object loan became the previous value of the attribute RemainAmountToPay of the object loan minus the attribute RepaymentAmount of the object loan
+		 * The return value was true
+		 */
 		postcondition:
 			loan.RemainAmountToPay = loan.RemainAmountToPay@pre - loan.RepaymentAmount and
 			result = true
@@ -2710,7 +2794,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>loanid</i>, type: Integer</p></td>
+<td><p>name: <i>loanid</i>, type: Integer</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -2734,23 +2818,26 @@ The return value was true
  
 ```java
 Contract LoanProcessingSystemSystem::closeOutLoan(loanid : Integer) : Boolean {
-/* definition:
-loan is the object loa in the instance set of class Loan. loa represents an object of class Loan, and loa meets:
-    The attribute LoanID of the object loa is equal to loanid
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * loan is the object loa in the instance set of class Loan. loa represents an object of class Loan, and loa meets:
+		 *     The attribute LoanID of the object loa is equal to loanid
+		 */
 		definition:
 			loan:Loan = Loan.allInstance()->any(loa:Loan | loa.LoanID = loanid)
-/* precondition:
-loan exists
-The attribute Status of the object loan is equal to LSOPEN
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * loan exists
+		 * The attribute Status of the object loan is equal to LSOPEN
+		 */
 		precondition:
 			loan.oclIsUndefined() = false and
 			loan.Status = LoanStatus::LSOPEN
-/* postcondition:
-The attribute Status of the object loan became CLOSED
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The attribute Status of the object loan became CLOSED
+		 * The return value was true
+		 */
 		postcondition:
 			loan.Status = LoanStatus::CLOSED and
 			result = true
@@ -2777,7 +2864,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p>1. <i>itemid</i>, type: Integer</p><p>2. <i>content</i>, type: String</p></td>
+<td><p>1. name: <i>itemid</i>, type: Integer</p><p>2. name: <i>content</i>, type: String</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -2801,25 +2888,28 @@ The return value was true
  
 ```java
 Contract  ManageLoanTermCRUDService::createLoanTerm(itemid : Integer, content : String) : Boolean {
-/* definition:
-loanterm is the object loa in the instance set of class LoanTerm. loa represents an object of class LoanTerm, and loa meets:
-    The attribute ItemID of the object loa is equal to itemid
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * loanterm is the object loa in the instance set of class LoanTerm. loa represents an object of class LoanTerm, and loa meets:
+		 *     The attribute ItemID of the object loa is equal to itemid
+		 */
 		definition:
 			loanterm:LoanTerm = LoanTerm.allInstance()->any(loa:LoanTerm | loa.ItemID = itemid)
-/* precondition:
-loanterm doesn't exist
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * loanterm doesn't exist
+		 */
 		precondition:
 			loanterm.oclIsUndefined() = true
-/* postcondition:
-loa represented the object of class LoanTerm
-The object loa was created
-The attribute ItemID of the object loa became itemid
-The attribute Content of the object loa became content
-The object loa was put into the instance set of class LoanTerm
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * loa represented the object of class LoanTerm
+		 * The object loa was created
+		 * The attribute ItemID of the object loa became itemid
+		 * The attribute Content of the object loa became content
+		 * The object loa was put into the instance set of class LoanTerm
+		 * The return value was true
+		 */
 		postcondition:
 			let loa:LoanTerm in
 			loa.oclIsNew() and
@@ -2850,7 +2940,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>itemid</i>, type: Integer</p></td>
+<td><p>name: <i>itemid</i>, type: Integer</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -2874,20 +2964,23 @@ The return value was true
  
 ```java
 Contract  ManageLoanTermCRUDService::queryLoanTerm(itemid : Integer) : LoanTerm {
-/* definition:
-loanterm is the object loa in the instance set of class LoanTerm. loa represents an object of class LoanTerm, and loa meets:
-    The attribute ItemID of the object loa is equal to itemid
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * loanterm is the object loa in the instance set of class LoanTerm. loa represents an object of class LoanTerm, and loa meets:
+		 *     The attribute ItemID of the object loa is equal to itemid
+		 */
 		definition:
 			loanterm:LoanTerm = LoanTerm.allInstance()->any(loa:LoanTerm | loa.ItemID = itemid)
-/* precondition:
-loanterm exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * loanterm exists
+		 */
 		precondition:
 			loanterm.oclIsUndefined() = false
-/* postcondition:
-The return value was loanterm
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The return value was loanterm
+		 */
 		postcondition:
 			result = loanterm
 }
@@ -2913,7 +3006,7 @@ The return value was loanterm
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p>1. <i>itemid</i>, type: Integer</p><p>2. <i>content</i>, type: String</p></td>
+<td><p>1. name: <i>itemid</i>, type: Integer</p><p>2. name: <i>content</i>, type: String</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -2937,22 +3030,25 @@ The return value was loanterm
  
 ```java
 Contract  ManageLoanTermCRUDService::modifyLoanTerm(itemid : Integer, content : String) : Boolean {
-/* definition:
-loanterm is the object loa in the instance set of class LoanTerm. loa represents an object of class LoanTerm, and loa meets:
-    The attribute ItemID of the object loa is equal to itemid
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * loanterm is the object loa in the instance set of class LoanTerm. loa represents an object of class LoanTerm, and loa meets:
+		 *     The attribute ItemID of the object loa is equal to itemid
+		 */
 		definition:
 			loanterm:LoanTerm = LoanTerm.allInstance()->any(loa:LoanTerm | loa.ItemID = itemid)
-/* precondition:
-loanterm exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * loanterm exists
+		 */
 		precondition:
 			loanterm.oclIsUndefined() = false
-/* postcondition:
-The attribute ItemID of the object loanterm became itemid
-The attribute Content of the object loanterm became content
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The attribute ItemID of the object loanterm became itemid
+		 * The attribute Content of the object loanterm became content
+		 * The return value was true
+		 */
 		postcondition:
 			loanterm.ItemID = itemid and
 			loanterm.Content = content and
@@ -2980,7 +3076,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>itemid</i>, type: Integer</p></td>
+<td><p>name: <i>itemid</i>, type: Integer</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -3004,23 +3100,26 @@ The return value was true
  
 ```java
 Contract  ManageLoanTermCRUDService::deleteLoanTerm(itemid : Integer) : Boolean {
-/* definition:
-loanterm is the object loa in the instance set of class LoanTerm. loa represents an object of class LoanTerm, and loa meets:
-    The attribute ItemID of the object loa is equal to itemid
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * loanterm is the object loa in the instance set of class LoanTerm. loa represents an object of class LoanTerm, and loa meets:
+		 *     The attribute ItemID of the object loa is equal to itemid
+		 */
 		definition:
 			loanterm:LoanTerm = LoanTerm.allInstance()->any(loa:LoanTerm | loa.ItemID = itemid)
-/* precondition:
-loanterm exists
-The object loanterm is in the instance set of class LoanTerm
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * loanterm exists
+		 * The object loanterm is in the instance set of class LoanTerm
+		 */
 		precondition:
 			loanterm.oclIsUndefined() = false and
 			LoanTerm.allInstance()->includes(loanterm)
-/* postcondition:
-The object loanterm was deleted from the instance set of class LoanTerm
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The object loanterm was deleted from the instance set of class LoanTerm
+		 * The return value was true
+		 */
 		postcondition:
 			LoanTerm.allInstance()->excludes(loanterm) and
 			result = true
@@ -3047,7 +3146,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>cid</i>, type: Integer</p></td>
+<td><p>name: <i>cid</i>, type: Integer</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -3067,14 +3166,16 @@ The return value was true
  
 ```java
 Contract ThirdPartyServices::getCheckingAccountStatus(cid : Integer) : CheckingAccount {
-/* precondition:
-None
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * None
+		 */
 		precondition:
 			true
-/* postcondition:
-The return value was null
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The return value was null
+		 */
 		postcondition:
 			result = null
 }
@@ -3100,7 +3201,7 @@ The return value was null
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p>1. <i>securityid</i>, type: Integer</p><p>2. <i>name</i>, type: String</p></td>
+<td><p>1. name: <i>securityid</i>, type: Integer</p><p>2. name: <i>name</i>, type: String</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -3120,14 +3221,16 @@ The return value was null
  
 ```java
 Contract ThirdPartyServices::getCreditHistory(securityid : Integer, name :String) : CreditHistory {
-/* precondition:
-None
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * None
+		 */
 		precondition:
 			true
-/* postcondition:
-The return value was null
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The return value was null
+		 */
 		postcondition:
 			result = null
 }
@@ -3153,7 +3256,7 @@ The return value was null
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p>1. <i>emailaddress</i>, type: String</p><p>2. <i>title</i>, type: String</p><p>3. <i>content</i>, type: String</p></td>
+<td><p>1. name: <i>emailaddress</i>, type: String</p><p>2. name: <i>title</i>, type: String</p><p>3. name: <i>content</i>, type: String</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -3173,14 +3276,16 @@ The return value was null
  
 ```java
 Contract ThirdPartyServices::sendEmail(emailaddress : String, title : String, content :String) : Boolean {
-/* precondition:
-None
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * None
+		 */
 		precondition:
 			true
-/* postcondition:
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The return value was true
+		 */
 		postcondition:
 			result = true
 }
@@ -3206,7 +3311,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p>1. <i>content</i>, type: String</p><p>2. <i>numbers</i>, type: Integer</p></td>
+<td><p>1. name: <i>content</i>, type: String</p><p>2. name: <i>numbers</i>, type: Integer</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -3226,14 +3331,16 @@ The return value was true
  
 ```java
 Contract ThirdPartyServices::print(content : String, numbers : Integer) : Boolean {
-/* precondition:
-None
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * None
+		 */
 		precondition:
 			true
-/* postcondition:
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The return value was true
+		 */
 		postcondition:
 			result = true
 }
@@ -3259,7 +3366,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>id</i>, type: Integer</p></td>
+<td><p>name: <i>id</i>, type: Integer</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -3279,14 +3386,16 @@ The return value was true
  
 ```java
 Contract ThirdPartyServices::createLoanAccount(id : Integer) : LoanAccount {
-/* precondition:
-None
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * None
+		 */
 		precondition:
 			true
-/* postcondition:
-The return value was null
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The return value was null
+		 */
 		postcondition:
 			result = null
 }
@@ -3312,7 +3421,7 @@ The return value was null
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p>1. <i>id</i>, type: Integer</p><p>2. <i>amount</i>, type: Real</p></td>
+<td><p>1. name: <i>id</i>, type: Integer</p><p>2. name: <i>amount</i>, type: Real</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -3332,14 +3441,16 @@ The return value was null
  
 ```java
 Contract ThirdPartyServices::transferFunds(id : Integer, amount : Real) : Boolean {
-/* precondition:
-None
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * None
+		 */
 		precondition:
 			true
-/* postcondition:
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The return value was true
+		 */
 		postcondition:
 			result = true
 }
@@ -3385,14 +3496,16 @@ The return value was true
  
 ```java
 Contract LoanProcessingSystemSystem::listBookedLoans() : Boolean {
-/* precondition:
-None
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * None
+		 */
 		precondition:
 			true
-/* postcondition:
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The return value was true
+		 */
 		postcondition:
 			result = true
 }
@@ -3400,6 +3513,7 @@ The return value was true
 
 
 
+ 
 ## 3.2  External interface requirements
 User interfaces
 Hardware interfaces

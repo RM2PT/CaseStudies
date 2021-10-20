@@ -58,8 +58,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 ## 3.1  Functional requirements
 ### 3.1.1   User Requirements
 <b>Use Case Diagram</b>
-![Use Case Diagram](images/Use Case Diagram.jpg)
-
+ 
+![Use Case Diagram](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/项目名/Use Case Diagram.jpg)
+ 
 <b>A1 - User</b>
 <table>
 	<tr>
@@ -348,6 +349,8 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
+ 
 <b>UC2 - listBookHistory</b>
  
 <table>
@@ -384,6 +387,8 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
+ 
 <b>UC3 - makeReservation</b>
  
 <table>
@@ -420,6 +425,8 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
+ 
 <b>UC4 - recommendBook</b>
  
 <table>
@@ -456,6 +463,8 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
+ 
 <b>UC5 - cancelReservation</b>
  
 <table>
@@ -492,6 +501,8 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
+ 
 <b>UC6 - manageUser</b>
  
 <table>
@@ -528,6 +539,8 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
+ 
 <b>UC7 - manageBook</b>
  
 <table>
@@ -564,6 +577,8 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
+ 
 <b>UC8 - manageSubject</b>
  
 <table>
@@ -600,6 +615,8 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
+ 
 <b>UC9 - manageBookCopy</b>
  
 <table>
@@ -636,6 +653,8 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
+ 
 <b>UC10 - manageLibrarian</b>
  
 <table>
@@ -672,6 +691,8 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
+ 
 <b>UC11 - listRecommendBook</b>
  
 <table>
@@ -708,6 +729,8 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
+ 
 <b>UC12 - borrowBook</b>
  
 <table>
@@ -744,6 +767,8 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
+ 
 <b>UC13 - renewBook</b>
  
 <table>
@@ -780,6 +805,8 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
+ 
 <b>UC14 - payOverDueFee</b>
  
 <table>
@@ -816,6 +843,8 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
+ 
 <b>UC15 - returnBook</b>
  
 <table>
@@ -852,6 +881,8 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
+ 
 <b>UC16 - checkOverDueandComputeOverDueFee</b>
  
 <table>
@@ -888,6 +919,8 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
+ 
 <b>UC17 - dueSoonNotification</b>
  
 <table>
@@ -924,6 +957,8 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
+ 
 <b>UC18 - countDownSuspensionDay</b>
  
 <table>
@@ -960,6 +995,8 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
+ 
 <b>UC19 - sendNotificationEmail</b>
  
 <table>
@@ -996,9 +1033,14 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
+ 
+ 
 #### 3.1.2.2   Entity Analysis
 <b>Conceptual Class Diagram</b> 
-![Conceptual Class Diagram](images/Conceptual Class Diagram.jpg)
+ 
+![Conceptual Class Diagram](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/项目名/Conceptual Class Diagram.jpg)
+ 
 <b>E1 - User</b>
  
 <table>
@@ -1637,6 +1679,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 					</tr>
 	</table>
 	 
+ 
 #### 3.1.2.3   System Interfaces
 ##### System Interfaces
 <b>SI1 - LibraryManagementSystemSystem</b>
@@ -1819,6 +1862,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
 	 
+ 
 ##### System Operation Description
 <b>OP1 - searchBookByBarCode</b>
 <table>
@@ -1840,7 +1884,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>barcode</i>, type: String</p></td>
+<td><p>name: <i>barcode</i>, type: String</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -1860,16 +1904,18 @@ This subsection of the SRS should identify requirements that may be delayed unti
  
 ```java
 Contract SearchBook::searchBookByBarCode(barcode:String): Set(Book) {
-/* precondition:
-The type of parameter barcode is equal to String
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * The type of parameter barcode is equal to String
+		 */
 		precondition:
 			barcode.oclIsTypeOf(String)
-/* postcondition:
-The return value was the set of class Book, including all book in the instance set of class Book. book represented an object of class Book, and book meet:
-    At least one c existed in all objects which book was linked to by Copys. c represented an object of class BookCopy, and c meet:
-        The attribute Barcode of the object c was equal to barcode
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The return value was the set of class Book, including all book in the instance set of class Book. book represented an object of class Book, and book meet:
+		 *     At least one c existed in all objects which book was linked to by Copys. c represented an object of class BookCopy, and c meet:
+		 *         The attribute Barcode of the object c was equal to barcode
+		 */
 		postcondition:
 			result = Book.allInstance()->select(book:Book | book.Copys->exists(c:BookCopy | c.Barcode = barcode))
 }
@@ -1895,7 +1941,7 @@ The return value was the set of class Book, including all book in the instance s
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>title</i>, type: String</p></td>
+<td><p>name: <i>title</i>, type: String</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -1915,15 +1961,17 @@ The return value was the set of class Book, including all book in the instance s
  
 ```java
 Contract SearchBook::searchBookByTitle(title:String): Set(Book) {
-/* precondition:
-The title is not equal to null
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * The title is not equal to null
+		 */
 		precondition:
 			title <> ""
-/* postcondition:
-The return value was the set of class Book, including all book in the instance set of class Book. book represented an object of class Book, and book meet:
-    The attribute Title of the object book was equal to title
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The return value was the set of class Book, including all book in the instance set of class Book. book represented an object of class Book, and book meet:
+		 *     The attribute Title of the object book was equal to title
+		 */
 		postcondition:
 			result = Book.allInstance()->select(book:Book | book.Title = title)
 }
@@ -1949,7 +1997,7 @@ The return value was the set of class Book, including all book in the instance s
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>authorname</i>, type: String</p></td>
+<td><p>name: <i>authorname</i>, type: String</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -1969,15 +2017,17 @@ The return value was the set of class Book, including all book in the instance s
  
 ```java
 Contract SearchBook::searchBookByAuthor(authorname:String) : Set(Book) {
-/* precondition:
-The authorname is not equal to null
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * The authorname is not equal to null
+		 */
 		precondition:
 			authorname <> ""
-/* postcondition:
-The return value was the set of class Book, including all book in the instance set of class Book. book represented an object of class Book, and book meet:
-    The attribute Author of the object book was equal to authorname
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The return value was the set of class Book, including all book in the instance set of class Book. book represented an object of class Book, and book meet:
+		 *     The attribute Author of the object book was equal to authorname
+		 */
 		postcondition:
 			result = Book.allInstance()->select(book:Book | book.Author = authorname)
 }
@@ -2003,7 +2053,7 @@ The return value was the set of class Book, including all book in the instance s
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>iSBNnumber</i>, type: String</p></td>
+<td><p>name: <i>iSBNnumber</i>, type: String</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -2023,15 +2073,17 @@ The return value was the set of class Book, including all book in the instance s
  
 ```java
 Contract SearchBook::searchBookByISBN(iSBNnumber:String): Set(Book) {
-/* precondition:
-The type of parameter iSBNnumber is equal to String
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * The type of parameter iSBNnumber is equal to String
+		 */
 		precondition:
 			iSBNnumber.oclIsTypeOf(String)
-/* postcondition:
-The return value was the set of class Book, including all book in the instance set of class Book. book represented an object of class Book, and book meet:
-    The attribute ISBn of the object book was equal to iSBNnumber
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The return value was the set of class Book, including all book in the instance set of class Book. book represented an object of class Book, and book meet:
+		 *     The attribute ISBn of the object book was equal to iSBNnumber
+		 */
 		postcondition:
 			result = Book.allInstance()->select(book:Book | book.ISBn = iSBNnumber)
 }
@@ -2057,7 +2109,7 @@ The return value was the set of class Book, including all book in the instance s
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>subject</i>, type: String</p></td>
+<td><p>name: <i>subject</i>, type: String</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -2077,16 +2129,18 @@ The return value was the set of class Book, including all book in the instance s
  
 ```java
 Contract SearchBook::searchBookBySubject(subject:String): Set(Book) {
-/* precondition:
-The type of parameter subject is equal to String
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * The type of parameter subject is equal to String
+		 */
 		precondition:
 			subject.oclIsTypeOf(String)
-/* postcondition:
-The return value was the set of class Book, including all book in the instance set of class Book. book represented an object of class Book, and book meet:
-    At least one s existed in all objects which book was linked to by Subject. s represented an object of class Subject, and s meet:
-        The attribute Name of the object s was equal to subject
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The return value was the set of class Book, including all book in the instance set of class Book. book represented an object of class Book, and book meet:
+		 *     At least one s existed in all objects which book was linked to by Subject. s represented an object of class Subject, and s meet:
+		 *         The attribute Name of the object s was equal to subject
+		 */
 		postcondition:
 			result = Book.allInstance()->select(book:Book | book.Subject->exists(s:Subject | s.Name = subject))
 }
@@ -2112,7 +2166,7 @@ The return value was the set of class Book, including all book in the instance s
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p>1. <i>uid</i>, type: String</p><p>2. <i>barcode</i>, type: String</p></td>
+<td><p>1. name: <i>uid</i>, type: String</p><p>2. name: <i>barcode</i>, type: String</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -2136,39 +2190,42 @@ The return value was the set of class Book, including all book in the instance s
  
 ```java
 Contract LibraryManagementSystemSystem::makeReservation(uid:String, barcode:String) : Boolean {
-/* definition:
-user is the object u in the instance set of class User. u represents an object of class User, and u meets:
-    The attribute UserID of the object u is equal to uid
-copy is the object bc in the instance set of class BookCopy. bc represents an object of class BookCopy, and bc meets:
-    The attribute Barcode of the object bc is equal to barcode
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * user is the object u in the instance set of class User. u represents an object of class User, and u meets:
+		 *     The attribute UserID of the object u is equal to uid
+		 * copy is the object bc in the instance set of class BookCopy. bc represents an object of class BookCopy, and bc meets:
+		 *     The attribute Barcode of the object bc is equal to barcode
+		 */
 		definition:
 			user:User = User.allInstance()->any(u:User | u.UserID = uid),
 			copy:BookCopy = BookCopy.allInstance()->any(bc:BookCopy | bc.Barcode = barcode)
-/* precondition:
-user exists
-copy exists
-The attribute Status of the object copy is equal to LOANED
-The attribute IsReserved of the object copy is equal to false
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * user exists
+		 * copy exists
+		 * The attribute Status of the object copy is equal to LOANED
+		 * The attribute IsReserved of the object copy is equal to false
+		 */
 		precondition:
 			user.oclIsUndefined() = false and
 			copy.oclIsUndefined() = false and
 			copy.Status = CopyStatus::LOANED and
 			copy.IsReserved = false
-/* postcondition:
-res represented the object of class Reserve
-The object res was created
-The attribute IsReserved of the object copy became true
-The attribute IsReserveClosed of the object res became false
-The attribute ReserveDate of the object res was equal to Today
-The object res was linked to the object user by ReservedUser
-The object res was linked to the object copy by ReservedCopy
-The object user was linked to the object res by ReservedBook
-The object copy was linked to the object res by ReservationRecord
-The object res was put into the instance set of class Reserve
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * res represented the object of class Reserve
+		 * The object res was created
+		 * The attribute IsReserved of the object copy became true
+		 * The attribute IsReserveClosed of the object res became false
+		 * The attribute ReserveDate of the object res was equal to Today
+		 * The object res was linked to the object user by ReservedUser
+		 * The object res was linked to the object copy by ReservedCopy
+		 * The object user was linked to the object res by ReservedBook
+		 * The object copy was linked to the object res by ReservationRecord
+		 * The object res was put into the instance set of class Reserve
+		 * The return value was true
+		 */
 		postcondition:
 			let res:Reserve in
 			res.oclIsNew() and
@@ -2204,7 +2261,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p>1. <i>uid</i>, type: String</p><p>2. <i>barcode</i>, type: String</p></td>
+<td><p>1. name: <i>uid</i>, type: String</p><p>2. name: <i>barcode</i>, type: String</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -2228,27 +2285,29 @@ The return value was true
  
 ```java
 Contract LibraryManagementSystemSystem::cancelReservation(uid:String, barcode:String) : Boolean {
-/* definition:
-user is the object u in the instance set of class User. u represents an object of class User, and u meets:
-    The attribute UserID of the object u is equal to uid
-copy is the object bc in the instance set of class BookCopy. bc represents an object of class BookCopy, and bc meets:
-    The attribute Barcode of the object bc is equal to barcode
-res is the object r in the instance set of class Reserve. r represents an object of class Reserve, and r meets:
-    The object r is linked to the object copy by ReservedCopy
-    The object r is linked to the object user by ReservedUser
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * user is the object u in the instance set of class User. u represents an object of class User, and u meets:
+		 *     The attribute UserID of the object u is equal to uid
+		 * copy is the object bc in the instance set of class BookCopy. bc represents an object of class BookCopy, and bc meets:
+		 *     The attribute Barcode of the object bc is equal to barcode
+		 * res is the object r in the instance set of class Reserve. r represents an object of class Reserve, and r meets:
+		 *     The object r is linked to the object copy by ReservedCopy
+		 *     The object r is linked to the object user by ReservedUser
+		 */
 		definition:
 			user:User = User.allInstance()->any(u:User | u.UserID = uid),
 			copy:BookCopy = BookCopy.allInstance()->any(bc:BookCopy | bc.Barcode = barcode),
 			res:Reserve = Reserve.allInstance()->any(r:Reserve | r.ReservedCopy = copy and r.ReservedUser = user)
-/* precondition:
-user exists
-copy exists
-The attribute Status of the object copy is equal to LOANED
-The attribute IsReserved of the object copy is equal to true
-res exists
-The attribute IsReserveClosed of the object res is equal to false
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * user exists
+		 * copy exists
+		 * The attribute Status of the object copy is equal to LOANED
+		 * The attribute IsReserved of the object copy is equal to true
+		 * res exists
+		 * The attribute IsReserveClosed of the object res is equal to false
+		 */
 		precondition:
 			user.oclIsUndefined() = false and
 			copy.oclIsUndefined() = false and
@@ -2256,11 +2315,12 @@ The attribute IsReserveClosed of the object res is equal to false
 			copy.IsReserved = true and
 			res.oclIsUndefined() = false and
 			res.IsReserveClosed = false
-/* postcondition:
-The attribute IsReserved of the object copy became false
-The attribute IsReserveClosed of the object res became true
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The attribute IsReserved of the object copy became false
+		 * The attribute IsReserveClosed of the object res became true
+		 * The return value was true
+		 */
 		postcondition:
 			copy.IsReserved = false and
 			res.IsReserveClosed = true and
@@ -2288,7 +2348,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p>1. <i>uid</i>, type: String</p><p>2. <i>barcode</i>, type: String</p></td>
+<td><p>1. name: <i>uid</i>, type: String</p><p>2. name: <i>barcode</i>, type: String</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -2312,43 +2372,45 @@ The return value was true
  
 ```java
 Contract LibraryManagementSystemSystem::borrowBook(uid:String, barcode:String) : Boolean {
-/* definition:
-user is the object u in the instance set of class User. u represents an object of class User, and u meets:
-    The attribute UserID of the object u is equal to uid
-stu is the object s in the instance set of class Student. s represents an object of class Student, and s meets:
-    The attribute UserID of the object s is equal to uid
-fac is the object f in the instance set of class Faculty. f represents an object of class Faculty, and f meets:
-    The attribute UserID of the object f is equal to uid
-copy is the object bc in the instance set of class BookCopy. bc represents an object of class BookCopy, and bc meets:
-    The attribute Barcode of the object bc is equal to barcode
-res is the object r in the instance set of class Reserve. r represents an object of class Reserve, and r meets:
-    The object r is linked to the object copy by ReservedCopy
-    The object r is linked to the object user by ReservedUser
-    The attribute IsReserveClosed of the object r is equal to false
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * user is the object u in the instance set of class User. u represents an object of class User, and u meets:
+		 *     The attribute UserID of the object u is equal to uid
+		 * stu is the object s in the instance set of class Student. s represents an object of class Student, and s meets:
+		 *     The attribute UserID of the object s is equal to uid
+		 * fac is the object f in the instance set of class Faculty. f represents an object of class Faculty, and f meets:
+		 *     The attribute UserID of the object f is equal to uid
+		 * copy is the object bc in the instance set of class BookCopy. bc represents an object of class BookCopy, and bc meets:
+		 *     The attribute Barcode of the object bc is equal to barcode
+		 * res is the object r in the instance set of class Reserve. r represents an object of class Reserve, and r meets:
+		 *     The object r is linked to the object copy by ReservedCopy
+		 *     The object r is linked to the object user by ReservedUser
+		 *     The attribute IsReserveClosed of the object r is equal to false
+		 */
 		definition:
 			user:User = User.allInstance()->any(u:User | u.UserID = uid),
 			stu:Student = Student.allInstance()->any(s:Student | s.UserID = uid),
 			fac:Faculty = Faculty.allInstance()->any(f:Faculty | f.UserID = uid),
 			copy:BookCopy = BookCopy.allInstance()->any(bc:BookCopy | bc.Barcode = barcode),
 			res:Reserve = Reserve.allInstance()->any(r:Reserve | r.ReservedCopy = copy and r.ReservedUser = user and r.IsReserveClosed = false)
-/* precondition:
-user exists
-copy exists
-The attribute BorrowStatus of the object user is equal to NORMAL
-The attribute SuspensionDays of the object user is equal to 0
-If the type of parameter user is equal to Student, take the following as precondition(s):
-    If the attribute Programme of the object stu is equal to BACHELOR, take the following as precondition(s):
-        The attribute LoanedNumber of the object stu is less than 20
-    Otherwise, take the following as precondition(s):
-        If the attribute Programme of the object stu is equal to MASTER, take the following as precondition(s):
-            The attribute LoanedNumber of the object stu is less than 40
-        Otherwise, take the following as precondition(s):
-            The attribute LoanedNumber of the object stu is less than 60
-Otherwise, take the following as precondition(s):
-    The attribute LoanedNumber of the object fac is less than 60
-(the attribute Status of the object copy is equal to AVAILABLE, or (the attribute Status of the object copy is equal to ONHOLDSHELF, and the attribute IsReserved of the object copy is equal to true, and res exists, and the attribute IsReserveClosed of the object res is equal to false))
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * user exists
+		 * copy exists
+		 * The attribute BorrowStatus of the object user is equal to NORMAL
+		 * The attribute SuspensionDays of the object user is equal to 0
+		 * If the type of parameter user is equal to Student, take the following as precondition(s):
+		 *     If the attribute Programme of the object stu is equal to BACHELOR, take the following as precondition(s):
+		 *         The attribute LoanedNumber of the object stu is less than 20
+		 *     Otherwise, take the following as precondition(s):
+		 *         If the attribute Programme of the object stu is equal to MASTER, take the following as precondition(s):
+		 *             The attribute LoanedNumber of the object stu is less than 40
+		 *         Otherwise, take the following as precondition(s):
+		 *             The attribute LoanedNumber of the object stu is less than 60
+		 * Otherwise, take the following as precondition(s):
+		 *     The attribute LoanedNumber of the object fac is less than 60
+		 * (the attribute Status of the object copy is equal to AVAILABLE, or (the attribute Status of the object copy is equal to ONHOLDSHELF, and the attribute IsReserved of the object copy is equal to true, and res exists, and the attribute IsReserveClosed of the object res is equal to false))
+		 */
 		precondition:
 			user.oclIsUndefined() = false and
 			copy.oclIsUndefined() = false and
@@ -2380,31 +2442,32 @@ Otherwise, take the following as precondition(s):
 					res.IsReserveClosed = false
 				)
 			)
-/* postcondition:
-loan represented the object of class Loan
-The object loan was created
-The object loan was linked to the object user by LoanedUser
-The object loan was linked to the object copy by LoanedCopy
-The attribute IsReturned of the object loan became false
-The attribute LoanDate of the object loan became Today
-The attribute LoanedNumber of the object user became the previous value of the attribute LoanedNumber of the object user plus 1
-The object user was linked to the object loan by LoanedBook
-The object copy was linked to the object loan by LoanedRecord
-If the type of parameter user was equal to Student, take the following as postcondition(s):
-    The attribute DueDate of the object loan became the day 30 days after Today
-Otherwise, take the following as postcondition(s):
-    The attribute DueDate of the object loan became the day 60 days after Today
-If the previous value of the attribute Status of the object copy was equal to ONHOLDSHELF, take the following as postcondition(s):
-    The attribute IsReserved of the object copy became false
-    The attribute IsReserveClosed of the object res became true
-The attribute Status of the object copy became LOANED
-The attribute OverDue3Days of the object loan became false
-The attribute OverDue10Days of the object loan became false
-The attribute OverDue17Days of the object loan became false
-The attribute OverDue31Days of the object loan became false
-The object loan was put into the instance set of class Loan
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * loan represented the object of class Loan
+		 * The object loan was created
+		 * The object loan was linked to the object user by LoanedUser
+		 * The object loan was linked to the object copy by LoanedCopy
+		 * The attribute IsReturned of the object loan became false
+		 * The attribute LoanDate of the object loan became Today
+		 * The attribute LoanedNumber of the object user became the previous value of the attribute LoanedNumber of the object user plus 1
+		 * The object user was linked to the object loan by LoanedBook
+		 * The object copy was linked to the object loan by LoanedRecord
+		 * If the type of parameter user was equal to Student, take the following as postcondition(s):
+		 *     The attribute DueDate of the object loan became the day 30 days after Today
+		 * Otherwise, take the following as postcondition(s):
+		 *     The attribute DueDate of the object loan became the day 60 days after Today
+		 * If the previous value of the attribute Status of the object copy was equal to ONHOLDSHELF, take the following as postcondition(s):
+		 *     The attribute IsReserved of the object copy became false
+		 *     The attribute IsReserveClosed of the object res became true
+		 * The attribute Status of the object copy became LOANED
+		 * The attribute OverDue3Days of the object loan became false
+		 * The attribute OverDue10Days of the object loan became false
+		 * The attribute OverDue17Days of the object loan became false
+		 * The attribute OverDue31Days of the object loan became false
+		 * The object loan was put into the instance set of class Loan
+		 * The return value was true
+		 */
 		postcondition:
 			let loan:Loan in
 			loan.oclIsNew() and
@@ -2458,7 +2521,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>barcode</i>, type: String</p></td>
+<td><p>name: <i>barcode</i>, type: String</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -2482,43 +2545,46 @@ The return value was true
  
 ```java
 Contract LibraryManagementSystemSystem::returnBook(barcode:String) : Boolean {
-/* definition:
-copy is the object bc in the instance set of class BookCopy. bc represents an object of class BookCopy, and bc meets:
-    The attribute Barcode of the object bc is equal to barcode
-    The attribute Status of the object bc is equal to LOANED
-loan is the object l in the instance set of class Loan. l represents an object of class Loan, and l meets:
-    The object l is linked to the object copy by LoanedCopy
-    The attribute IsReturned of the object l is equal to false
-loans is the set of class Loan, including all l in the instance set of class Loan. l represents an object of class Loan, and l meets:
-    The object l is linked to the object the object which loan is linked to by LoanedUser by LoanedUser
-    The attribute IsReturned of the object l is equal to false
-    The attribute DueDate of the object l is after Today
-res is the object r in all objects which copy is linked to by ReservationRecord. r represents an object of class Reserve, and r meets:
-    The object r is linked to the object copy by ReservedCopy
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * copy is the object bc in the instance set of class BookCopy. bc represents an object of class BookCopy, and bc meets:
+		 *     The attribute Barcode of the object bc is equal to barcode
+		 *     The attribute Status of the object bc is equal to LOANED
+		 * loan is the object l in the instance set of class Loan. l represents an object of class Loan, and l meets:
+		 *     The object l is linked to the object copy by LoanedCopy
+		 *     The attribute IsReturned of the object l is equal to false
+		 * loans is the set of class Loan, including all l in the instance set of class Loan. l represents an object of class Loan, and l meets:
+		 *     The object l is linked to the object the object which loan is linked to by LoanedUser by LoanedUser
+		 *     The attribute IsReturned of the object l is equal to false
+		 *     The attribute DueDate of the object l is after Today
+		 * res is the object r in all objects which copy is linked to by ReservationRecord. r represents an object of class Reserve, and r meets:
+		 *     The object r is linked to the object copy by ReservedCopy
+		 */
 		definition:
 			copy:BookCopy = BookCopy.allInstance()->any(bc:BookCopy | bc.Barcode = barcode and bc.Status = CopyStatus::LOANED),
 			loan:Loan = Loan.allInstance()->any(l:Loan | l.LoanedCopy = copy and l.IsReturned = false),
 			loans:Set(Loan) = Loan.allInstance()->select(l:Loan | l.LoanedUser = loan.LoanedUser and l.IsReturned = false and l.DueDate.isAfter(Today)),
 			res:Reserve = copy.ReservationRecord->any(r:Reserve | r.ReservedCopy = copy)
-/* precondition:
-copy exists
-loan exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * copy exists
+		 * loan exists
+		 */
 		precondition:
 			copy.oclIsUndefined() = false and
 			loan.oclIsUndefined() = false
-/* postcondition:
-The attribute LoanedNumber of the object loan became the previous value of the attribute LoanedNumber of the object loan minus 1
-The attribute IsReturned of the object loan became true
-The attribute ReturnDate of the object loan became Today
-If the attribute IsReserved of the object copy was equal to true, take the following as postcondition(s):
-    The attribute Status of the object copy became ONHOLDSHELF
-    The system operation sendNotificationEmail was executed
-Otherwise, take the following as postcondition(s):
-    The attribute Status of the object copy became AVAILABLE
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The attribute LoanedNumber of the object loan became the previous value of the attribute LoanedNumber of the object loan minus 1
+		 * The attribute IsReturned of the object loan became true
+		 * The attribute ReturnDate of the object loan became Today
+		 * If the attribute IsReserved of the object copy was equal to true, take the following as postcondition(s):
+		 *     The attribute Status of the object copy became ONHOLDSHELF
+		 *     The system operation sendNotificationEmail was executed
+		 * Otherwise, take the following as postcondition(s):
+		 *     The attribute Status of the object copy became AVAILABLE
+		 * The return value was true
+		 */
 		postcondition:
 			loan.LoanedUser.LoanedNumber = loan.LoanedUser.LoanedNumber@pre - 1 and
 			loan.IsReturned = true and
@@ -2555,7 +2621,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p>1. <i>uid</i>, type: String</p><p>2. <i>barcode</i>, type: String</p></td>
+<td><p>1. name: <i>uid</i>, type: String</p><p>2. name: <i>barcode</i>, type: String</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -2579,39 +2645,41 @@ The return value was true
  
 ```java
 Contract LibraryManagementSystemSystem::renewBook(uid:String, barcode:String) : Boolean {
-/* definition:
-user is the object u in the instance set of class User. u represents an object of class User, and u meets:
-    The attribute UserID of the object u is equal to uid
-stu is the object s in the instance set of class Student. s represents an object of class Student, and s meets:
-    The attribute UserID of the object s is equal to uid
-fac is the object f in the instance set of class Faculty. f represents an object of class Faculty, and f meets:
-    The attribute UserID of the object f is equal to uid
-copy is the object bc in the instance set of class BookCopy. bc represents an object of class BookCopy, and bc meets:
-    The attribute Barcode of the object bc is equal to barcode
-    The attribute Status of the object bc is equal to LOANED
-loan is the object l in the instance set of class Loan. l represents an object of class Loan, and l meets:
-    The object l is linked to the object user by LoanedUser
-    The object l is linked to the object copy by LoanedCopy
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * user is the object u in the instance set of class User. u represents an object of class User, and u meets:
+		 *     The attribute UserID of the object u is equal to uid
+		 * stu is the object s in the instance set of class Student. s represents an object of class Student, and s meets:
+		 *     The attribute UserID of the object s is equal to uid
+		 * fac is the object f in the instance set of class Faculty. f represents an object of class Faculty, and f meets:
+		 *     The attribute UserID of the object f is equal to uid
+		 * copy is the object bc in the instance set of class BookCopy. bc represents an object of class BookCopy, and bc meets:
+		 *     The attribute Barcode of the object bc is equal to barcode
+		 *     The attribute Status of the object bc is equal to LOANED
+		 * loan is the object l in the instance set of class Loan. l represents an object of class Loan, and l meets:
+		 *     The object l is linked to the object user by LoanedUser
+		 *     The object l is linked to the object copy by LoanedCopy
+		 */
 		definition:
 			user:User = User.allInstance()->any(u:User | u.UserID = uid),
 			stu:Student = Student.allInstance()->any(s:Student | s.UserID = uid),
 			fac:Faculty = Faculty.allInstance()->any(f:Faculty | f.UserID = uid),
 			copy:BookCopy = BookCopy.allInstance()->any(bc:BookCopy | bc.Barcode = barcode and bc.Status = CopyStatus::LOANED),
 			loan:Loan = Loan.allInstance()->any(l:Loan | l.LoanedUser = user and l.LoanedCopy = copy)
-/* precondition:
-The attribute BorrowStatus of the object user is equal to NORMAL
-user exists
-copy exists
-loan exists
-The attribute IsReserved of the object copy is equal to false
-The attribute DueDate of the object loan is after Today
-If the type of parameter user is equal to Student, take the following as precondition(s):
-    The attribute RenewedTimes of the object loan is less than 3
-Otherwise, take the following as precondition(s):
-    The attribute RenewedTimes of the object loan is less than 6
-The attribute OverDueFee of the object loan is equal to 0
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * The attribute BorrowStatus of the object user is equal to NORMAL
+		 * user exists
+		 * copy exists
+		 * loan exists
+		 * The attribute IsReserved of the object copy is equal to false
+		 * The attribute DueDate of the object loan is after Today
+		 * If the type of parameter user is equal to Student, take the following as precondition(s):
+		 *     The attribute RenewedTimes of the object loan is less than 3
+		 * Otherwise, take the following as precondition(s):
+		 *     The attribute RenewedTimes of the object loan is less than 6
+		 * The attribute OverDueFee of the object loan is equal to 0
+		 */
 		precondition:
 			user.BorrowStatus = BorrowStatus::NORMAL and
 			user.oclIsUndefined() = false and
@@ -2627,21 +2695,22 @@ The attribute OverDueFee of the object loan is equal to 0
 				loan.RenewedTimes < 6
 			endif and
 			loan.OverDueFee = 0
-/* postcondition:
-The attribute RenewedTimes of the object loan became the previous value of the attribute RenewedTimes of the object loan plus 1
-The attribute RenewDate of the object loan became Today
-If the type of parameter user was equal to Student, take the following as postcondition(s):
-    If the attribute Programme of the object stu was equal to BACHELOR, take the following as postcondition(s):
-        The attribute DueDate of the object loan became the day 20 days after previous value of the attribute DueDate of the object loan
-    Otherwise, take the following as postcondition(s):
-        If the attribute Programme of the object stu was equal to MASTER, take the following as postcondition(s):
-            The attribute DueDate of the object loan became the day 40 days after previous value of the attribute DueDate of the object loan
-        Otherwise, take the following as postcondition(s):
-            The attribute DueDate of the object loan became the day 60 days after previous value of the attribute DueDate of the object loan
-Otherwise, take the following as postcondition(s):
-    The attribute DueDate of the object loan became the day 60 days after previous value of the attribute DueDate of the object loan
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The attribute RenewedTimes of the object loan became the previous value of the attribute RenewedTimes of the object loan plus 1
+		 * The attribute RenewDate of the object loan became Today
+		 * If the type of parameter user was equal to Student, take the following as postcondition(s):
+		 *     If the attribute Programme of the object stu was equal to BACHELOR, take the following as postcondition(s):
+		 *         The attribute DueDate of the object loan became the day 20 days after previous value of the attribute DueDate of the object loan
+		 *     Otherwise, take the following as postcondition(s):
+		 *         If the attribute Programme of the object stu was equal to MASTER, take the following as postcondition(s):
+		 *             The attribute DueDate of the object loan became the day 40 days after previous value of the attribute DueDate of the object loan
+		 *         Otherwise, take the following as postcondition(s):
+		 *             The attribute DueDate of the object loan became the day 60 days after previous value of the attribute DueDate of the object loan
+		 * Otherwise, take the following as postcondition(s):
+		 *     The attribute DueDate of the object loan became the day 60 days after previous value of the attribute DueDate of the object loan
+		 * The return value was true
+		 */
 		postcondition:
 			loan.RenewedTimes = loan.RenewedTimes@pre + 1 and
 			loan.RenewDate = Today and
@@ -2688,7 +2757,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p>1. <i>uid</i>, type: String</p><p>2. <i>fee</i>, type: Real</p></td>
+<td><p>1. name: <i>uid</i>, type: String</p><p>2. name: <i>fee</i>, type: Real</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -2712,33 +2781,36 @@ The return value was true
  
 ```java
 Contract LibraryManagementSystemSystem::payOverDueFee(uid:String, fee:Real) : Boolean {
-/* definition:
-user is the object u in the instance set of class User. u represents an object of class User, and u meets:
-    The attribute UserID of the object u is equal to uid
-loans is the set of class Loan, including all l in the instance set of class Loan. l represents an object of class Loan, and l meets:
-    The object l is linked to the object user by LoanedUser
-    The attribute DueDate of the object l is before Today
-    The attribute IsReturned of the object l is equal to true
-    The attribute OverDueFee of the object l is greater than 0
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * user is the object u in the instance set of class User. u represents an object of class User, and u meets:
+		 *     The attribute UserID of the object u is equal to uid
+		 * loans is the set of class Loan, including all l in the instance set of class Loan. l represents an object of class Loan, and l meets:
+		 *     The object l is linked to the object user by LoanedUser
+		 *     The attribute DueDate of the object l is before Today
+		 *     The attribute IsReturned of the object l is equal to true
+		 *     The attribute OverDueFee of the object l is greater than 0
+		 */
 		definition:
 			user:User = User.allInstance()->any(u:User | u.UserID = uid),
 			loans:Set(Loan) = Loan.allInstance()->select(l:Loan | l.LoanedUser = user and l.DueDate.isBefore(Today)and l.IsReturned = true and l.OverDueFee > 0)
-/* precondition:
-user exists
-The set loans is not empty
-The fee is greater than or equal to the attribute OverDueFee of the object user
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * user exists
+		 * The set loans is not empty
+		 * The fee is greater than or equal to the attribute OverDueFee of the object user
+		 */
 		precondition:
 			user.oclIsUndefined() = false and
 			loans.notEmpty() and
 			fee >= user.OverDueFee
-/* postcondition:
-The attribute OverDueFee of the object user became 0
-For each object of class Loan in the set loans, l represented it(the object) and the following operations were performed:
-    The attribute OverDueFee of the object l was equal to 0
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The attribute OverDueFee of the object user became 0
+		 * For each object of class Loan in the set loans, l represented it(the object) and the following operations were performed:
+		 *     The attribute OverDueFee of the object l was equal to 0
+		 * The return value was true
+		 */
 		postcondition:
 			user.OverDueFee = 0 and
 			loans->forAll(l:Loan |
@@ -2792,23 +2864,26 @@ The return value was true
  
 ```java
 Contract LibraryManagementSystemSystem::dueSoonNotification()  {
-/* definition:
-users is the set of class User, including all user in the instance set of class User. user represents an object of class User, and user meets:
-    At least one loan exists in all objects which user is linked to by LoanedBook. loan represents an object of class Loan, and loan meets:
-        The attribute IsReturned of the object loan is equal to false
-        The day 3 days after Today is after the attribute DueDate of the object loan
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * users is the set of class User, including all user in the instance set of class User. user represents an object of class User, and user meets:
+		 *     At least one loan exists in all objects which user is linked to by LoanedBook. loan represents an object of class Loan, and loan meets:
+		 *         The attribute IsReturned of the object loan is equal to false
+		 *         The day 3 days after Today is after the attribute DueDate of the object loan
+		 */
 		definition:
 			users:Set(User) = User.allInstance()->select(user:User | user.LoanedBook->exists(loan:Loan | loan.IsReturned = false and Today.After(3).isAfter(loan.DueDate)))
-/* precondition:
-None
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * None
+		 */
 		precondition:
 			true
-/* postcondition:
-For each object of class User in the set users, u represented it(the object) and the following operations were performed:
-    The system operation sendNotificationEmail was executed
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * For each object of class User in the set users, u represented it(the object) and the following operations were performed:
+		 *     The system operation sendNotificationEmail was executed
+		 */
 		postcondition:
 			users->forAll(u:User |
 				sendNotificationEmail(u.Email))
@@ -2859,39 +2934,42 @@ For each object of class User in the set users, u represented it(the object) and
  
 ```java
 Contract LibraryManagementSystemSystem::checkOverDueandComputeOverDueFee() {
-/* definition:
-loans is the set of class Loan, including all loan in the instance set of class Loan. loan represents an object of class Loan, and loan meets:
-    The attribute IsReturned of the object loan is equal to false
-    The attribute DueDate of the object loan is before Today
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * loans is the set of class Loan, including all loan in the instance set of class Loan. loan represents an object of class Loan, and loan meets:
+		 *     The attribute IsReturned of the object loan is equal to false
+		 *     The attribute DueDate of the object loan is before Today
+		 */
 		definition:
 			loans:Set(Loan) = Loan.allInstance()->select(loan:Loan | loan.IsReturned = false and loan.DueDate.isBefore(Today))
-/* precondition:
-None
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * None
+		 */
 		precondition:
 			true
-/* postcondition:
-For each object of class Loan in the set loans, loan represented it(the object) and the following operations were performed:
-    The attribute IsReturned of the object loan was equal to false
-    If the day 3 days before Today was after the attribute DueDate of the object loan, and the attribute OverDue3Days of the object loan was equal to false, take the following as postcondition(s):
-        The attribute BorrowStatus of the object loan became SUSPEND
-        The system operation sendNotificationEmail was executed
-        The attribute OverDue3Days of the object loan became true
-    If the day 10 days before Today was after the attribute DueDate of the object loan, and the attribute OverDue10Days of the object loan was equal to false, take the following as postcondition(s):
-        The attribute SuspensionDays of the object loan became the previous value of the attribute SuspensionDays of the object loan plus 14
-        The system operation sendNotificationEmail was executed
-        The attribute OverDue10Days of the object loan became true
-    If the day 17 days before Today was after the attribute DueDate of the object loan, and the attribute OverDue17Days of the object loan was equal to false, take the following as postcondition(s):
-        The attribute SuspensionDays of the object loan became the previous value of the attribute SuspensionDays of the object loan plus 30
-        The system operation sendNotificationEmail was executed
-        The attribute OverDue17Days of the object loan became true
-    If the day 31 days before Today was after the attribute DueDate of the object loan, and the attribute OverDue31Days of the object loan was equal to false, take the following as postcondition(s):
-        The attribute OverDueFee of the object loan became 60
-        The system operation sendNotificationEmail was executed
-        The attribute OverDue31Days of the object loan became true
-        The attribute OverDueFee of the object loan became the previous value of the attribute OverDueFee of the object loan plus the attribute OverDueFee of the object loan
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * For each object of class Loan in the set loans, loan represented it(the object) and the following operations were performed:
+		 *     The attribute IsReturned of the object loan was equal to false
+		 *     If the day 3 days before Today was after the attribute DueDate of the object loan, and the attribute OverDue3Days of the object loan was equal to false, take the following as postcondition(s):
+		 *         The attribute BorrowStatus of the object loan became SUSPEND
+		 *         The system operation sendNotificationEmail was executed
+		 *         The attribute OverDue3Days of the object loan became true
+		 *     If the day 10 days before Today was after the attribute DueDate of the object loan, and the attribute OverDue10Days of the object loan was equal to false, take the following as postcondition(s):
+		 *         The attribute SuspensionDays of the object loan became the previous value of the attribute SuspensionDays of the object loan plus 14
+		 *         The system operation sendNotificationEmail was executed
+		 *         The attribute OverDue10Days of the object loan became true
+		 *     If the day 17 days before Today was after the attribute DueDate of the object loan, and the attribute OverDue17Days of the object loan was equal to false, take the following as postcondition(s):
+		 *         The attribute SuspensionDays of the object loan became the previous value of the attribute SuspensionDays of the object loan plus 30
+		 *         The system operation sendNotificationEmail was executed
+		 *         The attribute OverDue17Days of the object loan became true
+		 *     If the day 31 days before Today was after the attribute DueDate of the object loan, and the attribute OverDue31Days of the object loan was equal to false, take the following as postcondition(s):
+		 *         The attribute OverDueFee of the object loan became 60
+		 *         The system operation sendNotificationEmail was executed
+		 *         The attribute OverDue31Days of the object loan became true
+		 *         The attribute OverDueFee of the object loan became the previous value of the attribute OverDueFee of the object loan plus the attribute OverDueFee of the object loan
+		 */
 		postcondition:
 			loans->forAll(loan:Loan |
 				loan.IsReturned = false and
@@ -2976,23 +3054,26 @@ For each object of class Loan in the set loans, loan represented it(the object) 
  
 ```java
 Contract LibraryManagementSystemSystem::countDownSuspensionDay() {
-/* definition:
-users is the set of class User, including all u in the instance set of class User. u represents an object of class User, and u meets:
-    The attribute SuspensionDays of the object u is greater than 0
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * users is the set of class User, including all u in the instance set of class User. u represents an object of class User, and u meets:
+		 *     The attribute SuspensionDays of the object u is greater than 0
+		 */
 		definition:
 			users:Set(User) = User.allInstance()->select(u:User | u.SuspensionDays > 0)
-/* precondition:
-None
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * None
+		 */
 		precondition:
 			true
-/* postcondition:
-For each object of class User in the set users, u represented it(the object) and the following operations were performed:
-    The attribute SuspensionDays of the object u was equal to the previous value of the attribute SuspensionDays of the object u minus 1
-    If the attribute BorrowStatus of the object u was equal to SUSPEND, and the attribute OverDueFee of the object u was equal to 0, and the attribute SuspensionDays of the object u was equal to 0, take the following as postcondition(s):
-        The attribute BorrowStatus of the object u became NORMAL
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * For each object of class User in the set users, u represented it(the object) and the following operations were performed:
+		 *     The attribute SuspensionDays of the object u was equal to the previous value of the attribute SuspensionDays of the object u minus 1
+		 *     If the attribute BorrowStatus of the object u was equal to SUSPEND, and the attribute OverDueFee of the object u was equal to 0, and the attribute SuspensionDays of the object u was equal to 0, take the following as postcondition(s):
+		 *         The attribute BorrowStatus of the object u became NORMAL
+		 */
 		postcondition:
 			users->forAll(u:User |
 				u.SuspensionDays = u.SuspensionDays@pre - 1 and
@@ -3027,7 +3108,7 @@ For each object of class User in the set users, u represented it(the object) and
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>uid</i>, type: String</p></td>
+<td><p>name: <i>uid</i>, type: String</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -3051,21 +3132,24 @@ For each object of class User in the set users, u represented it(the object) and
  
 ```java
 Contract ListBookHistory::listBorrowHistory(uid:String): Set(Loan) {
-/* definition:
-user is the object u in the instance set of class User. u represents an object of class User, and u meets:
-    The attribute UserID of the object u is equal to uid
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * user is the object u in the instance set of class User. u represents an object of class User, and u meets:
+		 *     The attribute UserID of the object u is equal to uid
+		 */
 		definition:
 			user:User = User.allInstance()->any(u:User | u.UserID = uid)
-/* precondition:
-user exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * user exists
+		 */
 		precondition:
 			user.oclIsUndefined() = false
 		// postcondition: result = user.LoanedBook->collect(l:Loan| l.LoanedCopy)
-/* postcondition:
-The return value was the object which user was linked to by LoanedBook
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The return value was the object which user was linked to by LoanedBook
+		 */
 		postcondition:
 			result = user.LoanedBook
 }
@@ -3091,7 +3175,7 @@ The return value was the object which user was linked to by LoanedBook
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>uid</i>, type: String</p></td>
+<td><p>name: <i>uid</i>, type: String</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -3115,21 +3199,24 @@ The return value was the object which user was linked to by LoanedBook
  
 ```java
 Contract ListBookHistory::listHodingBook(uid:String): Set(Loan) {
-/* definition:
-user is the object u in the instance set of class User. u represents an object of class User, and u meets:
-    The attribute UserID of the object u is equal to uid
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * user is the object u in the instance set of class User. u represents an object of class User, and u meets:
+		 *     The attribute UserID of the object u is equal to uid
+		 */
 		definition:
 			user:User = User.allInstance()->any(u:User | u.UserID = uid)
-/* precondition:
-user exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * user exists
+		 */
 		precondition:
 			user.oclIsUndefined() = false
-/* postcondition:
-The return value was the set of class Loan, including all l in all objects which user was linked to by LoanedBook. l represented an object of class Loan, and l meet:
-    The attribute IsReturned of the object l was equal to false
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The return value was the set of class Loan, including all l in all objects which user was linked to by LoanedBook. l represented an object of class Loan, and l meet:
+		 *     The attribute IsReturned of the object l was equal to false
+		 */
 		postcondition:
 			result = user.LoanedBook->select(l:Loan | l.IsReturned = false)
 }
@@ -3155,7 +3242,7 @@ The return value was the set of class Loan, including all l in all objects which
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>uid</i>, type: String</p></td>
+<td><p>name: <i>uid</i>, type: String</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -3179,26 +3266,29 @@ The return value was the set of class Loan, including all l in all objects which
  
 ```java
 Contract ListBookHistory::listOverDueBook(uid:String): Set(BookCopy) {
-/* definition:
-user is the object u in the instance set of class User. u represents an object of class User, and u meets:
-    The attribute UserID of the object u is equal to uid
-loans is the set of class Loan, including all l in all objects which user is linked to by LoanedBook. l represents an object of class Loan, and l meets:
-    The attribute IsReturned of the object l is equal to false
-    The attribute OverDueFee of the object l is greater than 0
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * user is the object u in the instance set of class User. u represents an object of class User, and u meets:
+		 *     The attribute UserID of the object u is equal to uid
+		 * loans is the set of class Loan, including all l in all objects which user is linked to by LoanedBook. l represents an object of class Loan, and l meets:
+		 *     The attribute IsReturned of the object l is equal to false
+		 *     The attribute OverDueFee of the object l is greater than 0
+		 */
 		definition:
 			user:User = User.allInstance()->any(u:User | u.UserID = uid),
 			loans:Set(Loan) = user.LoanedBook->select(l:Loan | l.IsReturned = false and l.OverDueFee > 0)
-/* precondition:
-user exists
-loans exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * user exists
+		 * loans exists
+		 */
 		precondition:
 			user.oclIsUndefined() = false and
 			loans.oclIsUndefined() = false
-/* postcondition:
-The return value was all objects which each object in the set loans was linked to by LoanedCopy
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The return value was all objects which each object in the set loans was linked to by LoanedCopy
+		 */
 		postcondition:
 			result = loans->collect(l:Loan | l.LoanedCopy)
 }
@@ -3224,7 +3314,7 @@ The return value was all objects which each object in the set loans was linked t
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>uid</i>, type: String</p></td>
+<td><p>name: <i>uid</i>, type: String</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -3248,24 +3338,27 @@ The return value was all objects which each object in the set loans was linked t
  
 ```java
 Contract ListBookHistory::listReservationBook(uid:String): Set(BookCopy) {
-/* definition:
-user is the object u in the instance set of class User. u represents an object of class User, and u meets:
-    The attribute UserID of the object u is equal to uid
-res is the Set of class Reserve, including  which user is linked to
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * user is the object u in the instance set of class User. u represents an object of class User, and u meets:
+		 *     The attribute UserID of the object u is equal to uid
+		 * res is the Set of class Reserve, including  which user is linked to
+		 */
 		definition:
 			user:User = User.allInstance()->any(u:User | u.UserID = uid),
 			res:Set(Reserve) = user.ReservedBook
-/* precondition:
-user exists
-res exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * user exists
+		 * res exists
+		 */
 		precondition:
 			user.oclIsUndefined() = false and
 			res.oclIsUndefined() = false
-/* postcondition:
-The return value was all objects which each object in the set res was linked to by ReservedCopy
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The return value was all objects which each object in the set res was linked to by ReservedCopy
+		 */
 		postcondition:
 			result = res->collect(r:Reserve | r.ReservedCopy)
 }
@@ -3291,7 +3384,7 @@ The return value was all objects which each object in the set res was linked to 
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>uid</i>, type: String</p></td>
+<td><p>name: <i>uid</i>, type: String</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -3315,24 +3408,27 @@ The return value was all objects which each object in the set res was linked to 
  
 ```java
 Contract ListBookHistory::listRecommendBook(uid:String): Set(RecommendBook) {
-/* definition:
-user is the object u in the instance set of class User. u represents an object of class User, and u meets:
-    The attribute UserID of the object u is equal to uid
-rBooks is the Set of class RecommendBook, including  which user is linked to
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * user is the object u in the instance set of class User. u represents an object of class User, and u meets:
+		 *     The attribute UserID of the object u is equal to uid
+		 * rBooks is the Set of class RecommendBook, including  which user is linked to
+		 */
 		definition:
 			user:User = User.allInstance()->any(u:User | u.UserID = uid),
 			rBooks:Set(RecommendBook) = user.RecommendedBook
-/* precondition:
-user exists
-rBooks exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * user exists
+		 * rBooks exists
+		 */
 		precondition:
 			user.oclIsUndefined() = false and
 			rBooks.oclIsUndefined() = false
-/* postcondition:
-The return value was rBooks
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The return value was rBooks
+		 */
 		postcondition:
 			result = rBooks
 }
@@ -3358,7 +3454,7 @@ The return value was rBooks
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p>1. <i>uid</i>, type: String</p><p>2. <i>callNo</i>, type: String</p><p>3. <i>title</i>, type: String</p><p>4. <i>edition</i>, type: String</p><p>5. <i>author</i>, type: String</p><p>6. <i>publisher</i>, type: String</p><p>7. <i>description</i>, type: String</p><p>8. <i>isbn</i>, type: String</p></td>
+<td><p>1. name: <i>uid</i>, type: String</p><p>2. name: <i>callNo</i>, type: String</p><p>3. name: <i>title</i>, type: String</p><p>4. name: <i>edition</i>, type: String</p><p>5. name: <i>author</i>, type: String</p><p>6. name: <i>publisher</i>, type: String</p><p>7. name: <i>description</i>, type: String</p><p>8. name: <i>isbn</i>, type: String</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -3382,38 +3478,41 @@ The return value was rBooks
  
 ```java
 Contract LibraryManagementSystemSystem::recommendBook(uid:String, callNo : String, title : String, edition : String, author : String, publisher : String, description : String, isbn : String) : Boolean {
-/* definition:
-user is the object u in the instance set of class User. u represents an object of class User, and u meets:
-    The attribute UserID of the object u is equal to uid
-rb is the object r in the instance set of class RecommendBook. r represents an object of class RecommendBook, and r meets:
-    The attribute CallNo of the object r is equal to callNo
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * user is the object u in the instance set of class User. u represents an object of class User, and u meets:
+		 *     The attribute UserID of the object u is equal to uid
+		 * rb is the object r in the instance set of class RecommendBook. r represents an object of class RecommendBook, and r meets:
+		 *     The attribute CallNo of the object r is equal to callNo
+		 */
 		definition:
 			user:User = User.allInstance()->any(u:User | u.UserID = uid),
 			rb:RecommendBook = RecommendBook.allInstance()->any(r:RecommendBook | r.CallNo = callNo)
-/* precondition:
-user exists
-rb doesn't exist
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * user exists
+		 * rb doesn't exist
+		 */
 		precondition:
 			user.oclIsUndefined() = false and
 			rb.oclIsUndefined() = true
-/* postcondition:
-r represented the object of class RecommendBook
-The object r was created
-The attribute CallNo of the object r became callNo
-The attribute Title of the object r became title
-The attribute Edition of the object r became edition
-The attribute Author of the object r became author
-The attribute Publisher of the object r became publisher
-The attribute Description of the object r became description
-The attribute ISBn of the object r became isbn
-The attribute RecommendDate of the object r became Today
-The object r was linked to the object user by RecommendUser
-The object user was linked to the object r by RecommendedBook
-The object r was put into the instance set of class RecommendBook
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * r represented the object of class RecommendBook
+		 * The object r was created
+		 * The attribute CallNo of the object r became callNo
+		 * The attribute Title of the object r became title
+		 * The attribute Edition of the object r became edition
+		 * The attribute Author of the object r became author
+		 * The attribute Publisher of the object r became publisher
+		 * The attribute Description of the object r became description
+		 * The attribute ISBn of the object r became isbn
+		 * The attribute RecommendDate of the object r became Today
+		 * The object r was linked to the object user by RecommendUser
+		 * The object user was linked to the object r by RecommendedBook
+		 * The object r was put into the instance set of class RecommendBook
+		 * The return value was true
+		 */
 		postcondition:
 			let r:RecommendBook in
 			r.oclIsNew() and
@@ -3452,7 +3551,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p>1. <i>userID</i>, type: String</p><p>2. <i>name</i>, type: String</p><p>3. <i>sex</i>, type: [M|F]</p><p>4. <i>password</i>, type: String</p><p>5. <i>email</i>, type: String</p><p>6. <i>faculty</i>, type: String</p><p>7. <i>major</i>, type: String</p><p>8. <i>programme</i>, type: [BACHELOR|MASTER|PHD]</p><p>9. <i>registrationStatus</i>, type: [GRADUATED|PROGRAMMING]</p></td>
+<td><p>1. name: <i>userID</i>, type: String</p><p>2. name: <i>name</i>, type: String</p><p>3. name: <i>sex</i>, type: [M|F]</p><p>4. name: <i>password</i>, type: String</p><p>5. name: <i>email</i>, type: String</p><p>6. name: <i>faculty</i>, type: String</p><p>7. name: <i>major</i>, type: String</p><p>8. name: <i>programme</i>, type: [BACHELOR|MASTER|PHD]</p><p>9. name: <i>registrationStatus</i>, type: [GRADUATED|PROGRAMMING]</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -3476,37 +3575,40 @@ The return value was true
  
 ```java
 Contract ManageUserCRUDService::createStudent(userID : String, name : String, sex : Sex[M|F], password : String, email : String, faculty : String, major : String, programme : Programme[BACHELOR|MASTER|PHD], registrationStatus : StudentStatus[GRADUATED|PROGRAMMING]) : Boolean {
-/* definition:
-user is the object u in the instance set of class Student. u represents an object of class Student, and u meets:
-    The attribute UserID of the object u is equal to userID
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * user is the object u in the instance set of class Student. u represents an object of class Student, and u meets:
+		 *     The attribute UserID of the object u is equal to userID
+		 */
 		definition:
 			user:Student = Student.allInstance()->any(u:Student | u.UserID = userID)
-/* precondition:
-user doesn't exist
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * user doesn't exist
+		 */
 		precondition:
 			user.oclIsUndefined() = true
-/* postcondition:
-u represented the object of class Student
-The object u was created
-The attribute UserID of the object u became userID
-The attribute Name of the object u became name
-The attribute Email of the object u became email
-The attribute Password of the object u became password
-The attribute Sex of the object u became sex
-The attribute Faculty of the object u became faculty
-The attribute LoanedNumber of the object u became 0
-The attribute BorrowStatus of the object u became NORMAL
-The attribute SuspensionDays of the object u became 0
-The attribute OverDueFee of the object u became 0
-The attribute Major of the object u became major
-The attribute Programme of the object u became programme
-The attribute RegistrationStatus of the object u became registrationStatus
-The object u was put into the instance set of class User
-The object u was put into the instance set of class Student
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * u represented the object of class Student
+		 * The object u was created
+		 * The attribute UserID of the object u became userID
+		 * The attribute Name of the object u became name
+		 * The attribute Email of the object u became email
+		 * The attribute Password of the object u became password
+		 * The attribute Sex of the object u became sex
+		 * The attribute Faculty of the object u became faculty
+		 * The attribute LoanedNumber of the object u became 0
+		 * The attribute BorrowStatus of the object u became NORMAL
+		 * The attribute SuspensionDays of the object u became 0
+		 * The attribute OverDueFee of the object u became 0
+		 * The attribute Major of the object u became major
+		 * The attribute Programme of the object u became programme
+		 * The attribute RegistrationStatus of the object u became registrationStatus
+		 * The object u was put into the instance set of class User
+		 * The object u was put into the instance set of class Student
+		 * The return value was true
+		 */
 		postcondition:
 			let u:Student in
 			u.oclIsNew() and
@@ -3549,7 +3651,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p>1. <i>userID</i>, type: String</p><p>2. <i>name</i>, type: String</p><p>3. <i>sex</i>, type: [M|F]</p><p>4. <i>password</i>, type: String</p><p>5. <i>email</i>, type: String</p><p>6. <i>faculty</i>, type: String</p><p>7. <i>major</i>, type: String</p><p>8. <i>programme</i>, type: [BACHELOR|MASTER|PHD]</p><p>9. <i>registrationStatus</i>, type: [GRADUATED|PROGRAMMING]</p></td>
+<td><p>1. name: <i>userID</i>, type: String</p><p>2. name: <i>name</i>, type: String</p><p>3. name: <i>sex</i>, type: [M|F]</p><p>4. name: <i>password</i>, type: String</p><p>5. name: <i>email</i>, type: String</p><p>6. name: <i>faculty</i>, type: String</p><p>7. name: <i>major</i>, type: String</p><p>8. name: <i>programme</i>, type: [BACHELOR|MASTER|PHD]</p><p>9. name: <i>registrationStatus</i>, type: [GRADUATED|PROGRAMMING]</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -3573,33 +3675,36 @@ The return value was true
  
 ```java
 Contract ManageUserCRUDService::modifyStudent(userID : String, name : String, sex : Sex[M|F], password : String, email : String, faculty : String, major : String, programme : Programme[BACHELOR|MASTER|PHD], registrationStatus : StudentStatus[GRADUATED|PROGRAMMING]) : Boolean {
-/* definition:
-user is the object u in the instance set of class Student. u represents an object of class Student, and u meets:
-    The attribute UserID of the object u is equal to userID
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * user is the object u in the instance set of class Student. u represents an object of class Student, and u meets:
+		 *     The attribute UserID of the object u is equal to userID
+		 */
 		definition:
 			user:Student = Student.allInstance()->any(u:Student | u.UserID = userID)
-/* precondition:
-user exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * user exists
+		 */
 		precondition:
 			user.oclIsUndefined() = false
-/* postcondition:
-The attribute UserID of the object user became userID
-The attribute Name of the object user became name
-The attribute Email of the object user became email
-The attribute Password of the object user became password
-The attribute Sex of the object user became sex
-The attribute Faculty of the object user became faculty
-The attribute LoanedNumber of the object user became 0
-The attribute BorrowStatus of the object user became NORMAL
-The attribute SuspensionDays of the object user became 0
-The attribute OverDueFee of the object user became 0
-The attribute Major of the object user became major
-The attribute Programme of the object user became programme
-The attribute RegistrationStatus of the object user became registrationStatus
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The attribute UserID of the object user became userID
+		 * The attribute Name of the object user became name
+		 * The attribute Email of the object user became email
+		 * The attribute Password of the object user became password
+		 * The attribute Sex of the object user became sex
+		 * The attribute Faculty of the object user became faculty
+		 * The attribute LoanedNumber of the object user became 0
+		 * The attribute BorrowStatus of the object user became NORMAL
+		 * The attribute SuspensionDays of the object user became 0
+		 * The attribute OverDueFee of the object user became 0
+		 * The attribute Major of the object user became major
+		 * The attribute Programme of the object user became programme
+		 * The attribute RegistrationStatus of the object user became registrationStatus
+		 * The return value was true
+		 */
 		postcondition:
 			user.UserID = userID and
 			user.Name = name and
@@ -3638,7 +3743,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p>1. <i>userID</i>, type: String</p><p>2. <i>name</i>, type: String</p><p>3. <i>sex</i>, type: [M|F]</p><p>4. <i>password</i>, type: String</p><p>5. <i>email</i>, type: String</p><p>6. <i>faculty</i>, type: String</p><p>7. <i>position</i>, type: [ASSISTANTPROFESSORS|ASSOCIATEPROFESSOR|PROFESSOR|CHAIRPROFESSOR]</p><p>8. <i>status</i>, type: [HASRETIRED|INPOSITION]</p></td>
+<td><p>1. name: <i>userID</i>, type: String</p><p>2. name: <i>name</i>, type: String</p><p>3. name: <i>sex</i>, type: [M|F]</p><p>4. name: <i>password</i>, type: String</p><p>5. name: <i>email</i>, type: String</p><p>6. name: <i>faculty</i>, type: String</p><p>7. name: <i>position</i>, type: [ASSISTANTPROFESSORS|ASSOCIATEPROFESSOR|PROFESSOR|CHAIRPROFESSOR]</p><p>8. name: <i>status</i>, type: [HASRETIRED|INPOSITION]</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -3662,36 +3767,39 @@ The return value was true
  
 ```java
 Contract ManageUserCRUDService::createFaculty(userID : String, name : String, sex : Sex[M|F], password : String, email : String, faculty : String, position : FacultyPosition[ASSISTANTPROFESSORS|ASSOCIATEPROFESSOR|PROFESSOR|CHAIRPROFESSOR], status : FacultyStatus[HASRETIRED|INPOSITION]) : Boolean {
-/* definition:
-user is the object u in the instance set of class Faculty. u represents an object of class Faculty, and u meets:
-    The attribute UserID of the object u is equal to userID
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * user is the object u in the instance set of class Faculty. u represents an object of class Faculty, and u meets:
+		 *     The attribute UserID of the object u is equal to userID
+		 */
 		definition:
 			user:Faculty = Faculty.allInstance()->any(u:Faculty | u.UserID = userID)
-/* precondition:
-user doesn't exist
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * user doesn't exist
+		 */
 		precondition:
 			user.oclIsUndefined() = true
-/* postcondition:
-u represented the object of class Faculty
-The object u was created
-The attribute UserID of the object u became userID
-The attribute Name of the object u became name
-The attribute Email of the object u became email
-The attribute Password of the object u became password
-The attribute Sex of the object u became sex
-The attribute Faculty of the object u became faculty
-The attribute LoanedNumber of the object u became 0
-The attribute BorrowStatus of the object u became NORMAL
-The attribute SuspensionDays of the object u became 0
-The attribute OverDueFee of the object u became 0
-The attribute Position of the object u became position
-The attribute Status of the object u became status
-The object u was put into the instance set of class User
-The object u was put into the instance set of class Faculty
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * u represented the object of class Faculty
+		 * The object u was created
+		 * The attribute UserID of the object u became userID
+		 * The attribute Name of the object u became name
+		 * The attribute Email of the object u became email
+		 * The attribute Password of the object u became password
+		 * The attribute Sex of the object u became sex
+		 * The attribute Faculty of the object u became faculty
+		 * The attribute LoanedNumber of the object u became 0
+		 * The attribute BorrowStatus of the object u became NORMAL
+		 * The attribute SuspensionDays of the object u became 0
+		 * The attribute OverDueFee of the object u became 0
+		 * The attribute Position of the object u became position
+		 * The attribute Status of the object u became status
+		 * The object u was put into the instance set of class User
+		 * The object u was put into the instance set of class Faculty
+		 * The return value was true
+		 */
 		postcondition:
 			let u:Faculty in
 			u.oclIsNew() and
@@ -3733,7 +3841,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p>1. <i>userID</i>, type: String</p><p>2. <i>name</i>, type: String</p><p>3. <i>sex</i>, type: [M|F]</p><p>4. <i>password</i>, type: String</p><p>5. <i>email</i>, type: String</p><p>6. <i>faculty</i>, type: String</p><p>7. <i>major</i>, type: String</p><p>8. <i>position</i>, type: [ASSISTANTPROFESSORS|ASSOCIATEPROFESSOR|PROFESSOR|CHAIRPROFESSOR]</p><p>9. <i>status</i>, type: [HASRETIRED|INPOSITION]</p></td>
+<td><p>1. name: <i>userID</i>, type: String</p><p>2. name: <i>name</i>, type: String</p><p>3. name: <i>sex</i>, type: [M|F]</p><p>4. name: <i>password</i>, type: String</p><p>5. name: <i>email</i>, type: String</p><p>6. name: <i>faculty</i>, type: String</p><p>7. name: <i>major</i>, type: String</p><p>8. name: <i>position</i>, type: [ASSISTANTPROFESSORS|ASSOCIATEPROFESSOR|PROFESSOR|CHAIRPROFESSOR]</p><p>9. name: <i>status</i>, type: [HASRETIRED|INPOSITION]</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -3757,32 +3865,35 @@ The return value was true
  
 ```java
 Contract ManageUserCRUDService::modifyFaculty(userID : String, name : String, sex : Sex[M|F], password : String, email : String, faculty : String, major : String, position : FacultyPosition[ASSISTANTPROFESSORS|ASSOCIATEPROFESSOR|PROFESSOR|CHAIRPROFESSOR], status : FacultyStatus[HASRETIRED|INPOSITION]) : Boolean {
-/* definition:
-user is the object u in the instance set of class Faculty. u represents an object of class Faculty, and u meets:
-    The attribute UserID of the object u is equal to userID
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * user is the object u in the instance set of class Faculty. u represents an object of class Faculty, and u meets:
+		 *     The attribute UserID of the object u is equal to userID
+		 */
 		definition:
 			user:Faculty = Faculty.allInstance()->any(u:Faculty | u.UserID = userID)
-/* precondition:
-user exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * user exists
+		 */
 		precondition:
 			user.oclIsUndefined() = false
-/* postcondition:
-The attribute UserID of the object user became userID
-The attribute Name of the object user became name
-The attribute Email of the object user became email
-The attribute Password of the object user became password
-The attribute Sex of the object user became sex
-The attribute Faculty of the object user became faculty
-The attribute LoanedNumber of the object user became 0
-The attribute BorrowStatus of the object user became NORMAL
-The attribute SuspensionDays of the object user became 0
-The attribute OverDueFee of the object user became 0
-The attribute Position of the object user became position
-The attribute Status of the object user became status
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The attribute UserID of the object user became userID
+		 * The attribute Name of the object user became name
+		 * The attribute Email of the object user became email
+		 * The attribute Password of the object user became password
+		 * The attribute Sex of the object user became sex
+		 * The attribute Faculty of the object user became faculty
+		 * The attribute LoanedNumber of the object user became 0
+		 * The attribute BorrowStatus of the object user became NORMAL
+		 * The attribute SuspensionDays of the object user became 0
+		 * The attribute OverDueFee of the object user became 0
+		 * The attribute Position of the object user became position
+		 * The attribute Status of the object user became status
+		 * The return value was true
+		 */
 		postcondition:
 			user.UserID = userID and
 			user.Name = name and
@@ -3820,7 +3931,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>email</i>, type: String</p></td>
+<td><p>name: <i>email</i>, type: String</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -3840,14 +3951,16 @@ The return value was true
  
 ```java
 Contract ThirdPartyServices::sendNotificationEmail(email: String) : Boolean {
-/* precondition:
-The email is not equal to null
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * The email is not equal to null
+		 */
 		precondition:
 			email <> ""
-/* postcondition:
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The return value was true
+		 */
 		postcondition:
 			result = true
 }
@@ -3873,7 +3986,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p>1. <i>userid</i>, type: String</p><p>2. <i>name</i>, type: String</p><p>3. <i>sex</i>, type: [M|F]</p><p>4. <i>password</i>, type: String</p><p>5. <i>email</i>, type: String</p><p>6. <i>faculty</i>, type: String</p><p>7. <i>loanednumber</i>, type: Integer</p><p>8. <i>borrowstatus</i>, type: [NORMAL|SUSPEND]</p><p>9. <i>suspensiondays</i>, type: Integer</p><p>10. <i>overduefee</i>, type: Real</p></td>
+<td><p>1. name: <i>userid</i>, type: String</p><p>2. name: <i>name</i>, type: String</p><p>3. name: <i>sex</i>, type: [M|F]</p><p>4. name: <i>password</i>, type: String</p><p>5. name: <i>email</i>, type: String</p><p>6. name: <i>faculty</i>, type: String</p><p>7. name: <i>loanednumber</i>, type: Integer</p><p>8. name: <i>borrowstatus</i>, type: [NORMAL|SUSPEND]</p><p>9. name: <i>suspensiondays</i>, type: Integer</p><p>10. name: <i>overduefee</i>, type: Real</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -3897,33 +4010,36 @@ The return value was true
  
 ```java
 Contract  ManageUserCRUDService::createUser(userid : String, name : String, sex : Sex[M|F], password : String, email : String, faculty : String, loanednumber : Integer, borrowstatus : BorrowStatus[NORMAL|SUSPEND], suspensiondays : Integer, overduefee : Real) : Boolean {
-/* definition:
-user is the object use in the instance set of class User. use represents an object of class User, and use meets:
-    The attribute UserID of the object use is equal to userid
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * user is the object use in the instance set of class User. use represents an object of class User, and use meets:
+		 *     The attribute UserID of the object use is equal to userid
+		 */
 		definition:
 			user:User = User.allInstance()->any(use:User | use.UserID = userid)
-/* precondition:
-user doesn't exist
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * user doesn't exist
+		 */
 		precondition:
 			user.oclIsUndefined() = true
-/* postcondition:
-use represented the object of class User
-The object use was created
-The attribute UserID of the object use became userid
-The attribute Name of the object use became name
-The attribute Sex of the object use became sex
-The attribute Password of the object use became password
-The attribute Email of the object use became email
-The attribute Faculty of the object use became faculty
-The attribute LoanedNumber of the object use became loanednumber
-The attribute BorrowStatus of the object use became borrowstatus
-The attribute SuspensionDays of the object use became suspensiondays
-The attribute OverDueFee of the object use became overduefee
-The object use was put into the instance set of class User
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * use represented the object of class User
+		 * The object use was created
+		 * The attribute UserID of the object use became userid
+		 * The attribute Name of the object use became name
+		 * The attribute Sex of the object use became sex
+		 * The attribute Password of the object use became password
+		 * The attribute Email of the object use became email
+		 * The attribute Faculty of the object use became faculty
+		 * The attribute LoanedNumber of the object use became loanednumber
+		 * The attribute BorrowStatus of the object use became borrowstatus
+		 * The attribute SuspensionDays of the object use became suspensiondays
+		 * The attribute OverDueFee of the object use became overduefee
+		 * The object use was put into the instance set of class User
+		 * The return value was true
+		 */
 		postcondition:
 			let use:User in
 			use.oclIsNew() and
@@ -3962,7 +4078,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>userid</i>, type: String</p></td>
+<td><p>name: <i>userid</i>, type: String</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -3986,20 +4102,23 @@ The return value was true
  
 ```java
 Contract  ManageUserCRUDService::queryUser(userid : String) : User {
-/* definition:
-user is the object use in the instance set of class User. use represents an object of class User, and use meets:
-    The attribute UserID of the object use is equal to userid
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * user is the object use in the instance set of class User. use represents an object of class User, and use meets:
+		 *     The attribute UserID of the object use is equal to userid
+		 */
 		definition:
 			user:User = User.allInstance()->any(use:User | use.UserID = userid)
-/* precondition:
-user exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * user exists
+		 */
 		precondition:
 			user.oclIsUndefined() = false
-/* postcondition:
-The return value was user
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The return value was user
+		 */
 		postcondition:
 			result = user
 }
@@ -4025,7 +4144,7 @@ The return value was user
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p>1. <i>userid</i>, type: String</p><p>2. <i>name</i>, type: String</p><p>3. <i>sex</i>, type: [M|F]</p><p>4. <i>password</i>, type: String</p><p>5. <i>email</i>, type: String</p><p>6. <i>faculty</i>, type: String</p><p>7. <i>loanednumber</i>, type: Integer</p><p>8. <i>borrowstatus</i>, type: [NORMAL|SUSPEND]</p><p>9. <i>suspensiondays</i>, type: Integer</p><p>10. <i>overduefee</i>, type: Real</p></td>
+<td><p>1. name: <i>userid</i>, type: String</p><p>2. name: <i>name</i>, type: String</p><p>3. name: <i>sex</i>, type: [M|F]</p><p>4. name: <i>password</i>, type: String</p><p>5. name: <i>email</i>, type: String</p><p>6. name: <i>faculty</i>, type: String</p><p>7. name: <i>loanednumber</i>, type: Integer</p><p>8. name: <i>borrowstatus</i>, type: [NORMAL|SUSPEND]</p><p>9. name: <i>suspensiondays</i>, type: Integer</p><p>10. name: <i>overduefee</i>, type: Real</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -4049,30 +4168,33 @@ The return value was user
  
 ```java
 Contract  ManageUserCRUDService::modifyUser(userid : String, name : String, sex : Sex[M|F], password : String, email : String, faculty : String, loanednumber : Integer, borrowstatus : BorrowStatus[NORMAL|SUSPEND], suspensiondays : Integer, overduefee : Real) : Boolean {
-/* definition:
-user is the object use in the instance set of class User. use represents an object of class User, and use meets:
-    The attribute UserID of the object use is equal to userid
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * user is the object use in the instance set of class User. use represents an object of class User, and use meets:
+		 *     The attribute UserID of the object use is equal to userid
+		 */
 		definition:
 			user:User = User.allInstance()->any(use:User | use.UserID = userid)
-/* precondition:
-user exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * user exists
+		 */
 		precondition:
 			user.oclIsUndefined() = false
-/* postcondition:
-The attribute UserID of the object user became userid
-The attribute Name of the object user became name
-The attribute Sex of the object user became sex
-The attribute Password of the object user became password
-The attribute Email of the object user became email
-The attribute Faculty of the object user became faculty
-The attribute LoanedNumber of the object user became loanednumber
-The attribute BorrowStatus of the object user became borrowstatus
-The attribute SuspensionDays of the object user became suspensiondays
-The attribute OverDueFee of the object user became overduefee
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The attribute UserID of the object user became userid
+		 * The attribute Name of the object user became name
+		 * The attribute Sex of the object user became sex
+		 * The attribute Password of the object user became password
+		 * The attribute Email of the object user became email
+		 * The attribute Faculty of the object user became faculty
+		 * The attribute LoanedNumber of the object user became loanednumber
+		 * The attribute BorrowStatus of the object user became borrowstatus
+		 * The attribute SuspensionDays of the object user became suspensiondays
+		 * The attribute OverDueFee of the object user became overduefee
+		 * The return value was true
+		 */
 		postcondition:
 			user.UserID = userid and
 			user.Name = name and
@@ -4108,7 +4230,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>userid</i>, type: String</p></td>
+<td><p>name: <i>userid</i>, type: String</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -4132,23 +4254,26 @@ The return value was true
  
 ```java
 Contract  ManageUserCRUDService::deleteUser(userid : String) : Boolean {
-/* definition:
-user is the object use in the instance set of class User. use represents an object of class User, and use meets:
-    The attribute UserID of the object use is equal to userid
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * user is the object use in the instance set of class User. use represents an object of class User, and use meets:
+		 *     The attribute UserID of the object use is equal to userid
+		 */
 		definition:
 			user:User = User.allInstance()->any(use:User | use.UserID = userid)
-/* precondition:
-user exists
-The object user is in the instance set of class User
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * user exists
+		 * The object user is in the instance set of class User
+		 */
 		precondition:
 			user.oclIsUndefined() = false and
 			User.allInstance()->includes(user)
-/* postcondition:
-The object user was deleted from the instance set of class User
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The object user was deleted from the instance set of class User
+		 * The return value was true
+		 */
 		postcondition:
 			User.allInstance()->excludes(user) and
 			result = true
@@ -4175,7 +4300,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p>1. <i>callno</i>, type: String</p><p>2. <i>title</i>, type: String</p><p>3. <i>edition</i>, type: String</p><p>4. <i>author</i>, type: String</p><p>5. <i>publisher</i>, type: String</p><p>6. <i>description</i>, type: String</p><p>7. <i>isbn</i>, type: String</p><p>8. <i>copynum</i>, type: Integer</p></td>
+<td><p>1. name: <i>callno</i>, type: String</p><p>2. name: <i>title</i>, type: String</p><p>3. name: <i>edition</i>, type: String</p><p>4. name: <i>author</i>, type: String</p><p>5. name: <i>publisher</i>, type: String</p><p>6. name: <i>description</i>, type: String</p><p>7. name: <i>isbn</i>, type: String</p><p>8. name: <i>copynum</i>, type: Integer</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -4199,31 +4324,34 @@ The return value was true
  
 ```java
 Contract  ManageBookCRUDService::createBook(callno : String, title : String, edition : String, author : String, publisher : String, description : String, isbn : String, copynum : Integer) : Boolean {
-/* definition:
-book is the object boo in the instance set of class Book. boo represents an object of class Book, and boo meets:
-    The attribute CallNo of the object boo is equal to callno
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * book is the object boo in the instance set of class Book. boo represents an object of class Book, and boo meets:
+		 *     The attribute CallNo of the object boo is equal to callno
+		 */
 		definition:
 			book:Book = Book.allInstance()->any(boo:Book | boo.CallNo = callno)
-/* precondition:
-book doesn't exist
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * book doesn't exist
+		 */
 		precondition:
 			book.oclIsUndefined() = true
-/* postcondition:
-boo represented the object of class Book
-The object boo was created
-The attribute CallNo of the object boo became callno
-The attribute Title of the object boo became title
-The attribute Edition of the object boo became edition
-The attribute Author of the object boo became author
-The attribute Publisher of the object boo became publisher
-The attribute Description of the object boo became description
-The attribute ISBn of the object boo became isbn
-The attribute CopyNum of the object boo became copynum
-The object boo was put into the instance set of class Book
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * boo represented the object of class Book
+		 * The object boo was created
+		 * The attribute CallNo of the object boo became callno
+		 * The attribute Title of the object boo became title
+		 * The attribute Edition of the object boo became edition
+		 * The attribute Author of the object boo became author
+		 * The attribute Publisher of the object boo became publisher
+		 * The attribute Description of the object boo became description
+		 * The attribute ISBn of the object boo became isbn
+		 * The attribute CopyNum of the object boo became copynum
+		 * The object boo was put into the instance set of class Book
+		 * The return value was true
+		 */
 		postcondition:
 			let boo:Book in
 			boo.oclIsNew() and
@@ -4260,7 +4388,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>callno</i>, type: String</p></td>
+<td><p>name: <i>callno</i>, type: String</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -4284,20 +4412,23 @@ The return value was true
  
 ```java
 Contract  ManageBookCRUDService::queryBook(callno : String) : Book {
-/* definition:
-book is the object boo in the instance set of class Book. boo represents an object of class Book, and boo meets:
-    The attribute CallNo of the object boo is equal to callno
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * book is the object boo in the instance set of class Book. boo represents an object of class Book, and boo meets:
+		 *     The attribute CallNo of the object boo is equal to callno
+		 */
 		definition:
 			book:Book = Book.allInstance()->any(boo:Book | boo.CallNo = callno)
-/* precondition:
-book exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * book exists
+		 */
 		precondition:
 			book.oclIsUndefined() = false
-/* postcondition:
-The return value was book
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The return value was book
+		 */
 		postcondition:
 			result = book
 }
@@ -4323,7 +4454,7 @@ The return value was book
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p>1. <i>callno</i>, type: String</p><p>2. <i>title</i>, type: String</p><p>3. <i>edition</i>, type: String</p><p>4. <i>author</i>, type: String</p><p>5. <i>publisher</i>, type: String</p><p>6. <i>description</i>, type: String</p><p>7. <i>isbn</i>, type: String</p><p>8. <i>copynum</i>, type: Integer</p></td>
+<td><p>1. name: <i>callno</i>, type: String</p><p>2. name: <i>title</i>, type: String</p><p>3. name: <i>edition</i>, type: String</p><p>4. name: <i>author</i>, type: String</p><p>5. name: <i>publisher</i>, type: String</p><p>6. name: <i>description</i>, type: String</p><p>7. name: <i>isbn</i>, type: String</p><p>8. name: <i>copynum</i>, type: Integer</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -4347,28 +4478,31 @@ The return value was book
  
 ```java
 Contract  ManageBookCRUDService::modifyBook(callno : String, title : String, edition : String, author : String, publisher : String, description : String, isbn : String, copynum : Integer) : Boolean {
-/* definition:
-book is the object boo in the instance set of class Book. boo represents an object of class Book, and boo meets:
-    The attribute CallNo of the object boo is equal to callno
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * book is the object boo in the instance set of class Book. boo represents an object of class Book, and boo meets:
+		 *     The attribute CallNo of the object boo is equal to callno
+		 */
 		definition:
 			book:Book = Book.allInstance()->any(boo:Book | boo.CallNo = callno)
-/* precondition:
-book exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * book exists
+		 */
 		precondition:
 			book.oclIsUndefined() = false
-/* postcondition:
-The attribute CallNo of the object book became callno
-The attribute Title of the object book became title
-The attribute Edition of the object book became edition
-The attribute Author of the object book became author
-The attribute Publisher of the object book became publisher
-The attribute Description of the object book became description
-The attribute ISBn of the object book became isbn
-The attribute CopyNum of the object book became copynum
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The attribute CallNo of the object book became callno
+		 * The attribute Title of the object book became title
+		 * The attribute Edition of the object book became edition
+		 * The attribute Author of the object book became author
+		 * The attribute Publisher of the object book became publisher
+		 * The attribute Description of the object book became description
+		 * The attribute ISBn of the object book became isbn
+		 * The attribute CopyNum of the object book became copynum
+		 * The return value was true
+		 */
 		postcondition:
 			book.CallNo = callno and
 			book.Title = title and
@@ -4402,7 +4536,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>callno</i>, type: String</p></td>
+<td><p>name: <i>callno</i>, type: String</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -4426,23 +4560,26 @@ The return value was true
  
 ```java
 Contract  ManageBookCRUDService::deleteBook(callno : String) : Boolean {
-/* definition:
-book is the object boo in the instance set of class Book. boo represents an object of class Book, and boo meets:
-    The attribute CallNo of the object boo is equal to callno
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * book is the object boo in the instance set of class Book. boo represents an object of class Book, and boo meets:
+		 *     The attribute CallNo of the object boo is equal to callno
+		 */
 		definition:
 			book:Book = Book.allInstance()->any(boo:Book | boo.CallNo = callno)
-/* precondition:
-book exists
-The object book is in the instance set of class Book
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * book exists
+		 * The object book is in the instance set of class Book
+		 */
 		precondition:
 			book.oclIsUndefined() = false and
 			Book.allInstance()->includes(book)
-/* postcondition:
-The object book was deleted from the instance set of class Book
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The object book was deleted from the instance set of class Book
+		 * The return value was true
+		 */
 		postcondition:
 			Book.allInstance()->excludes(book) and
 			result = true
@@ -4469,7 +4606,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>name</i>, type: String</p></td>
+<td><p>name: <i>name</i>, type: String</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -4493,24 +4630,27 @@ The return value was true
  
 ```java
 Contract  ManageSubjectCRUDService::createSubject(name : String) : Boolean {
-/* definition:
-subject is the object sub in the instance set of class Subject. sub represents an object of class Subject, and sub meets:
-    The attribute Name of the object sub is equal to name
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * subject is the object sub in the instance set of class Subject. sub represents an object of class Subject, and sub meets:
+		 *     The attribute Name of the object sub is equal to name
+		 */
 		definition:
 			subject:Subject = Subject.allInstance()->any(sub:Subject | sub.Name = name)
-/* precondition:
-subject doesn't exist
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * subject doesn't exist
+		 */
 		precondition:
 			subject.oclIsUndefined() = true
-/* postcondition:
-sub represented the object of class Subject
-The object sub was created
-The attribute Name of the object sub became name
-The object sub was put into the instance set of class Subject
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * sub represented the object of class Subject
+		 * The object sub was created
+		 * The attribute Name of the object sub became name
+		 * The object sub was put into the instance set of class Subject
+		 * The return value was true
+		 */
 		postcondition:
 			let sub:Subject in
 			sub.oclIsNew() and
@@ -4540,7 +4680,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>name</i>, type: String</p></td>
+<td><p>name: <i>name</i>, type: String</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -4564,20 +4704,23 @@ The return value was true
  
 ```java
 Contract  ManageSubjectCRUDService::querySubject(name : String) : Subject {
-/* definition:
-subject is the object sub in the instance set of class Subject. sub represents an object of class Subject, and sub meets:
-    The attribute Name of the object sub is equal to name
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * subject is the object sub in the instance set of class Subject. sub represents an object of class Subject, and sub meets:
+		 *     The attribute Name of the object sub is equal to name
+		 */
 		definition:
 			subject:Subject = Subject.allInstance()->any(sub:Subject | sub.Name = name)
-/* precondition:
-subject exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * subject exists
+		 */
 		precondition:
 			subject.oclIsUndefined() = false
-/* postcondition:
-The return value was subject
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The return value was subject
+		 */
 		postcondition:
 			result = subject
 }
@@ -4603,7 +4746,7 @@ The return value was subject
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>name</i>, type: String</p></td>
+<td><p>name: <i>name</i>, type: String</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -4627,21 +4770,24 @@ The return value was subject
  
 ```java
 Contract  ManageSubjectCRUDService::modifySubject(name : String) : Boolean {
-/* definition:
-subject is the object sub in the instance set of class Subject. sub represents an object of class Subject, and sub meets:
-    The attribute Name of the object sub is equal to name
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * subject is the object sub in the instance set of class Subject. sub represents an object of class Subject, and sub meets:
+		 *     The attribute Name of the object sub is equal to name
+		 */
 		definition:
 			subject:Subject = Subject.allInstance()->any(sub:Subject | sub.Name = name)
-/* precondition:
-subject exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * subject exists
+		 */
 		precondition:
 			subject.oclIsUndefined() = false
-/* postcondition:
-The attribute Name of the object subject became name
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The attribute Name of the object subject became name
+		 * The return value was true
+		 */
 		postcondition:
 			subject.Name = name and
 			result = true
@@ -4668,7 +4814,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>name</i>, type: String</p></td>
+<td><p>name: <i>name</i>, type: String</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -4692,23 +4838,26 @@ The return value was true
  
 ```java
 Contract  ManageSubjectCRUDService::deleteSubject(name : String) : Boolean {
-/* definition:
-subject is the object sub in the instance set of class Subject. sub represents an object of class Subject, and sub meets:
-    The attribute Name of the object sub is equal to name
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * subject is the object sub in the instance set of class Subject. sub represents an object of class Subject, and sub meets:
+		 *     The attribute Name of the object sub is equal to name
+		 */
 		definition:
 			subject:Subject = Subject.allInstance()->any(sub:Subject | sub.Name = name)
-/* precondition:
-subject exists
-The object subject is in the instance set of class Subject
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * subject exists
+		 * The object subject is in the instance set of class Subject
+		 */
 		precondition:
 			subject.oclIsUndefined() = false and
 			Subject.allInstance()->includes(subject)
-/* postcondition:
-The object subject was deleted from the instance set of class Subject
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The object subject was deleted from the instance set of class Subject
+		 * The return value was true
+		 */
 		postcondition:
 			Subject.allInstance()->excludes(subject) and
 			result = true
@@ -4735,7 +4884,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p>1. <i>callNo</i>, type: String</p><p>2. <i>barcode</i>, type: String</p><p>3. <i>location</i>, type: String</p></td>
+<td><p>1. name: <i>callNo</i>, type: String</p><p>2. name: <i>barcode</i>, type: String</p><p>3. name: <i>location</i>, type: String</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -4759,35 +4908,38 @@ The return value was true
  
 ```java
 Contract ManageBookCopyCRUDService::addBookCopy(callNo:String, barcode : String, location : String) : Boolean {
-/* definition:
-book is the object b in the instance set of class Book. b represents an object of class Book, and b meets:
-    The attribute CallNo of the object b is equal to callNo
-bc is the object c in all objects which book is linked to by Copys. c represents an object of class BookCopy, and c meets:
-    The attribute Barcode of the object c is equal to barcode
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * book is the object b in the instance set of class Book. b represents an object of class Book, and b meets:
+		 *     The attribute CallNo of the object b is equal to callNo
+		 * bc is the object c in all objects which book is linked to by Copys. c represents an object of class BookCopy, and c meets:
+		 *     The attribute Barcode of the object c is equal to barcode
+		 */
 		definition:
 			book:Book = Book.allInstance()->any(b:Book | b.CallNo = callNo),
 			bc:BookCopy = book.Copys->any(c:BookCopy | c.Barcode = barcode)
-/* precondition:
-book exists
-bc doesn't exist
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * book exists
+		 * bc doesn't exist
+		 */
 		precondition:
 			book.oclIsUndefined() = false and
 			bc.oclIsUndefined() = true
-/* postcondition:
-copy represented the object of class BookCopy
-The object copy was created
-The attribute Barcode of the object copy became barcode
-The attribute Status of the object copy became AVAILABLE
-The attribute Location of the object copy became location
-The attribute IsReserved of the object copy became false
-The object book was linked to the object copy by Copys
-The object copy was linked to the object book by BookBelongs
-The attribute CopyNum of the object book became the previous value of the attribute CopyNum of the object book plus 1
-The object copy was put into the instance set of class BookCopy
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * copy represented the object of class BookCopy
+		 * The object copy was created
+		 * The attribute Barcode of the object copy became barcode
+		 * The attribute Status of the object copy became AVAILABLE
+		 * The attribute Location of the object copy became location
+		 * The attribute IsReserved of the object copy became false
+		 * The object book was linked to the object copy by Copys
+		 * The object copy was linked to the object book by BookBelongs
+		 * The attribute CopyNum of the object book became the previous value of the attribute CopyNum of the object book plus 1
+		 * The object copy was put into the instance set of class BookCopy
+		 * The return value was true
+		 */
 		postcondition:
 			let copy:BookCopy in
 			copy.oclIsNew() and
@@ -4823,7 +4975,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>barcode</i>, type: String</p></td>
+<td><p>name: <i>barcode</i>, type: String</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -4847,20 +4999,23 @@ The return value was true
  
 ```java
 Contract  ManageBookCopyCRUDService::queryBookCopy(barcode : String) : BookCopy {
-/* definition:
-bookcopy is the object boo in the instance set of class BookCopy. boo represents an object of class BookCopy, and boo meets:
-    The attribute Barcode of the object boo is equal to barcode
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * bookcopy is the object boo in the instance set of class BookCopy. boo represents an object of class BookCopy, and boo meets:
+		 *     The attribute Barcode of the object boo is equal to barcode
+		 */
 		definition:
 			bookcopy:BookCopy = BookCopy.allInstance()->any(boo:BookCopy | boo.Barcode = barcode)
-/* precondition:
-bookcopy exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * bookcopy exists
+		 */
 		precondition:
 			bookcopy.oclIsUndefined() = false
-/* postcondition:
-The return value was bookcopy
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The return value was bookcopy
+		 */
 		postcondition:
 			result = bookcopy
 }
@@ -4886,7 +5041,7 @@ The return value was bookcopy
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p>1. <i>barcode</i>, type: String</p><p>2. <i>status</i>, type: [AVAILABLE|INPROCESSING|LIBUSEONLY|ONHOLDSHELF|LOANED]</p><p>3. <i>location</i>, type: String</p><p>4. <i>isreserved</i>, type: Boolean</p></td>
+<td><p>1. name: <i>barcode</i>, type: String</p><p>2. name: <i>status</i>, type: [AVAILABLE|INPROCESSING|LIBUSEONLY|ONHOLDSHELF|LOANED]</p><p>3. name: <i>location</i>, type: String</p><p>4. name: <i>isreserved</i>, type: Boolean</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -4910,24 +5065,27 @@ The return value was bookcopy
  
 ```java
 Contract  ManageBookCopyCRUDService::modifyBookCopy(barcode : String, status : CopyStatus[AVAILABLE|INPROCESSING|LIBUSEONLY|ONHOLDSHELF|LOANED], location : String, isreserved : Boolean) : Boolean {
-/* definition:
-bookcopy is the object boo in the instance set of class BookCopy. boo represents an object of class BookCopy, and boo meets:
-    The attribute Barcode of the object boo is equal to barcode
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * bookcopy is the object boo in the instance set of class BookCopy. boo represents an object of class BookCopy, and boo meets:
+		 *     The attribute Barcode of the object boo is equal to barcode
+		 */
 		definition:
 			bookcopy:BookCopy = BookCopy.allInstance()->any(boo:BookCopy | boo.Barcode = barcode)
-/* precondition:
-bookcopy exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * bookcopy exists
+		 */
 		precondition:
 			bookcopy.oclIsUndefined() = false
-/* postcondition:
-The attribute Barcode of the object bookcopy became barcode
-The attribute Status of the object bookcopy became status
-The attribute Location of the object bookcopy became location
-The attribute IsReserved of the object bookcopy became isreserved
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The attribute Barcode of the object bookcopy became barcode
+		 * The attribute Status of the object bookcopy became status
+		 * The attribute Location of the object bookcopy became location
+		 * The attribute IsReserved of the object bookcopy became isreserved
+		 * The return value was true
+		 */
 		postcondition:
 			bookcopy.Barcode = barcode and
 			bookcopy.Status = status and
@@ -4957,7 +5115,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>barcode</i>, type: String</p></td>
+<td><p>name: <i>barcode</i>, type: String</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -4981,23 +5139,26 @@ The return value was true
  
 ```java
 Contract  ManageBookCopyCRUDService::deleteBookCopy(barcode : String) : Boolean {
-/* definition:
-bookcopy is the object boo in the instance set of class BookCopy. boo represents an object of class BookCopy, and boo meets:
-    The attribute Barcode of the object boo is equal to barcode
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * bookcopy is the object boo in the instance set of class BookCopy. boo represents an object of class BookCopy, and boo meets:
+		 *     The attribute Barcode of the object boo is equal to barcode
+		 */
 		definition:
 			bookcopy:BookCopy = BookCopy.allInstance()->any(boo:BookCopy | boo.Barcode = barcode)
-/* precondition:
-bookcopy exists
-The object bookcopy is in the instance set of class BookCopy
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * bookcopy exists
+		 * The object bookcopy is in the instance set of class BookCopy
+		 */
 		precondition:
 			bookcopy.oclIsUndefined() = false and
 			BookCopy.allInstance()->includes(bookcopy)
-/* postcondition:
-The object bookcopy was deleted from the instance set of class BookCopy
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The object bookcopy was deleted from the instance set of class BookCopy
+		 * The return value was true
+		 */
 		postcondition:
 			BookCopy.allInstance()->excludes(bookcopy) and
 			result = true
@@ -5024,7 +5185,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p>1. <i>librarianid</i>, type: String</p><p>2. <i>name</i>, type: String</p><p>3. <i>password</i>, type: String</p></td>
+<td><p>1. name: <i>librarianid</i>, type: String</p><p>2. name: <i>name</i>, type: String</p><p>3. name: <i>password</i>, type: String</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -5048,26 +5209,29 @@ The return value was true
  
 ```java
 Contract  ManageLibrarianCRUDService::createLibrarian(librarianid : String, name : String, password : String) : Boolean {
-/* definition:
-librarian is the object lib in the instance set of class Librarian. lib represents an object of class Librarian, and lib meets:
-    The attribute LibrarianID of the object lib is equal to librarianid
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * librarian is the object lib in the instance set of class Librarian. lib represents an object of class Librarian, and lib meets:
+		 *     The attribute LibrarianID of the object lib is equal to librarianid
+		 */
 		definition:
 			librarian:Librarian = Librarian.allInstance()->any(lib:Librarian | lib.LibrarianID = librarianid)
-/* precondition:
-librarian doesn't exist
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * librarian doesn't exist
+		 */
 		precondition:
 			librarian.oclIsUndefined() = true
-/* postcondition:
-lib represented the object of class Librarian
-The object lib was created
-The attribute LibrarianID of the object lib became librarianid
-The attribute Name of the object lib became name
-The attribute Password of the object lib became password
-The object lib was put into the instance set of class Librarian
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * lib represented the object of class Librarian
+		 * The object lib was created
+		 * The attribute LibrarianID of the object lib became librarianid
+		 * The attribute Name of the object lib became name
+		 * The attribute Password of the object lib became password
+		 * The object lib was put into the instance set of class Librarian
+		 * The return value was true
+		 */
 		postcondition:
 			let lib:Librarian in
 			lib.oclIsNew() and
@@ -5099,7 +5263,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>librarianid</i>, type: String</p></td>
+<td><p>name: <i>librarianid</i>, type: String</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -5123,20 +5287,23 @@ The return value was true
  
 ```java
 Contract  ManageLibrarianCRUDService::queryLibrarian(librarianid : String) : Librarian {
-/* definition:
-librarian is the object lib in the instance set of class Librarian. lib represents an object of class Librarian, and lib meets:
-    The attribute LibrarianID of the object lib is equal to librarianid
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * librarian is the object lib in the instance set of class Librarian. lib represents an object of class Librarian, and lib meets:
+		 *     The attribute LibrarianID of the object lib is equal to librarianid
+		 */
 		definition:
 			librarian:Librarian = Librarian.allInstance()->any(lib:Librarian | lib.LibrarianID = librarianid)
-/* precondition:
-librarian exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * librarian exists
+		 */
 		precondition:
 			librarian.oclIsUndefined() = false
-/* postcondition:
-The return value was librarian
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The return value was librarian
+		 */
 		postcondition:
 			result = librarian
 }
@@ -5162,7 +5329,7 @@ The return value was librarian
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p>1. <i>librarianid</i>, type: String</p><p>2. <i>name</i>, type: String</p><p>3. <i>password</i>, type: String</p></td>
+<td><p>1. name: <i>librarianid</i>, type: String</p><p>2. name: <i>name</i>, type: String</p><p>3. name: <i>password</i>, type: String</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -5186,23 +5353,26 @@ The return value was librarian
  
 ```java
 Contract  ManageLibrarianCRUDService::modifyLibrarian(librarianid : String, name : String, password : String) : Boolean {
-/* definition:
-librarian is the object lib in the instance set of class Librarian. lib represents an object of class Librarian, and lib meets:
-    The attribute LibrarianID of the object lib is equal to librarianid
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * librarian is the object lib in the instance set of class Librarian. lib represents an object of class Librarian, and lib meets:
+		 *     The attribute LibrarianID of the object lib is equal to librarianid
+		 */
 		definition:
 			librarian:Librarian = Librarian.allInstance()->any(lib:Librarian | lib.LibrarianID = librarianid)
-/* precondition:
-librarian exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * librarian exists
+		 */
 		precondition:
 			librarian.oclIsUndefined() = false
-/* postcondition:
-The attribute LibrarianID of the object librarian became librarianid
-The attribute Name of the object librarian became name
-The attribute Password of the object librarian became password
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The attribute LibrarianID of the object librarian became librarianid
+		 * The attribute Name of the object librarian became name
+		 * The attribute Password of the object librarian became password
+		 * The return value was true
+		 */
 		postcondition:
 			librarian.LibrarianID = librarianid and
 			librarian.Name = name and
@@ -5231,7 +5401,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>librarianid</i>, type: String</p></td>
+<td><p>name: <i>librarianid</i>, type: String</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -5255,23 +5425,26 @@ The return value was true
  
 ```java
 Contract  ManageLibrarianCRUDService::deleteLibrarian(librarianid : String) : Boolean {
-/* definition:
-librarian is the object lib in the instance set of class Librarian. lib represents an object of class Librarian, and lib meets:
-    The attribute LibrarianID of the object lib is equal to librarianid
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * librarian is the object lib in the instance set of class Librarian. lib represents an object of class Librarian, and lib meets:
+		 *     The attribute LibrarianID of the object lib is equal to librarianid
+		 */
 		definition:
 			librarian:Librarian = Librarian.allInstance()->any(lib:Librarian | lib.LibrarianID = librarianid)
-/* precondition:
-librarian exists
-The object librarian is in the instance set of class Librarian
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * librarian exists
+		 * The object librarian is in the instance set of class Librarian
+		 */
 		precondition:
 			librarian.oclIsUndefined() = false and
 			Librarian.allInstance()->includes(librarian)
-/* postcondition:
-The object librarian was deleted from the instance set of class Librarian
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The object librarian was deleted from the instance set of class Librarian
+		 * The return value was true
+		 */
 		postcondition:
 			Librarian.allInstance()->excludes(librarian) and
 			result = true
@@ -5280,6 +5453,7 @@ The return value was true
 
 
 
+ 
 ## 3.2  External interface requirements
 User interfaces
 Hardware interfaces

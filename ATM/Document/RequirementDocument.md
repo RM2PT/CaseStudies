@@ -58,10 +58,10 @@ This subsection of the SRS should identify requirements that may be delayed unti
 ## 3.1  Functional requirements
 ### 3.1.1   User Requirements
 <b>Use Case Diagram</b>
-![Use Case Diagram](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/ATM/Use%20Case%20Diagram.jpg)
-
+ 
+![Use Case Diagram](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/项目名/Use Case Diagram.jpg)
+ 
 <b>A1 - Customer</b>
-
 <table>
 	<tr>
 		<td><b>Actor Name:</b></td>
@@ -123,7 +123,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 ### 3.1.2   System Requirement
 #### 3.1.2.1 Use Case Description
 <b>UC1 - withdrawCash</b>
-
+ 
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -158,9 +158,11 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
-![WithdrawCashSSD](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/ATM/WithdrawCashSSD.jpg)
+ 
+![WithdrawCashSSD](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/项目名/WithdrawCashSSD.jpg)
+ 
 <b>UC2 - checkBalance</b>
-
+ 
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -195,9 +197,11 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
-![CheckBalanceSSD](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/ATM/CheckBalanceSSD.jpg)
+ 
+![CheckBalanceSSD](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/项目名/CheckBalanceSSD.jpg)
+ 
 <b>UC3 - depositFunds</b>
-
+ 
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -232,9 +236,11 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
-![DepositFundsSSD](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/ATM/DepositFundsSSD.jpg)
+ 
+![DepositFundsSSD](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/项目名/DepositFundsSSD.jpg)
+ 
 <b>UC4 - manageBankCard</b>
-
+ 
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -269,8 +275,10 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
+ 
 <b>UC5 - manageUser</b>
-
+ 
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -305,8 +313,10 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
+ 
 <b>UC6 - cardIdentification</b>
-
+ 
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -341,11 +351,16 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
+ 
+ 
+ 
 #### 3.1.2.2   Entity Analysis
 <b>Conceptual Class Diagram</b> 
-![Conceptual Class Diagram](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/ATM/Conceptual%20Class%20Diagram.jpg)
+ 
+![Conceptual Class Diagram](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/项目名/Conceptual Class Diagram.jpg)
+ 
 <b>E1 - BankCard</b>
-
+ 
 <table>
 	<tr>
 		<td><b>Entity Name:</b></td>
@@ -402,9 +417,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td>Many BankCard are linked with one User</td>
 	</tr>
 	</table>
-
+	 
 <b>E2 - User</b>
-
+ 
 <table>
 	<tr>
 		<td><b>Entity Name:</b></td>
@@ -451,7 +466,8 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td>One User is linked with many BankCard</td>
 	</tr>
 	</table>
-
+	 
+ 
 #### 3.1.2.3   System Interfaces
 ##### System Interfaces
 <b>SI1 - AutomatedTellerMachineSystem</b>
@@ -477,35 +493,35 @@ This subsection of the SRS should identify requirements that may be delayed unti
 			<td><b>Variable Description</b></td>
 	</tr>
 	<tr>
-		<td><span name ="AutomatedTellerMachineSystempasswordValidated">passwordValidated</span></td>
-		<td>the type of passwordValidated is Boolean</td>
+		<td><span name ="AutomatedTellerMachineSystemPasswordValidated">PasswordValidated</span></td>
+		<td>the type of PasswordValidated is Boolean</td>
 					</tr>
 	<tr>
-		<td><span name ="AutomatedTellerMachineSystemwithdrawedNumber">withdrawedNumber</span></td>
-		<td>the type of withdrawedNumber is Real</td>
+		<td><span name ="AutomatedTellerMachineSystemWithdrawedNumber">WithdrawedNumber</span></td>
+		<td>the type of WithdrawedNumber is Real</td>
 					</tr>
 	<tr>
-		<td><span name ="AutomatedTellerMachineSysteminputCard">inputCard</span></td>
-		<td>inputCard is a object of <a href="#CLASSBankCard">BankCard</a></td>
+		<td><span name ="AutomatedTellerMachineSystemInputCard">InputCard</span></td>
+		<td>InputCard is a object of <a href="#CLASSBankCard">BankCard</a></td>
 					</tr>
 	<tr>
-		<td><span name ="AutomatedTellerMachineSystemcardIDValidated">cardIDValidated</span></td>
-		<td>the type of cardIDValidated is Boolean</td>
+		<td><span name ="AutomatedTellerMachineSystemCardIDValidated">CardIDValidated</span></td>
+		<td>the type of CardIDValidated is Boolean</td>
 					</tr>
 	<tr>
-		<td><span name ="AutomatedTellerMachineSystemisDeposit">isDeposit</span></td>
-		<td>the type of isDeposit is Boolean</td>
+		<td><span name ="AutomatedTellerMachineSystemIsDeposit">IsDeposit</span></td>
+		<td>the type of IsDeposit is Boolean</td>
 					</tr>
 	<tr>
-		<td><span name ="AutomatedTellerMachineSystemisWithdraw">isWithdraw</span></td>
-		<td>the type of isWithdraw is Boolean</td>
+		<td><span name ="AutomatedTellerMachineSystemIsWithdraw">IsWithdraw</span></td>
+		<td>the type of IsWithdraw is Boolean</td>
 					</tr>
 	<tr>
-		<td><span name ="AutomatedTellerMachineSystemdepositedNumber">depositedNumber</span></td>
-		<td>the type of depositedNumber is Real</td>
+		<td><span name ="AutomatedTellerMachineSystemDepositedNumber">DepositedNumber</span></td>
+		<td>the type of DepositedNumber is Real</td>
 					</tr>
 	</table>
-
+	 
 <b>SI2 - ManageBankCardCRUDService</b>
 <table>
 	<tr>
@@ -525,7 +541,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td><ul><li><a href="#OPcreateBankCard">createBankCard</a></li><li><a href="#OPqueryBankCard">queryBankCard</a></li><li><a href="#OPmodifyBankCard">modifyBankCard</a></li><li><a href="#OPdeleteBankCard">deleteBankCard</a></li></ul></td>
 	</tr>
 	</table>
-
+	 
 <b>SI3 - ManageUserCRUDService</b>
 <table>
 	<tr>
@@ -545,7 +561,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td><ul><li><a href="#OPcreateUser">createUser</a></li><li><a href="#OPqueryUser">queryUser</a></li><li><a href="#OPmodifyUser">modifyUser</a></li><li><a href="#OPdeleteUser">deleteUser</a></li></ul></td>
 	</tr>
 	</table>
-
+	 
 <b>SI4 - ThirdPartyServices</b>
 <table>
 	<tr>
@@ -565,7 +581,8 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td><ul></ul></td>
 	</tr>
 	</table>
-
+	 
+ 
 ##### System Operation Description
 <b>OP1 - inputCard</b>
 <table>
@@ -587,7 +604,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>cardid</i>, type: Integer</p></td>
+<td><p>name: <i>cardid</i>, type: Integer</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -603,43 +620,46 @@ This subsection of the SRS should identify requirements that may be delayed unti
 </tr>
 	<tr>
 		<td><b>Postconditions:</b></td>
-	<td><p>If (<i>bc</i> existed), take the following as postcondition(s):</p><p>&emsp;&emsp;The value of temporary variable <a href="#AutomatedTellerMachineSystemcardIDValidated">cardIDValidated</a> became <b>true</b></p><p>&emsp;&emsp;The object <a href="#AutomatedTellerMachineSysteminputCard">inputCard</a> became <i>bc</i></p><p>&emsp;&emsp;The return value was <b>true</b></p><p>Otherwise, take the following as postcondition(s):</p><p>&emsp;&emsp;The value of temporary variable <a href="#AutomatedTellerMachineSystemcardIDValidated">cardIDValidated</a> became <b>false</b></p><p>&emsp;&emsp;The return value was <b>false</b></p></td>
+	<td><p>If (<i>bc</i> existed), take the following as postcondition(s):</p><p>&emsp;&emsp;The value of temporary variable <a href="#AutomatedTellerMachineSystemCardIDValidated">CardIDValidated</a> became <b>true</b></p><p>&emsp;&emsp;The object <a href="#AutomatedTellerMachineSystemInputCard">InputCard</a> became <i>bc</i></p><p>&emsp;&emsp;The return value was <b>true</b></p><p>Otherwise, take the following as postcondition(s):</p><p>&emsp;&emsp;The value of temporary variable <a href="#AutomatedTellerMachineSystemCardIDValidated">CardIDValidated</a> became <b>false</b></p><p>&emsp;&emsp;The return value was <b>false</b></p></td>
 	</tr>
 </table>
-
+ 
 <p>Contract of inputCard:</p>
-
+ 
 ```java
 Contract AutomatedTellerMachineSystem::inputCard(cardid :Integer) : Boolean {
-/* definition:
-bc is the object c in the instance set of class BankCard. c represents an object of class BankCard, and c meets:
-    The attribute CardID of the object c is equal to cardid
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * bc is the object c in the instance set of class BankCard. c represents an object of class BankCard, and c meets:
+		 *     The attribute CardID of the object c is equal to cardid
+		 */
 		definition:
 			bc:BankCard = BankCard.allInstance()->any(c:BankCard | c.CardID = cardid)
-/* precondition:
-None
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * None
+		 */
 		precondition:
 			true
-/* postcondition:
-If (bc existed), take the following as postcondition(s):
-    The value of temporary variable cardIDValidated became true
-    The object inputCard became bc
-    The return value was true
-Otherwise, take the following as postcondition(s):
-    The value of temporary variable cardIDValidated became false
-    The return value was false
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * If (bc existed), take the following as postcondition(s):
+		 *     The value of temporary variable CardIDValidated became true
+		 *     The object InputCard became bc
+		 *     The return value was true
+		 * Otherwise, take the following as postcondition(s):
+		 *     The value of temporary variable CardIDValidated became false
+		 *     The return value was false
+		 */
 		postcondition:
 			if
 				(bc.oclIsUndefined() = false)
 			then
-				self.cardIDValidated = true and
-				self.inputCard = bc and
+				self.CardIDValidated = true and
+				self.InputCard = bc and
 				result = true
 			else
-				self.cardIDValidated = false and
+				self.CardIDValidated = false and
 				result = false
 			endif
 }
@@ -665,7 +685,7 @@ Otherwise, take the following as postcondition(s):
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>password</i>, type: Integer</p></td>
+<td><p>name: <i>password</i>, type: Integer</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -673,41 +693,43 @@ Otherwise, take the following as postcondition(s):
 </tr>
 	<tr>
 <td><b>Preconditions:</b></td>
-		<td><p>1. The value of temporary variable <a href="#AutomatedTellerMachineSystemcardIDValidated">cardIDValidated</a> is equal to <b>true</b></p><p>2. The object <a href="#AutomatedTellerMachineSysteminputCard">inputCard</a> exists</p></td>
+		<td><p>1. The value of temporary variable <a href="#AutomatedTellerMachineSystemCardIDValidated">CardIDValidated</a> is equal to <b>true</b></p><p>2. The object <a href="#AutomatedTellerMachineSystemInputCard">InputCard</a> exists</p></td>
 </tr>
 	<tr>
 		<td><b>Postconditions:</b></td>
-	<td><p>If the attribute <i>Password</i> of the object <a href="#AutomatedTellerMachineSysteminputCard">inputCard</a> was equal to <i>password</i>, take the following as postcondition(s):</p><p>&emsp;&emsp;The value of temporary variable <a href="#AutomatedTellerMachineSystempasswordValidated">passwordValidated</a> became <b>true</b></p><p>&emsp;&emsp;The return value was <b>true</b></p><p>Otherwise, take the following as postcondition(s):</p><p>&emsp;&emsp;The value of temporary variable <a href="#AutomatedTellerMachineSystempasswordValidated">passwordValidated</a> became <b>false</b></p><p>&emsp;&emsp;The return value was <b>false</b></p></td>
+	<td><p>If the attribute <i>Password</i> of the object <a href="#AutomatedTellerMachineSystemInputCard">InputCard</a> was equal to <i>password</i>, take the following as postcondition(s):</p><p>&emsp;&emsp;The value of temporary variable <a href="#AutomatedTellerMachineSystemPasswordValidated">PasswordValidated</a> became <b>true</b></p><p>&emsp;&emsp;The return value was <b>true</b></p><p>Otherwise, take the following as postcondition(s):</p><p>&emsp;&emsp;The value of temporary variable <a href="#AutomatedTellerMachineSystemPasswordValidated">PasswordValidated</a> became <b>false</b></p><p>&emsp;&emsp;The return value was <b>false</b></p></td>
 	</tr>
 </table>
-
+ 
 <p>Contract of inputPassword:</p>
-
+ 
 ```java
 Contract AutomatedTellerMachineSystem::inputPassword(password : Integer) : Boolean {
-/* precondition:
-The value of temporary variable cardIDValidated is equal to true
-The object inputCard exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * The value of temporary variable CardIDValidated is equal to true
+		 * The object InputCard exists
+		 */
 		precondition:
-			self.cardIDValidated = true and
-			self.inputCard.oclIsUndefined() = false
-/* postcondition:
-If the attribute Password of the object inputCard was equal to password, take the following as postcondition(s):
-    The value of temporary variable passwordValidated became true
-    The return value was true
-Otherwise, take the following as postcondition(s):
-    The value of temporary variable passwordValidated became false
-    The return value was false
-*/
+			self.CardIDValidated = true and
+			self.InputCard.oclIsUndefined() = false
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * If the attribute Password of the object InputCard was equal to password, take the following as postcondition(s):
+		 *     The value of temporary variable PasswordValidated became true
+		 *     The return value was true
+		 * Otherwise, take the following as postcondition(s):
+		 *     The value of temporary variable PasswordValidated became false
+		 *     The return value was false
+		 */
 		postcondition:
 			if
-				self.inputCard.Password = password
+				self.InputCard.Password = password
 			then
-				self.passwordValidated = true and
+				self.PasswordValidated = true and
 				return = true
 			else
-				self.passwordValidated = false and
+				self.PasswordValidated = false and
 				return = false
 			endif
 }
@@ -741,46 +763,48 @@ Otherwise, take the following as postcondition(s):
 </tr>
 	<tr>
 <td><b>Preconditions:</b></td>
-		<td><p>1. The value of temporary variable <a href="#AutomatedTellerMachineSystemcardIDValidated">cardIDValidated</a> is equal to <b>true</b></p><p>2. The value of temporary variable <a href="#AutomatedTellerMachineSystempasswordValidated">passwordValidated</a> is equal to <b>true</b></p><p>3. The object <a href="#AutomatedTellerMachineSysteminputCard">inputCard</a> exists</p></td>
+		<td><p>1. The value of temporary variable <a href="#AutomatedTellerMachineSystemCardIDValidated">CardIDValidated</a> is equal to <b>true</b></p><p>2. The value of temporary variable <a href="#AutomatedTellerMachineSystemPasswordValidated">PasswordValidated</a> is equal to <b>true</b></p><p>3. The object <a href="#AutomatedTellerMachineSystemInputCard">InputCard</a> exists</p></td>
 </tr>
 	<tr>
 		<td><b>Postconditions:</b></td>
-	<td><p>If the value of temporary variable <a href="#AutomatedTellerMachineSystemisWithdraw">isWithdraw</a> was equal to <b>true</b>, take the following as postcondition(s):</p><p>&emsp;&emsp;The return value was the value of temporary variable <a href="#AutomatedTellerMachineSystemwithdrawedNumber">withdrawedNumber</a></p><p>Otherwise, take the following as postcondition(s):</p><p>&emsp;&emsp;If the value of temporary variable <a href="#AutomatedTellerMachineSystemisDeposit">isDeposit</a> was equal to <b>true</b>, take the following as postcondition(s):</p><p>&emsp;&emsp;&emsp;&emsp;The return value was the value of temporary variable <a href="#AutomatedTellerMachineSystemdepositedNumber">depositedNumber</a></p><p>&emsp;&emsp;Otherwise, take the following as postcondition(s):</p><p>&emsp;&emsp;&emsp;&emsp;The return value was <b>0</b></p></td>
+	<td><p>If the value of temporary variable <a href="#AutomatedTellerMachineSystemIsWithdraw">IsWithdraw</a> was equal to <b>true</b>, take the following as postcondition(s):</p><p>&emsp;&emsp;The return value was the value of temporary variable <a href="#AutomatedTellerMachineSystemWithdrawedNumber">WithdrawedNumber</a></p><p>Otherwise, take the following as postcondition(s):</p><p>&emsp;&emsp;If the value of temporary variable <a href="#AutomatedTellerMachineSystemIsDeposit">IsDeposit</a> was equal to <b>true</b>, take the following as postcondition(s):</p><p>&emsp;&emsp;&emsp;&emsp;The return value was the value of temporary variable <a href="#AutomatedTellerMachineSystemDepositedNumber">DepositedNumber</a></p><p>&emsp;&emsp;Otherwise, take the following as postcondition(s):</p><p>&emsp;&emsp;&emsp;&emsp;The return value was <b>0</b></p></td>
 	</tr>
 </table>
-
+ 
 <p>Contract of printReceipt:</p>
-
+ 
 ```java
 Contract AutomatedTellerMachineSystem::printReceipt() : Real {
-/* precondition:
-The value of temporary variable cardIDValidated is equal to true
-The value of temporary variable passwordValidated is equal to true
-The object inputCard exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * The value of temporary variable CardIDValidated is equal to true
+		 * The value of temporary variable PasswordValidated is equal to true
+		 * The object InputCard exists
+		 */
 		precondition:
-			self.cardIDValidated = true and
-			self.passwordValidated = true and
-			self.inputCard.oclIsUndefined() = false
-/* postcondition:
-If the value of temporary variable isWithdraw was equal to true, take the following as postcondition(s):
-    The return value was the value of temporary variable withdrawedNumber
-Otherwise, take the following as postcondition(s):
-    If the value of temporary variable isDeposit was equal to true, take the following as postcondition(s):
-        The return value was the value of temporary variable depositedNumber
-    Otherwise, take the following as postcondition(s):
-        The return value was 0
-*/
+			self.CardIDValidated = true and
+			self.PasswordValidated = true and
+			self.InputCard.oclIsUndefined() = false
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * If the value of temporary variable IsWithdraw was equal to true, take the following as postcondition(s):
+		 *     The return value was the value of temporary variable WithdrawedNumber
+		 * Otherwise, take the following as postcondition(s):
+		 *     If the value of temporary variable IsDeposit was equal to true, take the following as postcondition(s):
+		 *         The return value was the value of temporary variable DepositedNumber
+		 *     Otherwise, take the following as postcondition(s):
+		 *         The return value was 0
+		 */
 		postcondition:
 			if
-				self.isWithdraw = true
+				self.IsWithdraw = true
 			then
-				result = self.withdrawedNumber
+				result = self.WithdrawedNumber
 			else
 				if
-					self.isDeposit = true
+					self.IsDeposit = true
 				then
-					result = self.depositedNumber
+					result = self.DepositedNumber
 				else
 					result = 0
 				endif
@@ -816,32 +840,34 @@ Otherwise, take the following as postcondition(s):
 </tr>
 	<tr>
 <td><b>Preconditions:</b></td>
-		<td><p>1. The value of temporary variable <a href="#AutomatedTellerMachineSystempasswordValidated">passwordValidated</a> is equal to <b>true</b></p><p>2. The value of temporary variable <a href="#AutomatedTellerMachineSystemcardIDValidated">cardIDValidated</a> is equal to <b>true</b></p><p>3. The object <a href="#AutomatedTellerMachineSysteminputCard">inputCard</a> exists</p></td>
+		<td><p>1. The value of temporary variable <a href="#AutomatedTellerMachineSystemPasswordValidated">PasswordValidated</a> is equal to <b>true</b></p><p>2. The value of temporary variable <a href="#AutomatedTellerMachineSystemCardIDValidated">CardIDValidated</a> is equal to <b>true</b></p><p>3. The object <a href="#AutomatedTellerMachineSystemInputCard">InputCard</a> exists</p></td>
 </tr>
 	<tr>
 		<td><b>Postconditions:</b></td>
-	<td><p>The return value was the attribute <i>Balance</i> of the object <a href="#AutomatedTellerMachineSysteminputCard">inputCard</a></p></td>
+	<td><p>The return value was the attribute <i>Balance</i> of the object <a href="#AutomatedTellerMachineSystemInputCard">InputCard</a></p></td>
 	</tr>
 </table>
-
+ 
 <p>Contract of checkBalance:</p>
-
+ 
 ```java
 Contract AutomatedTellerMachineSystem::checkBalance() : Real {
-/* precondition:
-The value of temporary variable passwordValidated is equal to true
-The value of temporary variable cardIDValidated is equal to true
-The object inputCard exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * The value of temporary variable PasswordValidated is equal to true
+		 * The value of temporary variable CardIDValidated is equal to true
+		 * The object InputCard exists
+		 */
 		precondition:
-			self.passwordValidated = true and
-			self.cardIDValidated = true and
-			self.inputCard.oclIsUndefined() = false
-/* postcondition:
-The return value was the attribute Balance of the object inputCard
-*/
+			self.PasswordValidated = true and
+			self.CardIDValidated = true and
+			self.InputCard.oclIsUndefined() = false
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The return value was the attribute Balance of the object InputCard
+		 */
 		postcondition:
-			result = self.inputCard.Balance
+			result = self.InputCard.Balance
 }
 ```
 
@@ -873,45 +899,47 @@ The return value was the attribute Balance of the object inputCard
 </tr>
 	<tr>
 <td><b>Preconditions:</b></td>
-		<td><p>1. The value of temporary variable <a href="#AutomatedTellerMachineSystempasswordValidated">passwordValidated</a> is equal to <b>true</b></p><p>2. The value of temporary variable <a href="#AutomatedTellerMachineSystemcardIDValidated">cardIDValidated</a> is equal to <b>true</b></p><p>3. The object <a href="#AutomatedTellerMachineSysteminputCard">inputCard</a> exists</p></td>
+		<td><p>1. The value of temporary variable <a href="#AutomatedTellerMachineSystemPasswordValidated">PasswordValidated</a> is equal to <b>true</b></p><p>2. The value of temporary variable <a href="#AutomatedTellerMachineSystemCardIDValidated">CardIDValidated</a> is equal to <b>true</b></p><p>3. The object <a href="#AutomatedTellerMachineSystemInputCard">InputCard</a> exists</p></td>
 </tr>
 	<tr>
 		<td><b>Postconditions:</b></td>
-	<td><p>1. The object <a href="#AutomatedTellerMachineSysteminputCard">inputCard</a> became <b>null</b></p><p>2. The value of temporary variable <a href="#AutomatedTellerMachineSystempasswordValidated">passwordValidated</a> became <b>false</b></p><p>3. The value of temporary variable <a href="#AutomatedTellerMachineSystemcardIDValidated">cardIDValidated</a> became <b>false</b></p><p>4. The value of temporary variable <a href="#AutomatedTellerMachineSystemisWithdraw">isWithdraw</a> became <b>false</b></p><p>5. The value of temporary variable <a href="#AutomatedTellerMachineSystemisDeposit">isDeposit</a> became <b>false</b></p><p>6. The value of temporary variable <a href="#AutomatedTellerMachineSystemwithdrawedNumber">withdrawedNumber</a> became <b>0</b></p><p>7. The value of temporary variable <a href="#AutomatedTellerMachineSystemdepositedNumber">depositedNumber</a> became <b>0</b></p><p>8. The return value was <b>true</b></p></td>
+	<td><p>1. The object <a href="#AutomatedTellerMachineSystemInputCard">InputCard</a> became <b>null</b></p><p>2. The value of temporary variable <a href="#AutomatedTellerMachineSystemPasswordValidated">PasswordValidated</a> became <b>false</b></p><p>3. The value of temporary variable <a href="#AutomatedTellerMachineSystemCardIDValidated">CardIDValidated</a> became <b>false</b></p><p>4. The value of temporary variable <a href="#AutomatedTellerMachineSystemIsWithdraw">IsWithdraw</a> became <b>false</b></p><p>5. The value of temporary variable <a href="#AutomatedTellerMachineSystemIsDeposit">IsDeposit</a> became <b>false</b></p><p>6. The value of temporary variable <a href="#AutomatedTellerMachineSystemWithdrawedNumber">WithdrawedNumber</a> became <b>0</b></p><p>7. The value of temporary variable <a href="#AutomatedTellerMachineSystemDepositedNumber">DepositedNumber</a> became <b>0</b></p><p>8. The return value was <b>true</b></p></td>
 	</tr>
 </table>
-
+ 
 <p>Contract of ejectCard:</p>
-
+ 
 ```java
 Contract AutomatedTellerMachineSystem::ejectCard() : Boolean {
-/* precondition:
-The value of temporary variable passwordValidated is equal to true
-The value of temporary variable cardIDValidated is equal to true
-The object inputCard exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * The value of temporary variable PasswordValidated is equal to true
+		 * The value of temporary variable CardIDValidated is equal to true
+		 * The object InputCard exists
+		 */
 		precondition:
-			self.passwordValidated = true and
-			self.cardIDValidated = true and
-			self.inputCard.oclIsUndefined() = false
-/* postcondition:
-The object inputCard became null
-The value of temporary variable passwordValidated became false
-The value of temporary variable cardIDValidated became false
-The value of temporary variable isWithdraw became false
-The value of temporary variable isDeposit became false
-The value of temporary variable withdrawedNumber became 0
-The value of temporary variable depositedNumber became 0
-The return value was true
-*/
+			self.PasswordValidated = true and
+			self.CardIDValidated = true and
+			self.InputCard.oclIsUndefined() = false
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The object InputCard became null
+		 * The value of temporary variable PasswordValidated became false
+		 * The value of temporary variable CardIDValidated became false
+		 * The value of temporary variable IsWithdraw became false
+		 * The value of temporary variable IsDeposit became false
+		 * The value of temporary variable WithdrawedNumber became 0
+		 * The value of temporary variable DepositedNumber became 0
+		 * The return value was true
+		 */
 		postcondition:
-			self.inputCard = null and
-			self.passwordValidated = false and
-			self.cardIDValidated = false and
-			self.isWithdraw = false and
-			self.isDeposit = false and
-			self.withdrawedNumber = 0 and
-			self.depositedNumber = 0 and
+			self.InputCard = null and
+			self.PasswordValidated = false and
+			self.CardIDValidated = false and
+			self.IsWithdraw = false and
+			self.IsDeposit = false and
+			self.WithdrawedNumber = 0 and
+			self.DepositedNumber = 0 and
 			result = true
 }
 ```
@@ -936,7 +964,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>quantity</i>, type: Integer</p></td>
+<td><p>name: <i>quantity</i>, type: Integer</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -944,39 +972,41 @@ The return value was true
 </tr>
 	<tr>
 <td><b>Preconditions:</b></td>
-		<td><p>1. The value of temporary variable <a href="#AutomatedTellerMachineSystempasswordValidated">passwordValidated</a> is equal to <b>true</b></p><p>2. The value of temporary variable <a href="#AutomatedTellerMachineSystemcardIDValidated">cardIDValidated</a> is equal to <b>true</b></p><p>3. The object <a href="#AutomatedTellerMachineSysteminputCard">inputCard</a> exists</p><p>4. The attribute <i>Balance</i> of the object <a href="#AutomatedTellerMachineSysteminputCard">inputCard</a> is greater than or equal to <i>quantity</i></p></td>
+		<td><p>1. The value of temporary variable <a href="#AutomatedTellerMachineSystemPasswordValidated">PasswordValidated</a> is equal to <b>true</b></p><p>2. The value of temporary variable <a href="#AutomatedTellerMachineSystemCardIDValidated">CardIDValidated</a> is equal to <b>true</b></p><p>3. The object <a href="#AutomatedTellerMachineSystemInputCard">InputCard</a> exists</p><p>4. The attribute <i>Balance</i> of the object <a href="#AutomatedTellerMachineSystemInputCard">InputCard</a> is greater than or equal to <i>quantity</i></p></td>
 </tr>
 	<tr>
 		<td><b>Postconditions:</b></td>
-	<td><p>1. The attribute <i>Balance</i> of the object <a href="#AutomatedTellerMachineSysteminputCard">inputCard</a> became the previous value of the attribute <i>Balance</i> of the object <a href="#AutomatedTellerMachineSysteminputCard">inputCard</a> minus <i>quantity</i></p><p>2. The value of temporary variable <a href="#AutomatedTellerMachineSystemwithdrawedNumber">withdrawedNumber</a> became <i>quantity</i></p><p>3. The value of temporary variable <a href="#AutomatedTellerMachineSystemisWithdraw">isWithdraw</a> became <b>true</b></p><p>4. The return value was <b>true</b></p></td>
+	<td><p>1. The attribute <i>Balance</i> of the object <a href="#AutomatedTellerMachineSystemInputCard">InputCard</a> became the previous value of the attribute <i>Balance</i> of the object <a href="#AutomatedTellerMachineSystemInputCard">InputCard</a> minus <i>quantity</i></p><p>2. The value of temporary variable <a href="#AutomatedTellerMachineSystemWithdrawedNumber">WithdrawedNumber</a> became <i>quantity</i></p><p>3. The value of temporary variable <a href="#AutomatedTellerMachineSystemIsWithdraw">IsWithdraw</a> became <b>true</b></p><p>4. The return value was <b>true</b></p></td>
 	</tr>
 </table>
-
+ 
 <p>Contract of withdrawCash:</p>
-
+ 
 ```java
 Contract AutomatedTellerMachineSystem::withdrawCash(quantity : Integer) : Boolean {
-/* precondition:
-The value of temporary variable passwordValidated is equal to true
-The value of temporary variable cardIDValidated is equal to true
-The object inputCard exists
-The attribute Balance of the object inputCard is greater than or equal to quantity
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * The value of temporary variable PasswordValidated is equal to true
+		 * The value of temporary variable CardIDValidated is equal to true
+		 * The object InputCard exists
+		 * The attribute Balance of the object InputCard is greater than or equal to quantity
+		 */
 		precondition:
-			self.passwordValidated = true and
-			self.cardIDValidated = true and
-			self.inputCard.oclIsUndefined() = false and
-			self.inputCard.Balance >= quantity
-/* postcondition:
-The attribute Balance of the object inputCard became the previous value of the attribute Balance of the object inputCard minus quantity
-The value of temporary variable withdrawedNumber became quantity
-The value of temporary variable isWithdraw became true
-The return value was true
-*/
+			self.PasswordValidated = true and
+			self.CardIDValidated = true and
+			self.InputCard.oclIsUndefined() = false and
+			self.InputCard.Balance >= quantity
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The attribute Balance of the object InputCard became the previous value of the attribute Balance of the object InputCard minus quantity
+		 * The value of temporary variable WithdrawedNumber became quantity
+		 * The value of temporary variable IsWithdraw became true
+		 * The return value was true
+		 */
 		postcondition:
-			self.inputCard.Balance = self.inputCard.Balance@pre - quantity and
-			self.withdrawedNumber = quantity and
-			self.isWithdraw = true and
+			self.InputCard.Balance = self.InputCard.Balance@pre - quantity and
+			self.WithdrawedNumber = quantity and
+			self.IsWithdraw = true and
 			result = true
 }
 ```
@@ -1001,7 +1031,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>quantity</i>, type: Real</p></td>
+<td><p>name: <i>quantity</i>, type: Real</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -1009,39 +1039,41 @@ The return value was true
 </tr>
 	<tr>
 <td><b>Preconditions:</b></td>
-		<td><p>1. The value of temporary variable <a href="#AutomatedTellerMachineSystempasswordValidated">passwordValidated</a> is equal to <b>true</b></p><p>2. The value of temporary variable <a href="#AutomatedTellerMachineSystemcardIDValidated">cardIDValidated</a> is equal to <b>true</b></p><p>3. The object <a href="#AutomatedTellerMachineSysteminputCard">inputCard</a> exists</p><p>4. The <i>quantity</i> is greater than or equal to <b>100</b></p></td>
+		<td><p>1. The value of temporary variable <a href="#AutomatedTellerMachineSystemPasswordValidated">PasswordValidated</a> is equal to <b>true</b></p><p>2. The value of temporary variable <a href="#AutomatedTellerMachineSystemCardIDValidated">CardIDValidated</a> is equal to <b>true</b></p><p>3. The object <a href="#AutomatedTellerMachineSystemInputCard">InputCard</a> exists</p><p>4. The <i>quantity</i> is greater than or equal to <b>100</b></p></td>
 </tr>
 	<tr>
 		<td><b>Postconditions:</b></td>
-	<td><p>1. The attribute <i>Balance</i> of the object <a href="#AutomatedTellerMachineSysteminputCard">inputCard</a> became the previous value of the attribute <i>Balance</i> of the object <a href="#AutomatedTellerMachineSysteminputCard">inputCard</a> plus <i>quantity</i></p><p>2. The value of temporary variable <a href="#AutomatedTellerMachineSystemisDeposit">isDeposit</a> became <b>true</b></p><p>3. The value of temporary variable <a href="#AutomatedTellerMachineSystemdepositedNumber">depositedNumber</a> became <i>quantity</i></p><p>4. The return value was <b>true</b></p></td>
+	<td><p>1. The attribute <i>Balance</i> of the object <a href="#AutomatedTellerMachineSystemInputCard">InputCard</a> became the previous value of the attribute <i>Balance</i> of the object <a href="#AutomatedTellerMachineSystemInputCard">InputCard</a> plus <i>quantity</i></p><p>2. The value of temporary variable <a href="#AutomatedTellerMachineSystemIsDeposit">IsDeposit</a> became <b>true</b></p><p>3. The value of temporary variable <a href="#AutomatedTellerMachineSystemDepositedNumber">DepositedNumber</a> became <i>quantity</i></p><p>4. The return value was <b>true</b></p></td>
 	</tr>
 </table>
-
+ 
 <p>Contract of depositFunds:</p>
-
+ 
 ```java
 Contract AutomatedTellerMachineSystem::depositFunds(quantity : Real) : Boolean {
-/* precondition:
-The value of temporary variable passwordValidated is equal to true
-The value of temporary variable cardIDValidated is equal to true
-The object inputCard exists
-The quantity is greater than or equal to 100
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * The value of temporary variable PasswordValidated is equal to true
+		 * The value of temporary variable CardIDValidated is equal to true
+		 * The object InputCard exists
+		 * The quantity is greater than or equal to 100
+		 */
 		precondition:
-			self.passwordValidated = true and
-			self.cardIDValidated = true and
-			self.inputCard.oclIsUndefined() = false and
+			self.PasswordValidated = true and
+			self.CardIDValidated = true and
+			self.InputCard.oclIsUndefined() = false and
 			quantity >= 100
-/* postcondition:
-The attribute Balance of the object inputCard became the previous value of the attribute Balance of the object inputCard plus quantity
-The value of temporary variable isDeposit became true
-The value of temporary variable depositedNumber became quantity
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The attribute Balance of the object InputCard became the previous value of the attribute Balance of the object InputCard plus quantity
+		 * The value of temporary variable IsDeposit became true
+		 * The value of temporary variable DepositedNumber became quantity
+		 * The return value was true
+		 */
 		postcondition:
-			self.inputCard.Balance = self.inputCard.Balance@pre + quantity and
-			self.isDeposit = true and
-			self.depositedNumber = quantity and
+			self.InputCard.Balance = self.InputCard.Balance@pre + quantity and
+			self.IsDeposit = true and
+			self.DepositedNumber = quantity and
 			result = true
 }
 ```
@@ -1066,7 +1098,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p>1. <i>cardid</i>, type: Integer</p><p>2. <i>cardstatus</i>, type: [NORMAL|SUSPEND|CANNEL]</p><p>3. <i>catalog</i>, type: [CREDIT|DESPOSIT]</p><p>4. <i>password</i>, type: Integer</p><p>5. <i>balance</i>, type: Real</p></td>
+<td><p>1. name: <i>cardid</i>, type: Integer</p><p>2. name: <i>cardstatus</i>, type: [NORMAL|SUSPEND|CANNEL]</p><p>3. name: <i>catalog</i>, type: [CREDIT|DESPOSIT]</p><p>4. name: <i>password</i>, type: Integer</p><p>5. name: <i>balance</i>, type: Real</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -1085,33 +1117,36 @@ The return value was true
 	<td><p>1. <i>ban</i> represented the object of class <a href="#CLASSBankCard">BankCard</a></p><p>2. The object <i>ban</i> was created</p><p>3. The attribute <i>CardID</i> of the object <i>ban</i> became <i>cardid</i></p><p>4. The attribute <i>CardStatus</i> of the object <i>ban</i> became <i>cardstatus</i></p><p>5. The attribute <i>Catalog</i> of the object <i>ban</i> became <i>catalog</i></p><p>6. The attribute <i>Password</i> of the object <i>ban</i> became <i>password</i></p><p>7. The attribute <i>Balance</i> of the object <i>ban</i> became <i>balance</i></p><p>8. The object <i>ban</i> was put into the instance set of class <a href="#CLASSBankCard">BankCard</a></p><p>9. The return value was <b>true</b></p></td>
 	</tr>
 </table>
-
+ 
 <p>Contract of createBankCard:</p>
-
+ 
 ```java
 Contract  ManageBankCardCRUDService::createBankCard(cardid : Integer, cardstatus : CardStatus[NORMAL|SUSPEND|CANNEL], catalog : CardCatalog[CREDIT|DESPOSIT], password : Integer, balance : Real) : Boolean {
-/* definition:
-bankcard is the object ban in the instance set of class BankCard. ban represents an object of class BankCard, and ban meets:
-    The attribute CardID of the object ban is equal to cardid
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * bankcard is the object ban in the instance set of class BankCard. ban represents an object of class BankCard, and ban meets:
+		 *     The attribute CardID of the object ban is equal to cardid
+		 */
 		definition:
 			bankcard:BankCard = BankCard.allInstance()->any(ban:BankCard | ban.CardID = cardid)
-/* precondition:
-bankcard doesn't exist
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * bankcard doesn't exist
+		 */
 		precondition:
 			bankcard.oclIsUndefined() = true
-/* postcondition:
-ban represented the object of class BankCard
-The object ban was created
-The attribute CardID of the object ban became cardid
-The attribute CardStatus of the object ban became cardstatus
-The attribute Catalog of the object ban became catalog
-The attribute Password of the object ban became password
-The attribute Balance of the object ban became balance
-The object ban was put into the instance set of class BankCard
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * ban represented the object of class BankCard
+		 * The object ban was created
+		 * The attribute CardID of the object ban became cardid
+		 * The attribute CardStatus of the object ban became cardstatus
+		 * The attribute Catalog of the object ban became catalog
+		 * The attribute Password of the object ban became password
+		 * The attribute Balance of the object ban became balance
+		 * The object ban was put into the instance set of class BankCard
+		 * The return value was true
+		 */
 		postcondition:
 			let ban:BankCard in
 			ban.oclIsNew() and
@@ -1145,7 +1180,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>cardid</i>, type: Integer</p></td>
+<td><p>name: <i>cardid</i>, type: Integer</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -1164,25 +1199,28 @@ The return value was true
 	<td><p>The return value was <i>bankcard</i></p></td>
 	</tr>
 </table>
-
+ 
 <p>Contract of queryBankCard:</p>
-
+ 
 ```java
 Contract  ManageBankCardCRUDService::queryBankCard(cardid : Integer) : BankCard {
-/* definition:
-bankcard is the object ban in the instance set of class BankCard. ban represents an object of class BankCard, and ban meets:
-    The attribute CardID of the object ban is equal to cardid
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * bankcard is the object ban in the instance set of class BankCard. ban represents an object of class BankCard, and ban meets:
+		 *     The attribute CardID of the object ban is equal to cardid
+		 */
 		definition:
 			bankcard:BankCard = BankCard.allInstance()->any(ban:BankCard | ban.CardID = cardid)
-/* precondition:
-bankcard exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * bankcard exists
+		 */
 		precondition:
 			bankcard.oclIsUndefined() = false
-/* postcondition:
-The return value was bankcard
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The return value was bankcard
+		 */
 		postcondition:
 			result = bankcard
 }
@@ -1208,7 +1246,7 @@ The return value was bankcard
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p>1. <i>cardid</i>, type: Integer</p><p>2. <i>cardstatus</i>, type: [NORMAL|SUSPEND|CANNEL]</p><p>3. <i>catalog</i>, type: [CREDIT|DESPOSIT]</p><p>4. <i>password</i>, type: Integer</p><p>5. <i>balance</i>, type: Real</p></td>
+<td><p>1. name: <i>cardid</i>, type: Integer</p><p>2. name: <i>cardstatus</i>, type: [NORMAL|SUSPEND|CANNEL]</p><p>3. name: <i>catalog</i>, type: [CREDIT|DESPOSIT]</p><p>4. name: <i>password</i>, type: Integer</p><p>5. name: <i>balance</i>, type: Real</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -1227,30 +1265,33 @@ The return value was bankcard
 	<td><p>1. The attribute <i>CardID</i> of the object <i>bankcard</i> became <i>cardid</i></p><p>2. The attribute <i>CardStatus</i> of the object <i>bankcard</i> became <i>cardstatus</i></p><p>3. The attribute <i>Catalog</i> of the object <i>bankcard</i> became <i>catalog</i></p><p>4. The attribute <i>Password</i> of the object <i>bankcard</i> became <i>password</i></p><p>5. The attribute <i>Balance</i> of the object <i>bankcard</i> became <i>balance</i></p><p>6. The return value was <b>true</b></p></td>
 	</tr>
 </table>
-
+ 
 <p>Contract of modifyBankCard:</p>
-
+ 
 ```java
 Contract  ManageBankCardCRUDService::modifyBankCard(cardid : Integer, cardstatus : CardStatus[NORMAL|SUSPEND|CANNEL], catalog : CardCatalog[CREDIT|DESPOSIT], password : Integer, balance : Real) : Boolean {
-/* definition:
-bankcard is the object ban in the instance set of class BankCard. ban represents an object of class BankCard, and ban meets:
-    The attribute CardID of the object ban is equal to cardid
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * bankcard is the object ban in the instance set of class BankCard. ban represents an object of class BankCard, and ban meets:
+		 *     The attribute CardID of the object ban is equal to cardid
+		 */
 		definition:
 			bankcard:BankCard = BankCard.allInstance()->any(ban:BankCard | ban.CardID = cardid)
-/* precondition:
-bankcard exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * bankcard exists
+		 */
 		precondition:
 			bankcard.oclIsUndefined() = false
-/* postcondition:
-The attribute CardID of the object bankcard became cardid
-The attribute CardStatus of the object bankcard became cardstatus
-The attribute Catalog of the object bankcard became catalog
-The attribute Password of the object bankcard became password
-The attribute Balance of the object bankcard became balance
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The attribute CardID of the object bankcard became cardid
+		 * The attribute CardStatus of the object bankcard became cardstatus
+		 * The attribute Catalog of the object bankcard became catalog
+		 * The attribute Password of the object bankcard became password
+		 * The attribute Balance of the object bankcard became balance
+		 * The return value was true
+		 */
 		postcondition:
 			bankcard.CardID = cardid and
 			bankcard.CardStatus = cardstatus and
@@ -1281,7 +1322,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>cardid</i>, type: Integer</p></td>
+<td><p>name: <i>cardid</i>, type: Integer</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -1300,28 +1341,31 @@ The return value was true
 	<td><p>1. The object <i>bankcard</i> was deleted from the instance set of class <a href="#CLASSBankCard">BankCard</a></p><p>2. The return value was <b>true</b></p></td>
 	</tr>
 </table>
-
+ 
 <p>Contract of deleteBankCard:</p>
-
+ 
 ```java
 Contract  ManageBankCardCRUDService::deleteBankCard(cardid : Integer) : Boolean {
-/* definition:
-bankcard is the object ban in the instance set of class BankCard. ban represents an object of class BankCard, and ban meets:
-    The attribute CardID of the object ban is equal to cardid
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * bankcard is the object ban in the instance set of class BankCard. ban represents an object of class BankCard, and ban meets:
+		 *     The attribute CardID of the object ban is equal to cardid
+		 */
 		definition:
 			bankcard:BankCard = BankCard.allInstance()->any(ban:BankCard | ban.CardID = cardid)
-/* precondition:
-bankcard exists
-The object bankcard is in the instance set of class BankCard
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * bankcard exists
+		 * The object bankcard is in the instance set of class BankCard
+		 */
 		precondition:
 			bankcard.oclIsUndefined() = false and
 			BankCard.allInstance()->includes(bankcard)
-/* postcondition:
-The object bankcard was deleted from the instance set of class BankCard
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The object bankcard was deleted from the instance set of class BankCard
+		 * The return value was true
+		 */
 		postcondition:
 			BankCard.allInstance()->excludes(bankcard) and
 			result = true
@@ -1348,7 +1392,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p>1. <i>userid</i>, type: Integer</p><p>2. <i>name</i>, type: String</p><p>3. <i>address</i>, type: String</p></td>
+<td><p>1. name: <i>userid</i>, type: Integer</p><p>2. name: <i>name</i>, type: String</p><p>3. name: <i>address</i>, type: String</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -1367,31 +1411,34 @@ The return value was true
 	<td><p>1. <i>use</i> represented the object of class <a href="#CLASSUser">User</a></p><p>2. The object <i>use</i> was created</p><p>3. The attribute <i>UserID</i> of the object <i>use</i> became <i>userid</i></p><p>4. The attribute <i>Name</i> of the object <i>use</i> became <i>name</i></p><p>5. The attribute <i>Address</i> of the object <i>use</i> became <i>address</i></p><p>6. The object <i>use</i> was put into the instance set of class <a href="#CLASSUser">User</a></p><p>7. The return value was <b>true</b></p></td>
 	</tr>
 </table>
-
+ 
 <p>Contract of createUser:</p>
-
+ 
 ```java
 Contract  ManageUserCRUDService::createUser(userid : Integer, name : String, address : String) : Boolean {
-/* definition:
-user is the object use in the instance set of class User. use represents an object of class User, and use meets:
-    The attribute UserID of the object use is equal to userid
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * user is the object use in the instance set of class User. use represents an object of class User, and use meets:
+		 *     The attribute UserID of the object use is equal to userid
+		 */
 		definition:
 			user:User = User.allInstance()->any(use:User | use.UserID = userid)
-/* precondition:
-user doesn't exist
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * user doesn't exist
+		 */
 		precondition:
 			user.oclIsUndefined() = true
-/* postcondition:
-use represented the object of class User
-The object use was created
-The attribute UserID of the object use became userid
-The attribute Name of the object use became name
-The attribute Address of the object use became address
-The object use was put into the instance set of class User
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * use represented the object of class User
+		 * The object use was created
+		 * The attribute UserID of the object use became userid
+		 * The attribute Name of the object use became name
+		 * The attribute Address of the object use became address
+		 * The object use was put into the instance set of class User
+		 * The return value was true
+		 */
 		postcondition:
 			let use:User in
 			use.oclIsNew() and
@@ -1423,7 +1470,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>userid</i>, type: Integer</p></td>
+<td><p>name: <i>userid</i>, type: Integer</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -1442,25 +1489,28 @@ The return value was true
 	<td><p>The return value was <i>user</i></p></td>
 	</tr>
 </table>
-
+ 
 <p>Contract of queryUser:</p>
-
+ 
 ```java
 Contract  ManageUserCRUDService::queryUser(userid : Integer) : User {
-/* definition:
-user is the object use in the instance set of class User. use represents an object of class User, and use meets:
-    The attribute UserID of the object use is equal to userid
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * user is the object use in the instance set of class User. use represents an object of class User, and use meets:
+		 *     The attribute UserID of the object use is equal to userid
+		 */
 		definition:
 			user:User = User.allInstance()->any(use:User | use.UserID = userid)
-/* precondition:
-user exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * user exists
+		 */
 		precondition:
 			user.oclIsUndefined() = false
-/* postcondition:
-The return value was user
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The return value was user
+		 */
 		postcondition:
 			result = user
 }
@@ -1486,7 +1536,7 @@ The return value was user
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p>1. <i>userid</i>, type: Integer</p><p>2. <i>name</i>, type: String</p><p>3. <i>address</i>, type: String</p></td>
+<td><p>1. name: <i>userid</i>, type: Integer</p><p>2. name: <i>name</i>, type: String</p><p>3. name: <i>address</i>, type: String</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -1505,28 +1555,31 @@ The return value was user
 	<td><p>1. The attribute <i>UserID</i> of the object <i>user</i> became <i>userid</i></p><p>2. The attribute <i>Name</i> of the object <i>user</i> became <i>name</i></p><p>3. The attribute <i>Address</i> of the object <i>user</i> became <i>address</i></p><p>4. The return value was <b>true</b></p></td>
 	</tr>
 </table>
-
+ 
 <p>Contract of modifyUser:</p>
-
+ 
 ```java
 Contract  ManageUserCRUDService::modifyUser(userid : Integer, name : String, address : String) : Boolean {
-/* definition:
-user is the object use in the instance set of class User. use represents an object of class User, and use meets:
-    The attribute UserID of the object use is equal to userid
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * user is the object use in the instance set of class User. use represents an object of class User, and use meets:
+		 *     The attribute UserID of the object use is equal to userid
+		 */
 		definition:
 			user:User = User.allInstance()->any(use:User | use.UserID = userid)
-/* precondition:
-user exists
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * user exists
+		 */
 		precondition:
 			user.oclIsUndefined() = false
-/* postcondition:
-The attribute UserID of the object user became userid
-The attribute Name of the object user became name
-The attribute Address of the object user became address
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The attribute UserID of the object user became userid
+		 * The attribute Name of the object user became name
+		 * The attribute Address of the object user became address
+		 * The return value was true
+		 */
 		postcondition:
 			user.UserID = userid and
 			user.Name = name and
@@ -1555,7 +1608,7 @@ The return value was true
 	</tr>
 	<tr>
 		<td><b>Input:</b></td>
-<td><p><i>userid</i>, type: Integer</p></td>
+<td><p>name: <i>userid</i>, type: Integer</p></td>
 </tr>
 <tr>
 	<td><b>Output Type:</b></td>
@@ -1574,28 +1627,31 @@ The return value was true
 	<td><p>1. The object <i>user</i> was deleted from the instance set of class <a href="#CLASSUser">User</a></p><p>2. The return value was <b>true</b></p></td>
 	</tr>
 </table>
-
+ 
 <p>Contract of deleteUser:</p>
-
+ 
 ```java
 Contract  ManageUserCRUDService::deleteUser(userid : Integer) : Boolean {
-/* definition:
-user is the object use in the instance set of class User. use represents an object of class User, and use meets:
-    The attribute UserID of the object use is equal to userid
-*/
+		/*
+		 * Generated by RM2Doc - Definition
+		 * user is the object use in the instance set of class User. use represents an object of class User, and use meets:
+		 *     The attribute UserID of the object use is equal to userid
+		 */
 		definition:
 			user:User = User.allInstance()->any(use:User | use.UserID = userid)
-/* precondition:
-user exists
-The object user is in the instance set of class User
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * user exists
+		 * The object user is in the instance set of class User
+		 */
 		precondition:
 			user.oclIsUndefined() = false and
 			User.allInstance()->includes(user)
-/* postcondition:
-The object user was deleted from the instance set of class User
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The object user was deleted from the instance set of class User
+		 * The return value was true
+		 */
 		postcondition:
 			User.allInstance()->excludes(user) and
 			result = true
@@ -1637,19 +1693,21 @@ The return value was true
 	<td><p>The return value was <b>true</b></p></td>
 	</tr>
 </table>
-
+ 
 <p>Contract of cardIdentification:</p>
-
+ 
 ```java
 Contract AutomatedTellerMachineSystem::cardIdentification() : Boolean {
-/* precondition:
-None
-*/
+		/*
+		 * Generated by RM2Doc - Precondition
+		 * None
+		 */
 		precondition:
 			true
-/* postcondition:
-The return value was true
-*/
+		/*
+		 * Generated by RM2Doc - Postcondition
+		 * The return value was true
+		 */
 		postcondition:
 			result = true
 }
@@ -1657,6 +1715,7 @@ The return value was true
 
 
 
+ 
 ## 3.2  External interface requirements
 User interfaces
 Hardware interfaces
@@ -1693,7 +1752,6 @@ This subsection should specify the requirements derived from existing standards 
 - c) Accounting procedures;
 - d) Audit tracing.
 		
-
 For example, this could specify the requirement for software to trace processing activity. Such traces are needed for some applications to meet minimum regulatory or financial standards. An audit trace requirement may, for example, state that all changes to a payroll database must be recorded in a trace file with before and after values.
 		
 ### 3.4.2  Hardware limitations
