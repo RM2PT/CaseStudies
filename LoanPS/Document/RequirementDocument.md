@@ -59,7 +59,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 ### 3.1.1   User Requirements
 <b>Use Case Diagram</b>
  
-![Use Case Diagram](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/项目名/Use Case Diagram.jpg)
+![Use Case Diagram](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/LoanPS/Use%20Case%20Diagram.jpg)
  
 <b>A1 - LoanOfficer</b>
 <table>
@@ -236,7 +236,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
-![EvaluateLoanRequestSSD](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/项目名/EvaluateLoanRequestSSD.jpg)
+![EvaluateLoanRequestSSD](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/LoanPS/EvaluateLoanRequestSSD.jpg)
  
 <b>UC2 - manageLoanTerm</b>
  
@@ -351,7 +351,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
-![GenerateLoanLetterAndAgreementSSD](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/项目名/GenerateLoanLetterAndAgreementSSD.jpg)
+![GenerateLoanLetterAndAgreementSSD](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/LoanPS/GenerateLoanLetterAndAgreementSSD.jpg)
  
 <b>UC5 - bookNewLoan</b>
  
@@ -585,7 +585,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 #### 3.1.2.2   Entity Analysis
 <b>Conceptual Class Diagram</b> 
  
-![Conceptual Class Diagram](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/项目名/Conceptual Class Diagram.jpg)
+![Conceptual Class Diagram](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/LoanPS/Conceptual%20Class%20Diagram.jpg)
  
 <b>E1 - LoanRequest</b>
  
