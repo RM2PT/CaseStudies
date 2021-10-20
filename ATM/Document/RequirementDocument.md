@@ -58,9 +58,10 @@ This subsection of the SRS should identify requirements that may be delayed unti
 ## 3.1  Functional requirements
 ### 3.1.1   User Requirements
 <b>Use Case Diagram</b>
-![Use Case Diagram](images/Use Case Diagram.jpg)
+![Use Case Diagram](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/ATM/Use%20Case%20Diagram.jpg)
 
 <b>A1 - Customer</b>
+
 <table>
 	<tr>
 		<td><b>Actor Name:</b></td>
@@ -122,7 +123,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 ### 3.1.2   System Requirement
 #### 3.1.2.1 Use Case Description
 <b>UC1 - withdrawCash</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -157,9 +158,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
-![WithdrawCashSSD](images/WithdrawCashSSD.jpg)
+![WithdrawCashSSD](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/ATM/WithdrawCashSSD.jpg)
 <b>UC2 - checkBalance</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -194,9 +195,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
-![CheckBalanceSSD](images/CheckBalanceSSD.jpg)
+![CheckBalanceSSD](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/ATM/CheckBalanceSSD.jpg)
 <b>UC3 - depositFunds</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -231,9 +232,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
-![DepositFundsSSD](images/DepositFundsSSD.jpg)
+![DepositFundsSSD](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/ATM/DepositFundsSSD.jpg)
 <b>UC4 - manageBankCard</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -269,7 +270,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
 <b>UC5 - manageUser</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -305,7 +306,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
 <b>UC6 - cardIdentification</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -342,9 +343,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</table>
 #### 3.1.2.2   Entity Analysis
 <b>Conceptual Class Diagram</b> 
-![Conceptual Class Diagram](images/Conceptual Class Diagram.jpg)
+![Conceptual Class Diagram](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/ATM/Conceptual%20Class%20Diagram.jpg)
 <b>E1 - BankCard</b>
- 
+
 <table>
 	<tr>
 		<td><b>Entity Name:</b></td>
@@ -401,9 +402,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td>Many BankCard are linked with one User</td>
 	</tr>
 	</table>
-	 
+
 <b>E2 - User</b>
- 
+
 <table>
 	<tr>
 		<td><b>Entity Name:</b></td>
@@ -450,7 +451,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td>One User is linked with many BankCard</td>
 	</tr>
 	</table>
-	 
+
 #### 3.1.2.3   System Interfaces
 ##### System Interfaces
 <b>SI1 - AutomatedTellerMachineSystem</b>
@@ -504,7 +505,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td>the type of depositedNumber is Real</td>
 					</tr>
 	</table>
-	 
+
 <b>SI2 - ManageBankCardCRUDService</b>
 <table>
 	<tr>
@@ -524,7 +525,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td><ul><li><a href="#OPcreateBankCard">createBankCard</a></li><li><a href="#OPqueryBankCard">queryBankCard</a></li><li><a href="#OPmodifyBankCard">modifyBankCard</a></li><li><a href="#OPdeleteBankCard">deleteBankCard</a></li></ul></td>
 	</tr>
 	</table>
-	 
+
 <b>SI3 - ManageUserCRUDService</b>
 <table>
 	<tr>
@@ -544,7 +545,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td><ul><li><a href="#OPcreateUser">createUser</a></li><li><a href="#OPqueryUser">queryUser</a></li><li><a href="#OPmodifyUser">modifyUser</a></li><li><a href="#OPdeleteUser">deleteUser</a></li></ul></td>
 	</tr>
 	</table>
-	 
+
 <b>SI4 - ThirdPartyServices</b>
 <table>
 	<tr>
@@ -564,7 +565,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td><ul></ul></td>
 	</tr>
 	</table>
-	 
+
 ##### System Operation Description
 <b>OP1 - inputCard</b>
 <table>
@@ -605,9 +606,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td><p>If (<i>bc</i> existed), take the following as postcondition(s):</p><p>&emsp;&emsp;The value of temporary variable <a href="#AutomatedTellerMachineSystemcardIDValidated">cardIDValidated</a> became <b>true</b></p><p>&emsp;&emsp;The object <a href="#AutomatedTellerMachineSysteminputCard">inputCard</a> became <i>bc</i></p><p>&emsp;&emsp;The return value was <b>true</b></p><p>Otherwise, take the following as postcondition(s):</p><p>&emsp;&emsp;The value of temporary variable <a href="#AutomatedTellerMachineSystemcardIDValidated">cardIDValidated</a> became <b>false</b></p><p>&emsp;&emsp;The return value was <b>false</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of inputCard:</p>
- 
+
 ```java
 Contract AutomatedTellerMachineSystem::inputCard(cardid :Integer) : Boolean {
 /* definition:
@@ -679,9 +680,9 @@ Otherwise, take the following as postcondition(s):
 	<td><p>If the attribute <i>Password</i> of the object <a href="#AutomatedTellerMachineSysteminputCard">inputCard</a> was equal to <i>password</i>, take the following as postcondition(s):</p><p>&emsp;&emsp;The value of temporary variable <a href="#AutomatedTellerMachineSystempasswordValidated">passwordValidated</a> became <b>true</b></p><p>&emsp;&emsp;The return value was <b>true</b></p><p>Otherwise, take the following as postcondition(s):</p><p>&emsp;&emsp;The value of temporary variable <a href="#AutomatedTellerMachineSystempasswordValidated">passwordValidated</a> became <b>false</b></p><p>&emsp;&emsp;The return value was <b>false</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of inputPassword:</p>
- 
+
 ```java
 Contract AutomatedTellerMachineSystem::inputPassword(password : Integer) : Boolean {
 /* precondition:
@@ -747,9 +748,9 @@ Otherwise, take the following as postcondition(s):
 	<td><p>If the value of temporary variable <a href="#AutomatedTellerMachineSystemisWithdraw">isWithdraw</a> was equal to <b>true</b>, take the following as postcondition(s):</p><p>&emsp;&emsp;The return value was the value of temporary variable <a href="#AutomatedTellerMachineSystemwithdrawedNumber">withdrawedNumber</a></p><p>Otherwise, take the following as postcondition(s):</p><p>&emsp;&emsp;If the value of temporary variable <a href="#AutomatedTellerMachineSystemisDeposit">isDeposit</a> was equal to <b>true</b>, take the following as postcondition(s):</p><p>&emsp;&emsp;&emsp;&emsp;The return value was the value of temporary variable <a href="#AutomatedTellerMachineSystemdepositedNumber">depositedNumber</a></p><p>&emsp;&emsp;Otherwise, take the following as postcondition(s):</p><p>&emsp;&emsp;&emsp;&emsp;The return value was <b>0</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of printReceipt:</p>
- 
+
 ```java
 Contract AutomatedTellerMachineSystem::printReceipt() : Real {
 /* precondition:
@@ -822,9 +823,9 @@ Otherwise, take the following as postcondition(s):
 	<td><p>The return value was the attribute <i>Balance</i> of the object <a href="#AutomatedTellerMachineSysteminputCard">inputCard</a></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of checkBalance:</p>
- 
+
 ```java
 Contract AutomatedTellerMachineSystem::checkBalance() : Real {
 /* precondition:
@@ -879,9 +880,9 @@ The return value was the attribute Balance of the object inputCard
 	<td><p>1. The object <a href="#AutomatedTellerMachineSysteminputCard">inputCard</a> became <b>null</b></p><p>2. The value of temporary variable <a href="#AutomatedTellerMachineSystempasswordValidated">passwordValidated</a> became <b>false</b></p><p>3. The value of temporary variable <a href="#AutomatedTellerMachineSystemcardIDValidated">cardIDValidated</a> became <b>false</b></p><p>4. The value of temporary variable <a href="#AutomatedTellerMachineSystemisWithdraw">isWithdraw</a> became <b>false</b></p><p>5. The value of temporary variable <a href="#AutomatedTellerMachineSystemisDeposit">isDeposit</a> became <b>false</b></p><p>6. The value of temporary variable <a href="#AutomatedTellerMachineSystemwithdrawedNumber">withdrawedNumber</a> became <b>0</b></p><p>7. The value of temporary variable <a href="#AutomatedTellerMachineSystemdepositedNumber">depositedNumber</a> became <b>0</b></p><p>8. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of ejectCard:</p>
- 
+
 ```java
 Contract AutomatedTellerMachineSystem::ejectCard() : Boolean {
 /* precondition:
@@ -950,9 +951,9 @@ The return value was true
 	<td><p>1. The attribute <i>Balance</i> of the object <a href="#AutomatedTellerMachineSysteminputCard">inputCard</a> became the previous value of the attribute <i>Balance</i> of the object <a href="#AutomatedTellerMachineSysteminputCard">inputCard</a> minus <i>quantity</i></p><p>2. The value of temporary variable <a href="#AutomatedTellerMachineSystemwithdrawedNumber">withdrawedNumber</a> became <i>quantity</i></p><p>3. The value of temporary variable <a href="#AutomatedTellerMachineSystemisWithdraw">isWithdraw</a> became <b>true</b></p><p>4. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of withdrawCash:</p>
- 
+
 ```java
 Contract AutomatedTellerMachineSystem::withdrawCash(quantity : Integer) : Boolean {
 /* precondition:
@@ -1015,9 +1016,9 @@ The return value was true
 	<td><p>1. The attribute <i>Balance</i> of the object <a href="#AutomatedTellerMachineSysteminputCard">inputCard</a> became the previous value of the attribute <i>Balance</i> of the object <a href="#AutomatedTellerMachineSysteminputCard">inputCard</a> plus <i>quantity</i></p><p>2. The value of temporary variable <a href="#AutomatedTellerMachineSystemisDeposit">isDeposit</a> became <b>true</b></p><p>3. The value of temporary variable <a href="#AutomatedTellerMachineSystemdepositedNumber">depositedNumber</a> became <i>quantity</i></p><p>4. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of depositFunds:</p>
- 
+
 ```java
 Contract AutomatedTellerMachineSystem::depositFunds(quantity : Real) : Boolean {
 /* precondition:
@@ -1084,9 +1085,9 @@ The return value was true
 	<td><p>1. <i>ban</i> represented the object of class <a href="#CLASSBankCard">BankCard</a></p><p>2. The object <i>ban</i> was created</p><p>3. The attribute <i>CardID</i> of the object <i>ban</i> became <i>cardid</i></p><p>4. The attribute <i>CardStatus</i> of the object <i>ban</i> became <i>cardstatus</i></p><p>5. The attribute <i>Catalog</i> of the object <i>ban</i> became <i>catalog</i></p><p>6. The attribute <i>Password</i> of the object <i>ban</i> became <i>password</i></p><p>7. The attribute <i>Balance</i> of the object <i>ban</i> became <i>balance</i></p><p>8. The object <i>ban</i> was put into the instance set of class <a href="#CLASSBankCard">BankCard</a></p><p>9. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of createBankCard:</p>
- 
+
 ```java
 Contract  ManageBankCardCRUDService::createBankCard(cardid : Integer, cardstatus : CardStatus[NORMAL|SUSPEND|CANNEL], catalog : CardCatalog[CREDIT|DESPOSIT], password : Integer, balance : Real) : Boolean {
 /* definition:
@@ -1163,9 +1164,9 @@ The return value was true
 	<td><p>The return value was <i>bankcard</i></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of queryBankCard:</p>
- 
+
 ```java
 Contract  ManageBankCardCRUDService::queryBankCard(cardid : Integer) : BankCard {
 /* definition:
@@ -1226,9 +1227,9 @@ The return value was bankcard
 	<td><p>1. The attribute <i>CardID</i> of the object <i>bankcard</i> became <i>cardid</i></p><p>2. The attribute <i>CardStatus</i> of the object <i>bankcard</i> became <i>cardstatus</i></p><p>3. The attribute <i>Catalog</i> of the object <i>bankcard</i> became <i>catalog</i></p><p>4. The attribute <i>Password</i> of the object <i>bankcard</i> became <i>password</i></p><p>5. The attribute <i>Balance</i> of the object <i>bankcard</i> became <i>balance</i></p><p>6. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of modifyBankCard:</p>
- 
+
 ```java
 Contract  ManageBankCardCRUDService::modifyBankCard(cardid : Integer, cardstatus : CardStatus[NORMAL|SUSPEND|CANNEL], catalog : CardCatalog[CREDIT|DESPOSIT], password : Integer, balance : Real) : Boolean {
 /* definition:
@@ -1299,9 +1300,9 @@ The return value was true
 	<td><p>1. The object <i>bankcard</i> was deleted from the instance set of class <a href="#CLASSBankCard">BankCard</a></p><p>2. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of deleteBankCard:</p>
- 
+
 ```java
 Contract  ManageBankCardCRUDService::deleteBankCard(cardid : Integer) : Boolean {
 /* definition:
@@ -1366,9 +1367,9 @@ The return value was true
 	<td><p>1. <i>use</i> represented the object of class <a href="#CLASSUser">User</a></p><p>2. The object <i>use</i> was created</p><p>3. The attribute <i>UserID</i> of the object <i>use</i> became <i>userid</i></p><p>4. The attribute <i>Name</i> of the object <i>use</i> became <i>name</i></p><p>5. The attribute <i>Address</i> of the object <i>use</i> became <i>address</i></p><p>6. The object <i>use</i> was put into the instance set of class <a href="#CLASSUser">User</a></p><p>7. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of createUser:</p>
- 
+
 ```java
 Contract  ManageUserCRUDService::createUser(userid : Integer, name : String, address : String) : Boolean {
 /* definition:
@@ -1441,9 +1442,9 @@ The return value was true
 	<td><p>The return value was <i>user</i></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of queryUser:</p>
- 
+
 ```java
 Contract  ManageUserCRUDService::queryUser(userid : Integer) : User {
 /* definition:
@@ -1504,9 +1505,9 @@ The return value was user
 	<td><p>1. The attribute <i>UserID</i> of the object <i>user</i> became <i>userid</i></p><p>2. The attribute <i>Name</i> of the object <i>user</i> became <i>name</i></p><p>3. The attribute <i>Address</i> of the object <i>user</i> became <i>address</i></p><p>4. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of modifyUser:</p>
- 
+
 ```java
 Contract  ManageUserCRUDService::modifyUser(userid : Integer, name : String, address : String) : Boolean {
 /* definition:
@@ -1573,9 +1574,9 @@ The return value was true
 	<td><p>1. The object <i>user</i> was deleted from the instance set of class <a href="#CLASSUser">User</a></p><p>2. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of deleteUser:</p>
- 
+
 ```java
 Contract  ManageUserCRUDService::deleteUser(userid : Integer) : Boolean {
 /* definition:
@@ -1636,9 +1637,9 @@ The return value was true
 	<td><p>The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of cardIdentification:</p>
- 
+
 ```java
 Contract AutomatedTellerMachineSystem::cardIdentification() : Boolean {
 /* precondition:
@@ -1692,6 +1693,7 @@ This subsection should specify the requirements derived from existing standards 
 - c) Accounting procedures;
 - d) Audit tracing.
 		
+
 For example, this could specify the requirement for software to trace processing activity. Such traces are needed for some applications to meet minimum regulatory or financial standards. An audit trace requirement may, for example, state that all changes to a payroll database must be recorded in a trace file with before and after values.
 		
 ### 3.4.2  Hardware limitations
