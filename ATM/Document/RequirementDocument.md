@@ -59,7 +59,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 ### 3.1.1   User Requirements
 <b>Use Case Diagram</b>
  
-![Use Case Diagram](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/项目名/Use Case Diagram.jpg)
+![Use Case Diagram](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/ATM/Use%20Case%20Diagram.jpg)
  
 <b>A1 - Customer</b>
 <table>
@@ -159,7 +159,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
-![WithdrawCashSSD](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/项目名/WithdrawCashSSD.jpg)
+![WithdrawCashSSD](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/ATM/WithdrawCashSSD.jpg)
  
 <b>UC2 - checkBalance</b>
  
@@ -198,7 +198,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
-![CheckBalanceSSD](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/项目名/CheckBalanceSSD.jpg)
+![CheckBalanceSSD](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/ATM/CheckBalanceSSD.jpg)
  
 <b>UC3 - depositFunds</b>
  
@@ -237,7 +237,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
-![DepositFundsSSD](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/项目名/DepositFundsSSD.jpg)
+![DepositFundsSSD](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/ATM/DepositFundsSSD.jpg)
  
 <b>UC4 - manageBankCard</b>
  
@@ -357,7 +357,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 #### 3.1.2.2   Entity Analysis
 <b>Conceptual Class Diagram</b> 
  
-![Conceptual Class Diagram](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/项目名/Conceptual Class Diagram.jpg)
+![Conceptual Class Diagram](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/ATM/Conceptual%20Class%20Diagram.jpg)
  
 <b>E1 - BankCard</b>
  
