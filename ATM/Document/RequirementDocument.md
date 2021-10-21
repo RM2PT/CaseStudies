@@ -197,7 +197,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
- 
+
 ![CheckBalanceSSD](Images/CheckBalanceSSD.jpg)
 
 <b>UC3 - depositFunds</b>
