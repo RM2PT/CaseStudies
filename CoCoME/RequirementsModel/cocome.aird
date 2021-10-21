@@ -43,7 +43,7 @@
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/net.mydreamy.requirementmodel.design/description/requirementmodel.odesign#//@ownedViewpoints[name='RequirementModel']/@ownedRepresentations[name='servicediagram']"/>
         <target xmi:type="rEMODEL:RequirementModel" href="cocome.remodel#/"/>
       </ownedRepresentationDescriptors>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_PD-mlOrGEeqzKuP4Ucvk_g" name="ProcessSaleSSD" repPath="#_PD2qwOrGEeqzKuP4Ucvk_g" changeId="66813b55-c1eb-4e81-88e5-47e89e00ea46">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_PD-mlOrGEeqzKuP4Ucvk_g" name="ProcessSaleSSD" repPath="#_PD2qwOrGEeqzKuP4Ucvk_g" changeId="bd8647e8-4318-4bd9-a831-f4515181bf2e">
         <description xmi:type="description_2:SequenceDiagramDescription" href="platform:/plugin/net.mydreamy.requirementmodel.design/description/requirementmodel.odesign#//@ownedViewpoints[name='RequirementModel']/@ownedRepresentations[name='SequenceDiagram']"/>
         <target xmi:type="rEMODEL:Interaction" href="cocome.remodel#//@UseCaseModel/@interaction.0"/>
       </ownedRepresentationDescriptors>
@@ -8470,13 +8470,13 @@
                 <styles xmi:type="notation:FilteringStyle" xmi:id="_PERhierGEeqzKuP4Ucvk_g"/>
               </children>
               <styles xmi:type="notation:ShapeStyle" xmi:id="_PERhhOrGEeqzKuP4Ucvk_g" fontName="Segoe UI" fontHeight="10" bold="true"/>
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_PERhherGEeqzKuP4Ucvk_g" y="30" width="723" height="100"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_PERhherGEeqzKuP4Ucvk_g" y="30" width="616" height="100"/>
             </children>
             <styles xmi:type="notation:SortingStyle" xmi:id="_PEKz0urGEeqzKuP4Ucvk_g"/>
             <styles xmi:type="notation:FilteringStyle" xmi:id="_PEKz0-rGEeqzKuP4Ucvk_g"/>
           </children>
           <styles xmi:type="notation:ShapeStyle" xmi:id="_PEKMw-rGEeqzKuP4Ucvk_g" fontName="Segoe UI" fontHeight="10" bold="true" italic="true"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_PEKMxOrGEeqzKuP4Ucvk_g" x="57" y="212" width="723" height="130"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_PEKMxOrGEeqzKuP4Ucvk_g" x="57" y="212" width="616" height="130"/>
         </children>
         <children xmi:type="notation:Node" xmi:id="_PEKz1OrGEeqzKuP4Ucvk_g" type="2002" element="_PD8KU-rGEeqzKuP4Ucvk_g">
           <children xmi:type="notation:Node" xmi:id="_PELa4OrGEeqzKuP4Ucvk_g" type="5006"/>
@@ -8488,7 +8488,7 @@
                 <styles xmi:type="notation:FilteringStyle" xmi:id="_PESIlurGEeqzKuP4Ucvk_g"/>
               </children>
               <styles xmi:type="notation:ShapeStyle" xmi:id="_PESIkerGEeqzKuP4Ucvk_g" fontName="Segoe UI" fontHeight="10" bold="true"/>
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_PESIkurGEeqzKuP4Ucvk_g" y="30" width="723" height="100"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_PESIkurGEeqzKuP4Ucvk_g" y="30" width="616" height="100"/>
             </children>
             <children xmi:type="notation:Node" xmi:id="_PESIl-rGEeqzKuP4Ucvk_g" type="3008" element="_PD8xZerGEeqzKuP4Ucvk_g">
               <children xmi:type="notation:Node" xmi:id="_PESImurGEeqzKuP4Ucvk_g" type="5005"/>
@@ -8497,13 +8497,13 @@
                 <styles xmi:type="notation:FilteringStyle" xmi:id="_PESInerGEeqzKuP4Ucvk_g"/>
               </children>
               <styles xmi:type="notation:ShapeStyle" xmi:id="_PESImOrGEeqzKuP4Ucvk_g" fontName="Segoe UI" fontHeight="10" bold="true"/>
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_PESImerGEeqzKuP4Ucvk_g" y="130" width="723" height="100"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_PESImerGEeqzKuP4Ucvk_g" y="130" width="616" height="100"/>
             </children>
             <styles xmi:type="notation:SortingStyle" xmi:id="_PELa4urGEeqzKuP4Ucvk_g"/>
             <styles xmi:type="notation:FilteringStyle" xmi:id="_PELa4-rGEeqzKuP4Ucvk_g"/>
           </children>
           <styles xmi:type="notation:ShapeStyle" xmi:id="_PEKz1erGEeqzKuP4Ucvk_g" fontName="Segoe UI" fontHeight="10" bold="true" italic="true"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_PEKz1urGEeqzKuP4Ucvk_g" x="57" y="442" width="723" height="230"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_PEKz1urGEeqzKuP4Ucvk_g" x="57" y="442" width="616" height="230"/>
         </children>
         <children xmi:type="notation:Node" xmi:id="_AEjgQCfXEeunIqzS-i7ukw" type="2001" element="_AEaWUCfXEeunIqzS-i7ukw">
           <children xmi:type="notation:Node" xmi:id="_AEkHUCfXEeunIqzS-i7ukw" type="5002">
@@ -8580,7 +8580,7 @@
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_AElVcifXEeunIqzS-i7ukw"/>
           </children>
           <styles xmi:type="notation:ShapeStyle" xmi:id="_AEjgQSfXEeunIqzS-i7ukw" fontName=".AppleSystemUIFont" fontHeight="12" bold="true"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_AEjgQifXEeunIqzS-i7ukw" x="620" y="50" width="160" height="50"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_AEjgQifXEeunIqzS-i7ukw" x="463" y="50" width="210" height="50"/>
         </children>
         <styles xmi:type="notation:DiagramStyle" xmi:id="_PD_NourGEeqzKuP4Ucvk_g"/>
         <edges xmi:type="notation:Edge" xmi:id="_AEoYwyfXEeunIqzS-i7ukw" type="4001" element="_AEeAsCfXEeunIqzS-i7ukw" source="_PEMB8OrGEeqzKuP4Ucvk_g" target="_AEkuYCfXEeunIqzS-i7ukw">
@@ -8766,14 +8766,14 @@
     <ownedDiagramElements xmi:type="diagram:DNode" uid="_AEaWUCfXEeunIqzS-i7ukw" name=":ProcessSaleService" width="12" height="5" resizeKind="NSEW">
       <target xmi:type="rEMODEL:Service" href="cocome.remodel#//@UseCaseModel/@service.2"/>
       <semanticElements xmi:type="rEMODEL:Service" href="cocome.remodel#//@UseCaseModel/@service.2"/>
-      <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" uid="_AG7e0CfXEeunIqzS-i7ukw" x="620" y="50" height="50" width="160"/>
+      <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" uid="_AG7e0CfXEeunIqzS-i7ukw" x="463" y="50" height="50" width="210"/>
       <ownedBorderedNodes xmi:type="diagram:DNode" uid="_AEaWUyfXEeunIqzS-i7ukw" outgoingEdges="_AEgc8CfXEeunIqzS-i7ukw _AEhEACfXEeunIqzS-i7ukw _AEhEBSfXEeunIqzS-i7ukw _AEhECifXEeunIqzS-i7ukw _AEhEDyfXEeunIqzS-i7ukw" incomingEdges="_AEeAsCfXEeunIqzS-i7ukw _AEfO0CfXEeunIqzS-i7ukw _AEfO1SfXEeunIqzS-i7ukw _AEf14CfXEeunIqzS-i7ukw _AEf15SfXEeunIqzS-i7ukw" width="1" height="100" resizeKind="NSEW">
         <target xmi:type="rEMODEL:Service" href="cocome.remodel#//@UseCaseModel/@service.2"/>
         <semanticElements xmi:type="rEMODEL:Service" href="cocome.remodel#//@UseCaseModel/@service.2"/>
         <ownedBorderedNodes xmi:type="diagram:DNode" uid="_AEa9YSfXEeunIqzS-i7ukw" width="1" height="6" resizeKind="NORTH_SOUTH">
           <target xmi:type="rEMODEL:Execution" href="cocome.remodel#//@UseCaseModel/@interaction.0/@executions.0"/>
           <semanticElements xmi:type="rEMODEL:Execution" href="cocome.remodel#//@UseCaseModel/@interaction.0/@executions.0"/>
-          <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" uid="_AEiSKSfXEeunIqzS-i7ukw" x="695" y="132" height="60" width="10"/>
+          <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" uid="_AEiSKSfXEeunIqzS-i7ukw" x="563" y="132" height="60" width="10"/>
           <ownedStyle xmi:type="diagram:Square" uid="_AEa9YifXEeunIqzS-i7ukw" showIcon="false" borderSize="1" borderSizeComputationExpression="1" width="1" height="6" color="199,237,232">
             <description xmi:type="style:SquareDescription" href="platform:/plugin/net.mydreamy.requirementmodel.design/description/requirementmodel.odesign#//@ownedViewpoints[name='RequirementModel']/@ownedRepresentations[name='SequenceDiagram']/@defaultLayer/@nodeMappings[name='Participant']/@borderedNodeMappings[name='Lifeline']/@borderedNodeMappings[name='Execution']/@style"/>
           </ownedStyle>
@@ -8782,7 +8782,7 @@
         <ownedBorderedNodes xmi:type="diagram:DNode" uid="_AEbkcCfXEeunIqzS-i7ukw" width="1" height="6" resizeKind="NORTH_SOUTH">
           <target xmi:type="rEMODEL:Execution" href="cocome.remodel#//@UseCaseModel/@interaction.0/@executions.1"/>
           <semanticElements xmi:type="rEMODEL:Execution" href="cocome.remodel#//@UseCaseModel/@interaction.0/@executions.1"/>
-          <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" uid="_AEiSKifXEeunIqzS-i7ukw" x="695" y="262" height="60" width="10"/>
+          <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" uid="_AEiSKifXEeunIqzS-i7ukw" x="563" y="262" height="60" width="10"/>
           <ownedStyle xmi:type="diagram:Square" uid="_AEbkcSfXEeunIqzS-i7ukw" showIcon="false" borderSize="1" borderSizeComputationExpression="1" width="1" height="6" color="199,237,232">
             <description xmi:type="style:SquareDescription" href="platform:/plugin/net.mydreamy.requirementmodel.design/description/requirementmodel.odesign#//@ownedViewpoints[name='RequirementModel']/@ownedRepresentations[name='SequenceDiagram']/@defaultLayer/@nodeMappings[name='Participant']/@borderedNodeMappings[name='Lifeline']/@borderedNodeMappings[name='Execution']/@style"/>
           </ownedStyle>
@@ -8791,7 +8791,7 @@
         <ownedBorderedNodes xmi:type="diagram:DNode" uid="_AEbkcyfXEeunIqzS-i7ukw" width="1" height="6" resizeKind="NORTH_SOUTH">
           <target xmi:type="rEMODEL:Execution" href="cocome.remodel#//@UseCaseModel/@interaction.0/@executions.2"/>
           <semanticElements xmi:type="rEMODEL:Execution" href="cocome.remodel#//@UseCaseModel/@interaction.0/@executions.2"/>
-          <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" uid="_AEiSKyfXEeunIqzS-i7ukw" x="695" y="362" height="60" width="10"/>
+          <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" uid="_AEiSKyfXEeunIqzS-i7ukw" x="563" y="362" height="60" width="10"/>
           <ownedStyle xmi:type="diagram:Square" uid="_AEbkdCfXEeunIqzS-i7ukw" showIcon="false" borderSize="1" borderSizeComputationExpression="1" width="1" height="6" color="199,237,232">
             <description xmi:type="style:SquareDescription" href="platform:/plugin/net.mydreamy.requirementmodel.design/description/requirementmodel.odesign#//@ownedViewpoints[name='RequirementModel']/@ownedRepresentations[name='SequenceDiagram']/@defaultLayer/@nodeMappings[name='Participant']/@borderedNodeMappings[name='Lifeline']/@borderedNodeMappings[name='Execution']/@style"/>
           </ownedStyle>
@@ -8800,7 +8800,7 @@
         <ownedBorderedNodes xmi:type="diagram:DNode" uid="_AEbkdifXEeunIqzS-i7ukw" width="1" height="6" resizeKind="NORTH_SOUTH">
           <target xmi:type="rEMODEL:Execution" href="cocome.remodel#//@UseCaseModel/@interaction.0/@executions.3"/>
           <semanticElements xmi:type="rEMODEL:Execution" href="cocome.remodel#//@UseCaseModel/@interaction.0/@executions.3"/>
-          <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" uid="_AEiSLCfXEeunIqzS-i7ukw" x="695" y="492" height="60" width="10"/>
+          <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" uid="_AEiSLCfXEeunIqzS-i7ukw" x="563" y="492" height="60" width="10"/>
           <ownedStyle xmi:type="diagram:Square" uid="_AEbkdyfXEeunIqzS-i7ukw" showIcon="false" borderSize="1" borderSizeComputationExpression="1" width="1" height="6" color="199,237,232">
             <description xmi:type="style:SquareDescription" href="platform:/plugin/net.mydreamy.requirementmodel.design/description/requirementmodel.odesign#//@ownedViewpoints[name='RequirementModel']/@ownedRepresentations[name='SequenceDiagram']/@defaultLayer/@nodeMappings[name='Participant']/@borderedNodeMappings[name='Lifeline']/@borderedNodeMappings[name='Execution']/@style"/>
           </ownedStyle>
@@ -8809,7 +8809,7 @@
         <ownedBorderedNodes xmi:type="diagram:DNode" uid="_AEbkeSfXEeunIqzS-i7ukw" width="1" height="6" resizeKind="NORTH_SOUTH">
           <target xmi:type="rEMODEL:Execution" href="cocome.remodel#//@UseCaseModel/@interaction.0/@executions.4"/>
           <semanticElements xmi:type="rEMODEL:Execution" href="cocome.remodel#//@UseCaseModel/@interaction.0/@executions.4"/>
-          <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" uid="_AEiSLSfXEeunIqzS-i7ukw" x="695" y="592" height="60" width="10"/>
+          <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" uid="_AEiSLSfXEeunIqzS-i7ukw" x="563" y="592" height="60" width="10"/>
           <ownedStyle xmi:type="diagram:Square" uid="_AEbkeifXEeunIqzS-i7ukw" showIcon="false" borderSize="1" borderSizeComputationExpression="1" width="1" height="6" color="199,237,232">
             <description xmi:type="style:SquareDescription" href="platform:/plugin/net.mydreamy.requirementmodel.design/description/requirementmodel.odesign#//@ownedViewpoints[name='RequirementModel']/@ownedRepresentations[name='SequenceDiagram']/@defaultLayer/@nodeMappings[name='Participant']/@borderedNodeMappings[name='Lifeline']/@borderedNodeMappings[name='Execution']/@style"/>
           </ownedStyle>
@@ -8829,7 +8829,7 @@
     <ownedDiagramElements xmi:type="diagram:DNodeContainer" uid="_PD8KUOrGEeqzKuP4Ucvk_g" name="loop" height="50">
       <target xmi:type="rEMODEL:CombinedFragment" href="cocome.remodel#//@UseCaseModel/@interaction.0/@combinedFragments.0"/>
       <semanticElements xmi:type="rEMODEL:CombinedFragment" href="cocome.remodel#//@UseCaseModel/@interaction.0/@combinedFragments.0"/>
-      <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" uid="_PKQ0xOrGEeqzKuP4Ucvk_g" x="57" y="212" height="130" width="723"/>
+      <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" uid="_PKQ0xOrGEeqzKuP4Ucvk_g" x="57" y="212" height="130" width="616"/>
       <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_PD8KUerGEeqzKuP4Ucvk_g" labelSize="10" showIcon="false" labelAlignment="LEFT" borderSize="2" borderSizeComputationExpression="2" borderLineStyle="dash" backgroundStyle="Liquid" backgroundColor="194,239,255" foregroundColor="255,255,255">
         <labelFormat>italic</labelFormat>
         <labelFormat>bold</labelFormat>
@@ -8839,7 +8839,7 @@
       <ownedDiagramElements xmi:type="diagram:DNodeContainer" uid="_PD8KVurGEeqzKuP4Ucvk_g" name="  [hasMoreItems]" height="10">
         <target xmi:type="rEMODEL:Operand" href="cocome.remodel#//@UseCaseModel/@interaction.0/@combinedFragments.0/@ownedOperands.0"/>
         <semanticElements xmi:type="rEMODEL:Operand" href="cocome.remodel#//@UseCaseModel/@interaction.0/@combinedFragments.0/@ownedOperands.0"/>
-        <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" uid="_PKQ0xerGEeqzKuP4Ucvk_g" x="57" y="242" height="100" width="723"/>
+        <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" uid="_PKQ0xerGEeqzKuP4Ucvk_g" x="57" y="242" height="100" width="616"/>
         <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_PD8xYOrGEeqzKuP4Ucvk_g" labelSize="10" showIcon="false" labelAlignment="LEFT" borderSize="1" borderSizeComputationExpression="1">
           <labelFormat>bold</labelFormat>
           <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/net.mydreamy.requirementmodel.design/description/requirementmodel.odesign#//@ownedViewpoints[name='RequirementModel']/@ownedRepresentations[name='SequenceDiagram']/@defaultLayer/@containerMappings[name='Combined%20Fragment']/@subContainerMappings[name='Operand']/@style"/>
@@ -8850,7 +8850,7 @@
     <ownedDiagramElements xmi:type="diagram:DNodeContainer" uid="_PD8KU-rGEeqzKuP4Ucvk_g" name="alt" height="50">
       <target xmi:type="rEMODEL:CombinedFragment" href="cocome.remodel#//@UseCaseModel/@interaction.0/@combinedFragments.1"/>
       <semanticElements xmi:type="rEMODEL:CombinedFragment" href="cocome.remodel#//@UseCaseModel/@interaction.0/@combinedFragments.1"/>
-      <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" uid="_PKQ0xurGEeqzKuP4Ucvk_g" x="57" y="442" height="230" width="723"/>
+      <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" uid="_PKQ0xurGEeqzKuP4Ucvk_g" x="57" y="442" height="230" width="616"/>
       <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_PD8KVOrGEeqzKuP4Ucvk_g" labelSize="10" showIcon="false" labelAlignment="LEFT" borderSize="2" borderSizeComputationExpression="2" borderLineStyle="dash" backgroundStyle="Liquid" backgroundColor="194,239,255" foregroundColor="255,255,255">
         <labelFormat>italic</labelFormat>
         <labelFormat>bold</labelFormat>
@@ -8860,7 +8860,7 @@
       <ownedDiagramElements xmi:type="diagram:DNodeContainer" uid="_PD8xYurGEeqzKuP4Ucvk_g" name="  [cash]" height="10">
         <target xmi:type="rEMODEL:Operand" href="cocome.remodel#//@UseCaseModel/@interaction.0/@combinedFragments.1/@ownedOperands.0"/>
         <semanticElements xmi:type="rEMODEL:Operand" href="cocome.remodel#//@UseCaseModel/@interaction.0/@combinedFragments.1/@ownedOperands.0"/>
-        <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" uid="_PKQ0x-rGEeqzKuP4Ucvk_g" x="57" y="472" height="100" width="723"/>
+        <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" uid="_PKQ0x-rGEeqzKuP4Ucvk_g" x="57" y="472" height="100" width="616"/>
         <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_PD8xY-rGEeqzKuP4Ucvk_g" labelSize="10" showIcon="false" labelAlignment="LEFT" borderSize="1" borderSizeComputationExpression="1">
           <labelFormat>bold</labelFormat>
           <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/net.mydreamy.requirementmodel.design/description/requirementmodel.odesign#//@ownedViewpoints[name='RequirementModel']/@ownedRepresentations[name='SequenceDiagram']/@defaultLayer/@containerMappings[name='Combined%20Fragment']/@subContainerMappings[name='Operand']/@style"/>
@@ -8870,7 +8870,7 @@
       <ownedDiagramElements xmi:type="diagram:DNodeContainer" uid="_PD8xZerGEeqzKuP4Ucvk_g" name="  [card]" height="10">
         <target xmi:type="rEMODEL:Operand" href="cocome.remodel#//@UseCaseModel/@interaction.0/@combinedFragments.1/@ownedOperands.1"/>
         <semanticElements xmi:type="rEMODEL:Operand" href="cocome.remodel#//@UseCaseModel/@interaction.0/@combinedFragments.1/@ownedOperands.1"/>
-        <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" uid="_PKQ0yOrGEeqzKuP4Ucvk_g" x="57" y="572" height="100" width="723"/>
+        <graphicalFilters xmi:type="diagram:AbsoluteBoundsFilter" uid="_PKQ0yOrGEeqzKuP4Ucvk_g" x="57" y="572" height="100" width="616"/>
         <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_PD8xZurGEeqzKuP4Ucvk_g" labelSize="10" showIcon="false" labelAlignment="LEFT" borderSize="1" borderSizeComputationExpression="1">
           <labelFormat>bold</labelFormat>
           <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/net.mydreamy.requirementmodel.design/description/requirementmodel.odesign#//@ownedViewpoints[name='RequirementModel']/@ownedRepresentations[name='SequenceDiagram']/@defaultLayer/@containerMappings[name='Combined%20Fragment']/@subContainerMappings[name='Operand']/@style"/>

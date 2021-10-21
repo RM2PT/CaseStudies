@@ -58,9 +58,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 ## 3.1  Functional requirements
 ### 3.1.1   User Requirements
 <b>Use Case Diagram</b>
- 
-![Use Case Diagram](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/LibraryMS/Use%20Case%20Diagram.jpg)
- 
+
+![Use Case Diagram](Images/UseCaseDiagram.jpg)
+
 <b>A1 - User</b>
 <table>
 	<tr>
@@ -314,7 +314,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 ### 3.1.2   System Requirement
 #### 3.1.2.1 Use Case Description
 <b>UC1 - searchBook</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -350,9 +350,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
+
 <b>UC2 - listBookHistory</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -388,9 +388,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
+
 <b>UC3 - makeReservation</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -426,9 +426,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
+
 <b>UC4 - recommendBook</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -464,9 +464,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
+
 <b>UC5 - cancelReservation</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -502,9 +502,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
+
 <b>UC6 - manageUser</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -540,9 +540,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
+
 <b>UC7 - manageBook</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -578,9 +578,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
+
 <b>UC8 - manageSubject</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -616,9 +616,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
+
 <b>UC9 - manageBookCopy</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -654,9 +654,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
+
 <b>UC10 - manageLibrarian</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -692,9 +692,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
+
 <b>UC11 - listRecommendBook</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -730,9 +730,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
+
 <b>UC12 - borrowBook</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -768,9 +768,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
+
 <b>UC13 - renewBook</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -806,9 +806,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
+
 <b>UC14 - payOverDueFee</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -844,9 +844,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
+
 <b>UC15 - returnBook</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -882,9 +882,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
+
 <b>UC16 - checkOverDueandComputeOverDueFee</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -920,9 +920,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
+
 <b>UC17 - dueSoonNotification</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -958,9 +958,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
+
 <b>UC18 - countDownSuspensionDay</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -996,9 +996,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
+
 <b>UC19 - sendNotificationEmail</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -1034,15 +1034,15 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
- 
+
+
 #### 3.1.2.2   Entity Analysis
 <b>Conceptual Class Diagram</b> 
- 
-![Conceptual Class Diagram](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/LibraryMS/Conceptual%20Class%20Diagram.jpg)
- 
+
+![Conceptual Class Diagram](Images/ConceptualClassDiagram.jpg)
+
 <b>E1 - User</b>
- 
+
 <table>
 	<tr>
 		<td><b>Entity Name:</b></td>
@@ -1136,9 +1136,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td>One User is linked with many RecommendBook</td>
 	</tr>
 	</table>
-	 
+
 <b>E2 - Student</b>
- 
+
 <table>
 	<tr>
 		<td><b>Entity Name:</b></td>
@@ -1177,9 +1177,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td colspan="2">The RegistrationStatus of Student</td>
 					</tr>
 	</table>
-	 
+
 <b>E3 - Faculty</b>
- 
+
 <table>
 	<tr>
 		<td><b>Entity Name:</b></td>
@@ -1213,9 +1213,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td colspan="2">The Status of Faculty</td>
 					</tr>
 	</table>
-	 
+
 <b>E4 - Book</b>
- 
+
 <table>
 	<tr>
 		<td><b>Entity Name:</b></td>
@@ -1293,9 +1293,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td>One Book is linked to many Subject</td>
 	</tr>
 	</table>
-	 
+
 <b>E5 - Subject</b>
- 
+
 <table>
 	<tr>
 		<td><b>Entity Name:</b></td>
@@ -1338,9 +1338,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td>One Subject is linked with many Subject</td>Many Subject are linked with many Subject</td>
 	</tr>
 	</table>
-	 
+
 <b>E6 - BookCopy</b>
- 
+
 <table>
 	<tr>
 		<td><b>Entity Name:</b></td>
@@ -1404,9 +1404,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td>One BookCopy is linked with many Reserve</td>
 	</tr>
 	</table>
-	 
+
 <b>E7 - Loan</b>
- 
+
 <table>
 	<tr>
 		<td><b>Entity Name:</b></td>
@@ -1511,9 +1511,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td>One Loan is linked to one Librarian</td>
 	</tr>
 	</table>
-	 
+
 <b>E8 - Reserve</b>
- 
+
 <table>
 	<tr>
 		<td><b>Entity Name:</b></td>
@@ -1561,9 +1561,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td>Many Reserve are linked with one User</td>
 	</tr>
 	</table>
-	 
+
 <b>E9 - RecommendBook</b>
- 
+
 <table>
 	<tr>
 		<td><b>Entity Name:</b></td>
@@ -1604,9 +1604,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td>Many RecommendBook are linked with one User</td>
 	</tr>
 	</table>
-	 
+
 <b>E10 - Administrator</b>
- 
+
 <table>
 	<tr>
 		<td><b>Entity Name:</b></td>
@@ -1641,9 +1641,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td colspan="2">The Password of Administrator</td>
 					</tr>
 	</table>
-	 
+
 <b>E11 - Librarian</b>
- 
+
 <table>
 	<tr>
 		<td><b>Entity Name:</b></td>
@@ -1678,8 +1678,8 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td colspan="2">The Password of Librarian</td>
 					</tr>
 	</table>
-	 
- 
+​	 
+
 #### 3.1.2.3   System Interfaces
 ##### System Interfaces
 <b>SI1 - LibraryManagementSystemSystem</b>
@@ -1701,7 +1701,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td><ul><li><a href="#OPrecommendBook">recommendBook</a></li><li><a href="#OPqueryBookCopy">queryBookCopy</a></li><li><a href="#OPaddBookCopy">addBookCopy</a></li><li><a href="#OPdeleteBookCopy">deleteBookCopy</a></li><li><a href="#OPmakeReservation">makeReservation</a></li><li><a href="#OPcancelReservation">cancelReservation</a></li><li><a href="#OPborrowBook">borrowBook</a></li><li><a href="#OPrenewBook">renewBook</a></li><li><a href="#OPreturnBook">returnBook</a></li><li><a href="#OPpayOverDueFee">payOverDueFee</a></li><li><a href="#OPcheckOverDueandComputeOverDueFee">checkOverDueandComputeOverDueFee</a></li><li><a href="#OPdueSoonNotification">dueSoonNotification</a></li><li><a href="#OPcountDownSuspensionDay">countDownSuspensionDay</a></li></ul></td>
 	</tr>
 	</table>
-	 
+
 <b>SI2 - ListBookHistory</b>
 <table>
 	<tr>
@@ -1721,7 +1721,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td><ul><li><a href="#OPlistBorrowHistory">listBorrowHistory</a></li><li><a href="#OPlistHodingBook">listHodingBook</a></li><li><a href="#OPlistOverDueBook">listOverDueBook</a></li><li><a href="#OPlistReservationBook">listReservationBook</a></li><li><a href="#OPlistRecommendBook">listRecommendBook</a></li></ul></td>
 	</tr>
 	</table>
-	 
+
 <b>SI3 - SearchBook</b>
 <table>
 	<tr>
@@ -1741,7 +1741,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td><ul><li><a href="#OPsearchBookByBarCode">searchBookByBarCode</a></li><li><a href="#OPsearchBookByTitle">searchBookByTitle</a></li><li><a href="#OPsearchBookByAuthor">searchBookByAuthor</a></li><li><a href="#OPsearchBookByISBN">searchBookByISBN</a></li><li><a href="#OPsearchBookBySubject">searchBookBySubject</a></li></ul></td>
 	</tr>
 	</table>
-	 
+
 <b>SI4 - ManageUserCRUDService</b>
 <table>
 	<tr>
@@ -1761,7 +1761,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td><ul><li><a href="#OPcreateUser">createUser</a></li><li><a href="#OPqueryUser">queryUser</a></li><li><a href="#OPmodifyUser">modifyUser</a></li><li><a href="#OPdeleteUser">deleteUser</a></li><li><a href="#OPcreateStudent">createStudent</a></li><li><a href="#OPcreateFaculty">createFaculty</a></li><li><a href="#OPmodifyStudent">modifyStudent</a></li><li><a href="#OPmodifyFaculty">modifyFaculty</a></li></ul></td>
 	</tr>
 	</table>
-	 
+
 <b>SI5 - ManageBookCRUDService</b>
 <table>
 	<tr>
@@ -1781,7 +1781,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td><ul><li><a href="#OPcreateBook">createBook</a></li><li><a href="#OPqueryBook">queryBook</a></li><li><a href="#OPmodifyBook">modifyBook</a></li><li><a href="#OPdeleteBook">deleteBook</a></li></ul></td>
 	</tr>
 	</table>
-	 
+
 <b>SI6 - ManageSubjectCRUDService</b>
 <table>
 	<tr>
@@ -1801,7 +1801,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td><ul><li><a href="#OPcreateSubject">createSubject</a></li><li><a href="#OPquerySubject">querySubject</a></li><li><a href="#OPmodifySubject">modifySubject</a></li><li><a href="#OPdeleteSubject">deleteSubject</a></li></ul></td>
 	</tr>
 	</table>
-	 
+
 <b>SI7 - ManageBookCopyCRUDService</b>
 <table>
 	<tr>
@@ -1821,7 +1821,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td><ul><li><a href="#OPaddBookCopy">addBookCopy</a></li><li><a href="#OPqueryBookCopy">queryBookCopy</a></li><li><a href="#OPmodifyBookCopy">modifyBookCopy</a></li><li><a href="#OPdeleteBookCopy">deleteBookCopy</a></li></ul></td>
 	</tr>
 	</table>
-	 
+
 <b>SI8 - ManageLibrarianCRUDService</b>
 <table>
 	<tr>
@@ -1841,7 +1841,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td><ul><li><a href="#OPcreateLibrarian">createLibrarian</a></li><li><a href="#OPqueryLibrarian">queryLibrarian</a></li><li><a href="#OPmodifyLibrarian">modifyLibrarian</a></li><li><a href="#OPdeleteLibrarian">deleteLibrarian</a></li></ul></td>
 	</tr>
 	</table>
-	 
+
 <b>SI9 - ThirdPartyServices</b>
 <table>
 	<tr>
@@ -1861,8 +1861,8 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td><ul><li><a href="#OPsendNotificationEmail">sendNotificationEmail</a></li></ul></td>
 	</tr>
 	</table>
-	 
- 
+​	 
+
 ##### System Operation Description
 <b>OP1 - searchBookByBarCode</b>
 <table>
@@ -1899,9 +1899,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td><p>The return value was the set of class <a href="#CLASSBook">Book</a>, including all <i>book</i> in the instance set of class <a href="#CLASSBook">Book</a>. <i>book</i> represented an object of class <a href="#CLASSBook">Book</a>, and <i>book</i> meet:</p><p>&emsp;&emsp;At least one <i>c</i> existed in all objects which <i>book</i> was linked to by <i>Copys</i>. <i>c</i> represented an object of class <a href="#CLASSBookCopy">BookCopy</a>, and <i>c</i> meet:</p><p>&emsp;&emsp;&emsp;&emsp;The attribute <i>Barcode</i> of the object <i>c</i> was equal to <i>barcode</i></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of searchBookByBarCode:</p>
- 
+
 ```java
 Contract SearchBook::searchBookByBarCode(barcode:String): Set(Book) {
 		/*
@@ -1956,9 +1956,9 @@ Contract SearchBook::searchBookByBarCode(barcode:String): Set(Book) {
 	<td><p>The return value was the set of class <a href="#CLASSBook">Book</a>, including all <i>book</i> in the instance set of class <a href="#CLASSBook">Book</a>. <i>book</i> represented an object of class <a href="#CLASSBook">Book</a>, and <i>book</i> meet:</p><p>&emsp;&emsp;The attribute <i>Title</i> of the object <i>book</i> was equal to <i>title</i></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of searchBookByTitle:</p>
- 
+
 ```java
 Contract SearchBook::searchBookByTitle(title:String): Set(Book) {
 		/*
@@ -2012,9 +2012,9 @@ Contract SearchBook::searchBookByTitle(title:String): Set(Book) {
 	<td><p>The return value was the set of class <a href="#CLASSBook">Book</a>, including all <i>book</i> in the instance set of class <a href="#CLASSBook">Book</a>. <i>book</i> represented an object of class <a href="#CLASSBook">Book</a>, and <i>book</i> meet:</p><p>&emsp;&emsp;The attribute <i>Author</i> of the object <i>book</i> was equal to <i>authorname</i></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of searchBookByAuthor:</p>
- 
+
 ```java
 Contract SearchBook::searchBookByAuthor(authorname:String) : Set(Book) {
 		/*
@@ -2068,9 +2068,9 @@ Contract SearchBook::searchBookByAuthor(authorname:String) : Set(Book) {
 	<td><p>The return value was the set of class <a href="#CLASSBook">Book</a>, including all <i>book</i> in the instance set of class <a href="#CLASSBook">Book</a>. <i>book</i> represented an object of class <a href="#CLASSBook">Book</a>, and <i>book</i> meet:</p><p>&emsp;&emsp;The attribute <i>ISBn</i> of the object <i>book</i> was equal to <i>iSBNnumber</i></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of searchBookByISBN:</p>
- 
+
 ```java
 Contract SearchBook::searchBookByISBN(iSBNnumber:String): Set(Book) {
 		/*
@@ -2124,9 +2124,9 @@ Contract SearchBook::searchBookByISBN(iSBNnumber:String): Set(Book) {
 	<td><p>The return value was the set of class <a href="#CLASSBook">Book</a>, including all <i>book</i> in the instance set of class <a href="#CLASSBook">Book</a>. <i>book</i> represented an object of class <a href="#CLASSBook">Book</a>, and <i>book</i> meet:</p><p>&emsp;&emsp;At least one <i>s</i> existed in all objects which <i>book</i> was linked to by <i>Subject</i>. <i>s</i> represented an object of class <a href="#CLASSSubject">Subject</a>, and <i>s</i> meet:</p><p>&emsp;&emsp;&emsp;&emsp;The attribute <i>Name</i> of the object <i>s</i> was equal to <i>subject</i></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of searchBookBySubject:</p>
- 
+
 ```java
 Contract SearchBook::searchBookBySubject(subject:String): Set(Book) {
 		/*
@@ -2185,9 +2185,9 @@ Contract SearchBook::searchBookBySubject(subject:String): Set(Book) {
 	<td><p>1. <i>res</i> represented the object of class <a href="#CLASSReserve">Reserve</a></p><p>2. The object <i>res</i> was created</p><p>3. The attribute <i>IsReserved</i> of the object <i>copy</i> became <b>true</b></p><p>4. The attribute <i>IsReserveClosed</i> of the object <i>res</i> became <b>false</b></p><p>5. The attribute <i>ReserveDate</i> of the object <i>res</i> was equal to <i>Today</i></p><p>6. The object <i>res</i> was linked to the object <i>user</i> by <i>ReservedUser</i></p><p>7. The object <i>res</i> was linked to the object <i>copy</i> by <i>ReservedCopy</i></p><p>8. The object <i>user</i> was linked to the object <i>res</i> by <i>ReservedBook</i></p><p>9. The object <i>copy</i> was linked to the object <i>res</i> by <i>ReservationRecord</i></p><p>10. The object <i>res</i> was put into the instance set of class <a href="#CLASSReserve">Reserve</a></p><p>11. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of makeReservation:</p>
- 
+
 ```java
 Contract LibraryManagementSystemSystem::makeReservation(uid:String, barcode:String) : Boolean {
 		/*
@@ -2280,9 +2280,9 @@ Contract LibraryManagementSystemSystem::makeReservation(uid:String, barcode:Stri
 	<td><p>1. The attribute <i>IsReserved</i> of the object <i>copy</i> became <b>false</b></p><p>2. The attribute <i>IsReserveClosed</i> of the object <i>res</i> became <b>true</b></p><p>3. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of cancelReservation:</p>
- 
+
 ```java
 Contract LibraryManagementSystemSystem::cancelReservation(uid:String, barcode:String) : Boolean {
 		/*
@@ -2367,9 +2367,9 @@ Contract LibraryManagementSystemSystem::cancelReservation(uid:String, barcode:St
 	<td><p>1. <i>loan</i> represented the object of class <a href="#CLASSLoan">Loan</a></p><p>2. The object <i>loan</i> was created</p><p>3. The object <i>loan</i> was linked to the object <i>user</i> by <i>LoanedUser</i></p><p>4. The object <i>loan</i> was linked to the object <i>copy</i> by <i>LoanedCopy</i></p><p>5. The attribute <i>IsReturned</i> of the object <i>loan</i> became <b>false</b></p><p>6. The attribute <i>LoanDate</i> of the object <i>loan</i> became <i>Today</i></p><p>7. The attribute <i>LoanedNumber</i> of the object <i>user</i> became the previous value of the attribute <i>LoanedNumber</i> of the object <i>user</i> plus <b>1</b></p><p>8. The object <i>user</i> was linked to the object <i>loan</i> by <i>LoanedBook</i></p><p>9. The object <i>copy</i> was linked to the object <i>loan</i> by <i>LoanedRecord</i></p><p>10. If the type of parameter <i>user</i> was equal to <a href="#CLASSStudent">Student</a>, take the following as postcondition(s):</p><p>&emsp;&emsp;The attribute <i>DueDate</i> of the object <i>loan</i> became the day <b>30</b> days after <i>Today</i></p><p>Otherwise, take the following as postcondition(s):</p><p>&emsp;&emsp;The attribute <i>DueDate</i> of the object <i>loan</i> became the day <b>60</b> days after <i>Today</i></p><p>11. If the previous value of the attribute <i>Status</i> of the object <i>copy</i> was equal to <b>ONHOLDSHELF</b>, take the following as postcondition(s):</p><p>&emsp;&emsp;The attribute <i>IsReserved</i> of the object <i>copy</i> became <b>false</b></p><p>&emsp;&emsp;The attribute <i>IsReserveClosed</i> of the object <i>res</i> became <b>true</b></p><p>12. The attribute <i>Status</i> of the object <i>copy</i> became <b>LOANED</b></p><p>13. The attribute <i>OverDue3Days</i> of the object <i>loan</i> became <b>false</b></p><p>14. The attribute <i>OverDue10Days</i> of the object <i>loan</i> became <b>false</b></p><p>15. The attribute <i>OverDue17Days</i> of the object <i>loan</i> became <b>false</b></p><p>16. The attribute <i>OverDue31Days</i> of the object <i>loan</i> became <b>false</b></p><p>17. The object <i>loan</i> was put into the instance set of class <a href="#CLASSLoan">Loan</a></p><p>18. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of borrowBook:</p>
- 
+
 ```java
 Contract LibraryManagementSystemSystem::borrowBook(uid:String, barcode:String) : Boolean {
 		/*
@@ -2540,9 +2540,9 @@ Contract LibraryManagementSystemSystem::borrowBook(uid:String, barcode:String) :
 	<td><p>1. The attribute <i>LoanedNumber</i> of the object <i>loan</i> became the previous value of the attribute <i>LoanedNumber</i> of the object <i>loan</i> minus <b>1</b></p><p>2. The attribute <i>IsReturned</i> of the object <i>loan</i> became <b>true</b></p><p>3. The attribute <i>ReturnDate</i> of the object <i>loan</i> became <i>Today</i></p><p>4. If the attribute <i>IsReserved</i> of the object <i>copy</i> was equal to <b>true</b>, take the following as postcondition(s):</p><p>&emsp;&emsp;The attribute <i>Status</i> of the object <i>copy</i> became <b>ONHOLDSHELF</b></p><p>&emsp;&emsp;The system operation <a href="#OPsendNotificationEmail">sendNotificationEmail</a> was executed</p><p>Otherwise, take the following as postcondition(s):</p><p>&emsp;&emsp;The attribute <i>Status</i> of the object <i>copy</i> became <b>AVAILABLE</b></p><p>5. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of returnBook:</p>
- 
+
 ```java
 Contract LibraryManagementSystemSystem::returnBook(barcode:String) : Boolean {
 		/*
@@ -2640,9 +2640,9 @@ Contract LibraryManagementSystemSystem::returnBook(barcode:String) : Boolean {
 	<td><p>1. The attribute <i>RenewedTimes</i> of the object <i>loan</i> became the previous value of the attribute <i>RenewedTimes</i> of the object <i>loan</i> plus <b>1</b></p><p>2. The attribute <i>RenewDate</i> of the object <i>loan</i> became <i>Today</i></p><p>3. If the type of parameter <i>user</i> was equal to <a href="#CLASSStudent">Student</a>, take the following as postcondition(s):</p><p>&emsp;&emsp;If the attribute <i>Programme</i> of the object <i>stu</i> was equal to <b>BACHELOR</b>, take the following as postcondition(s):</p><p>&emsp;&emsp;&emsp;&emsp;The attribute <i>DueDate</i> of the object <i>loan</i> became the day <b>20</b> days after previous value of the attribute <i>DueDate</i> of the object <i>loan</i></p><p>&emsp;&emsp;Otherwise, take the following as postcondition(s):</p><p>&emsp;&emsp;&emsp;&emsp;If the attribute <i>Programme</i> of the object <i>stu</i> was equal to <b>MASTER</b>, take the following as postcondition(s):</p><p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;The attribute <i>DueDate</i> of the object <i>loan</i> became the day <b>40</b> days after previous value of the attribute <i>DueDate</i> of the object <i>loan</i></p><p>&emsp;&emsp;&emsp;&emsp;Otherwise, take the following as postcondition(s):</p><p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;The attribute <i>DueDate</i> of the object <i>loan</i> became the day <b>60</b> days after previous value of the attribute <i>DueDate</i> of the object <i>loan</i></p><p>Otherwise, take the following as postcondition(s):</p><p>&emsp;&emsp;The attribute <i>DueDate</i> of the object <i>loan</i> became the day <b>60</b> days after previous value of the attribute <i>DueDate</i> of the object <i>loan</i></p><p>4. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of renewBook:</p>
- 
+
 ```java
 Contract LibraryManagementSystemSystem::renewBook(uid:String, barcode:String) : Boolean {
 		/*
@@ -2776,9 +2776,9 @@ Contract LibraryManagementSystemSystem::renewBook(uid:String, barcode:String) : 
 	<td><p>1. The attribute <i>OverDueFee</i> of the object <i>user</i> became <b>0</b></p><p>2. For each object of class <a href="#CLASSLoan">Loan</a> in the set <i>loans</i>, <i>l</i> represented it(the object) and the following operations were performed:</p><p>&emsp;&emsp;The attribute <i>OverDueFee</i> of the object <i>l</i> was equal to <b>0</b></p><p>3. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of payOverDueFee:</p>
- 
+
 ```java
 Contract LibraryManagementSystemSystem::payOverDueFee(uid:String, fee:Real) : Boolean {
 		/*
@@ -2859,9 +2859,9 @@ Contract LibraryManagementSystemSystem::payOverDueFee(uid:String, fee:Real) : Bo
 	<td><p>For each object of class <a href="#CLASSUser">User</a> in the set <i>users</i>, <i>u</i> represented it(the object) and the following operations were performed:</p><p>&emsp;&emsp;The system operation <a href="#OPsendNotificationEmail">sendNotificationEmail</a> was executed</p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of dueSoonNotification:</p>
- 
+
 ```java
 Contract LibraryManagementSystemSystem::dueSoonNotification()  {
 		/*
@@ -2929,9 +2929,9 @@ Contract LibraryManagementSystemSystem::dueSoonNotification()  {
 	<td><p>For each object of class <a href="#CLASSLoan">Loan</a> in the set <i>loans</i>, <i>loan</i> represented it(the object) and the following operations were performed:</p><p>&emsp;&emsp;The attribute <i>IsReturned</i> of the object <i>loan</i> was equal to <b>false</b></p><p>&emsp;&emsp;If the day <b>3</b> days before <i>Today</i> was after the attribute <i>DueDate</i> of the object <i>loan</i>, and the attribute <i>OverDue3Days</i> of the object <i>loan</i> was equal to <b>false</b>, take the following as postcondition(s):</p><p>&emsp;&emsp;&emsp;&emsp;The attribute <i>BorrowStatus</i> of the object <i>loan</i> became <b>SUSPEND</b></p><p>&emsp;&emsp;&emsp;&emsp;The system operation <a href="#OPsendNotificationEmail">sendNotificationEmail</a> was executed</p><p>&emsp;&emsp;&emsp;&emsp;The attribute <i>OverDue3Days</i> of the object <i>loan</i> became <b>true</b></p><p>&emsp;&emsp;If the day <b>10</b> days before <i>Today</i> was after the attribute <i>DueDate</i> of the object <i>loan</i>, and the attribute <i>OverDue10Days</i> of the object <i>loan</i> was equal to <b>false</b>, take the following as postcondition(s):</p><p>&emsp;&emsp;&emsp;&emsp;The attribute <i>SuspensionDays</i> of the object <i>loan</i> became the previous value of the attribute <i>SuspensionDays</i> of the object <i>loan</i> plus <b>14</b></p><p>&emsp;&emsp;&emsp;&emsp;The system operation <a href="#OPsendNotificationEmail">sendNotificationEmail</a> was executed</p><p>&emsp;&emsp;&emsp;&emsp;The attribute <i>OverDue10Days</i> of the object <i>loan</i> became <b>true</b></p><p>&emsp;&emsp;If the day <b>17</b> days before <i>Today</i> was after the attribute <i>DueDate</i> of the object <i>loan</i>, and the attribute <i>OverDue17Days</i> of the object <i>loan</i> was equal to <b>false</b>, take the following as postcondition(s):</p><p>&emsp;&emsp;&emsp;&emsp;The attribute <i>SuspensionDays</i> of the object <i>loan</i> became the previous value of the attribute <i>SuspensionDays</i> of the object <i>loan</i> plus <b>30</b></p><p>&emsp;&emsp;&emsp;&emsp;The system operation <a href="#OPsendNotificationEmail">sendNotificationEmail</a> was executed</p><p>&emsp;&emsp;&emsp;&emsp;The attribute <i>OverDue17Days</i> of the object <i>loan</i> became <b>true</b></p><p>&emsp;&emsp;If the day <b>31</b> days before <i>Today</i> was after the attribute <i>DueDate</i> of the object <i>loan</i>, and the attribute <i>OverDue31Days</i> of the object <i>loan</i> was equal to <b>false</b>, take the following as postcondition(s):</p><p>&emsp;&emsp;&emsp;&emsp;The attribute <i>OverDueFee</i> of the object <i>loan</i> became <b>60</b></p><p>&emsp;&emsp;&emsp;&emsp;The system operation <a href="#OPsendNotificationEmail">sendNotificationEmail</a> was executed</p><p>&emsp;&emsp;&emsp;&emsp;The attribute <i>OverDue31Days</i> of the object <i>loan</i> became <b>true</b></p><p>&emsp;&emsp;&emsp;&emsp;The attribute <i>OverDueFee</i> of the object <i>loan</i> became the previous value of the attribute <i>OverDueFee</i> of the object <i>loan</i> plus the attribute <i>OverDueFee</i> of the object <i>loan</i></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of checkOverDueandComputeOverDueFee:</p>
- 
+
 ```java
 Contract LibraryManagementSystemSystem::checkOverDueandComputeOverDueFee() {
 		/*
@@ -3049,9 +3049,9 @@ Contract LibraryManagementSystemSystem::checkOverDueandComputeOverDueFee() {
 	<td><p>For each object of class <a href="#CLASSUser">User</a> in the set <i>users</i>, <i>u</i> represented it(the object) and the following operations were performed:</p><p>&emsp;&emsp;The attribute <i>SuspensionDays</i> of the object <i>u</i> was equal to the previous value of the attribute <i>SuspensionDays</i> of the object <i>u</i> minus <b>1</b></p><p>&emsp;&emsp;If the attribute <i>BorrowStatus</i> of the object <i>u</i> was equal to <b>SUSPEND</b>, and the attribute <i>OverDueFee</i> of the object <i>u</i> was equal to <b>0</b>, and the attribute <i>SuspensionDays</i> of the object <i>u</i> was equal to <b>0</b>, take the following as postcondition(s):</p><p>&emsp;&emsp;&emsp;&emsp;The attribute <i>BorrowStatus</i> of the object <i>u</i> became <b>NORMAL</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of countDownSuspensionDay:</p>
- 
+
 ```java
 Contract LibraryManagementSystemSystem::countDownSuspensionDay() {
 		/*
@@ -3127,9 +3127,9 @@ Contract LibraryManagementSystemSystem::countDownSuspensionDay() {
 	<td><p>The return value was the object which <i>user</i> was linked to by <i>LoanedBook</i></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of listBorrowHistory:</p>
- 
+
 ```java
 Contract ListBookHistory::listBorrowHistory(uid:String): Set(Loan) {
 		/*
@@ -3194,9 +3194,9 @@ Contract ListBookHistory::listBorrowHistory(uid:String): Set(Loan) {
 	<td><p>The return value was the set of class <a href="#CLASSLoan">Loan</a>, including all <i>l</i> in all objects which <i>user</i> was linked to by <i>LoanedBook</i>. <i>l</i> represented an object of class <a href="#CLASSLoan">Loan</a>, and <i>l</i> meet:</p><p>&emsp;&emsp;The attribute <i>IsReturned</i> of the object <i>l</i> was equal to <b>false</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of listHodingBook:</p>
- 
+
 ```java
 Contract ListBookHistory::listHodingBook(uid:String): Set(Loan) {
 		/*
@@ -3261,9 +3261,9 @@ Contract ListBookHistory::listHodingBook(uid:String): Set(Loan) {
 	<td><p>The return value was all objects which each object in the set <i>loans</i> was linked to by <i>LoanedCopy</i></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of listOverDueBook:</p>
- 
+
 ```java
 Contract ListBookHistory::listOverDueBook(uid:String): Set(BookCopy) {
 		/*
@@ -3333,9 +3333,9 @@ Contract ListBookHistory::listOverDueBook(uid:String): Set(BookCopy) {
 	<td><p>The return value was all objects which each object in the set <i>res</i> was linked to by <i>ReservedCopy</i></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of listReservationBook:</p>
- 
+
 ```java
 Contract ListBookHistory::listReservationBook(uid:String): Set(BookCopy) {
 		/*
@@ -3403,9 +3403,9 @@ Contract ListBookHistory::listReservationBook(uid:String): Set(BookCopy) {
 	<td><p>The return value was <i>rBooks</i></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of listRecommendBook:</p>
- 
+
 ```java
 Contract ListBookHistory::listRecommendBook(uid:String): Set(RecommendBook) {
 		/*
@@ -3473,9 +3473,9 @@ Contract ListBookHistory::listRecommendBook(uid:String): Set(RecommendBook) {
 	<td><p>1. <i>r</i> represented the object of class <a href="#CLASSRecommendBook">RecommendBook</a></p><p>2. The object <i>r</i> was created</p><p>3. The attribute <i>CallNo</i> of the object <i>r</i> became <i>callNo</i></p><p>4. The attribute <i>Title</i> of the object <i>r</i> became <i>title</i></p><p>5. The attribute <i>Edition</i> of the object <i>r</i> became <i>edition</i></p><p>6. The attribute <i>Author</i> of the object <i>r</i> became <i>author</i></p><p>7. The attribute <i>Publisher</i> of the object <i>r</i> became <i>publisher</i></p><p>8. The attribute <i>Description</i> of the object <i>r</i> became <i>description</i></p><p>9. The attribute <i>ISBn</i> of the object <i>r</i> became <i>isbn</i></p><p>10. The attribute <i>RecommendDate</i> of the object <i>r</i> became <i>Today</i></p><p>11. The object <i>r</i> was linked to the object <i>user</i> by <i>RecommendUser</i></p><p>12. The object <i>user</i> was linked to the object <i>r</i> by <i>RecommendedBook</i></p><p>13. The object <i>r</i> was put into the instance set of class <a href="#CLASSRecommendBook">RecommendBook</a></p><p>14. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of recommendBook:</p>
- 
+
 ```java
 Contract LibraryManagementSystemSystem::recommendBook(uid:String, callNo : String, title : String, edition : String, author : String, publisher : String, description : String, isbn : String) : Boolean {
 		/*
@@ -3570,9 +3570,9 @@ Contract LibraryManagementSystemSystem::recommendBook(uid:String, callNo : Strin
 	<td><p>1. <i>u</i> represented the object of class <a href="#CLASSStudent">Student</a></p><p>2. The object <i>u</i> was created</p><p>3. The attribute <i>UserID</i> of the object <i>u</i> became <i>userID</i></p><p>4. The attribute <i>Name</i> of the object <i>u</i> became <i>name</i></p><p>5. The attribute <i>Email</i> of the object <i>u</i> became <i>email</i></p><p>6. The attribute <i>Password</i> of the object <i>u</i> became <i>password</i></p><p>7. The attribute <i>Sex</i> of the object <i>u</i> became <i>sex</i></p><p>8. The attribute <i>Faculty</i> of the object <i>u</i> became <i>faculty</i></p><p>9. The attribute <i>LoanedNumber</i> of the object <i>u</i> became <b>0</b></p><p>10. The attribute <i>BorrowStatus</i> of the object <i>u</i> became <b>NORMAL</b></p><p>11. The attribute <i>SuspensionDays</i> of the object <i>u</i> became <b>0</b></p><p>12. The attribute <i>OverDueFee</i> of the object <i>u</i> became <b>0</b></p><p>13. The attribute <i>Major</i> of the object <i>u</i> became <i>major</i></p><p>14. The attribute <i>Programme</i> of the object <i>u</i> became <i>programme</i></p><p>15. The attribute <i>RegistrationStatus</i> of the object <i>u</i> became <i>registrationStatus</i></p><p>16. The object <i>u</i> was put into the instance set of class <a href="#CLASSUser">User</a></p><p>17. The object <i>u</i> was put into the instance set of class <a href="#CLASSStudent">Student</a></p><p>18. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of createStudent:</p>
- 
+
 ```java
 Contract ManageUserCRUDService::createStudent(userID : String, name : String, sex : Sex[M|F], password : String, email : String, faculty : String, major : String, programme : Programme[BACHELOR|MASTER|PHD], registrationStatus : StudentStatus[GRADUATED|PROGRAMMING]) : Boolean {
 		/*
@@ -3670,9 +3670,9 @@ Contract ManageUserCRUDService::createStudent(userID : String, name : String, se
 	<td><p>1. The attribute <i>UserID</i> of the object <i>user</i> became <i>userID</i></p><p>2. The attribute <i>Name</i> of the object <i>user</i> became <i>name</i></p><p>3. The attribute <i>Email</i> of the object <i>user</i> became <i>email</i></p><p>4. The attribute <i>Password</i> of the object <i>user</i> became <i>password</i></p><p>5. The attribute <i>Sex</i> of the object <i>user</i> became <i>sex</i></p><p>6. The attribute <i>Faculty</i> of the object <i>user</i> became <i>faculty</i></p><p>7. The attribute <i>LoanedNumber</i> of the object <i>user</i> became <b>0</b></p><p>8. The attribute <i>BorrowStatus</i> of the object <i>user</i> became <b>NORMAL</b></p><p>9. The attribute <i>SuspensionDays</i> of the object <i>user</i> became <b>0</b></p><p>10. The attribute <i>OverDueFee</i> of the object <i>user</i> became <b>0</b></p><p>11. The attribute <i>Major</i> of the object <i>user</i> became <i>major</i></p><p>12. The attribute <i>Programme</i> of the object <i>user</i> became <i>programme</i></p><p>13. The attribute <i>RegistrationStatus</i> of the object <i>user</i> became <i>registrationStatus</i></p><p>14. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of modifyStudent:</p>
- 
+
 ```java
 Contract ManageUserCRUDService::modifyStudent(userID : String, name : String, sex : Sex[M|F], password : String, email : String, faculty : String, major : String, programme : Programme[BACHELOR|MASTER|PHD], registrationStatus : StudentStatus[GRADUATED|PROGRAMMING]) : Boolean {
 		/*
@@ -3762,9 +3762,9 @@ Contract ManageUserCRUDService::modifyStudent(userID : String, name : String, se
 	<td><p>1. <i>u</i> represented the object of class <a href="#CLASSFaculty">Faculty</a></p><p>2. The object <i>u</i> was created</p><p>3. The attribute <i>UserID</i> of the object <i>u</i> became <i>userID</i></p><p>4. The attribute <i>Name</i> of the object <i>u</i> became <i>name</i></p><p>5. The attribute <i>Email</i> of the object <i>u</i> became <i>email</i></p><p>6. The attribute <i>Password</i> of the object <i>u</i> became <i>password</i></p><p>7. The attribute <i>Sex</i> of the object <i>u</i> became <i>sex</i></p><p>8. The attribute <i>Faculty</i> of the object <i>u</i> became <i>faculty</i></p><p>9. The attribute <i>LoanedNumber</i> of the object <i>u</i> became <b>0</b></p><p>10. The attribute <i>BorrowStatus</i> of the object <i>u</i> became <b>NORMAL</b></p><p>11. The attribute <i>SuspensionDays</i> of the object <i>u</i> became <b>0</b></p><p>12. The attribute <i>OverDueFee</i> of the object <i>u</i> became <b>0</b></p><p>13. The attribute <i>Position</i> of the object <i>u</i> became <i>position</i></p><p>14. The attribute <i>Status</i> of the object <i>u</i> became <i>status</i></p><p>15. The object <i>u</i> was put into the instance set of class <a href="#CLASSUser">User</a></p><p>16. The object <i>u</i> was put into the instance set of class <a href="#CLASSFaculty">Faculty</a></p><p>17. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of createFaculty:</p>
- 
+
 ```java
 Contract ManageUserCRUDService::createFaculty(userID : String, name : String, sex : Sex[M|F], password : String, email : String, faculty : String, position : FacultyPosition[ASSISTANTPROFESSORS|ASSOCIATEPROFESSOR|PROFESSOR|CHAIRPROFESSOR], status : FacultyStatus[HASRETIRED|INPOSITION]) : Boolean {
 		/*
@@ -3860,9 +3860,9 @@ Contract ManageUserCRUDService::createFaculty(userID : String, name : String, se
 	<td><p>1. The attribute <i>UserID</i> of the object <i>user</i> became <i>userID</i></p><p>2. The attribute <i>Name</i> of the object <i>user</i> became <i>name</i></p><p>3. The attribute <i>Email</i> of the object <i>user</i> became <i>email</i></p><p>4. The attribute <i>Password</i> of the object <i>user</i> became <i>password</i></p><p>5. The attribute <i>Sex</i> of the object <i>user</i> became <i>sex</i></p><p>6. The attribute <i>Faculty</i> of the object <i>user</i> became <i>faculty</i></p><p>7. The attribute <i>LoanedNumber</i> of the object <i>user</i> became <b>0</b></p><p>8. The attribute <i>BorrowStatus</i> of the object <i>user</i> became <b>NORMAL</b></p><p>9. The attribute <i>SuspensionDays</i> of the object <i>user</i> became <b>0</b></p><p>10. The attribute <i>OverDueFee</i> of the object <i>user</i> became <b>0</b></p><p>11. The attribute <i>Position</i> of the object <i>user</i> became <i>position</i></p><p>12. The attribute <i>Status</i> of the object <i>user</i> became <i>status</i></p><p>13. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of modifyFaculty:</p>
- 
+
 ```java
 Contract ManageUserCRUDService::modifyFaculty(userID : String, name : String, sex : Sex[M|F], password : String, email : String, faculty : String, major : String, position : FacultyPosition[ASSISTANTPROFESSORS|ASSOCIATEPROFESSOR|PROFESSOR|CHAIRPROFESSOR], status : FacultyStatus[HASRETIRED|INPOSITION]) : Boolean {
 		/*
@@ -3946,9 +3946,9 @@ Contract ManageUserCRUDService::modifyFaculty(userID : String, name : String, se
 	<td><p>The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of sendNotificationEmail:</p>
- 
+
 ```java
 Contract ThirdPartyServices::sendNotificationEmail(email: String) : Boolean {
 		/*
@@ -4005,9 +4005,9 @@ Contract ThirdPartyServices::sendNotificationEmail(email: String) : Boolean {
 	<td><p>1. <i>use</i> represented the object of class <a href="#CLASSUser">User</a></p><p>2. The object <i>use</i> was created</p><p>3. The attribute <i>UserID</i> of the object <i>use</i> became <i>userid</i></p><p>4. The attribute <i>Name</i> of the object <i>use</i> became <i>name</i></p><p>5. The attribute <i>Sex</i> of the object <i>use</i> became <i>sex</i></p><p>6. The attribute <i>Password</i> of the object <i>use</i> became <i>password</i></p><p>7. The attribute <i>Email</i> of the object <i>use</i> became <i>email</i></p><p>8. The attribute <i>Faculty</i> of the object <i>use</i> became <i>faculty</i></p><p>9. The attribute <i>LoanedNumber</i> of the object <i>use</i> became <i>loanednumber</i></p><p>10. The attribute <i>BorrowStatus</i> of the object <i>use</i> became <i>borrowstatus</i></p><p>11. The attribute <i>SuspensionDays</i> of the object <i>use</i> became <i>suspensiondays</i></p><p>12. The attribute <i>OverDueFee</i> of the object <i>use</i> became <i>overduefee</i></p><p>13. The object <i>use</i> was put into the instance set of class <a href="#CLASSUser">User</a></p><p>14. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of createUser:</p>
- 
+
 ```java
 Contract  ManageUserCRUDService::createUser(userid : String, name : String, sex : Sex[M|F], password : String, email : String, faculty : String, loanednumber : Integer, borrowstatus : BorrowStatus[NORMAL|SUSPEND], suspensiondays : Integer, overduefee : Real) : Boolean {
 		/*
@@ -4097,9 +4097,9 @@ Contract  ManageUserCRUDService::createUser(userid : String, name : String, sex 
 	<td><p>The return value was <i>user</i></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of queryUser:</p>
- 
+
 ```java
 Contract  ManageUserCRUDService::queryUser(userid : String) : User {
 		/*
@@ -4163,9 +4163,9 @@ Contract  ManageUserCRUDService::queryUser(userid : String) : User {
 	<td><p>1. The attribute <i>UserID</i> of the object <i>user</i> became <i>userid</i></p><p>2. The attribute <i>Name</i> of the object <i>user</i> became <i>name</i></p><p>3. The attribute <i>Sex</i> of the object <i>user</i> became <i>sex</i></p><p>4. The attribute <i>Password</i> of the object <i>user</i> became <i>password</i></p><p>5. The attribute <i>Email</i> of the object <i>user</i> became <i>email</i></p><p>6. The attribute <i>Faculty</i> of the object <i>user</i> became <i>faculty</i></p><p>7. The attribute <i>LoanedNumber</i> of the object <i>user</i> became <i>loanednumber</i></p><p>8. The attribute <i>BorrowStatus</i> of the object <i>user</i> became <i>borrowstatus</i></p><p>9. The attribute <i>SuspensionDays</i> of the object <i>user</i> became <i>suspensiondays</i></p><p>10. The attribute <i>OverDueFee</i> of the object <i>user</i> became <i>overduefee</i></p><p>11. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of modifyUser:</p>
- 
+
 ```java
 Contract  ManageUserCRUDService::modifyUser(userid : String, name : String, sex : Sex[M|F], password : String, email : String, faculty : String, loanednumber : Integer, borrowstatus : BorrowStatus[NORMAL|SUSPEND], suspensiondays : Integer, overduefee : Real) : Boolean {
 		/*
@@ -4249,9 +4249,9 @@ Contract  ManageUserCRUDService::modifyUser(userid : String, name : String, sex 
 	<td><p>1. The object <i>user</i> was deleted from the instance set of class <a href="#CLASSUser">User</a></p><p>2. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of deleteUser:</p>
- 
+
 ```java
 Contract  ManageUserCRUDService::deleteUser(userid : String) : Boolean {
 		/*
@@ -4319,9 +4319,9 @@ Contract  ManageUserCRUDService::deleteUser(userid : String) : Boolean {
 	<td><p>1. <i>boo</i> represented the object of class <a href="#CLASSBook">Book</a></p><p>2. The object <i>boo</i> was created</p><p>3. The attribute <i>CallNo</i> of the object <i>boo</i> became <i>callno</i></p><p>4. The attribute <i>Title</i> of the object <i>boo</i> became <i>title</i></p><p>5. The attribute <i>Edition</i> of the object <i>boo</i> became <i>edition</i></p><p>6. The attribute <i>Author</i> of the object <i>boo</i> became <i>author</i></p><p>7. The attribute <i>Publisher</i> of the object <i>boo</i> became <i>publisher</i></p><p>8. The attribute <i>Description</i> of the object <i>boo</i> became <i>description</i></p><p>9. The attribute <i>ISBn</i> of the object <i>boo</i> became <i>isbn</i></p><p>10. The attribute <i>CopyNum</i> of the object <i>boo</i> became <i>copynum</i></p><p>11. The object <i>boo</i> was put into the instance set of class <a href="#CLASSBook">Book</a></p><p>12. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of createBook:</p>
- 
+
 ```java
 Contract  ManageBookCRUDService::createBook(callno : String, title : String, edition : String, author : String, publisher : String, description : String, isbn : String, copynum : Integer) : Boolean {
 		/*
@@ -4407,9 +4407,9 @@ Contract  ManageBookCRUDService::createBook(callno : String, title : String, edi
 	<td><p>The return value was <i>book</i></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of queryBook:</p>
- 
+
 ```java
 Contract  ManageBookCRUDService::queryBook(callno : String) : Book {
 		/*
@@ -4473,9 +4473,9 @@ Contract  ManageBookCRUDService::queryBook(callno : String) : Book {
 	<td><p>1. The attribute <i>CallNo</i> of the object <i>book</i> became <i>callno</i></p><p>2. The attribute <i>Title</i> of the object <i>book</i> became <i>title</i></p><p>3. The attribute <i>Edition</i> of the object <i>book</i> became <i>edition</i></p><p>4. The attribute <i>Author</i> of the object <i>book</i> became <i>author</i></p><p>5. The attribute <i>Publisher</i> of the object <i>book</i> became <i>publisher</i></p><p>6. The attribute <i>Description</i> of the object <i>book</i> became <i>description</i></p><p>7. The attribute <i>ISBn</i> of the object <i>book</i> became <i>isbn</i></p><p>8. The attribute <i>CopyNum</i> of the object <i>book</i> became <i>copynum</i></p><p>9. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of modifyBook:</p>
- 
+
 ```java
 Contract  ManageBookCRUDService::modifyBook(callno : String, title : String, edition : String, author : String, publisher : String, description : String, isbn : String, copynum : Integer) : Boolean {
 		/*
@@ -4555,9 +4555,9 @@ Contract  ManageBookCRUDService::modifyBook(callno : String, title : String, edi
 	<td><p>1. The object <i>book</i> was deleted from the instance set of class <a href="#CLASSBook">Book</a></p><p>2. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of deleteBook:</p>
- 
+
 ```java
 Contract  ManageBookCRUDService::deleteBook(callno : String) : Boolean {
 		/*
@@ -4625,9 +4625,9 @@ Contract  ManageBookCRUDService::deleteBook(callno : String) : Boolean {
 	<td><p>1. <i>sub</i> represented the object of class <a href="#CLASSSubject">Subject</a></p><p>2. The object <i>sub</i> was created</p><p>3. The attribute <i>Name</i> of the object <i>sub</i> became <i>name</i></p><p>4. The object <i>sub</i> was put into the instance set of class <a href="#CLASSSubject">Subject</a></p><p>5. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of createSubject:</p>
- 
+
 ```java
 Contract  ManageSubjectCRUDService::createSubject(name : String) : Boolean {
 		/*
@@ -4699,9 +4699,9 @@ Contract  ManageSubjectCRUDService::createSubject(name : String) : Boolean {
 	<td><p>The return value was <i>subject</i></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of querySubject:</p>
- 
+
 ```java
 Contract  ManageSubjectCRUDService::querySubject(name : String) : Subject {
 		/*
@@ -4765,9 +4765,9 @@ Contract  ManageSubjectCRUDService::querySubject(name : String) : Subject {
 	<td><p>1. The attribute <i>Name</i> of the object <i>subject</i> became <i>name</i></p><p>2. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of modifySubject:</p>
- 
+
 ```java
 Contract  ManageSubjectCRUDService::modifySubject(name : String) : Boolean {
 		/*
@@ -4833,9 +4833,9 @@ Contract  ManageSubjectCRUDService::modifySubject(name : String) : Boolean {
 	<td><p>1. The object <i>subject</i> was deleted from the instance set of class <a href="#CLASSSubject">Subject</a></p><p>2. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of deleteSubject:</p>
- 
+
 ```java
 Contract  ManageSubjectCRUDService::deleteSubject(name : String) : Boolean {
 		/*
@@ -4903,9 +4903,9 @@ Contract  ManageSubjectCRUDService::deleteSubject(name : String) : Boolean {
 	<td><p>1. <i>copy</i> represented the object of class <a href="#CLASSBookCopy">BookCopy</a></p><p>2. The object <i>copy</i> was created</p><p>3. The attribute <i>Barcode</i> of the object <i>copy</i> became <i>barcode</i></p><p>4. The attribute <i>Status</i> of the object <i>copy</i> became <b>AVAILABLE</b></p><p>5. The attribute <i>Location</i> of the object <i>copy</i> became <i>location</i></p><p>6. The attribute <i>IsReserved</i> of the object <i>copy</i> became <b>false</b></p><p>7. The object <i>book</i> was linked to the object <i>copy</i> by <i>Copys</i></p><p>8. The object <i>copy</i> was linked to the object <i>book</i> by <i>BookBelongs</i></p><p>9. The attribute <i>CopyNum</i> of the object <i>book</i> became the previous value of the attribute <i>CopyNum</i> of the object <i>book</i> plus <b>1</b></p><p>10. The object <i>copy</i> was put into the instance set of class <a href="#CLASSBookCopy">BookCopy</a></p><p>11. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of addBookCopy:</p>
- 
+
 ```java
 Contract ManageBookCopyCRUDService::addBookCopy(callNo:String, barcode : String, location : String) : Boolean {
 		/*
@@ -4994,9 +4994,9 @@ Contract ManageBookCopyCRUDService::addBookCopy(callNo:String, barcode : String,
 	<td><p>The return value was <i>bookcopy</i></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of queryBookCopy:</p>
- 
+
 ```java
 Contract  ManageBookCopyCRUDService::queryBookCopy(barcode : String) : BookCopy {
 		/*
@@ -5060,9 +5060,9 @@ Contract  ManageBookCopyCRUDService::queryBookCopy(barcode : String) : BookCopy 
 	<td><p>1. The attribute <i>Barcode</i> of the object <i>bookcopy</i> became <i>barcode</i></p><p>2. The attribute <i>Status</i> of the object <i>bookcopy</i> became <i>status</i></p><p>3. The attribute <i>Location</i> of the object <i>bookcopy</i> became <i>location</i></p><p>4. The attribute <i>IsReserved</i> of the object <i>bookcopy</i> became <i>isreserved</i></p><p>5. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of modifyBookCopy:</p>
- 
+
 ```java
 Contract  ManageBookCopyCRUDService::modifyBookCopy(barcode : String, status : CopyStatus[AVAILABLE|INPROCESSING|LIBUSEONLY|ONHOLDSHELF|LOANED], location : String, isreserved : Boolean) : Boolean {
 		/*
@@ -5134,9 +5134,9 @@ Contract  ManageBookCopyCRUDService::modifyBookCopy(barcode : String, status : C
 	<td><p>1. The object <i>bookcopy</i> was deleted from the instance set of class <a href="#CLASSBookCopy">BookCopy</a></p><p>2. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of deleteBookCopy:</p>
- 
+
 ```java
 Contract  ManageBookCopyCRUDService::deleteBookCopy(barcode : String) : Boolean {
 		/*
@@ -5204,9 +5204,9 @@ Contract  ManageBookCopyCRUDService::deleteBookCopy(barcode : String) : Boolean 
 	<td><p>1. <i>lib</i> represented the object of class <a href="#CLASSLibrarian">Librarian</a></p><p>2. The object <i>lib</i> was created</p><p>3. The attribute <i>LibrarianID</i> of the object <i>lib</i> became <i>librarianid</i></p><p>4. The attribute <i>Name</i> of the object <i>lib</i> became <i>name</i></p><p>5. The attribute <i>Password</i> of the object <i>lib</i> became <i>password</i></p><p>6. The object <i>lib</i> was put into the instance set of class <a href="#CLASSLibrarian">Librarian</a></p><p>7. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of createLibrarian:</p>
- 
+
 ```java
 Contract  ManageLibrarianCRUDService::createLibrarian(librarianid : String, name : String, password : String) : Boolean {
 		/*
@@ -5282,9 +5282,9 @@ Contract  ManageLibrarianCRUDService::createLibrarian(librarianid : String, name
 	<td><p>The return value was <i>librarian</i></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of queryLibrarian:</p>
- 
+
 ```java
 Contract  ManageLibrarianCRUDService::queryLibrarian(librarianid : String) : Librarian {
 		/*
@@ -5348,9 +5348,9 @@ Contract  ManageLibrarianCRUDService::queryLibrarian(librarianid : String) : Lib
 	<td><p>1. The attribute <i>LibrarianID</i> of the object <i>librarian</i> became <i>librarianid</i></p><p>2. The attribute <i>Name</i> of the object <i>librarian</i> became <i>name</i></p><p>3. The attribute <i>Password</i> of the object <i>librarian</i> became <i>password</i></p><p>4. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of modifyLibrarian:</p>
- 
+
 ```java
 Contract  ManageLibrarianCRUDService::modifyLibrarian(librarianid : String, name : String, password : String) : Boolean {
 		/*
@@ -5420,9 +5420,9 @@ Contract  ManageLibrarianCRUDService::modifyLibrarian(librarianid : String, name
 	<td><p>1. The object <i>librarian</i> was deleted from the instance set of class <a href="#CLASSLibrarian">Librarian</a></p><p>2. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of deleteLibrarian:</p>
- 
+
 ```java
 Contract  ManageLibrarianCRUDService::deleteLibrarian(librarianid : String) : Boolean {
 		/*
@@ -5453,7 +5453,7 @@ Contract  ManageLibrarianCRUDService::deleteLibrarian(librarianid : String) : Bo
 
 
 
- 
+
 ## 3.2  External interface requirements
 User interfaces
 Hardware interfaces
@@ -5490,6 +5490,7 @@ This subsection should specify the requirements derived from existing standards 
 - c) Accounting procedures;
 - d) Audit tracing.
 		
+
 For example, this could specify the requirement for software to trace processing activity. Such traces are needed for some applications to meet minimum regulatory or financial standards. An audit trace requirement may, for example, state that all changes to a payroll database must be recorded in a trace file with before and after values.
 		
 ### 3.4.2  Hardware limitations
