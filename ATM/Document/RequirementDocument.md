@@ -59,7 +59,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 ### 3.1.1   User Requirements
 <b>Use Case Diagram</b>
 
-![Use Case Diagram](Images/Use Case Diagram.jpg)
+![Use Case Diagram](Images/UseCaseDiagram.jpg)
 
 <b>A1 - Customer</b>
 <table>
@@ -357,7 +357,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 #### 3.1.2.2   Entity Analysis
 <b>Conceptual Class Diagram</b> 
 
-![Conceptual Class Diagram](Images/Conceptual Class Diagram.jpg)
+![Conceptual Class Diagram](Images/ConceptualClassDiagram.jpg)
 
 <b>E1 - BankCard</b>
 
