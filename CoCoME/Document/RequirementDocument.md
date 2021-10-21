@@ -58,9 +58,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 ## 3.1  Functional requirements
 ### 3.1.1   User Requirements
 <b>Use Case Diagram</b>
- 
-![Use Case Diagram](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/项目名/Use Case Diagram.jpg)
- 
+
+![Use Case Diagram](Images/Use Case Diagram.jpg)
+
 <b>A1 - Cashier</b>
 <table>
 	<tr>
@@ -186,7 +186,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 ### 3.1.2   System Requirement
 #### 3.1.2.1 Use Case Description
 <b>UC1 - processSale</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -221,11 +221,11 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
- 
-![ProcessSaleSSD](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/项目名/ProcessSaleSSD.jpg)
- 
+
+![ProcessSaleSSD](Images/ProcessSaleSSD.jpg)
+
 <b>UC2 - openCashDesk</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -261,9 +261,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
+
 <b>UC3 - closeCashDesk</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -299,9 +299,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
+
 <b>UC4 - orderProducts</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -337,9 +337,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
+
 <b>UC5 - receiveOrderedProduct</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -375,9 +375,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
+
 <b>UC6 - showStockReports</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -413,9 +413,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
+
 <b>UC7 - changePrice</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -451,9 +451,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
+
 <b>UC8 - listSuppliers</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -489,9 +489,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
+
 <b>UC9 - openStore</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -527,9 +527,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
+
 <b>UC10 - closeStore</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -565,9 +565,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
+
 <b>UC11 - manageStore</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -603,9 +603,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
+
 <b>UC12 - manageProductCatalog</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -641,9 +641,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
+
 <b>UC13 - manageCashDesk</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -679,9 +679,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
+
 <b>UC14 - manageCashier</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -717,9 +717,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
+
 <b>UC15 - manageItem</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -755,9 +755,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
+
 <b>UC16 - manageSupplier</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -793,15 +793,15 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
- 
+
+
 #### 3.1.2.2   Entity Analysis
 <b>Conceptual Class Diagram</b> 
- 
-![Conceptual Class Diagram](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/项目名/Conceptual Class Diagram.jpg)
- 
+
+![Conceptual Class Diagram](Images/Conceptual Class Diagram.jpg)
+
 <b>E1 - Store</b>
- 
+
 <table>
 	<tr>
 		<td><b>Entity Name:</b></td>
@@ -877,9 +877,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td>One Store is linked with many Sale</td>
 	</tr>
 	</table>
-	 
+
 <b>E2 - ProductCatalog</b>
- 
+
 <table>
 	<tr>
 		<td><b>Entity Name:</b></td>
@@ -921,9 +921,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td>One ProductCatalog is linked with many Item</td>
 	</tr>
 	</table>
-	 
+
 <b>E3 - CashDesk</b>
- 
+
 <table>
 	<tr>
 		<td><b>Entity Name:</b></td>
@@ -976,9 +976,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td>Many CashDesk are linked with one Store</td>
 	</tr>
 	</table>
-	 
+
 <b>E4 - Sale</b>
- 
+
 <table>
 	<tr>
 		<td><b>Entity Name:</b></td>
@@ -1048,9 +1048,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td>One Sale is linked with one Payment</td>
 	</tr>
 	</table>
-	 
+
 <b>E5 - Cashier</b>
- 
+
 <table>
 	<tr>
 		<td><b>Entity Name:</b></td>
@@ -1092,9 +1092,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td>Many Cashier are linked with one Store</td>
 	</tr>
 	</table>
-	 
+
 <b>E6 - SalesLineItem</b>
- 
+
 <table>
 	<tr>
 		<td><b>Entity Name:</b></td>
@@ -1142,9 +1142,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td>One SalesLineItem is linked to one Item</td>
 	</tr>
 	</table>
-	 
+
 <b>E7 - Item</b>
- 
+
 <table>
 	<tr>
 		<td><b>Entity Name:</b></td>
@@ -1201,9 +1201,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td>Many Item are linked with one ProductCatalog</td>
 	</tr>
 	</table>
-	 
+
 <b>E8 - Payment</b>
- 
+
 <table>
 	<tr>
 		<td><b>Entity Name:</b></td>
@@ -1240,9 +1240,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td>One Payment is linked with one Sale</td>
 	</tr>
 	</table>
-	 
+
 <b>E9 - CashPayment</b>
- 
+
 <table>
 	<tr>
 		<td><b>Entity Name:</b></td>
@@ -1271,9 +1271,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td colspan="2">The Balance of CashPayment</td>
 					</tr>
 	</table>
-	 
+
 <b>E10 - CardPayment</b>
- 
+
 <table>
 	<tr>
 		<td><b>Entity Name:</b></td>
@@ -1307,9 +1307,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td colspan="2">The ExpiryDate of CardPayment</td>
 					</tr>
 	</table>
-	 
+
 <b>E11 - OrderEntry</b>
- 
+
 <table>
 	<tr>
 		<td><b>Entity Name:</b></td>
@@ -1351,9 +1351,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td>One OrderEntry is linked to one Item</td>
 	</tr>
 	</table>
-	 
+
 <b>E12 - Supplier</b>
- 
+
 <table>
 	<tr>
 		<td><b>Entity Name:</b></td>
@@ -1383,9 +1383,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td colspan="2">The Name of Supplier</td>
 					</tr>
 	</table>
-	 
+
 <b>E13 - OrderProduct</b>
- 
+
 <table>
 	<tr>
 		<td><b>Entity Name:</b></td>
@@ -1443,8 +1443,8 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td>One OrderProduct is linked to many OrderEntry</td>
 	</tr>
 	</table>
-	 
- 
+​	 
+
 #### 3.1.2.3   System Interfaces
 ##### System Interfaces
 <b>SI1 - CoCoMESystem</b>
@@ -1478,7 +1478,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td>currentStore is a object of <a href="#CLASSStore">Store</a></td>
 					</tr>
 	</table>
-	 
+
 <b>SI2 - ThirdPartyServices</b>
 <table>
 	<tr>
@@ -1498,7 +1498,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td><ul><li><a href="#OPthirdPartyCardPaymentService">thirdPartyCardPaymentService</a></li></ul></td>
 	</tr>
 	</table>
-	 
+
 <b>SI3 - ProcessSaleService</b>
 <table>
 	<tr>
@@ -1534,7 +1534,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td>currentPaymentMethod has several options: [CASH|CARD]</td>
 					</tr>
 	</table>
-	 
+
 <b>SI4 - ManageStoreCRUDService</b>
 <table>
 	<tr>
@@ -1554,7 +1554,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td><ul><li><a href="#OPcreateStore">createStore</a></li><li><a href="#OPqueryStore">queryStore</a></li><li><a href="#OPmodifyStore">modifyStore</a></li><li><a href="#OPdeleteStore">deleteStore</a></li></ul></td>
 	</tr>
 	</table>
-	 
+
 <b>SI5 - ManageProductCatalogCRUDService</b>
 <table>
 	<tr>
@@ -1574,7 +1574,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td><ul><li><a href="#OPcreateProductCatalog">createProductCatalog</a></li><li><a href="#OPqueryProductCatalog">queryProductCatalog</a></li><li><a href="#OPmodifyProductCatalog">modifyProductCatalog</a></li><li><a href="#OPdeleteProductCatalog">deleteProductCatalog</a></li></ul></td>
 	</tr>
 	</table>
-	 
+
 <b>SI6 - ManageCashDeskCRUDService</b>
 <table>
 	<tr>
@@ -1594,7 +1594,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td><ul><li><a href="#OPcreateCashDesk">createCashDesk</a></li><li><a href="#OPqueryCashDesk">queryCashDesk</a></li><li><a href="#OPmodifyCashDesk">modifyCashDesk</a></li><li><a href="#OPdeleteCashDesk">deleteCashDesk</a></li></ul></td>
 	</tr>
 	</table>
-	 
+
 <b>SI7 - ManageCashierCRUDService</b>
 <table>
 	<tr>
@@ -1614,7 +1614,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td><ul><li><a href="#OPcreateCashier">createCashier</a></li><li><a href="#OPqueryCashier">queryCashier</a></li><li><a href="#OPmodifyCashier">modifyCashier</a></li><li><a href="#OPdeleteCashier">deleteCashier</a></li></ul></td>
 	</tr>
 	</table>
-	 
+
 <b>SI8 - ManageItemCRUDService</b>
 <table>
 	<tr>
@@ -1634,7 +1634,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td><ul><li><a href="#OPcreateItem">createItem</a></li><li><a href="#OPqueryItem">queryItem</a></li><li><a href="#OPmodifyItem">modifyItem</a></li><li><a href="#OPdeleteItem">deleteItem</a></li></ul></td>
 	</tr>
 	</table>
-	 
+
 <b>SI9 - ManageSupplierCRUDService</b>
 <table>
 	<tr>
@@ -1654,7 +1654,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td><ul><li><a href="#OPcreateSupplier">createSupplier</a></li><li><a href="#OPquerySupplier">querySupplier</a></li><li><a href="#OPmodifySupplier">modifySupplier</a></li><li><a href="#OPdeleteSupplier">deleteSupplier</a></li></ul></td>
 	</tr>
 	</table>
-	 
+
 <b>SI10 - CoCoMEOrderProducts</b>
 <table>
 	<tr>
@@ -1682,8 +1682,8 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td>currentOrderProduct is a object of <a href="#CLASSOrderProduct">OrderProduct</a></td>
 					</tr>
 	</table>
-	 
- 
+​	 
+
 ##### System Operation Description
 <b>OP1 - openStore</b>
 <table>
@@ -1724,9 +1724,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td><p>1. The object <a href="#CoCoMESystemcurrentStore">currentStore</a> became <i>sto</i></p><p>2. The attribute <i>IsOpened</i> of the object <i>sto</i> became <b>true</b></p><p>3. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of openStore:</p>
- 
+
 ```java
 Contract CoCoMESystem::openStore(storeID : Integer) : Boolean {
 		/*
@@ -1796,9 +1796,9 @@ Contract CoCoMESystem::openStore(storeID : Integer) : Boolean {
 	<td><p>1. The attribute <i>IsOpened</i> of the object <i>sto</i> became <b>false</b></p><p>2. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of closeStore:</p>
- 
+
 ```java
 Contract CoCoMESystem::closeStore(storeID : Integer) : Boolean {
 		/*
@@ -1866,9 +1866,9 @@ Contract CoCoMESystem::closeStore(storeID : Integer) : Boolean {
 	<td><p>1. The object <a href="#CoCoMESystemcurrentCashDesk">currentCashDesk</a> became <i>cd</i></p><p>2. The attribute <i>IsOpened</i> of the object <i>cd</i> became <b>true</b></p><p>3. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of openCashDesk:</p>
- 
+
 ```java
 Contract CoCoMESystem::openCashDesk(cashDeskID : Integer) : Boolean {
 		/*
@@ -1942,9 +1942,9 @@ Contract CoCoMESystem::openCashDesk(cashDeskID : Integer) : Boolean {
 	<td><p>1. The object <a href="#CoCoMESystemcurrentCashDesk">currentCashDesk</a> became <i>cd</i></p><p>2. The attribute <i>IsOpened</i> of the object <i>cd</i> became <b>false</b></p><p>3. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of closeCashDesk:</p>
- 
+
 ```java
 Contract CoCoMESystem::closeCashDesk(cashDeskID : Integer) : Boolean {
 		/*
@@ -2014,9 +2014,9 @@ Contract CoCoMESystem::closeCashDesk(cashDeskID : Integer) : Boolean {
 	<td><p>1. <i>s</i> represented the object of class <a href="#CLASSSale">Sale</a></p><p>2. The object <i>s</i> was created</p><p>3. The object <i>s</i> was linked to the object <i>currentCashDesk</i> by <i>BelongedCashDesk</i></p><p>4. The object <i>currentCashDesk</i> was linked to the object <i>s</i> by <i>ContainedSales</i></p><p>5. The attribute <i>IsComplete</i> of the object <i>s</i> became <b>false</b></p><p>6. The attribute <i>IsReadytoPay</i> of the object <i>s</i> became <b>false</b></p><p>7. The object <i>s</i> was put into the instance set of class <a href="#CLASSSale">Sale</a></p><p>8. The object <a href="#ProcessSaleServicecurrentSale">currentSale</a> became <i>s</i></p><p>9. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of makeNewSale:</p>
- 
+
 ```java
 Contract ProcessSaleService::makeNewSale() : Boolean {
 		/*
@@ -2097,9 +2097,9 @@ Contract ProcessSaleService::makeNewSale() : Boolean {
 	<td><p>1. <i>sli</i> represented the object of class <a href="#CLASSSalesLineItem">SalesLineItem</a></p><p>2. The object <i>sli</i> was created</p><p>3. The object <a href="#ProcessSaleServicecurrentSaleLine">currentSaleLine</a> became <i>sli</i></p><p>4. The object <i>sli</i> was linked to the object <i>currentSale</i> by <i>BelongedSale</i></p><p>5. The object <i>currentSale</i> was linked to the object <i>sli</i> by <i>ContainedSalesLine</i></p><p>6. The attribute <i>Quantity</i> of the object <i>sli</i> became <i>quantity</i></p><p>7. The object <i>sli</i> was linked to the object <i>item</i> by <i>BelongedItem</i></p><p>8. The attribute <i>StockNumber</i> of the object <i>item</i> became the previous value of the attribute <i>StockNumber</i> of the object <i>item</i> minus <i>quantity</i></p><p>9. The attribute <i>Subamount</i> of the object <i>sli</i> became the attribute <i>Price</i> of the object <i>item</i> times <i>quantity</i></p><p>10. The object <i>sli</i> was put into the instance set of class <a href="#CLASSSalesLineItem">SalesLineItem</a></p><p>11. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of enterItem:</p>
- 
+
 ```java
 Contract ProcessSaleService::enterItem(barcode : Integer, quantity : Integer) : Boolean {
 		/*
@@ -2189,9 +2189,9 @@ Contract ProcessSaleService::enterItem(barcode : Integer, quantity : Integer) : 
 	<td><p>1. The attribute <i>Amount</i> of the object <i>currentSale</i> became the sum of <i>sub</i></p><p>2. The attribute <i>IsReadytoPay</i> of the object <i>currentSale</i> became <b>true</b></p><p>3. The return value was the attribute <i>Amount</i> of the object <i>currentSale</i></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of endSale:</p>
- 
+
 ```java
 Contract ProcessSaleService::endSale() : Real {
 		/*
@@ -2260,9 +2260,9 @@ Contract ProcessSaleService::endSale() : Real {
 	<td><p>1. <i>cp</i> represented the object of class <a href="#CLASSCashPayment">CashPayment</a></p><p>2. The object <i>cp</i> was created</p><p>3. The attribute <i>AmountTendered</i> of the object <i>cp</i> became <i>amount</i></p><p>4. The object <i>cp</i> was linked to the object <i>currentSale</i> by <i>BelongedSale</i></p><p>5. The object <i>currentSale</i> was linked to the object <i>cp</i> by <i>AssoicatedPayment</i></p><p>6. The object <i>currentSale</i> was linked to the object <i>currentStore</i> by <i>Belongedstore</i></p><p>7. The object <i>currentStore</i> was linked to the object <i>currentSale</i> by <i>Sales</i></p><p>8. The attribute <i>IsComplete</i> of the object <i>currentSale</i> became <b>true</b></p><p>9. The attribute <i>Time</i> of the object <i>currentSale</i> was equal to <i>Now</i></p><p>10. The attribute <i>Balance</i> of the object <i>cp</i> became <i>amount</i> minus the attribute <i>Amount</i> of the object <i>currentSale</i></p><p>11. The object <i>cp</i> was put into the instance set of class <a href="#CLASSCashPayment">CashPayment</a></p><p>12. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of makeCashPayment:</p>
- 
+
 ```java
 Contract ProcessSaleService::makeCashPayment(amount : Real) : Boolean {
 		/*
@@ -2343,9 +2343,9 @@ Contract ProcessSaleService::makeCashPayment(amount : Real) : Boolean {
 	<td><p>1. <i>cdp</i> represented the object of class <a href="#CLASSCardPayment">CardPayment</a></p><p>2. The object <i>cdp</i> was created</p><p>3. The attribute <i>AmountTendered</i> of the object <i>cdp</i> became <i>fee</i></p><p>4. The object <i>cdp</i> was linked to the object <i>currentSale</i> by <i>BelongedSale</i></p><p>5. The object <i>currentSale</i> was linked to the object <i>cdp</i> by <i>AssoicatedPayment</i></p><p>6. The attribute <i>CardAccountNumber</i> of the object <i>cdp</i> became <i>cardAccountNumber</i></p><p>7. The attribute <i>ExpiryDate</i> of the object <i>cdp</i> became <i>expiryDate</i></p><p>8. The object <i>cdp</i> was put into the instance set of class <a href="#CLASSCardPayment">CardPayment</a></p><p>9. The object <i>currentSale</i> was linked to the object <i>currentStore</i> by <i>Belongedstore</i></p><p>10. The object <i>currentStore</i> was linked to the object <i>currentSale</i> by <i>Sales</i></p><p>11. The attribute <i>IsComplete</i> of the object <i>currentSale</i> became <b>true</b></p><p>12. The attribute <i>Time</i> of the object <i>currentSale</i> was equal to <i>Now</i></p><p>13. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of makeCardPayment:</p>
- 
+
 ```java
 Contract ProcessSaleService::makeCardPayment(cardAccountNumber : String, expiryDate : Date, fee: Real) : Boolean {
 		/*
@@ -2428,9 +2428,9 @@ Contract ProcessSaleService::makeCardPayment(cardAccountNumber : String, expiryD
 	<td><p>The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of thirdPartyCardPaymentService:</p>
- 
+
 ```java
 Contract  ThirdPartyServices::thirdPartyCardPaymentService(cardAccountNumber : String, expiryDate : Date, fee : Real) : Boolean {
 		/*
@@ -2483,9 +2483,9 @@ Contract  ThirdPartyServices::thirdPartyCardPaymentService(cardAccountNumber : S
 	<td><p>1. <i>op</i> represented the object of class <a href="#CLASSOrderProduct">OrderProduct</a></p><p>2. The object <i>op</i> was created</p><p>3. The attribute <i>OrderStatus</i> of the object <i>op</i> became <b>NEW</b></p><p>4. The attribute <i>Id</i> of the object <i>op</i> became <i>orderid</i></p><p>5. The attribute <i>Time</i> of the object <i>op</i> was equal to <i>Now</i></p><p>6. The object <i>op</i> was put into the instance set of class <a href="#CLASSOrderProduct">OrderProduct</a></p><p>7. The object <a href="#CoCoMEOrderProductscurrentOrderProduct">currentOrderProduct</a> became <i>op</i></p><p>8. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of makeNewOrder:</p>
- 
+
 ```java
 Contract CoCoMEOrderProducts::makeNewOrder(orderid : Integer) : Boolean {
 		/*
@@ -2552,9 +2552,9 @@ Contract CoCoMEOrderProducts::makeNewOrder(orderid : Integer) : Boolean {
 	<td><p>The return value was the set of class <a href="#CLASSItem">Item</a>, including all <i>item</i> in the instance set of class <a href="#CLASSItem">Item</a>. <i>item</i> represented an object of class <a href="#CLASSItem">Item</a>, and <i>item</i> meet:</p><p>&emsp;&emsp;The attribute <i>StockNumber</i> of the object <i>item</i> was equal to <b>0</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of listAllOutOfStoreProducts:</p>
- 
+
 ```java
 Contract CoCoMEOrderProducts::listAllOutOfStoreProducts() : Set(Item) {
 		/*
@@ -2612,9 +2612,9 @@ Contract CoCoMEOrderProducts::listAllOutOfStoreProducts() : Set(Item) {
 	<td><p>1. <i>order</i> represented the object of class <a href="#CLASSOrderEntry">OrderEntry</a></p><p>2. The object <i>order</i> was created</p><p>3. The attribute <i>Quantity</i> of the object <i>order</i> became <i>quantity</i></p><p>4. The attribute <i>subAmount</i> of the object <i>order</i> became the attribute <i>OrderPrice</i> of the object <i>item</i> times <i>quantity</i></p><p>5. The object <i>order</i> was linked to the object <i>item</i> by <i>Item</i></p><p>6. The object <i>order</i> was put into the instance set of class <a href="#CLASSOrderEntry">OrderEntry</a></p><p>7. The object <i>currentOrderProduct</i> was linked to the object <i>order</i> by <i>ContainedEntries</i></p><p>8. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of orderItem:</p>
- 
+
 ```java
 Contract CoCoMEOrderProducts::orderItem(barcode: Integer, quantity : Integer) : Boolean {
 		/*
@@ -2692,9 +2692,9 @@ Contract CoCoMEOrderProducts::orderItem(barcode: Integer, quantity : Integer) : 
 	<td><p>1. The object <i>currentOrderProduct</i> was linked to the object <i>sup</i> by <i>Supplier</i></p><p>2. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of chooseSupplier:</p>
- 
+
 ```java
 Contract CoCoMEOrderProducts::chooseSupplier(supplierID : Integer) : Boolean {
 		/*
@@ -2758,9 +2758,9 @@ Contract CoCoMEOrderProducts::chooseSupplier(supplierID : Integer) : Boolean {
 	<td><p>1. The attribute <i>OrderStatus</i> of the object <i>currentOrderProduct</i> became <b>REQUESTED</b></p><p>2. For each object of class <a href="#CLASSOrderEntry">OrderEntry</a> in all objects which <i>currentOrderProduct</i> was linked to by <i>ContainedEntries</i>, <i>o</i> represented it(the object) and the following operations were performed:</p><p>&emsp;&emsp;The attribute <i>Amount</i> of the object <i>currentOrderProduct</i> was equal to the previous value of the attribute <i>Amount</i> of the object <i>currentOrderProduct</i> plus the attribute <i>SubAmount</i> of the object <i>o</i></p><p>3. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of placeOrder:</p>
- 
+
 ```java
 Contract CoCoMEOrderProducts::placeOrder() : Boolean {
 		/*
@@ -2824,9 +2824,9 @@ Contract CoCoMEOrderProducts::placeOrder() : Boolean {
 	<td><p>1. The attribute <i>Price</i> of the object <i>item</i> became <i>newPrice</i></p><p>2. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of changePrice:</p>
- 
+
 ```java
 Contract CoCoMESystem::changePrice(barcode : Integer, newPrice : Real) : Boolean {
 		/*
@@ -2892,9 +2892,9 @@ Contract CoCoMESystem::changePrice(barcode : Integer, newPrice : Real) : Boolean
 	<td><p>1. The attribute <i>OrderStatus</i> of the object <i>op</i> became <b>RECEIVED</b></p><p>2. For each object of class <a href="#CLASSOrderEntry">OrderEntry</a> in all objects which <i>op</i> was linked to by <i>ContainedEntries</i>, <i>oe</i> represented it(the object) and the following operations were performed:</p><p>&emsp;&emsp;The attribute <i>StockNumber</i> of the object <i>oe</i> was equal to the previous value of the attribute <i>StockNumber</i> of the object <i>oe</i> plus the attribute <i>Quantity</i> of the object <i>oe</i></p><p>3. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of receiveOrderedProduct:</p>
- 
+
 ```java
 Contract CoCoMESystem::receiveOrderedProduct(orderID : Integer) : Boolean {
 		/*
@@ -2961,9 +2961,9 @@ Contract CoCoMESystem::receiveOrderedProduct(orderID : Integer) : Boolean {
 	<td><p>The return value was the instance set of class <a href="#CLASSSupplier">Supplier</a></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of listSuppliers:</p>
- 
+
 ```java
 Contract CoCoMESystem::listSuppliers() : Set(Supplier) {
 		/*
@@ -3016,9 +3016,9 @@ Contract CoCoMESystem::listSuppliers() : Set(Supplier) {
 	<td><p>The return value was the instance set of class <a href="#CLASSItem">Item</a></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of showStockReports:</p>
- 
+
 ```java
 Contract CoCoMESystem::showStockReports() : Set(Item) {
 		/*
@@ -3075,9 +3075,9 @@ Contract CoCoMESystem::showStockReports() : Set(Item) {
 	<td><p>1. <i>sto</i> represented the object of class <a href="#CLASSStore">Store</a></p><p>2. The object <i>sto</i> was created</p><p>3. The attribute <i>Id</i> of the object <i>sto</i> became <i>id</i></p><p>4. The attribute <i>Name</i> of the object <i>sto</i> became <i>name</i></p><p>5. The attribute <i>Address</i> of the object <i>sto</i> became <i>address</i></p><p>6. The attribute <i>IsOpened</i> of the object <i>sto</i> became <i>isopened</i></p><p>7. The object <i>sto</i> was put into the instance set of class <a href="#CLASSStore">Store</a></p><p>8. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of createStore:</p>
- 
+
 ```java
 Contract  ManageStoreCRUDService::createStore(id : Integer, name : String, address : String, isopened : Boolean) : Boolean {
 		/*
@@ -3155,9 +3155,9 @@ Contract  ManageStoreCRUDService::createStore(id : Integer, name : String, addre
 	<td><p>The return value was <i>store</i></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of queryStore:</p>
- 
+
 ```java
 Contract  ManageStoreCRUDService::queryStore(id : Integer) : Store {
 		/*
@@ -3221,9 +3221,9 @@ Contract  ManageStoreCRUDService::queryStore(id : Integer) : Store {
 	<td><p>1. The attribute <i>Id</i> of the object <i>store</i> became <i>id</i></p><p>2. The attribute <i>Name</i> of the object <i>store</i> became <i>name</i></p><p>3. The attribute <i>Address</i> of the object <i>store</i> became <i>address</i></p><p>4. The attribute <i>IsOpened</i> of the object <i>store</i> became <i>isopened</i></p><p>5. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of modifyStore:</p>
- 
+
 ```java
 Contract  ManageStoreCRUDService::modifyStore(id : Integer, name : String, address : String, isopened : Boolean) : Boolean {
 		/*
@@ -3295,9 +3295,9 @@ Contract  ManageStoreCRUDService::modifyStore(id : Integer, name : String, addre
 	<td><p>1. The object <i>store</i> was deleted from the instance set of class <a href="#CLASSStore">Store</a></p><p>2. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of deleteStore:</p>
- 
+
 ```java
 Contract  ManageStoreCRUDService::deleteStore(id : Integer) : Boolean {
 		/*
@@ -3365,9 +3365,9 @@ Contract  ManageStoreCRUDService::deleteStore(id : Integer) : Boolean {
 	<td><p>1. <i>pro</i> represented the object of class <a href="#CLASSProductCatalog">ProductCatalog</a></p><p>2. The object <i>pro</i> was created</p><p>3. The attribute <i>Id</i> of the object <i>pro</i> became <i>id</i></p><p>4. The attribute <i>Name</i> of the object <i>pro</i> became <i>name</i></p><p>5. The object <i>pro</i> was put into the instance set of class <a href="#CLASSProductCatalog">ProductCatalog</a></p><p>6. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of createProductCatalog:</p>
- 
+
 ```java
 Contract  ManageProductCatalogCRUDService::createProductCatalog(id : Integer, name : String) : Boolean {
 		/*
@@ -3441,9 +3441,9 @@ Contract  ManageProductCatalogCRUDService::createProductCatalog(id : Integer, na
 	<td><p>The return value was <i>productcatalog</i></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of queryProductCatalog:</p>
- 
+
 ```java
 Contract  ManageProductCatalogCRUDService::queryProductCatalog(id : Integer) : ProductCatalog {
 		/*
@@ -3507,9 +3507,9 @@ Contract  ManageProductCatalogCRUDService::queryProductCatalog(id : Integer) : P
 	<td><p>1. The attribute <i>Id</i> of the object <i>productcatalog</i> became <i>id</i></p><p>2. The attribute <i>Name</i> of the object <i>productcatalog</i> became <i>name</i></p><p>3. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of modifyProductCatalog:</p>
- 
+
 ```java
 Contract  ManageProductCatalogCRUDService::modifyProductCatalog(id : Integer, name : String) : Boolean {
 		/*
@@ -3577,9 +3577,9 @@ Contract  ManageProductCatalogCRUDService::modifyProductCatalog(id : Integer, na
 	<td><p>1. The object <i>productcatalog</i> was deleted from the instance set of class <a href="#CLASSProductCatalog">ProductCatalog</a></p><p>2. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of deleteProductCatalog:</p>
- 
+
 ```java
 Contract  ManageProductCatalogCRUDService::deleteProductCatalog(id : Integer) : Boolean {
 		/*
@@ -3647,9 +3647,9 @@ Contract  ManageProductCatalogCRUDService::deleteProductCatalog(id : Integer) : 
 	<td><p>1. <i>cas</i> represented the object of class <a href="#CLASSCashDesk">CashDesk</a></p><p>2. The object <i>cas</i> was created</p><p>3. The attribute <i>Id</i> of the object <i>cas</i> became <i>id</i></p><p>4. The attribute <i>Name</i> of the object <i>cas</i> became <i>name</i></p><p>5. The attribute <i>IsOpened</i> of the object <i>cas</i> became <i>isopened</i></p><p>6. The object <i>cas</i> was put into the instance set of class <a href="#CLASSCashDesk">CashDesk</a></p><p>7. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of createCashDesk:</p>
- 
+
 ```java
 Contract  ManageCashDeskCRUDService::createCashDesk(id : Integer, name : String, isopened : Boolean) : Boolean {
 		/*
@@ -3725,9 +3725,9 @@ Contract  ManageCashDeskCRUDService::createCashDesk(id : Integer, name : String,
 	<td><p>The return value was <i>cashdesk</i></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of queryCashDesk:</p>
- 
+
 ```java
 Contract  ManageCashDeskCRUDService::queryCashDesk(id : Integer) : CashDesk {
 		/*
@@ -3791,9 +3791,9 @@ Contract  ManageCashDeskCRUDService::queryCashDesk(id : Integer) : CashDesk {
 	<td><p>1. The attribute <i>Id</i> of the object <i>cashdesk</i> became <i>id</i></p><p>2. The attribute <i>Name</i> of the object <i>cashdesk</i> became <i>name</i></p><p>3. The attribute <i>IsOpened</i> of the object <i>cashdesk</i> became <i>isopened</i></p><p>4. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of modifyCashDesk:</p>
- 
+
 ```java
 Contract  ManageCashDeskCRUDService::modifyCashDesk(id : Integer, name : String, isopened : Boolean) : Boolean {
 		/*
@@ -3863,9 +3863,9 @@ Contract  ManageCashDeskCRUDService::modifyCashDesk(id : Integer, name : String,
 	<td><p>1. The object <i>cashdesk</i> was deleted from the instance set of class <a href="#CLASSCashDesk">CashDesk</a></p><p>2. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of deleteCashDesk:</p>
- 
+
 ```java
 Contract  ManageCashDeskCRUDService::deleteCashDesk(id : Integer) : Boolean {
 		/*
@@ -3933,9 +3933,9 @@ Contract  ManageCashDeskCRUDService::deleteCashDesk(id : Integer) : Boolean {
 	<td><p>1. <i>cas</i> represented the object of class <a href="#CLASSCashier">Cashier</a></p><p>2. The object <i>cas</i> was created</p><p>3. The attribute <i>Id</i> of the object <i>cas</i> became <i>id</i></p><p>4. The attribute <i>Name</i> of the object <i>cas</i> became <i>name</i></p><p>5. The object <i>cas</i> was put into the instance set of class <a href="#CLASSCashier">Cashier</a></p><p>6. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of createCashier:</p>
- 
+
 ```java
 Contract  ManageCashierCRUDService::createCashier(id : Integer, name : String) : Boolean {
 		/*
@@ -4009,9 +4009,9 @@ Contract  ManageCashierCRUDService::createCashier(id : Integer, name : String) :
 	<td><p>The return value was <i>cashier</i></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of queryCashier:</p>
- 
+
 ```java
 Contract  ManageCashierCRUDService::queryCashier(id : Integer) : Cashier {
 		/*
@@ -4075,9 +4075,9 @@ Contract  ManageCashierCRUDService::queryCashier(id : Integer) : Cashier {
 	<td><p>1. The attribute <i>Id</i> of the object <i>cashier</i> became <i>id</i></p><p>2. The attribute <i>Name</i> of the object <i>cashier</i> became <i>name</i></p><p>3. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of modifyCashier:</p>
- 
+
 ```java
 Contract  ManageCashierCRUDService::modifyCashier(id : Integer, name : String) : Boolean {
 		/*
@@ -4145,9 +4145,9 @@ Contract  ManageCashierCRUDService::modifyCashier(id : Integer, name : String) :
 	<td><p>1. The object <i>cashier</i> was deleted from the instance set of class <a href="#CLASSCashier">Cashier</a></p><p>2. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of deleteCashier:</p>
- 
+
 ```java
 Contract  ManageCashierCRUDService::deleteCashier(id : Integer) : Boolean {
 		/*
@@ -4215,9 +4215,9 @@ Contract  ManageCashierCRUDService::deleteCashier(id : Integer) : Boolean {
 	<td><p>1. <i>ite</i> represented the object of class <a href="#CLASSItem">Item</a></p><p>2. The object <i>ite</i> was created</p><p>3. The attribute <i>Barcode</i> of the object <i>ite</i> became <i>barcode</i></p><p>4. The attribute <i>Name</i> of the object <i>ite</i> became <i>name</i></p><p>5. The attribute <i>Price</i> of the object <i>ite</i> became <i>price</i></p><p>6. The attribute <i>StockNumber</i> of the object <i>ite</i> became <i>stocknumber</i></p><p>7. The attribute <i>OrderPrice</i> of the object <i>ite</i> became <i>orderprice</i></p><p>8. The object <i>ite</i> was put into the instance set of class <a href="#CLASSItem">Item</a></p><p>9. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of createItem:</p>
- 
+
 ```java
 Contract  ManageItemCRUDService::createItem(barcode : Integer, name : String, price : Real, stocknumber : Integer, orderprice : Real) : Boolean {
 		/*
@@ -4297,9 +4297,9 @@ Contract  ManageItemCRUDService::createItem(barcode : Integer, name : String, pr
 	<td><p>The return value was <i>item</i></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of queryItem:</p>
- 
+
 ```java
 Contract  ManageItemCRUDService::queryItem(barcode : Integer) : Item {
 		/*
@@ -4363,9 +4363,9 @@ Contract  ManageItemCRUDService::queryItem(barcode : Integer) : Item {
 	<td><p>1. The attribute <i>Barcode</i> of the object <i>item</i> became <i>barcode</i></p><p>2. The attribute <i>Name</i> of the object <i>item</i> became <i>name</i></p><p>3. The attribute <i>Price</i> of the object <i>item</i> became <i>price</i></p><p>4. The attribute <i>StockNumber</i> of the object <i>item</i> became <i>stocknumber</i></p><p>5. The attribute <i>OrderPrice</i> of the object <i>item</i> became <i>orderprice</i></p><p>6. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of modifyItem:</p>
- 
+
 ```java
 Contract  ManageItemCRUDService::modifyItem(barcode : Integer, name : String, price : Real, stocknumber : Integer, orderprice : Real) : Boolean {
 		/*
@@ -4439,9 +4439,9 @@ Contract  ManageItemCRUDService::modifyItem(barcode : Integer, name : String, pr
 	<td><p>1. The object <i>item</i> was deleted from the instance set of class <a href="#CLASSItem">Item</a></p><p>2. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of deleteItem:</p>
- 
+
 ```java
 Contract  ManageItemCRUDService::deleteItem(barcode : Integer) : Boolean {
 		/*
@@ -4509,9 +4509,9 @@ Contract  ManageItemCRUDService::deleteItem(barcode : Integer) : Boolean {
 	<td><p>1. <i>sup</i> represented the object of class <a href="#CLASSSupplier">Supplier</a></p><p>2. The object <i>sup</i> was created</p><p>3. The attribute <i>Id</i> of the object <i>sup</i> became <i>id</i></p><p>4. The attribute <i>Name</i> of the object <i>sup</i> became <i>name</i></p><p>5. The object <i>sup</i> was put into the instance set of class <a href="#CLASSSupplier">Supplier</a></p><p>6. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of createSupplier:</p>
- 
+
 ```java
 Contract  ManageSupplierCRUDService::createSupplier(id : Integer, name : String) : Boolean {
 		/*
@@ -4585,9 +4585,9 @@ Contract  ManageSupplierCRUDService::createSupplier(id : Integer, name : String)
 	<td><p>The return value was <i>supplier</i></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of querySupplier:</p>
- 
+
 ```java
 Contract  ManageSupplierCRUDService::querySupplier(id : Integer) : Supplier {
 		/*
@@ -4651,9 +4651,9 @@ Contract  ManageSupplierCRUDService::querySupplier(id : Integer) : Supplier {
 	<td><p>1. The attribute <i>Id</i> of the object <i>supplier</i> became <i>id</i></p><p>2. The attribute <i>Name</i> of the object <i>supplier</i> became <i>name</i></p><p>3. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of modifySupplier:</p>
- 
+
 ```java
 Contract  ManageSupplierCRUDService::modifySupplier(id : Integer, name : String) : Boolean {
 		/*
@@ -4721,9 +4721,9 @@ Contract  ManageSupplierCRUDService::modifySupplier(id : Integer, name : String)
 	<td><p>1. The object <i>supplier</i> was deleted from the instance set of class <a href="#CLASSSupplier">Supplier</a></p><p>2. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of deleteSupplier:</p>
- 
+
 ```java
 Contract  ManageSupplierCRUDService::deleteSupplier(id : Integer) : Boolean {
 		/*
@@ -4754,7 +4754,7 @@ Contract  ManageSupplierCRUDService::deleteSupplier(id : Integer) : Boolean {
 
 
 
- 
+
 ## 3.2  External interface requirements
 User interfaces
 Hardware interfaces
@@ -4791,6 +4791,7 @@ This subsection should specify the requirements derived from existing standards 
 - c) Accounting procedures;
 - d) Audit tracing.
 		
+
 For example, this could specify the requirement for software to trace processing activity. Such traces are needed for some applications to meet minimum regulatory or financial standards. An audit trace requirement may, for example, state that all changes to a payroll database must be recorded in a trace file with before and after values.
 		
 ### 3.4.2  Hardware limitations

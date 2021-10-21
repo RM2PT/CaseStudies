@@ -58,9 +58,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 ## 3.1  Functional requirements
 ### 3.1.1   User Requirements
 <b>Use Case Diagram</b>
- 
-![Use Case Diagram](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/项目名/Use Case Diagram.jpg)
- 
+
+![Use Case Diagram](Images/Use Case Diagram.jpg)
+
 <b>A1 - LoanOfficer</b>
 <table>
 	<tr>
@@ -200,7 +200,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 ### 3.1.2   System Requirement
 #### 3.1.2.1 Use Case Description
 <b>UC1 - evaluateLoanRequest</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -235,11 +235,11 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
- 
-![EvaluateLoanRequestSSD](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/项目名/EvaluateLoanRequestSSD.jpg)
- 
+
+![EvaluateLoanRequestSSD](Images/EvaluateLoanRequestSSD.jpg)
+
 <b>UC2 - manageLoanTerm</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -275,9 +275,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
+
 <b>UC3 - enterValidatedCreditReferences</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -313,9 +313,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
+
 <b>UC4 - generateLoanLetterAndAgreement</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -350,11 +350,11 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td></td>
 	</tr>
 	</table>
- 
-![GenerateLoanLetterAndAgreementSSD](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/项目名/GenerateLoanLetterAndAgreementSSD.jpg)
- 
+
+![GenerateLoanLetterAndAgreementSSD](Images/GenerateLoanLetterAndAgreementSSD.jpg)
+
 <b>UC5 - bookNewLoan</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -390,9 +390,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
+
 <b>UC6 - loanPayment</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -428,9 +428,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
+
 <b>UC7 - closeOutLoan</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -466,9 +466,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
+
 <b>UC8 - generateStandardPaymentNotice</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -504,9 +504,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
+
 <b>UC9 - generateLateNotice</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -542,9 +542,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
+
 <b>UC10 - submitLoanRequest</b>
- 
+
 <table>
 	<tr>
 		<td><b>UseCase Name:</b></td>
@@ -580,15 +580,15 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	</tr>
 	</table>
  
- 
- 
+
+
 #### 3.1.2.2   Entity Analysis
 <b>Conceptual Class Diagram</b> 
- 
-![Conceptual Class Diagram](https://github.com/Tians996/rm2pt-casestudies/blob/main/images/项目名/Conceptual Class Diagram.jpg)
- 
+
+![Conceptual Class Diagram](Images/Conceptual Class Diagram.jpg)
+
 <b>E1 - LoanRequest</b>
- 
+
 <table>
 	<tr>
 		<td><b>Entity Name:</b></td>
@@ -725,9 +725,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td>One LoanRequest is linked to many LoanTerm</td>
 	</tr>
 	</table>
-	 
+
 <b>E2 - Loan</b>
- 
+
 <table>
 	<tr>
 		<td><b>Entity Name:</b></td>
@@ -810,9 +810,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td>One Loan is linked to one LoanAccount</td>
 	</tr>
 	</table>
-	 
+
 <b>E3 - LoanTerm</b>
- 
+
 <table>
 	<tr>
 		<td><b>Entity Name:</b></td>
@@ -842,9 +842,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td colspan="2">The Content of LoanTerm</td>
 					</tr>
 	</table>
-	 
+
 <b>E4 - CheckingAccount</b>
- 
+
 <table>
 	<tr>
 		<td><b>Entity Name:</b></td>
@@ -874,9 +874,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td colspan="2">The Status of CheckingAccount</td>
 					</tr>
 	</table>
-	 
+
 <b>E5 - CreditHistory</b>
- 
+
 <table>
 	<tr>
 		<td><b>Entity Name:</b></td>
@@ -906,9 +906,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td colspan="2">The BadDebits of CreditHistory</td>
 					</tr>
 	</table>
-	 
+
 <b>E6 - LoanAccount</b>
- 
+
 <table>
 	<tr>
 		<td><b>Entity Name:</b></td>
@@ -943,9 +943,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td colspan="2">The Status of LoanAccount</td>
 					</tr>
 	</table>
-	 
+
 <b>E7 - ApprovalLetter</b>
- 
+
 <table>
 	<tr>
 		<td><b>Entity Name:</b></td>
@@ -970,9 +970,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td colspan="2">The Content of ApprovalLetter</td>
 					</tr>
 	</table>
-	 
+
 <b>E8 - LoanAgreement</b>
- 
+
 <table>
 	<tr>
 		<td><b>Entity Name:</b></td>
@@ -997,8 +997,8 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td colspan="2">The Content of LoanAgreement</td>
 					</tr>
 	</table>
-	 
- 
+​	 
+
 #### 3.1.2.3   System Interfaces
 ##### System Interfaces
 <b>SI1 - SubmitLoanRequestModule</b>
@@ -1028,7 +1028,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td>CurrentLoanRequest is a object of <a href="#CLASSLoanRequest">LoanRequest</a></td>
 					</tr>
 	</table>
-	 
+
 <b>SI2 - ThirdPartyServices</b>
 <table>
 	<tr>
@@ -1048,7 +1048,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td><ul><li><a href="#OPsendEmail">sendEmail</a></li><li><a href="#OPprint">print</a></li><li><a href="#OPcreateLoanAccount">createLoanAccount</a></li><li><a href="#OPtransferFunds">transferFunds</a></li><li><a href="#OPgetCreditHistory">getCreditHistory</a></li><li><a href="#OPgetCheckingAccountStatus">getCheckingAccountStatus</a></li></ul></td>
 	</tr>
 	</table>
-	 
+
 <b>SI3 - EnterValidatedCreditReferencesModule</b>
 <table>
 	<tr>
@@ -1080,7 +1080,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td>CurrentLoanRequests is a set of <a href="#CLASSLoanRequest">LoanRequest</a></td>
 					</tr>
 	</table>
-	 
+
 <b>SI4 - EvaluateLoanRequestModule</b>
 <table>
 	<tr>
@@ -1112,7 +1112,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td>CurrentLoanRequests is a set of <a href="#CLASSLoanRequest">LoanRequest</a></td>
 					</tr>
 	</table>
-	 
+
 <b>SI5 - GenerateLoanLetterAndAgreementModule</b>
 <table>
 	<tr>
@@ -1152,7 +1152,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 		<td>CurrentLoanRequests is a set of <a href="#CLASSLoanRequest">LoanRequest</a></td>
 					</tr>
 	</table>
-	 
+
 <b>SI6 - LoanProcessingSystemSystem</b>
 <table>
 	<tr>
@@ -1172,7 +1172,7 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td><ul><li><a href="#OPbookNewLoan">bookNewLoan</a></li><li><a href="#OPgenerateStandardPaymentNotice">generateStandardPaymentNotice</a></li><li><a href="#OPgenerateLateNotice">generateLateNotice</a></li><li><a href="#OPlistBookedLoans">listBookedLoans</a></li><li><a href="#OPloanPayment">loanPayment</a></li><li><a href="#OPcloseOutLoan">closeOutLoan</a></li></ul></td>
 	</tr>
 	</table>
-	 
+
 <b>SI7 - ManageLoanTermCRUDService</b>
 <table>
 	<tr>
@@ -1192,8 +1192,8 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td><ul><li><a href="#OPcreateLoanTerm">createLoanTerm</a></li><li><a href="#OPqueryLoanTerm">queryLoanTerm</a></li><li><a href="#OPmodifyLoanTerm">modifyLoanTerm</a></li><li><a href="#OPdeleteLoanTerm">deleteLoanTerm</a></li></ul></td>
 	</tr>
 	</table>
-	 
- 
+​	 
+
 ##### System Operation Description
 <b>OP1 - enterLoanInformation</b>
 <table>
@@ -1234,9 +1234,9 @@ This subsection of the SRS should identify requirements that may be delayed unti
 	<td><p>1. <i>loa</i> represented the object of class <a href="#CLASSLoanRequest">LoanRequest</a></p><p>2. The object <i>loa</i> was created</p><p>3. The attribute <i>RequestID</i> of the object <i>loa</i> became <i>requestid</i></p><p>4. The attribute <i>Name</i> of the object <i>loa</i> became <i>name</i></p><p>5. The attribute <i>LoanAmount</i> of the object <i>loa</i> became <i>loanamount</i></p><p>6. The attribute <i>LoanPurpose</i> of the object <i>loa</i> became <i>loanpurpose</i></p><p>7. The attribute <i>Income</i> of the object <i>loa</i> became <i>income</i></p><p>8. The attribute <i>PhoneNumber</i> of the object <i>loa</i> became <i>phonenumber</i></p><p>9. The attribute <i>PostalAddress</i> of the object <i>loa</i> became <i>postaladdress</i></p><p>10. The attribute <i>ZipCode</i> of the object <i>loa</i> became <i>zipcode</i></p><p>11. The attribute <i>Email</i> of the object <i>loa</i> became <i>email</i></p><p>12. The attribute <i>WorkReferences</i> of the object <i>loa</i> became <i>workreferences</i></p><p>13. The attribute <i>CreditReferences</i> of the object <i>loa</i> became <i>creditreferences</i></p><p>14. The attribute <i>CheckingAccountNumber</i> of the object <i>loa</i> became <i>checkingaccountnumber</i></p><p>15. The attribute <i>SecurityNumber</i> of the object <i>loa</i> became <i>securitynumber</i></p><p>16. The object <i>loa</i> was put into the instance set of class <a href="#CLASSLoanRequest">LoanRequest</a></p><p>17. The object <a href="#SubmitLoanRequestModuleCurrentLoanRequest">CurrentLoanRequest</a> became <i>loa</i></p><p>18. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of enterLoanInformation:</p>
- 
+
 ```java
 Contract  SubmitLoanRequestModule::enterLoanInformation(requestid : Integer, name : String, loanamount : Real, loanpurpose : String, income : Real, phonenumber : Integer, postaladdress : String, zipcode : Integer, email : String, workreferences : String, creditreferences : String, checkingaccountnumber : Integer, securitynumber : Integer) : Boolean {
 		/*
@@ -1330,9 +1330,9 @@ Contract  SubmitLoanRequestModule::enterLoanInformation(requestid : Integer, nam
 	<td><p>1. <i>his</i> represented the object of class <a href="#CLASSCreditHistory">CreditHistory</a></p><p>2. The object <i>his</i> was created</p><p>3. <i>his</i> became the return value of system operation <a href="#OPgetCreditHistory">getCreditHistory</a></p><p>4. The object <i>CurrentLoanRequest</i> was linked to the object <i>his</i> by <i>RequestedCreditHistory</i></p><p>5. The object <i>his</i> was put into the instance set of class <a href="#CLASSCreditHistory">CreditHistory</a></p><p>6. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of creditRequest:</p>
- 
+
 ```java
 Contract SubmitLoanRequestModule::creditRequest() : Boolean {
 		/*
@@ -1395,9 +1395,9 @@ Contract SubmitLoanRequestModule::creditRequest() : Boolean {
 	<td><p>1. <i>ca</i> represented the object of class <a href="#CLASSCheckingAccount">CheckingAccount</a></p><p>2. The object <i>ca</i> was created</p><p>3. <i>ca</i> became the return value of system operation <a href="#OPgetCheckingAccountStatus">getCheckingAccountStatus</a></p><p>4. The object <a href="#SubmitLoanRequestModuleCurrentLoanRequest">CurrentLoanRequest</a> was linked to the object <i>ca</i> by <i>RequestedCAHistory</i></p><p>5. The object <i>ca</i> was put into the instance set of class <a href="#CLASSCheckingAccount">CheckingAccount</a></p><p>6. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of accountStatusRequest:</p>
- 
+
 ```java
 Contract SubmitLoanRequestModule::accountStatusRequest() : Boolean {
 		/*
@@ -1460,9 +1460,9 @@ Contract SubmitLoanRequestModule::accountStatusRequest() : Boolean {
 	<td><p>1. The attribute <i>CreditScore</i> of the object <a href="#SubmitLoanRequestModuleCurrentLoanRequest">CurrentLoanRequest</a> became <b>100</b></p><p>2. The attribute <i>Status</i> of the object <a href="#SubmitLoanRequestModuleCurrentLoanRequest">CurrentLoanRequest</a> became <b>SUBMITTED</b></p><p>3. The return value was the attribute <i>CreditScore</i> of the object <a href="#SubmitLoanRequestModuleCurrentLoanRequest">CurrentLoanRequest</a></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of calculateScore:</p>
- 
+
 ```java
 Contract SubmitLoanRequestModule::calculateScore() : Integer {
 		/*
@@ -1528,9 +1528,9 @@ Contract SubmitLoanRequestModule::calculateScore() : Integer {
 	<td><p>1. The value of temporary variable <a href="#EnterValidatedCreditReferencesModuleCurrentLoanRequests">CurrentLoanRequests</a> became <i>rs</i></p><p>2. The return value was <i>rs</i></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of listSubmitedLoanRequest:</p>
- 
+
 ```java
 Contract EnterValidatedCreditReferencesModule::listSubmitedLoanRequest() : Set(LoanRequest) {
 		/*
@@ -1596,9 +1596,9 @@ Contract EnterValidatedCreditReferencesModule::listSubmitedLoanRequest() : Set(L
 	<td><p>1. The object <a href="#EnterValidatedCreditReferencesModuleCurrentLoanRequest">CurrentLoanRequest</a> became <i>rs</i></p><p>2. The return value was <i>rs</i></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of chooseLoanRequest:</p>
- 
+
 ```java
 Contract EnterValidatedCreditReferencesModule::chooseLoanRequest(requestid : Integer) : LoanRequest {
 		/*
@@ -1660,9 +1660,9 @@ Contract EnterValidatedCreditReferencesModule::chooseLoanRequest(requestid : Int
 	<td><p>1. The attribute <i>Status</i> of the object <a href="#EnterValidatedCreditReferencesModuleCurrentLoanRequest">CurrentLoanRequest</a> became <b>REFERENCESVALIDATED</b></p><p>2. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of markRequestValid:</p>
- 
+
 ```java
 Contract EnterValidatedCreditReferencesModule::markRequestValid() : Boolean {
 		/*
@@ -1721,9 +1721,9 @@ Contract EnterValidatedCreditReferencesModule::markRequestValid() : Boolean {
 	<td><p>1. The value of temporary variable <a href="#EvaluateLoanRequestModuleCurrentLoanRequests">CurrentLoanRequests</a> became <i>rs</i></p><p>2. The return value was <i>rs</i></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of listTenLoanRequest:</p>
- 
+
 ```java
 Contract EvaluateLoanRequestModule::listTenLoanRequest() : Set(LoanRequest) {
 		/*
@@ -1789,9 +1789,9 @@ Contract EvaluateLoanRequestModule::listTenLoanRequest() : Set(LoanRequest) {
 	<td><p>1. The object <a href="#EvaluateLoanRequestModuleCurrentLoanRequest">CurrentLoanRequest</a> became <i>rs</i></p><p>2. The return value was <i>rs</i></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of chooseOneForReview:</p>
- 
+
 ```java
 Contract EvaluateLoanRequestModule::chooseOneForReview(requestid : Integer) : LoanRequest {
 		/*
@@ -1853,9 +1853,9 @@ Contract EvaluateLoanRequestModule::chooseOneForReview(requestid : Integer) : Lo
 	<td><p>The return value was the object which <i>CurrentLoanRequest</i> was linked to by <i>RequestedCreditHistory</i></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of checkCreditHistory:</p>
- 
+
 ```java
 Contract EvaluateLoanRequestModule::checkCreditHistory() : CreditHistory {
 		/*
@@ -1910,9 +1910,9 @@ Contract EvaluateLoanRequestModule::checkCreditHistory() : CreditHistory {
 	<td><p>The return value was the object which <i>CurrentLoanRequest</i> was linked to by <i>RequestedCAHistory</i></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of reviewCheckingAccount:</p>
- 
+
 ```java
 Contract EvaluateLoanRequestModule::reviewCheckingAccount() : CheckingAccount {
 		/*
@@ -1967,9 +1967,9 @@ Contract EvaluateLoanRequestModule::reviewCheckingAccount() : CheckingAccount {
 	<td><p>The return value was the instance set of class <a href="#CLASSLoanTerm">LoanTerm</a></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of listAvaiableLoanTerm:</p>
- 
+
 ```java
 Contract EvaluateLoanRequestModule::listAvaiableLoanTerm() : Set(LoanTerm) {
 		/*
@@ -2026,9 +2026,9 @@ Contract EvaluateLoanRequestModule::listAvaiableLoanTerm() : Set(LoanTerm) {
 	<td><p>1. The object <i>CurrentLoanRequest</i> was linked to the object <i>loanterm</i> by <i>AttachedLoanTerms</i></p><p>2. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of addLoanTerm:</p>
- 
+
 ```java
 Contract EvaluateLoanRequestModule::addLoanTerm(termid : Integer) : Boolean {
 		/*
@@ -2092,9 +2092,9 @@ Contract EvaluateLoanRequestModule::addLoanTerm(termid : Integer) : Boolean {
 	<td><p>1. The attribute <i>Status</i> of the object <a href="#EvaluateLoanRequestModuleCurrentLoanRequest">CurrentLoanRequest</a> became <b>APPROVED</b></p><p>2. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of approveLoanRequest:</p>
- 
+
 ```java
 Contract EvaluateLoanRequestModule::approveLoanRequest() : Boolean {
 		/*
@@ -2153,9 +2153,9 @@ Contract EvaluateLoanRequestModule::approveLoanRequest() : Boolean {
 	<td><p>1. The value of temporary variable <a href="#GenerateLoanLetterAndAgreementModuleCurrentLoanRequests">CurrentLoanRequests</a> became <i>rs</i></p><p>2. The return value was <i>rs</i></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of listApprovalRequest:</p>
- 
+
 ```java
 Contract GenerateLoanLetterAndAgreementModule::listApprovalRequest() : Set(LoanRequest) {
 		/*
@@ -2221,9 +2221,9 @@ Contract GenerateLoanLetterAndAgreementModule::listApprovalRequest() : Set(LoanR
 	<td><p>1. <i>l</i> represented the object of class <a href="#CLASSApprovalLetter">ApprovalLetter</a></p><p>2. The object <i>l</i> was created</p><p>3. The attribute <i>Content</i> of the object <i>l</i> became <b>"ApprovalLetterContent"</b></p><p>4. The object <i>r</i> was linked to the object <i>l</i> by <i>AttachedApprovalLetter</i></p><p>5. The object <a href="#GenerateLoanLetterAndAgreementModuleCurrentLoanRequest">CurrentLoanRequest</a> became <i>r</i></p><p>6. The object <i>l</i> was put into the instance set of class <a href="#CLASSApprovalLetter">ApprovalLetter</a></p><p>7. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of genereateApprovalLetter:</p>
- 
+
 ```java
 Contract GenerateLoanLetterAndAgreementModule::genereateApprovalLetter(id : Integer) : Boolean {
 		/*
@@ -2295,9 +2295,9 @@ Contract GenerateLoanLetterAndAgreementModule::genereateApprovalLetter(id : Inte
 	<td><p>1. The system operation <a href="#OPsendEmail">sendEmail</a> was executed</p><p>2. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of emailToAppliant:</p>
- 
+
 ```java
 Contract GenerateLoanLetterAndAgreementModule::emailToAppliant() : Boolean {
 		/*
@@ -2353,9 +2353,9 @@ Contract GenerateLoanLetterAndAgreementModule::emailToAppliant() : Boolean {
 	<td><p>1. <i>la</i> represented the object of class <a href="#CLASSLoanAgreement">LoanAgreement</a></p><p>2. The object <i>la</i> was created</p><p>3. The attribute <i>Content</i> of the object <i>la</i> became <b>"Loan Agreement"</b></p><p>4. The object <a href="#GenerateLoanLetterAndAgreementModuleCurrentLoanRequest">CurrentLoanRequest</a> was linked to the object <i>la</i> by <i>AttachedLoanAgreement</i></p><p>5. The object <i>la</i> was put into the instance set of class <a href="#CLASSLoanAgreement">LoanAgreement</a></p><p>6. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of generateLoanAgreement:</p>
- 
+
 ```java
 Contract GenerateLoanLetterAndAgreementModule::generateLoanAgreement() : Boolean {
 		/*
@@ -2418,9 +2418,9 @@ Contract GenerateLoanLetterAndAgreementModule::generateLoanAgreement() : Boolean
 	<td><p>1. The system operation <a href="#OPprint">print</a> was executed</p><p>2. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of printLoanAgreement:</p>
- 
+
 ```java
 Contract GenerateLoanLetterAndAgreementModule::printLoanAgreement(number : Integer) : Boolean {
 		/*
@@ -2479,9 +2479,9 @@ Contract GenerateLoanLetterAndAgreementModule::printLoanAgreement(number : Integ
 	<td><p>1. <i>loa</i> represented the object of class <a href="#CLASSLoan">Loan</a></p><p>2. <i>lacc</i> represented the object of class <a href="#CLASSLoanAccount">LoanAccount</a></p><p>3. The object <i>loa</i> was created</p><p>4. The attribute <i>LoanID</i> of the object <i>loa</i> became <i>loanid</i></p><p>5. The attribute <i>StartDate</i> of the object <i>loa</i> became <i>startdate</i></p><p>6. The attribute <i>EndDate</i> of the object <i>loa</i> became <i>enddate</i></p><p>7. The attribute <i>RePaymentDays</i> of the object <i>loa</i> became <i>repaymentdays</i></p><p>8. The attribute <i>Status</i> of the object <i>loa</i> became <b>LSOPEN</b></p><p>9. The attribute <i>RepaymentAmount</i> of the object <i>loa</i> became the attribute <i>LoanAmount</i> of the object <i>r</i></p><p>10. The attribute <i>CurrentOverDueDate</i> of the object <i>loa</i> became the day <i>repaymentdays</i> after <i>startdate</i></p><p>11. If <i>la</i> didn't exist, take the following as postcondition(s):</p><p>&emsp;&emsp;<i>lacc</i> became the return value of system operation <a href="#OPcreateLoanAccount">createLoanAccount</a></p><p>&emsp;&emsp;The object <i>lacc</i> was put into the instance set of class <a href="#CLASSLoanAccount">LoanAccount</a></p><p>&emsp;&emsp;The attribute <i>Balance</i> of the object <i>lacc</i> became the attribute <i>LoanAmount</i> of the object <i>r</i></p><p>&emsp;&emsp;The object <i>loa</i> was linked to the object <i>lacc</i> by <i>BelongedLoanAccount</i></p><p>Otherwise, take the following as postcondition(s):</p><p>&emsp;&emsp;The attribute <i>Balance</i> of the object <i>la</i> became the previous value of the attribute <i>Balance</i> of the object <i>la</i> plus the attribute <i>LoanAmount</i> of the object <i>r</i></p><p>12. The system operation <a href="#OPtransferFunds">transferFunds</a> was executed</p><p>13. The attribute <i>RemainAmountToPay</i> of the object <i>loa</i> became the attribute <i>LoanAmount</i> of the object <i>r</i></p><p>14. The object <i>loa</i> was put into the instance set of class <a href="#CLASSLoan">Loan</a></p><p>15. The object <i>r</i> was linked to the object <i>loa</i> by <i>ApprovalLoan</i></p><p>16. The object <i>loa</i> was linked to the object <i>r</i> by <i>ReferedLoanRequest</i></p><p>17. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of bookNewLoan:</p>
- 
+
 ```java
 Contract  LoanProcessingSystemSystem::bookNewLoan(requestid : Integer, loanid : Integer, accountid: Integer, startdate : Date, enddate : Date, repaymentdays : Integer) : Boolean {
 		/*
@@ -2599,9 +2599,9 @@ Contract  LoanProcessingSystemSystem::bookNewLoan(requestid : Integer, loanid : 
 	<td><p>1. For each object of class <a href="#CLASSLoan">Loan</a> in the set <i>loans</i>, <i>l</i> represented it(the object) and the following operations were performed:</p><p>&emsp;&emsp;The system operation <a href="#OPsendEmail">sendEmail</a> was executed</p><p>2. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of generateStandardPaymentNotice:</p>
- 
+
 ```java
 Contract LoanProcessingSystemSystem::generateStandardPaymentNotice() : Boolean {
 		/*
@@ -2671,9 +2671,9 @@ Contract LoanProcessingSystemSystem::generateStandardPaymentNotice() : Boolean {
 	<td><p>1. For each object of class <a href="#CLASSLoan">Loan</a> in the set <i>loans</i>, <i>l</i> represented it(the object) and the following operations were performed:</p><p>&emsp;&emsp;The system operation <a href="#OPsendEmail">sendEmail</a> was executed</p><p>2. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of generateLateNotice:</p>
- 
+
 ```java
 Contract LoanProcessingSystemSystem::generateLateNotice() : Boolean {
 		/*
@@ -2743,9 +2743,9 @@ Contract LoanProcessingSystemSystem::generateLateNotice() : Boolean {
 	<td><p>1. The attribute <i>RemainAmountToPay</i> of the object <i>loan</i> became the previous value of the attribute <i>RemainAmountToPay</i> of the object <i>loan</i> minus the attribute <i>RepaymentAmount</i> of the object <i>loan</i></p><p>2. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of loanPayment:</p>
- 
+
 ```java
 Contract LoanProcessingSystemSystem::loanPayment(loanid : Integer) : Boolean {
 		/*
@@ -2813,9 +2813,9 @@ Contract LoanProcessingSystemSystem::loanPayment(loanid : Integer) : Boolean {
 	<td><p>1. The attribute <i>Status</i> of the object <i>loan</i> became <b>CLOSED</b></p><p>2. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of closeOutLoan:</p>
- 
+
 ```java
 Contract LoanProcessingSystemSystem::closeOutLoan(loanid : Integer) : Boolean {
 		/*
@@ -2883,9 +2883,9 @@ Contract LoanProcessingSystemSystem::closeOutLoan(loanid : Integer) : Boolean {
 	<td><p>1. <i>loa</i> represented the object of class <a href="#CLASSLoanTerm">LoanTerm</a></p><p>2. The object <i>loa</i> was created</p><p>3. The attribute <i>ItemID</i> of the object <i>loa</i> became <i>itemid</i></p><p>4. The attribute <i>Content</i> of the object <i>loa</i> became <i>content</i></p><p>5. The object <i>loa</i> was put into the instance set of class <a href="#CLASSLoanTerm">LoanTerm</a></p><p>6. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of createLoanTerm:</p>
- 
+
 ```java
 Contract  ManageLoanTermCRUDService::createLoanTerm(itemid : Integer, content : String) : Boolean {
 		/*
@@ -2959,9 +2959,9 @@ Contract  ManageLoanTermCRUDService::createLoanTerm(itemid : Integer, content : 
 	<td><p>The return value was <i>loanterm</i></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of queryLoanTerm:</p>
- 
+
 ```java
 Contract  ManageLoanTermCRUDService::queryLoanTerm(itemid : Integer) : LoanTerm {
 		/*
@@ -3025,9 +3025,9 @@ Contract  ManageLoanTermCRUDService::queryLoanTerm(itemid : Integer) : LoanTerm 
 	<td><p>1. The attribute <i>ItemID</i> of the object <i>loanterm</i> became <i>itemid</i></p><p>2. The attribute <i>Content</i> of the object <i>loanterm</i> became <i>content</i></p><p>3. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of modifyLoanTerm:</p>
- 
+
 ```java
 Contract  ManageLoanTermCRUDService::modifyLoanTerm(itemid : Integer, content : String) : Boolean {
 		/*
@@ -3095,9 +3095,9 @@ Contract  ManageLoanTermCRUDService::modifyLoanTerm(itemid : Integer, content : 
 	<td><p>1. The object <i>loanterm</i> was deleted from the instance set of class <a href="#CLASSLoanTerm">LoanTerm</a></p><p>2. The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of deleteLoanTerm:</p>
- 
+
 ```java
 Contract  ManageLoanTermCRUDService::deleteLoanTerm(itemid : Integer) : Boolean {
 		/*
@@ -3161,9 +3161,9 @@ Contract  ManageLoanTermCRUDService::deleteLoanTerm(itemid : Integer) : Boolean 
 	<td><p>The return value was <b>null</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of getCheckingAccountStatus:</p>
- 
+
 ```java
 Contract ThirdPartyServices::getCheckingAccountStatus(cid : Integer) : CheckingAccount {
 		/*
@@ -3216,9 +3216,9 @@ Contract ThirdPartyServices::getCheckingAccountStatus(cid : Integer) : CheckingA
 	<td><p>The return value was <b>null</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of getCreditHistory:</p>
- 
+
 ```java
 Contract ThirdPartyServices::getCreditHistory(securityid : Integer, name :String) : CreditHistory {
 		/*
@@ -3271,9 +3271,9 @@ Contract ThirdPartyServices::getCreditHistory(securityid : Integer, name :String
 	<td><p>The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of sendEmail:</p>
- 
+
 ```java
 Contract ThirdPartyServices::sendEmail(emailaddress : String, title : String, content :String) : Boolean {
 		/*
@@ -3326,9 +3326,9 @@ Contract ThirdPartyServices::sendEmail(emailaddress : String, title : String, co
 	<td><p>The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of print:</p>
- 
+
 ```java
 Contract ThirdPartyServices::print(content : String, numbers : Integer) : Boolean {
 		/*
@@ -3381,9 +3381,9 @@ Contract ThirdPartyServices::print(content : String, numbers : Integer) : Boolea
 	<td><p>The return value was <b>null</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of createLoanAccount:</p>
- 
+
 ```java
 Contract ThirdPartyServices::createLoanAccount(id : Integer) : LoanAccount {
 		/*
@@ -3436,9 +3436,9 @@ Contract ThirdPartyServices::createLoanAccount(id : Integer) : LoanAccount {
 	<td><p>The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of transferFunds:</p>
- 
+
 ```java
 Contract ThirdPartyServices::transferFunds(id : Integer, amount : Real) : Boolean {
 		/*
@@ -3491,9 +3491,9 @@ Contract ThirdPartyServices::transferFunds(id : Integer, amount : Real) : Boolea
 	<td><p>The return value was <b>true</b></p></td>
 	</tr>
 </table>
- 
+
 <p>Contract of listBookedLoans:</p>
- 
+
 ```java
 Contract LoanProcessingSystemSystem::listBookedLoans() : Boolean {
 		/*
@@ -3513,7 +3513,7 @@ Contract LoanProcessingSystemSystem::listBookedLoans() : Boolean {
 
 
 
- 
+
 ## 3.2  External interface requirements
 User interfaces
 Hardware interfaces
@@ -3550,6 +3550,7 @@ This subsection should specify the requirements derived from existing standards 
 - c) Accounting procedures;
 - d) Audit tracing.
 		
+
 For example, this could specify the requirement for software to trace processing activity. Such traces are needed for some applications to meet minimum regulatory or financial standards. An audit trace requirement may, for example, state that all changes to a payroll database must be recorded in a trace file with before and after values.
 		
 ### 3.4.2  Hardware limitations
