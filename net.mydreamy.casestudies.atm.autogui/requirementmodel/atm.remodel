@@ -328,10 +328,10 @@ Contract ATMSystem::inputPassword(password : Integer) : Boolean {
 			self.InputCard.Password = password
 		then
 			self.PasswordValidated = true and
-			return = true
+			result = true
 		else
 			self.PasswordValidated = false and
-			return = false
+			result = false
 		endif	
 }
 
