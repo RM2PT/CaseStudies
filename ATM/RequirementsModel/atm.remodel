@@ -1,0 +1,786 @@
+UseCaseModel AutomatedTellerMachine {
+
+	UC::withdrawCash() include cardIdentification definedBySSD(WithdrawCashSSD) @Description( "The customer withdraws cash" )
+	UC::checkBalance() include cardIdentification definedBySSD(CheckBalanceSSD) @Description( "The customer checks balance" )
+	UC::depositFunds() definedBySSD(DepositFundsSSD) @Description( "The customer deposits cash" )
+	UC::manageBankCard() relatedService(ManageBankCardCRUDService) @Description( "The bank clerk manages bank card information, including entering, inquiring, modifying and deleting of bank card information" )
+	UC::manageUser() relatedService(ManageUserCRUDService) @Description( "The bank clerk manages bank card information, including entering, inquiring, modifying and deleting of bank card information" )
+	UC::cardIdentification() @Description( "The system verifies the card" )
+
+	Actor Customer{
+		@Description( "The customer is the holder of the bank card")
+		withdrawCash
+		checkBalance
+		depositFunds
+	}
+
+	Actor BankClerk{
+		@Description( "The bank clerk is responsible for managing information, including user(customer) information, bank card information")
+		manageBankCard
+		manageUser
+	}
+
+	Interaction WithdrawCashSSD {
+
+		[Participants: Customer AutomatedTellerMachineSystem]
+
+		CallMessage::callMessage1(inputCard callMessage1SendingEnd -> execution1StartEnd)
+		ReturnMessage::callMessage1Return(execution1FinishEnd -> callMessage1ReturnReceivingEnd callMessage1)
+		CallMessage::callMessage3(inputPassword callMessage3SendingEnd -> execution2StartEnd)
+		ReturnMessage::callMessage3Return(execution2FinishEnd -> callMessage3ReturnReceivingEnd callMessage3)
+		CallMessage::callMessage5(withdrawCash callMessage5SendingEnd -> execution3StartEnd)
+		ReturnMessage::callMessage5Return(execution3FinishEnd -> callMessage5ReturnReceivingEnd callMessage5)
+		CallMessage::callMessage7(printReceipt callMessage7SendingEnd -> execution4StartEnd)
+		ReturnMessage::callMessage7Return(execution4FinishEnd -> callMessage7ReturnReceivingEnd callMessage7)
+		CallMessage::callMessage9(ejectCard callMessage9SendingEnd -> execution5StartEnd)
+		ReturnMessage::callMessage9Return(execution5FinishEnd -> callMessage9ReturnReceivingEnd callMessage9)
+
+		Execution::execution1(AutomatedTellerMachineSystem execution1StartEnd execution1FinishEnd)
+		Execution::execution2(AutomatedTellerMachineSystem execution2StartEnd execution2FinishEnd)
+		Execution::execution3(AutomatedTellerMachineSystem execution3StartEnd execution3FinishEnd)
+		Execution::execution4(AutomatedTellerMachineSystem execution4StartEnd execution4FinishEnd)
+		Execution::execution5(AutomatedTellerMachineSystem execution5StartEnd execution5FinishEnd)
+
+		MessageEnd::callMessage1SendingEnd(Customer callMessage1)
+		ExecutionEnd::execution1StartEnd(AutomatedTellerMachineSystem execution1)
+		ExecutionEnd::execution1FinishEnd(AutomatedTellerMachineSystem execution1)
+		MessageEnd::callMessage1ReturnReceivingEnd(Customer callMessage1Return)
+		MessageEnd::callMessage3SendingEnd(Customer callMessage3)
+		ExecutionEnd::execution2StartEnd(AutomatedTellerMachineSystem execution2)
+		ExecutionEnd::execution2FinishEnd(AutomatedTellerMachineSystem execution2)
+		MessageEnd::callMessage3ReturnReceivingEnd(Customer callMessage3Return)
+		MessageEnd::callMessage5SendingEnd(Customer callMessage5)
+		ExecutionEnd::execution3StartEnd(AutomatedTellerMachineSystem execution3)
+		ExecutionEnd::execution3FinishEnd(AutomatedTellerMachineSystem execution3)
+		MessageEnd::callMessage5ReturnReceivingEnd(Customer callMessage5Return)
+		MessageEnd::callMessage7SendingEnd(Customer callMessage7)
+		ExecutionEnd::execution4StartEnd(AutomatedTellerMachineSystem execution4)
+		ExecutionEnd::execution4FinishEnd(AutomatedTellerMachineSystem execution4)
+		MessageEnd::callMessage7ReturnReceivingEnd(Customer callMessage7Return)
+		MessageEnd::callMessage9SendingEnd(Customer callMessage9)
+		ExecutionEnd::execution5StartEnd(AutomatedTellerMachineSystem execution5)
+		ExecutionEnd::execution5FinishEnd(AutomatedTellerMachineSystem execution5)
+		MessageEnd::callMessage9ReturnReceivingEnd(Customer callMessage9Return)
+
+	}
+
+	Interaction CheckBalanceSSD {
+
+		[Participants: Customer AutomatedTellerMachineSystem]
+
+		CallMessage::CheckBalanceInteractionCallMessage1(inputCard CheckBalanceInteractionCallMessage1SendingEnd -> CheckBalanceInteractionExecution1StartEnd)
+		ReturnMessage::CheckBalanceInteractionCallMessage1Return(CheckBalanceInteractionExecution1FinishEnd -> CheckBalanceInteractionCallMessage1ReturnReceivingEnd CheckBalanceInteractionCallMessage1)
+		CallMessage::CheckBalanceInteractionCallMessage3(inputPassword CheckBalanceInteractionCallMessage3SendingEnd -> CheckBalanceInteractionExecution2StartEnd)
+		ReturnMessage::CheckBalanceInteractionCallMessage3Return(CheckBalanceInteractionExecution2FinishEnd -> CheckBalanceInteractionCallMessage3ReturnReceivingEnd CheckBalanceInteractionCallMessage3)
+		CallMessage::CheckBalanceInteractionCallMessage5(checkBalance CheckBalanceInteractionCallMessage5SendingEnd -> CheckBalanceInteractionExecution3StartEnd)
+		ReturnMessage::CheckBalanceInteractionCallMessage5Return(CheckBalanceInteractionExecution3FinishEnd -> CheckBalanceInteractionCallMessage5ReturnReceivingEnd CheckBalanceInteractionCallMessage5)
+		CallMessage::CheckBalanceInteractionCallMessage7(ejectCard CheckBalanceInteractionCallMessage7SendingEnd -> CheckBalanceInteractionExecution4StartEnd)
+		ReturnMessage::CheckBalanceInteractionCallMessage7Return(CheckBalanceInteractionExecution4FinishEnd -> CheckBalanceInteractionCallMessage7ReturnReceivingEnd CheckBalanceInteractionCallMessage7)
+
+		Execution::CheckBalanceInteractionExecution1(AutomatedTellerMachineSystem CheckBalanceInteractionExecution1StartEnd CheckBalanceInteractionExecution1FinishEnd)
+		Execution::CheckBalanceInteractionExecution2(AutomatedTellerMachineSystem CheckBalanceInteractionExecution2StartEnd CheckBalanceInteractionExecution2FinishEnd)
+		Execution::CheckBalanceInteractionExecution3(AutomatedTellerMachineSystem CheckBalanceInteractionExecution3StartEnd CheckBalanceInteractionExecution3FinishEnd)
+		Execution::CheckBalanceInteractionExecution4(AutomatedTellerMachineSystem CheckBalanceInteractionExecution4StartEnd CheckBalanceInteractionExecution4FinishEnd)
+
+		MessageEnd::CheckBalanceInteractionCallMessage1SendingEnd(Customer CheckBalanceInteractionCallMessage1)
+		ExecutionEnd::CheckBalanceInteractionExecution1StartEnd(AutomatedTellerMachineSystem CheckBalanceInteractionExecution1)
+		ExecutionEnd::CheckBalanceInteractionExecution1FinishEnd(AutomatedTellerMachineSystem CheckBalanceInteractionExecution1)
+		MessageEnd::CheckBalanceInteractionCallMessage1ReturnReceivingEnd(Customer CheckBalanceInteractionCallMessage1Return)
+		MessageEnd::CheckBalanceInteractionCallMessage3SendingEnd(Customer CheckBalanceInteractionCallMessage3)
+		ExecutionEnd::CheckBalanceInteractionExecution2StartEnd(AutomatedTellerMachineSystem CheckBalanceInteractionExecution2)
+		ExecutionEnd::CheckBalanceInteractionExecution2FinishEnd(AutomatedTellerMachineSystem CheckBalanceInteractionExecution2)
+		MessageEnd::CheckBalanceInteractionCallMessage3ReturnReceivingEnd(Customer CheckBalanceInteractionCallMessage3Return)
+		MessageEnd::CheckBalanceInteractionCallMessage5SendingEnd(Customer CheckBalanceInteractionCallMessage5)
+		ExecutionEnd::CheckBalanceInteractionExecution3StartEnd(AutomatedTellerMachineSystem CheckBalanceInteractionExecution3)
+		ExecutionEnd::CheckBalanceInteractionExecution3FinishEnd(AutomatedTellerMachineSystem CheckBalanceInteractionExecution3)
+		MessageEnd::CheckBalanceInteractionCallMessage5ReturnReceivingEnd(Customer CheckBalanceInteractionCallMessage5Return)
+		MessageEnd::CheckBalanceInteractionCallMessage7SendingEnd(Customer CheckBalanceInteractionCallMessage7)
+		ExecutionEnd::CheckBalanceInteractionExecution4StartEnd(AutomatedTellerMachineSystem CheckBalanceInteractionExecution4)
+		ExecutionEnd::CheckBalanceInteractionExecution4FinishEnd(AutomatedTellerMachineSystem CheckBalanceInteractionExecution4)
+		MessageEnd::CheckBalanceInteractionCallMessage7ReturnReceivingEnd(Customer CheckBalanceInteractionCallMessage7Return)
+
+	}
+
+	Interaction DepositFundsSSD {
+
+		[Participants: Customer AutomatedTellerMachineSystem]
+
+		CallMessage::DepositFundsInteractionCallMessage1(inputCard DepositFundsInteractionCallMessage1SendingEnd -> DepositFundsInteractionExecution1StartEnd)
+		ReturnMessage::DepositFundsInteractionCallMessage1Return(DepositFundsInteractionExecution1FinishEnd -> DepositFundsInteractionCallMessage1ReturnReceivingEnd DepositFundsInteractionCallMessage1)
+		CallMessage::DepositFundsInteractionCallMessage3(inputPassword DepositFundsInteractionCallMessage3SendingEnd -> DepositFundsInteractionExecution2StartEnd)
+		ReturnMessage::DepositFundsInteractionCallMessage3Return(DepositFundsInteractionExecution2FinishEnd -> DepositFundsInteractionCallMessage3ReturnReceivingEnd DepositFundsInteractionCallMessage3)
+		CallMessage::DepositFundsInteractionCallMessage5(depositFunds DepositFundsInteractionCallMessage5SendingEnd -> DepositFundsInteractionExecution3StartEnd)
+		ReturnMessage::DepositFundsInteractionCallMessage5Return(DepositFundsInteractionExecution3FinishEnd -> DepositFundsInteractionCallMessage5ReturnReceivingEnd DepositFundsInteractionCallMessage5)
+		CallMessage::DepositFundsInteractionCallMessage7(printReceipt DepositFundsInteractionCallMessage7SendingEnd -> DepositFundsInteractionExecution4StartEnd)
+		ReturnMessage::DepositFundsInteractionCallMessage7Return(DepositFundsInteractionExecution4FinishEnd -> DepositFundsInteractionCallMessage7ReturnReceivingEnd DepositFundsInteractionCallMessage7)
+		CallMessage::DepositFundsInteractionCallMessage9(ejectCard DepositFundsInteractionCallMessage9SendingEnd -> DepositFundsInteractionExecution5StartEnd)
+		ReturnMessage::DepositFundsInteractionCallMessage9Return(DepositFundsInteractionExecution5FinishEnd -> DepositFundsInteractionCallMessage9ReturnReceivingEnd DepositFundsInteractionCallMessage9)
+
+		Execution::DepositFundsInteractionExecution1(AutomatedTellerMachineSystem DepositFundsInteractionExecution1StartEnd DepositFundsInteractionExecution1FinishEnd)
+		Execution::DepositFundsInteractionExecution2(AutomatedTellerMachineSystem DepositFundsInteractionExecution2StartEnd DepositFundsInteractionExecution2FinishEnd)
+		Execution::DepositFundsInteractionExecution3(AutomatedTellerMachineSystem DepositFundsInteractionExecution3StartEnd DepositFundsInteractionExecution3FinishEnd)
+		Execution::DepositFundsInteractionExecution4(AutomatedTellerMachineSystem DepositFundsInteractionExecution4StartEnd DepositFundsInteractionExecution4FinishEnd)
+		Execution::DepositFundsInteractionExecution5(AutomatedTellerMachineSystem DepositFundsInteractionExecution5StartEnd DepositFundsInteractionExecution5FinishEnd)
+
+		MessageEnd::DepositFundsInteractionCallMessage1SendingEnd(Customer DepositFundsInteractionCallMessage1)
+		ExecutionEnd::DepositFundsInteractionExecution1StartEnd(AutomatedTellerMachineSystem DepositFundsInteractionExecution1)
+		ExecutionEnd::DepositFundsInteractionExecution1FinishEnd(AutomatedTellerMachineSystem DepositFundsInteractionExecution1)
+		MessageEnd::DepositFundsInteractionCallMessage1ReturnReceivingEnd(Customer DepositFundsInteractionCallMessage1Return)
+		MessageEnd::DepositFundsInteractionCallMessage3SendingEnd(Customer DepositFundsInteractionCallMessage3)
+		ExecutionEnd::DepositFundsInteractionExecution2StartEnd(AutomatedTellerMachineSystem DepositFundsInteractionExecution2)
+		ExecutionEnd::DepositFundsInteractionExecution2FinishEnd(AutomatedTellerMachineSystem DepositFundsInteractionExecution2)
+		MessageEnd::DepositFundsInteractionCallMessage3ReturnReceivingEnd(Customer DepositFundsInteractionCallMessage3Return)
+		MessageEnd::DepositFundsInteractionCallMessage5SendingEnd(Customer DepositFundsInteractionCallMessage5)
+		ExecutionEnd::DepositFundsInteractionExecution3StartEnd(AutomatedTellerMachineSystem DepositFundsInteractionExecution3)
+		ExecutionEnd::DepositFundsInteractionExecution3FinishEnd(AutomatedTellerMachineSystem DepositFundsInteractionExecution3)
+		MessageEnd::DepositFundsInteractionCallMessage5ReturnReceivingEnd(Customer DepositFundsInteractionCallMessage5Return)
+		MessageEnd::DepositFundsInteractionCallMessage7SendingEnd(Customer DepositFundsInteractionCallMessage7)
+		ExecutionEnd::DepositFundsInteractionExecution4StartEnd(AutomatedTellerMachineSystem DepositFundsInteractionExecution4)
+		ExecutionEnd::DepositFundsInteractionExecution4FinishEnd(AutomatedTellerMachineSystem DepositFundsInteractionExecution4)
+		MessageEnd::DepositFundsInteractionCallMessage7ReturnReceivingEnd(Customer DepositFundsInteractionCallMessage7Return)
+		MessageEnd::DepositFundsInteractionCallMessage9SendingEnd(Customer DepositFundsInteractionCallMessage9)
+		ExecutionEnd::DepositFundsInteractionExecution5StartEnd(AutomatedTellerMachineSystem DepositFundsInteractionExecution5)
+		ExecutionEnd::DepositFundsInteractionExecution5FinishEnd(AutomatedTellerMachineSystem DepositFundsInteractionExecution5)
+		MessageEnd::DepositFundsInteractionCallMessage9ReturnReceivingEnd(Customer DepositFundsInteractionCallMessage9Return)
+
+	}
+
+	Service AutomatedTellerMachineSystem {
+
+		[Operation]
+		depositFunds(quantity)
+		inputPassword(password)
+		inputCard(cardid)
+		ejectCard()
+		withdrawCash(quantity)
+		printReceipt()
+		checkBalance()
+		cardIdentification()
+
+		[TempProperty]
+		PasswordValidated : Boolean
+		WithdrawedNumber : Real
+		InputCard : BankCard
+		CardIDValidated : Boolean
+		IsDeposit : Boolean
+		IsWithdraw : Boolean
+		DepositedNumber : Real
+
+	}
+
+	Service ManageBankCardCRUDService {
+
+		[Operation]
+		createBankCard(cardid, cardstatus, catalog, password, balance)
+		queryBankCard(cardid)
+		modifyBankCard(cardid, cardstatus, catalog, password, balance)
+		deleteBankCard(cardid)
+
+	}
+
+	Service ManageUserCRUDService {
+
+		[Operation]
+		createUser(userid, name, address)
+		queryUser(userid)
+		modifyUser(userid, name, address)
+		deleteUser(userid)
+
+	}
+
+	Service ThirdPartyServices {
+
+	}
+
+//Service BankSystem {
+//	[Operation]
+//	authenticate(cardID, password)
+//
+//}
+//Service ATMCheckBalance {
+//
+//	[Operation]
+//	InputCard(cardID)
+//	inputPassword(password)
+//	checkBalance()
+//	ejectCard()
+//
+//	[TempProperty]
+//	WithdrawedNumber : Integer
+//	PasswordValidated : Boolean
+//	CardIDValidated : Boolean
+//	InputCard : BankCard
+//
+//}
+//
+//Service ATMWithdrawCash {
+//
+//	[Operation]
+//	inputPassword(password)
+//	InputCard(cardID)
+//	withDraw(quantity)
+//	printReceipt()
+//	ejectCard()
+//
+//	[TempProperty]
+//	WithdrawedNumber : Integer
+//	PasswordValidated : Boolean
+//	CardIDValidated : Boolean
+//	InputCard : BankCard
+//
+//}
+//Contract ATMSystem::InputCard Skeleton
+	Contract AutomatedTellerMachineSystem::inputCard(cardid :Integer) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * bc is the object c in the instance set of class BankCard. c represents an object of class BankCard, and c meets:
+		 *     The attribute CardID of the object c is equal to cardid
+		 */
+		definition:
+			bc:BankCard = BankCard.allInstance()->any(c:BankCard | c.CardID = cardid)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * None
+		 */
+		precondition:
+			true
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * If (bc existed), take the following as postcondition(s):
+		 *     The value of temporary variable CardIDValidated became true
+		 *     The object InputCard became bc
+		 *     The return value was true
+		 * Otherwise, take the following as postcondition(s):
+		 *     The value of temporary variable CardIDValidated became false
+		 *     The return value was false
+		 */
+		postcondition:
+			if
+				(bc.oclIsUndefined() = false)
+			then
+				self.CardIDValidated = true and
+				self.InputCard = bc and
+				result = true
+			else
+				self.CardIDValidated = false and
+				result = false
+			endif
+	}
+
+//Contract ATMSystem::inputPassword Skeleton
+	Contract AutomatedTellerMachineSystem::inputPassword(password : Integer) : Boolean {
+
+		definition:
+			t:BankCard = self.InputCard
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * The value of temporary variable CardIDValidated is equal to true
+		 * The object InputCard exists
+		 */
+		precondition:
+			self.CardIDValidated = true and
+			self.InputCard.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * If the attribute Password of the object InputCard was equal to password, take the following as postcondition(s):
+		 *     The value of temporary variable PasswordValidated became true
+		 *     The return value was true
+		 * Otherwise, take the following as postcondition(s):
+		 *     The value of temporary variable PasswordValidated became false
+		 *     The return value was false
+		 */
+		postcondition:
+			if
+				t.Password = password
+			then
+				self.PasswordValidated = true and
+				result = true
+			else
+				self.PasswordValidated = false and
+				result = false
+			endif
+	}
+
+//Contract ATMSystem::printReceipt Skeleton
+	Contract AutomatedTellerMachineSystem::printReceipt() : Real {
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * The value of temporary variable CardIDValidated is equal to true
+		 * The value of temporary variable PasswordValidated is equal to true
+		 * The object InputCard exists
+		 */
+		precondition:
+			self.CardIDValidated = true and
+			self.PasswordValidated = true and
+			self.InputCard.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * If the value of temporary variable IsWithdraw was equal to true, take the following as postcondition(s):
+		 *     The return value was the value of temporary variable WithdrawedNumber
+		 * Otherwise, take the following as postcondition(s):
+		 *     If the value of temporary variable IsDeposit was equal to true, take the following as postcondition(s):
+		 *         The return value was the value of temporary variable DepositedNumber
+		 *     Otherwise, take the following as postcondition(s):
+		 *         The return value was 0
+		 */
+		postcondition:
+			if
+				self.IsWithdraw = true
+			then
+				result = self.WithdrawedNumber
+			else
+				if
+					self.IsDeposit = true
+				then
+					result = self.DepositedNumber
+				else
+					result = 0
+				endif
+			endif
+	}
+
+//Contract ATMSystem::checkBalance Skeleton
+	Contract AutomatedTellerMachineSystem::checkBalance() : Real {
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * The value of temporary variable PasswordValidated is equal to true
+		 * The value of temporary variable CardIDValidated is equal to true
+		 * The object InputCard exists
+		 */
+		precondition:
+			self.PasswordValidated = true and
+			self.CardIDValidated = true and
+			self.InputCard.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The return value was the attribute Balance of the object InputCard
+		 */
+		postcondition:
+			result = self.InputCard.Balance
+	}
+
+//Contract ATMSystem::ejectCard Skeleton
+	Contract AutomatedTellerMachineSystem::ejectCard() : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * The value of temporary variable PasswordValidated is equal to true
+		 * The value of temporary variable CardIDValidated is equal to true
+		 * The object InputCard exists
+		 */
+		precondition:
+			self.PasswordValidated = true and
+			self.CardIDValidated = true and
+			self.InputCard.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The object InputCard became null
+		 * The value of temporary variable PasswordValidated became false
+		 * The value of temporary variable CardIDValidated became false
+		 * The value of temporary variable IsWithdraw became false
+		 * The value of temporary variable IsDeposit became false
+		 * The value of temporary variable WithdrawedNumber became 0
+		 * The value of temporary variable DepositedNumber became 0
+		 * The return value was true
+		 */
+		postcondition:
+			self.InputCard = null and
+			self.PasswordValidated = false and
+			self.CardIDValidated = false and
+			self.IsWithdraw = false and
+			self.IsDeposit = false and
+			self.WithdrawedNumber = 0 and
+			self.DepositedNumber = 0 and
+			result = true
+	}
+
+//Contract ATMSystem::withDraw Skeleton
+	Contract AutomatedTellerMachineSystem::withdrawCash(quantity : Integer) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * The value of temporary variable PasswordValidated is equal to true
+		 * The value of temporary variable CardIDValidated is equal to true
+		 * The object InputCard exists
+		 * The attribute Balance of the object InputCard is greater than or equal to quantity
+		 */
+		precondition:
+			self.PasswordValidated = true and
+			self.CardIDValidated = true and
+			self.InputCard.oclIsUndefined() = false
+//			and
+//			self.InputCard.Balance >= quantity
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The attribute Balance of the object InputCard became the previous value of the attribute Balance of the object InputCard minus quantity
+		 * The value of temporary variable WithdrawedNumber became quantity
+		 * The value of temporary variable IsWithdraw became true
+		 * The return value was true
+		 */
+		postcondition:
+//			self.InputCard.Balance = self.InputCard.Balance@pre - quantity and
+			self.WithdrawedNumber = quantity and
+			self.IsWithdraw = true and
+			result = true
+	}
+
+//Contract ATMSystem::deposit Skeleton
+	Contract AutomatedTellerMachineSystem::depositFunds(quantity : Real) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * The value of temporary variable PasswordValidated is equal to true
+		 * The value of temporary variable CardIDValidated is equal to true
+		 * The object InputCard exists
+		 * The quantity is greater than or equal to 100
+		 */
+		precondition:
+			self.PasswordValidated = true and
+			self.CardIDValidated = true and
+			self.InputCard.oclIsUndefined() = false and
+			quantity >= 100
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The attribute Balance of the object InputCard became the previous value of the attribute Balance of the object InputCard plus quantity
+		 * The value of temporary variable IsDeposit became true
+		 * The value of temporary variable DepositedNumber became quantity
+		 * The return value was true
+		 */
+		postcondition:
+//			self.InputCard.Balance = self.InputCard.Balance@pre + quantity and
+			self.IsDeposit = true and
+			self.DepositedNumber = quantity and
+			result = true
+	}
+
+//entity create operation 
+	Contract  ManageBankCardCRUDService::createBankCard(cardid : Integer, cardstatus : CardStatus[NORMAL|SUSPEND|CANNEL], catalog : CardCatalog[CREDIT|DESPOSIT], password : Integer, balance : Real) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * bankcard is the object ban in the instance set of class BankCard. ban represents an object of class BankCard, and ban meets:
+		 *     The attribute CardID of the object ban is equal to cardid
+		 */
+		definition:
+			bankcard:BankCard = BankCard.allInstance()->any(ban:BankCard | ban.CardID = cardid)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * bankcard doesn't exist
+		 */
+		precondition:
+			bankcard.oclIsUndefined() = true
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * ban represented the object of class BankCard
+		 * The object ban was created
+		 * The attribute CardID of the object ban became cardid
+		 * The attribute CardStatus of the object ban became cardstatus
+		 * The attribute Catalog of the object ban became catalog
+		 * The attribute Password of the object ban became password
+		 * The attribute Balance of the object ban became balance
+		 * The object ban was put into the instance set of class BankCard
+		 * The return value was true
+		 */
+		postcondition:
+			let ban:BankCard in
+			ban.oclIsNew() and
+			ban.CardID = cardid and
+			ban.CardStatus = cardstatus and
+			ban.Catalog = catalog and
+			ban.Password = password and
+			ban.Balance = balance and
+			BankCard.allInstance()->includes(ban) and
+			result = true
+	}
+
+//entity query operation 
+	Contract  ManageBankCardCRUDService::queryBankCard(cardid : Integer) : BankCard {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * bankcard is the object ban in the instance set of class BankCard. ban represents an object of class BankCard, and ban meets:
+		 *     The attribute CardID of the object ban is equal to cardid
+		 */
+		definition:
+			bankcard:BankCard = BankCard.allInstance()->any(ban:BankCard | ban.CardID = cardid)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * bankcard exists
+		 */
+		precondition:
+			bankcard.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The return value was bankcard
+		 */
+		postcondition:
+			result = bankcard
+	}
+
+//entity modify operation 
+	Contract  ManageBankCardCRUDService::modifyBankCard(cardid : Integer, cardstatus : CardStatus[NORMAL|SUSPEND|CANNEL], catalog : CardCatalog[CREDIT|DESPOSIT], password : Integer, balance : Real) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * bankcard is the object ban in the instance set of class BankCard. ban represents an object of class BankCard, and ban meets:
+		 *     The attribute CardID of the object ban is equal to cardid
+		 */
+		definition:
+			bankcard:BankCard = BankCard.allInstance()->any(ban:BankCard | ban.CardID = cardid)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * bankcard exists
+		 */
+		precondition:
+			bankcard.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The attribute CardID of the object bankcard became cardid
+		 * The attribute CardStatus of the object bankcard became cardstatus
+		 * The attribute Catalog of the object bankcard became catalog
+		 * The attribute Password of the object bankcard became password
+		 * The attribute Balance of the object bankcard became balance
+		 * The return value was true
+		 */
+		postcondition:
+			bankcard.CardID = cardid and
+			bankcard.CardStatus = cardstatus and
+			bankcard.Catalog = catalog and
+			bankcard.Password = password and
+			bankcard.Balance = balance and
+			result = true
+	}
+
+//entity delete operation 
+	Contract  ManageBankCardCRUDService::deleteBankCard(cardid : Integer) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * bankcard is the object ban in the instance set of class BankCard. ban represents an object of class BankCard, and ban meets:
+		 *     The attribute CardID of the object ban is equal to cardid
+		 */
+		definition:
+			bankcard:BankCard = BankCard.allInstance()->any(ban:BankCard | ban.CardID = cardid)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * bankcard exists
+		 * The object bankcard is in the instance set of class BankCard
+		 */
+		precondition:
+			bankcard.oclIsUndefined() = false and
+			BankCard.allInstance()->includes(bankcard)
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The object bankcard was deleted from the instance set of class BankCard
+		 * The return value was true
+		 */
+		postcondition:
+			BankCard.allInstance()->excludes(bankcard) and
+			result = true
+	}
+
+//entity create operation 
+	Contract  ManageUserCRUDService::createUser(userid : Integer, name : String, address : String) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * user is the object use in the instance set of class User. use represents an object of class User, and use meets:
+		 *     The attribute UserID of the object use is equal to userid
+		 */
+		definition:
+			user:User = User.allInstance()->any(use:User | use.UserID = userid)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * user doesn't exist
+		 */
+		precondition:
+			user.oclIsUndefined() = true
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * use represented the object of class User
+		 * The object use was created
+		 * The attribute UserID of the object use became userid
+		 * The attribute Name of the object use became name
+		 * The attribute Address of the object use became address
+		 * The object use was put into the instance set of class User
+		 * The return value was true
+		 */
+		postcondition:
+			let use:User in
+			use.oclIsNew() and
+			use.UserID = userid and
+			use.Name = name and
+			use.Address = address and
+			User.allInstance()->includes(use) and
+			result = true
+	}
+
+//entity query operation 
+	Contract  ManageUserCRUDService::queryUser(userid : Integer) : User {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * user is the object use in the instance set of class User. use represents an object of class User, and use meets:
+		 *     The attribute UserID of the object use is equal to userid
+		 */
+		definition:
+			user:User = User.allInstance()->any(use:User | use.UserID = userid)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * user exists
+		 */
+		precondition:
+			user.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The return value was user
+		 */
+		postcondition:
+			result = user
+	}
+
+//entity modify operation 
+	Contract  ManageUserCRUDService::modifyUser(userid : Integer, name : String, address : String) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * user is the object use in the instance set of class User. use represents an object of class User, and use meets:
+		 *     The attribute UserID of the object use is equal to userid
+		 */
+		definition:
+			user:User = User.allInstance()->any(use:User | use.UserID = userid)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * user exists
+		 */
+		precondition:
+			user.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The attribute UserID of the object user became userid
+		 * The attribute Name of the object user became name
+		 * The attribute Address of the object user became address
+		 * The return value was true
+		 */
+		postcondition:
+			user.UserID = userid and
+			user.Name = name and
+			user.Address = address and
+			result = true
+	}
+
+//entity delete operation 
+	Contract  ManageUserCRUDService::deleteUser(userid : Integer) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * user is the object use in the instance set of class User. use represents an object of class User, and use meets:
+		 *     The attribute UserID of the object use is equal to userid
+		 */
+		definition:
+			user:User = User.allInstance()->any(use:User | use.UserID = userid)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * user exists
+		 * The object user is in the instance set of class User
+		 */
+		precondition:
+			user.oclIsUndefined() = false and
+			User.allInstance()->includes(user)
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The object user was deleted from the instance set of class User
+		 * The return value was true
+		 */
+		postcondition:
+			User.allInstance()->excludes(user) and
+			result = true
+	}
+
+	Contract AutomatedTellerMachineSystem::cardIdentification() : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * None
+		 */
+		precondition:
+			true
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The return value was true
+		 */
+		postcondition:
+			result = true
+	}
+
+}
+
+DomainModel ATM {
+
+	@AutoCRUD
+	Entity BankCard {
+		@Description( "The BankCrad is a card that can deposit or withdraw money" ) CardID : Integer
+		CardStatus : CardStatus[NORMAL|SUSPEND|CANNEL]
+		Catalog : CardCatalog[CREDIT|DESPOSIT]
+		Password : Integer
+		Balance : Real
+
+		[Refer]
+		BelongedUser : User Association
+//		Has : Transcation* Association
+		[INV]
+		inv UniqueCardID : BankCard.allInstance()->isUnique(b:BankCard | b.CardID)
+		inv BalanceGreatAndEqualZero : Balance >= 0
+	}
+
+	@AutoCRUD
+	Entity User {
+		@Description( "The user is the holder of the bank card" ) UserID : Integer
+		Name : String
+		Address : String
+
+		[Refer]
+		OwnedCard : BankCard* ! Association
+		[INV]
+		inv UniqueUserID : User.allInstance()->isUnique(u:User | u.UserID)
+	}
+
+//	Entity Transcation {
+//		@Description( "description" ) WithdrawedNum : Integer
+//		BalanceAfterWithdraw : Real
+//
+//		[Refer]
+//		InvolvedCard : BankCard ! Association
+//		[INV]
+//		inv WithdrawedNumGreatAndEqualZero : WithdrawedNum >= 0
+//		inv BalanceAfterWithdrawGreatAndEqualZero : BalanceAfterWithdraw >= 0
+//	}
+}
+

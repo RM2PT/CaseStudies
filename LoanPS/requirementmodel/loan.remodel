@@ -1,0 +1,1324 @@
+UseCaseModel LoanProcessingSystem {
+
+	UC::evaluateLoanRequest() definedBySSD(EvaluateLoanRequestSSD) relatedService(EvaluateLoanRequestModule) @Description( "The loan officer reviews the online information about the pending loan request to determine whether the loan should be approved" )
+	UC::manageLoanTerm() relatedService(ManageLoanTermCRUDService)
+	UC::enterValidatedCreditReferences()
+	UC::generateLoanLetterAndAgreement() definedBySSD(GenerateLoanLetterAndAgreementSSD) relatedService(GenerateLoanLetterAndAgreementModule) @Description( "a loan clerk has the system genereate an approval letter for the applicant" )
+	UC::bookNewLoan() @Description( "Once a loan aggrement has been sighed by the customer and returned to the bank, the loan clerk has the system create a loan account based on the agreed-on terms and conditions" )
+	UC::loanPayment() @Description( "Payment is received from the customer, the loan clerk enters the payment into the appropriate loan account" )
+	UC::closeOutLoan() @Description( "The loan has been paid in full by the customer, and the loan will be closed" )
+	UC::generateStandardPaymentNotice() @Description( "when the monthly billing time occurs, the loan system genereates the bill statements for mailing to the customer" )
+	UC::generateLateNotice() @Description( "The loan system genereates the late notice for mailling to the customer" )
+	UC::submitLoanRequest() relatedService(SubmitLoanRequestModule)
+
+	Actor LoanOfficer {
+		@Description( "a loan officer is an officer of the bank who has the designated responsibilitiy of evaluating requests for a loan") evaluateLoanRequest
+		manageLoanTerm
+	}
+
+	Actor LoanAssistant {
+		@Description( "The loan assistant is responsible for manually capturing and entering into the system the credit information") enterValidatedCreditReferences
+	}
+
+	Actor LoanClerk {
+		@Description( "The loan clerk is responsible for booking (recording and setting up) the loan") generateLoanLetterAndAgreement
+		bookNewLoan
+		loanPayment
+		closeOutLoan
+	}
+
+	Actor Scheduler {
+		generateStandardPaymentNotice
+		generateLateNotice
+	}
+
+	Actor Applicant {
+		@Description( "An applicant is an individual or organization who sumits an application for a loan to the bank") submitLoanRequest
+	}
+
+	Interaction EvaluateLoanRequestSSD {
+
+		[Participants: LoanOfficer EvaluateLoanRequestModule]
+
+		CallMessage::InteractionEvaluateLoanRequestModuleCallMessage1(listTenLoanRequest InteractionEvaluateLoanRequestModuleCallMessage1SendingEnd -> InteractionEvaluateLoanRequestModuleExecution1StartEnd)
+		ReturnMessage::InteractionEvaluateLoanRequestModuleCallMessage1Return(InteractionEvaluateLoanRequestModuleExecution1FinishEnd -> InteractionEvaluateLoanRequestModuleCallMessage1ReturnReceivingEnd InteractionEvaluateLoanRequestModuleCallMessage1)
+		CallMessage::InteractionEvaluateLoanRequestModuleCallMessage3(chooseOneForReview InteractionEvaluateLoanRequestModuleCallMessage3SendingEnd -> InteractionEvaluateLoanRequestModuleExecution2StartEnd)
+		ReturnMessage::InteractionEvaluateLoanRequestModuleCallMessage3Return(InteractionEvaluateLoanRequestModuleExecution2FinishEnd -> InteractionEvaluateLoanRequestModuleCallMessage3ReturnReceivingEnd InteractionEvaluateLoanRequestModuleCallMessage3)
+		CallMessage::InteractionEvaluateLoanRequestModuleCallMessage5(checkCreditHistory InteractionEvaluateLoanRequestModuleCallMessage5SendingEnd -> InteractionEvaluateLoanRequestModuleExecution3StartEnd)
+		ReturnMessage::InteractionEvaluateLoanRequestModuleCallMessage5Return(InteractionEvaluateLoanRequestModuleExecution3FinishEnd -> InteractionEvaluateLoanRequestModuleCallMessage5ReturnReceivingEnd InteractionEvaluateLoanRequestModuleCallMessage5)
+		CallMessage::InteractionEvaluateLoanRequestModuleCallMessage7(reviewCheckingAccount InteractionEvaluateLoanRequestModuleCallMessage7SendingEnd -> InteractionEvaluateLoanRequestModuleExecution4StartEnd)
+		ReturnMessage::InteractionEvaluateLoanRequestModuleCallMessage7Return(InteractionEvaluateLoanRequestModuleExecution4FinishEnd -> InteractionEvaluateLoanRequestModuleCallMessage7ReturnReceivingEnd InteractionEvaluateLoanRequestModuleCallMessage7)
+		CallMessage::InteractionEvaluateLoanRequestModuleCallMessage9(listAvaiableLoanTerm InteractionEvaluateLoanRequestModuleCallMessage9SendingEnd -> InteractionEvaluateLoanRequestModuleExecution5StartEnd)
+		ReturnMessage::InteractionEvaluateLoanRequestModuleCallMessage9Return(InteractionEvaluateLoanRequestModuleExecution5FinishEnd -> InteractionEvaluateLoanRequestModuleCallMessage9ReturnReceivingEnd InteractionEvaluateLoanRequestModuleCallMessage9)
+		CallMessage::InteractionEvaluateLoanRequestModuleCallMessage11(addLoanTerm InteractionEvaluateLoanRequestModuleCallMessage11SendingEnd -> InteractionEvaluateLoanRequestModuleExecution6StartEnd)
+		ReturnMessage::InteractionEvaluateLoanRequestModuleCallMessage11Return(InteractionEvaluateLoanRequestModuleExecution6FinishEnd -> InteractionEvaluateLoanRequestModuleCallMessage11ReturnReceivingEnd InteractionEvaluateLoanRequestModuleCallMessage11)
+		CallMessage::InteractionEvaluateLoanRequestModuleCallMessage13(approveLoanRequest InteractionEvaluateLoanRequestModuleCallMessage13SendingEnd -> InteractionEvaluateLoanRequestModuleExecution7StartEnd)
+		ReturnMessage::InteractionEvaluateLoanRequestModuleCallMessage13Return(InteractionEvaluateLoanRequestModuleExecution7FinishEnd -> InteractionEvaluateLoanRequestModuleCallMessage13ReturnReceivingEnd InteractionEvaluateLoanRequestModuleCallMessage13)
+
+		Execution::InteractionEvaluateLoanRequestModuleExecution1(EvaluateLoanRequestModule InteractionEvaluateLoanRequestModuleExecution1StartEnd InteractionEvaluateLoanRequestModuleExecution1FinishEnd)
+		Execution::InteractionEvaluateLoanRequestModuleExecution2(EvaluateLoanRequestModule InteractionEvaluateLoanRequestModuleExecution2StartEnd InteractionEvaluateLoanRequestModuleExecution2FinishEnd)
+		Execution::InteractionEvaluateLoanRequestModuleExecution3(EvaluateLoanRequestModule InteractionEvaluateLoanRequestModuleExecution3StartEnd InteractionEvaluateLoanRequestModuleExecution3FinishEnd)
+		Execution::InteractionEvaluateLoanRequestModuleExecution4(EvaluateLoanRequestModule InteractionEvaluateLoanRequestModuleExecution4StartEnd InteractionEvaluateLoanRequestModuleExecution4FinishEnd)
+		Execution::InteractionEvaluateLoanRequestModuleExecution5(EvaluateLoanRequestModule InteractionEvaluateLoanRequestModuleExecution5StartEnd InteractionEvaluateLoanRequestModuleExecution5FinishEnd)
+		Execution::InteractionEvaluateLoanRequestModuleExecution6(EvaluateLoanRequestModule InteractionEvaluateLoanRequestModuleExecution6StartEnd InteractionEvaluateLoanRequestModuleExecution6FinishEnd)
+		Execution::InteractionEvaluateLoanRequestModuleExecution7(EvaluateLoanRequestModule InteractionEvaluateLoanRequestModuleExecution7StartEnd InteractionEvaluateLoanRequestModuleExecution7FinishEnd)
+
+		MessageEnd::InteractionEvaluateLoanRequestModuleCallMessage1SendingEnd(LoanOfficer InteractionEvaluateLoanRequestModuleCallMessage1)
+		ExecutionEnd::InteractionEvaluateLoanRequestModuleExecution1StartEnd(EvaluateLoanRequestModule InteractionEvaluateLoanRequestModuleExecution1)
+		ExecutionEnd::InteractionEvaluateLoanRequestModuleExecution1FinishEnd(EvaluateLoanRequestModule InteractionEvaluateLoanRequestModuleExecution1)
+		MessageEnd::InteractionEvaluateLoanRequestModuleCallMessage1ReturnReceivingEnd(LoanOfficer InteractionEvaluateLoanRequestModuleCallMessage1Return)
+		MessageEnd::InteractionEvaluateLoanRequestModuleCallMessage3SendingEnd(LoanOfficer InteractionEvaluateLoanRequestModuleCallMessage3)
+		ExecutionEnd::InteractionEvaluateLoanRequestModuleExecution2StartEnd(EvaluateLoanRequestModule InteractionEvaluateLoanRequestModuleExecution2)
+		ExecutionEnd::InteractionEvaluateLoanRequestModuleExecution2FinishEnd(EvaluateLoanRequestModule InteractionEvaluateLoanRequestModuleExecution2)
+		MessageEnd::InteractionEvaluateLoanRequestModuleCallMessage3ReturnReceivingEnd(LoanOfficer InteractionEvaluateLoanRequestModuleCallMessage3Return)
+		MessageEnd::InteractionEvaluateLoanRequestModuleCallMessage5SendingEnd(LoanOfficer InteractionEvaluateLoanRequestModuleCallMessage5)
+		ExecutionEnd::InteractionEvaluateLoanRequestModuleExecution3StartEnd(EvaluateLoanRequestModule InteractionEvaluateLoanRequestModuleExecution3)
+		ExecutionEnd::InteractionEvaluateLoanRequestModuleExecution3FinishEnd(EvaluateLoanRequestModule InteractionEvaluateLoanRequestModuleExecution3)
+		MessageEnd::InteractionEvaluateLoanRequestModuleCallMessage5ReturnReceivingEnd(LoanOfficer InteractionEvaluateLoanRequestModuleCallMessage5Return)
+		MessageEnd::InteractionEvaluateLoanRequestModuleCallMessage7SendingEnd(LoanOfficer InteractionEvaluateLoanRequestModuleCallMessage7)
+		ExecutionEnd::InteractionEvaluateLoanRequestModuleExecution4StartEnd(EvaluateLoanRequestModule InteractionEvaluateLoanRequestModuleExecution4)
+		ExecutionEnd::InteractionEvaluateLoanRequestModuleExecution4FinishEnd(EvaluateLoanRequestModule InteractionEvaluateLoanRequestModuleExecution4)
+		MessageEnd::InteractionEvaluateLoanRequestModuleCallMessage7ReturnReceivingEnd(LoanOfficer InteractionEvaluateLoanRequestModuleCallMessage7Return)
+		MessageEnd::InteractionEvaluateLoanRequestModuleCallMessage9SendingEnd(LoanOfficer InteractionEvaluateLoanRequestModuleCallMessage9)
+		ExecutionEnd::InteractionEvaluateLoanRequestModuleExecution5StartEnd(EvaluateLoanRequestModule InteractionEvaluateLoanRequestModuleExecution5)
+		ExecutionEnd::InteractionEvaluateLoanRequestModuleExecution5FinishEnd(EvaluateLoanRequestModule InteractionEvaluateLoanRequestModuleExecution5)
+		MessageEnd::InteractionEvaluateLoanRequestModuleCallMessage9ReturnReceivingEnd(LoanOfficer InteractionEvaluateLoanRequestModuleCallMessage9Return)
+		MessageEnd::InteractionEvaluateLoanRequestModuleCallMessage11SendingEnd(LoanOfficer InteractionEvaluateLoanRequestModuleCallMessage11)
+		ExecutionEnd::InteractionEvaluateLoanRequestModuleExecution6StartEnd(EvaluateLoanRequestModule InteractionEvaluateLoanRequestModuleExecution6)
+		ExecutionEnd::InteractionEvaluateLoanRequestModuleExecution6FinishEnd(EvaluateLoanRequestModule InteractionEvaluateLoanRequestModuleExecution6)
+		MessageEnd::InteractionEvaluateLoanRequestModuleCallMessage11ReturnReceivingEnd(LoanOfficer InteractionEvaluateLoanRequestModuleCallMessage11Return)
+		MessageEnd::InteractionEvaluateLoanRequestModuleCallMessage13SendingEnd(LoanOfficer InteractionEvaluateLoanRequestModuleCallMessage13)
+		ExecutionEnd::InteractionEvaluateLoanRequestModuleExecution7StartEnd(EvaluateLoanRequestModule InteractionEvaluateLoanRequestModuleExecution7)
+		ExecutionEnd::InteractionEvaluateLoanRequestModuleExecution7FinishEnd(EvaluateLoanRequestModule InteractionEvaluateLoanRequestModuleExecution7)
+		MessageEnd::InteractionEvaluateLoanRequestModuleCallMessage13ReturnReceivingEnd(LoanOfficer InteractionEvaluateLoanRequestModuleCallMessage13Return)
+
+	}
+
+	Interaction GenerateLoanLetterAndAgreementSSD {
+
+		[Participants: LoanClerk GenerateLoanLetterAndAgreementModule]
+
+		CallMessage::InteractionGenerateLoanLetterAndAgreementCallMessage1(listApprovalRequest InteractionGenerateLoanLetterAndAgreementCallMessage1SendingEnd -> InteractionGenerateLoanLetterAndAgreementExecution1StartEnd)
+		ReturnMessage::InteractionGenerateLoanLetterAndAgreementCallMessage1Return(InteractionGenerateLoanLetterAndAgreementExecution1FinishEnd -> InteractionGenerateLoanLetterAndAgreementCallMessage1ReturnReceivingEnd InteractionGenerateLoanLetterAndAgreementCallMessage1)
+		CallMessage::InteractionGenerateLoanLetterAndAgreementCallMessage3(genereateApprovalLetter InteractionGenerateLoanLetterAndAgreementCallMessage3SendingEnd -> InteractionGenerateLoanLetterAndAgreementExecution2StartEnd)
+		ReturnMessage::InteractionGenerateLoanLetterAndAgreementCallMessage3Return(InteractionGenerateLoanLetterAndAgreementExecution2FinishEnd -> InteractionGenerateLoanLetterAndAgreementCallMessage3ReturnReceivingEnd InteractionGenerateLoanLetterAndAgreementCallMessage3)
+		CallMessage::InteractionGenerateLoanLetterAndAgreementCallMessage5(emailToAppliant InteractionGenerateLoanLetterAndAgreementCallMessage5SendingEnd -> InteractionGenerateLoanLetterAndAgreementExecution3StartEnd)
+		ReturnMessage::InteractionGenerateLoanLetterAndAgreementCallMessage5Return(InteractionGenerateLoanLetterAndAgreementExecution3FinishEnd -> InteractionGenerateLoanLetterAndAgreementCallMessage5ReturnReceivingEnd InteractionGenerateLoanLetterAndAgreementCallMessage5)
+		CallMessage::InteractionGenerateLoanLetterAndAgreementCallMessage7(generateLoanAgreement InteractionGenerateLoanLetterAndAgreementCallMessage7SendingEnd -> InteractionGenerateLoanLetterAndAgreementExecution4StartEnd)
+		ReturnMessage::InteractionGenerateLoanLetterAndAgreementCallMessage7Return(InteractionGenerateLoanLetterAndAgreementExecution4FinishEnd -> InteractionGenerateLoanLetterAndAgreementCallMessage7ReturnReceivingEnd InteractionGenerateLoanLetterAndAgreementCallMessage7)
+		CallMessage::InteractionGenerateLoanLetterAndAgreementCallMessage9(printLoanAgreement InteractionGenerateLoanLetterAndAgreementCallMessage9SendingEnd -> InteractionGenerateLoanLetterAndAgreementExecution5StartEnd)
+		ReturnMessage::InteractionGenerateLoanLetterAndAgreementCallMessage9Return(InteractionGenerateLoanLetterAndAgreementExecution5FinishEnd -> InteractionGenerateLoanLetterAndAgreementCallMessage9ReturnReceivingEnd InteractionGenerateLoanLetterAndAgreementCallMessage9)
+
+		Execution::InteractionGenerateLoanLetterAndAgreementExecution1(GenerateLoanLetterAndAgreementModule InteractionGenerateLoanLetterAndAgreementExecution1StartEnd InteractionGenerateLoanLetterAndAgreementExecution1FinishEnd)
+		Execution::InteractionGenerateLoanLetterAndAgreementExecution2(GenerateLoanLetterAndAgreementModule InteractionGenerateLoanLetterAndAgreementExecution2StartEnd InteractionGenerateLoanLetterAndAgreementExecution2FinishEnd)
+		Execution::InteractionGenerateLoanLetterAndAgreementExecution3(GenerateLoanLetterAndAgreementModule InteractionGenerateLoanLetterAndAgreementExecution3StartEnd InteractionGenerateLoanLetterAndAgreementExecution3FinishEnd)
+		Execution::InteractionGenerateLoanLetterAndAgreementExecution4(GenerateLoanLetterAndAgreementModule InteractionGenerateLoanLetterAndAgreementExecution4StartEnd InteractionGenerateLoanLetterAndAgreementExecution4FinishEnd)
+		Execution::InteractionGenerateLoanLetterAndAgreementExecution5(GenerateLoanLetterAndAgreementModule InteractionGenerateLoanLetterAndAgreementExecution5StartEnd InteractionGenerateLoanLetterAndAgreementExecution5FinishEnd)
+
+		MessageEnd::InteractionGenerateLoanLetterAndAgreementCallMessage1SendingEnd(LoanClerk InteractionGenerateLoanLetterAndAgreementCallMessage1)
+		ExecutionEnd::InteractionGenerateLoanLetterAndAgreementExecution1StartEnd(GenerateLoanLetterAndAgreementModule InteractionGenerateLoanLetterAndAgreementExecution1)
+		ExecutionEnd::InteractionGenerateLoanLetterAndAgreementExecution1FinishEnd(GenerateLoanLetterAndAgreementModule InteractionGenerateLoanLetterAndAgreementExecution1)
+		MessageEnd::InteractionGenerateLoanLetterAndAgreementCallMessage1ReturnReceivingEnd(LoanClerk InteractionGenerateLoanLetterAndAgreementCallMessage1Return)
+		MessageEnd::InteractionGenerateLoanLetterAndAgreementCallMessage3SendingEnd(LoanClerk InteractionGenerateLoanLetterAndAgreementCallMessage3)
+		ExecutionEnd::InteractionGenerateLoanLetterAndAgreementExecution2StartEnd(GenerateLoanLetterAndAgreementModule InteractionGenerateLoanLetterAndAgreementExecution2)
+		ExecutionEnd::InteractionGenerateLoanLetterAndAgreementExecution2FinishEnd(GenerateLoanLetterAndAgreementModule InteractionGenerateLoanLetterAndAgreementExecution2)
+		MessageEnd::InteractionGenerateLoanLetterAndAgreementCallMessage3ReturnReceivingEnd(LoanClerk InteractionGenerateLoanLetterAndAgreementCallMessage3Return)
+		MessageEnd::InteractionGenerateLoanLetterAndAgreementCallMessage5SendingEnd(LoanClerk InteractionGenerateLoanLetterAndAgreementCallMessage5)
+		ExecutionEnd::InteractionGenerateLoanLetterAndAgreementExecution3StartEnd(GenerateLoanLetterAndAgreementModule InteractionGenerateLoanLetterAndAgreementExecution3)
+		ExecutionEnd::InteractionGenerateLoanLetterAndAgreementExecution3FinishEnd(GenerateLoanLetterAndAgreementModule InteractionGenerateLoanLetterAndAgreementExecution3)
+		MessageEnd::InteractionGenerateLoanLetterAndAgreementCallMessage5ReturnReceivingEnd(LoanClerk InteractionGenerateLoanLetterAndAgreementCallMessage5Return)
+		MessageEnd::InteractionGenerateLoanLetterAndAgreementCallMessage7SendingEnd(LoanClerk InteractionGenerateLoanLetterAndAgreementCallMessage7)
+		ExecutionEnd::InteractionGenerateLoanLetterAndAgreementExecution4StartEnd(GenerateLoanLetterAndAgreementModule InteractionGenerateLoanLetterAndAgreementExecution4)
+		ExecutionEnd::InteractionGenerateLoanLetterAndAgreementExecution4FinishEnd(GenerateLoanLetterAndAgreementModule InteractionGenerateLoanLetterAndAgreementExecution4)
+		MessageEnd::InteractionGenerateLoanLetterAndAgreementCallMessage7ReturnReceivingEnd(LoanClerk InteractionGenerateLoanLetterAndAgreementCallMessage7Return)
+		MessageEnd::InteractionGenerateLoanLetterAndAgreementCallMessage9SendingEnd(LoanClerk InteractionGenerateLoanLetterAndAgreementCallMessage9)
+		ExecutionEnd::InteractionGenerateLoanLetterAndAgreementExecution5StartEnd(GenerateLoanLetterAndAgreementModule InteractionGenerateLoanLetterAndAgreementExecution5)
+		ExecutionEnd::InteractionGenerateLoanLetterAndAgreementExecution5FinishEnd(GenerateLoanLetterAndAgreementModule InteractionGenerateLoanLetterAndAgreementExecution5)
+		MessageEnd::InteractionGenerateLoanLetterAndAgreementCallMessage9ReturnReceivingEnd(LoanClerk InteractionGenerateLoanLetterAndAgreementCallMessage9Return)
+
+	}
+
+	Service SubmitLoanRequestModule {
+
+		[Operation]
+		enterLoanInformation(requestid, name, loanamount, loanpurpose, income, phonenumber, postaladdress, zipcode, email, workreferences, creditreferences, checkingaccountnumber, securitynumber)
+		creditRequest()
+		accountStatusRequest()
+		calculateScore()
+
+		[TempProperty]
+		CurrentLoanRequest : LoanRequest
+
+	}
+
+	Service ThirdPartyServices {
+
+		[Operation]
+		sendEmail(emailaddress, title, content)
+		print(content, numbers)
+		createLoanAccount(id)
+		transferFunds(id, amount)
+		getCreditHistory(securityid, name)
+		getCheckingAccountStatus(cid)
+
+	}
+
+	Service EnterValidatedCreditReferencesModule {
+
+		[Operation]
+		listSubmitedLoanRequest()
+		chooseLoanRequest(requestid)
+		markRequestValid()
+
+		[TempProperty]
+		CurrentLoanRequest : LoanRequest
+		CurrentLoanRequests : LoanRequest*
+
+	}
+
+	Service EvaluateLoanRequestModule {
+
+		[Operation]
+		listTenLoanRequest()
+		chooseOneForReview(requestid)
+		checkCreditHistory()
+		reviewCheckingAccount()
+		listAvaiableLoanTerm()
+		addLoanTerm(termid)
+		approveLoanRequest()
+
+		[TempProperty]
+		CurrentLoanRequest : LoanRequest
+		CurrentLoanRequests : LoanRequest*
+
+	}
+
+	Service GenerateLoanLetterAndAgreementModule {
+
+		[Operation]
+		listApprovalRequest()
+		genereateApprovalLetter(id)
+		emailToAppliant()
+		generateLoanAgreement()
+		printLoanAgreement(number)
+
+		[TempProperty]
+		CurrentApprovalLetter : ApprovalLetter
+		CurrentLoanAgreement : LoanAgreement
+		CurrentLoanRequest : LoanRequest
+		CurrentLoanRequests : LoanRequest*
+
+	}
+
+	Service LoanProcessingSystemSystem {
+
+		[Operation]
+		bookNewLoan(requestid, loanid, accountid, startdate, enddate, repaymentdays)
+		generateStandardPaymentNotice()
+		generateLateNotice()
+		listBookedLoans()
+		loanPayment(loanid)
+		closeOutLoan(loanid)
+
+	}
+
+	Service ManageLoanTermCRUDService {
+
+		[Operation]
+		createLoanTerm(itemid, content)
+		queryLoanTerm(itemid)
+		modifyLoanTerm(itemid, content)
+		deleteLoanTerm(itemid)
+
+	}
+
+//entity create operation 
+	Contract  SubmitLoanRequestModule::enterLoanInformation(requestid : Integer, name : String, loanamount : Real, loanpurpose : String, income : Real, phonenumber : Integer, postaladdress : String, zipcode : Integer, email : String, workreferences : String, creditreferences : String, checkingaccountnumber : Integer, securitynumber : Integer) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * loanrequest is the object loa in the instance set of class LoanRequest. loa represents an object of class LoanRequest, and loa meets:
+		 *     The attribute RequestID of the object loa is equal to requestid
+		 */
+		definition:
+			loanrequest:LoanRequest = LoanRequest.allInstance()->any(loa:LoanRequest | loa.RequestID = requestid)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * loanrequest doesn't exist
+		 */
+		precondition:
+			loanrequest.oclIsUndefined() = true
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * loa represented the object of class LoanRequest
+		 * The object loa was created
+		 * The attribute RequestID of the object loa became requestid
+		 * The attribute Name of the object loa became name
+		 * The attribute LoanAmount of the object loa became loanamount
+		 * The attribute LoanPurpose of the object loa became loanpurpose
+		 * The attribute Income of the object loa became income
+		 * The attribute PhoneNumber of the object loa became phonenumber
+		 * The attribute PostalAddress of the object loa became postaladdress
+		 * The attribute ZipCode of the object loa became zipcode
+		 * The attribute Email of the object loa became email
+		 * The attribute WorkReferences of the object loa became workreferences
+		 * The attribute CreditReferences of the object loa became creditreferences
+		 * The attribute CheckingAccountNumber of the object loa became checkingaccountnumber
+		 * The attribute SecurityNumber of the object loa became securitynumber
+		 * The object loa was put into the instance set of class LoanRequest
+		 * The object CurrentLoanRequest became loa
+		 * The return value was true
+		 */
+		postcondition:
+			let loa:LoanRequest in
+			loa.oclIsNew() and
+			loa.RequestID = requestid and
+			loa.Name = name and
+			loa.LoanAmount = loanamount and
+			loa.LoanPurpose = loanpurpose and
+			loa.Income = income and
+			loa.PhoneNumber = phonenumber and
+			loa.PostalAddress = postaladdress and
+			loa.ZipCode = zipcode and
+			loa.Email = email and
+			loa.WorkReferences = workreferences and
+			loa.CreditReferences = creditreferences and
+			loa.CheckingAccountNumber = checkingaccountnumber and
+			loa.SecurityNumber = securitynumber and
+			LoanRequest.allInstance()->includes(loa) and
+			self.CurrentLoanRequest = loa and
+			result = true
+	}
+
+	Contract SubmitLoanRequestModule::creditRequest() : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * The object CurrentLoanRequest exists
+		 */
+		precondition:
+			self.CurrentLoanRequest.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * his represented the object of class CreditHistory
+		 * The object his was created
+		 * his became the return value of system operation getCreditHistory
+		 * The object CurrentLoanRequest was linked to the object his by RequestedCreditHistory
+		 * The object his was put into the instance set of class CreditHistory
+		 * The return value was true
+		 */
+		postcondition:
+			let his:CreditHistory in
+			his.oclIsNew() and
+			his = getCreditHistory(CurrentLoanRequest.SecurityNumber, CurrentLoanRequest.Name) and
+			CurrentLoanRequest.RequestedCreditHistory = his and
+			CreditHistory.allInstance()->includes(his) and
+			result = true
+
+	}
+
+//Contract SubmitLoanRequestModule::accountStatusRequest Skeleton
+	Contract SubmitLoanRequestModule::accountStatusRequest() : Boolean {
+
+		definition:
+			t:LoanRequest = self.CurrentLoanRequest
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * The object CurrentLoanRequest exists
+		 */
+		precondition:
+			self.CurrentLoanRequest.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * ca represented the object of class CheckingAccount
+		 * The object ca was created
+		 * ca became the return value of system operation getCheckingAccountStatus
+		 * The object CurrentLoanRequest was linked to the object ca by RequestedCAHistory
+		 * The object ca was put into the instance set of class CheckingAccount
+		 * The return value was true
+		 */
+		postcondition:
+			let ca:CheckingAccount in
+			ca.oclIsNew() and
+			ca = getCheckingAccountStatus(t.CheckingAccountNumber) and
+			self.CurrentLoanRequest.RequestedCAHistory = ca and
+			CheckingAccount.allInstance()->includes(ca) and
+			result = true
+	}
+
+//Contract SubmitLoanRequestModule::calculateScore Skeleton
+	Contract SubmitLoanRequestModule::calculateScore() : Integer {
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * The object CurrentLoanRequest exists
+		 * CurrentLoanRequest exists
+		 * CurrentLoanRequest exists
+		 */
+		precondition:
+			self.CurrentLoanRequest.oclIsUndefined() = false and
+			CurrentLoanRequest.RequestedCAHistory.oclIsUndefined() = false and
+			CurrentLoanRequest.RequestedCreditHistory.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The attribute CreditScore of the object CurrentLoanRequest became 100
+		 * The attribute Status of the object CurrentLoanRequest became SUBMITTED
+		 * The return value was the attribute CreditScore of the object CurrentLoanRequest
+		 */
+		postcondition:
+			// outstandingdebt,  baddebits,  balance,  checkingaccountstatus,  income 
+			self.CurrentLoanRequest.CreditScore = 100 and
+			self.CurrentLoanRequest.Status = LoanRequestStatus::SUBMITTED and
+			result = self.CurrentLoanRequest.CreditScore
+	}
+
+// LoanStatus[SUBMITTED|REFERENCESVALIDATED|APPROVED|READYFORREVIEW|INCOMPLETEINFORMATION]
+//Contract EnterValidatedCreditReferencesModule::listSubmitedLoanRequest Skeleton
+	Contract EnterValidatedCreditReferencesModule::listSubmitedLoanRequest() : Set(LoanRequest) {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * rs is the set of class LoanRequest, including all r in the instance set of class LoanRequest. r represents an object of class LoanRequest, and r meets:
+		 *     The attribute Status of the object r is equal to SUBMITTED
+		 */
+		definition:
+			rs:Set(LoanRequest) = LoanRequest.allInstance()->select(r:LoanRequest | r.Status =  LoanRequestStatus::SUBMITTED)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * The size of rs is greater than 0
+		 */
+		precondition:
+			rs.size() > 0
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The value of temporary variable CurrentLoanRequests became rs
+		 * The return value was rs
+		 */
+		postcondition:
+			self.CurrentLoanRequests = rs and
+			result = rs
+	}
+
+//Contract EnterValidatedCreditReferencesModule::chooseLoanRequest Skeleton
+	Contract EnterValidatedCreditReferencesModule::chooseLoanRequest(requestid : Integer) : LoanRequest {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * rs is the object r in the set CurrentLoanRequests. r represents an object of class LoanRequest, and r meets:
+		 *     The attribute RequestID of the object r is equal to requestid
+		 */
+		definition:
+			rs:LoanRequest = self.CurrentLoanRequests->any(r:LoanRequest | r.RequestID = requestid)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * rs exists
+		 */
+		precondition:
+			rs.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The object CurrentLoanRequest became rs
+		 * The return value was rs
+		 */
+		postcondition:
+			self.CurrentLoanRequest = rs and
+			result = rs
+	}
+
+//Contract EnterValidatedCreditReferencesModule::markRequestValid Skeleton
+	Contract EnterValidatedCreditReferencesModule::markRequestValid() : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * The object CurrentLoanRequest exists
+		 */
+		precondition:
+			self.CurrentLoanRequest.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The attribute Status of the object CurrentLoanRequest became REFERENCESVALIDATED
+		 * The return value was true
+		 */
+		postcondition:
+			self.CurrentLoanRequest.Status = LoanRequestStatus::REFERENCESVALIDATED and
+			result = true
+	}
+
+//Contract EvaluateLoanRequestModule::listTenLoanRequest Skeleton
+	Contract EvaluateLoanRequestModule::listTenLoanRequest() : Set(LoanRequest) {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * rs is the set of class LoanRequest, including all r in the instance set of class LoanRequest. r represents an object of class LoanRequest, and r meets:
+		 *     The attribute Status of the object r is equal to REFERENCESVALIDATED
+		 */
+		definition:
+			rs:Set(LoanRequest) = LoanRequest.allInstance()->select(r:LoanRequest | r.Status =  LoanRequestStatus::REFERENCESVALIDATED)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * rs exists
+		 */
+		precondition:
+			rs.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The value of temporary variable CurrentLoanRequests became rs
+		 * The return value was rs
+		 */
+		postcondition:
+			self.CurrentLoanRequests = rs and
+			result = rs
+	}
+
+//Contract EvaluateLoanRequestModule::chooseOneForReview Skeleton
+	Contract EvaluateLoanRequestModule::chooseOneForReview(requestid : Integer) : LoanRequest {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * rs is the object r in the set CurrentLoanRequests. r represents an object of class LoanRequest, and r meets:
+		 *     The attribute RequestID of the object r is equal to requestid
+		 */
+		definition:
+			rs:LoanRequest = self.CurrentLoanRequests->any(r:LoanRequest | r.RequestID = requestid)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * rs exists
+		 */
+		precondition:
+			rs.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The object CurrentLoanRequest became rs
+		 * The return value was rs
+		 */
+		postcondition:
+			self.CurrentLoanRequest = rs and
+			result = rs
+	}
+
+//Contract EvaluateLoanRequestModule::checkCreditHistory Skeleton
+	Contract EvaluateLoanRequestModule::checkCreditHistory() : CreditHistory {
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * The object CurrentLoanRequest exists
+		 * CurrentLoanRequest exists
+		 */
+		precondition:
+			self.CurrentLoanRequest.oclIsUndefined() = false and
+			CurrentLoanRequest.RequestedCreditHistory.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The return value was the object which CurrentLoanRequest was linked to by RequestedCreditHistory
+		 */
+		postcondition:
+			result = CurrentLoanRequest.RequestedCreditHistory
+	}
+
+//Contract EvaluateLoanRequestModule::reviewCheckingAccount Skeleton
+	Contract EvaluateLoanRequestModule::reviewCheckingAccount() : CheckingAccount {
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * The object CurrentLoanRequest exists
+		 * CurrentLoanRequest exists
+		 */
+		precondition:
+			self.CurrentLoanRequest.oclIsUndefined() = false and
+			CurrentLoanRequest.RequestedCAHistory.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The return value was the object which CurrentLoanRequest was linked to by RequestedCAHistory
+		 */
+		postcondition:
+			result = CurrentLoanRequest.RequestedCAHistory
+
+	}
+
+//Contract EvaluateLoanRequestModule::listAvaiableLoanTerm Skeleton
+	Contract EvaluateLoanRequestModule::listAvaiableLoanTerm() : Set(LoanTerm) {
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * None
+		 */
+		precondition:
+			true
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The return value was the instance set of class LoanTerm
+		 */
+		postcondition:
+			result = LoanTerm.allInstance()
+	}
+
+//Contract EvaluateLoanRequestModule::addLoanTerm Skeleton
+	Contract EvaluateLoanRequestModule::addLoanTerm(termid : Integer) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * loanterm is the object loa in the instance set of class LoanTerm. loa represents an object of class LoanTerm, and loa meets:
+		 *     The attribute ItemID of the object loa is equal to termid
+		 */
+		definition:
+			loanterm:LoanTerm = LoanTerm.allInstance()->any(loa:LoanTerm | loa.ItemID = termid)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * The object CurrentLoanRequest exists
+		 * loanterm exists
+		 */
+		precondition:
+			self.CurrentLoanRequest.oclIsUndefined() = false and
+			loanterm.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The object CurrentLoanRequest was linked to the object loanterm by AttachedLoanTerms
+		 * The return value was true
+		 */
+		postcondition:
+			CurrentLoanRequest.AttachedLoanTerms->includes(loanterm) and
+			result = true
+	}
+
+//Contract EvaluateLoanRequestModule::approveLoanRequest Skeleton
+	Contract EvaluateLoanRequestModule::approveLoanRequest() : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * The object CurrentLoanRequest exists
+		 */
+		precondition:
+			self.CurrentLoanRequest.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The attribute Status of the object CurrentLoanRequest became APPROVED
+		 * The return value was true
+		 */
+		postcondition:
+			self.CurrentLoanRequest.Status = LoanRequestStatus::APPROVED and
+			result = true
+	}
+
+//Contract GenerateLoanLetterAndAgreementModule::listApprovalRequest Skeleton
+	Contract GenerateLoanLetterAndAgreementModule::listApprovalRequest() : Set(LoanRequest) {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * rs is the set of class LoanRequest, including all r in the instance set of class LoanRequest. r represents an object of class LoanRequest, and r meets:
+		 *     The attribute Status of the object r is equal to APPROVED
+		 */
+		definition:
+			rs:Set(LoanRequest) = LoanRequest.allInstance()->select(r:LoanRequest | r.Status =  LoanRequestStatus::APPROVED)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * rs exists
+		 */
+		precondition:
+			rs.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The value of temporary variable CurrentLoanRequests became rs
+		 * The return value was rs
+		 */
+		postcondition:
+			self.CurrentLoanRequests = rs and
+			result = rs
+	}
+
+//Contract GenerateLoanLetterAndAgreementModule::genereateApprovalLetter Skeleton
+	Contract GenerateLoanLetterAndAgreementModule::genereateApprovalLetter(id : Integer) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * r is the object lr in the instance set of class LoanRequest. lr represents an object of class LoanRequest, and lr meets:
+		 *     The attribute RequestID of the object lr is equal to id
+		 */
+		definition:
+			r:LoanRequest = LoanRequest.allInstance()->any(lr:LoanRequest | lr.RequestID = id)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * r exists
+		 */
+		precondition:
+			r.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * l represented the object of class ApprovalLetter
+		 * The object l was created
+		 * The attribute Content of the object l became "ApprovalLetterContent"
+		 * The object r was linked to the object l by AttachedApprovalLetter
+		 * The object CurrentLoanRequest became r
+		 * The object l was put into the instance set of class ApprovalLetter
+		 * The return value was true
+		 */
+		postcondition:
+			let l:ApprovalLetter in
+			l.oclIsNew() and
+			l.Content = "ApprovalLetterContent" and
+			r.AttachedApprovalLetter = l and
+			self.CurrentLoanRequest = r and
+			ApprovalLetter.allInstance()->includes(l) and
+			result = true
+	}
+
+//Contract GenerateLoanLetterAndAgreementModule::emailToAppliant Skeleton
+	Contract GenerateLoanLetterAndAgreementModule::emailToAppliant() : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * The object CurrentLoanRequest exists
+		 */
+		precondition:
+			self.CurrentLoanRequest.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The system operation sendEmail was executed
+		 * The return value was true
+		 */
+		postcondition:
+			// "Your Loan Request was approved"
+			sendEmail(CurrentLoanRequest.Email, CurrentLoanRequest.Name, "Your Loan Request was approved") and
+			result = true
+	}
+
+//Contract GenerateLoanLetterAndAgreementModule::generateLoanAgreement Skeleton
+	Contract GenerateLoanLetterAndAgreementModule::generateLoanAgreement() : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * The object CurrentLoanRequest exists
+		 */
+		precondition:
+			self.CurrentLoanRequest.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * la represented the object of class LoanAgreement
+		 * The object la was created
+		 * The attribute Content of the object la became "Loan Agreement"
+		 * The object CurrentLoanRequest was linked to the object la by AttachedLoanAgreement
+		 * The object la was put into the instance set of class LoanAgreement
+		 * The return value was true
+		 */
+		postcondition:
+			let la:LoanAgreement in
+			la.oclIsNew() and
+			la.Content = "Loan Agreement" and
+			self.CurrentLoanRequest.AttachedLoanAgreement = la and
+			LoanAgreement.allInstance()->includes(la) and
+			result = true
+	}
+
+//Contract GenerateLoanLetterAndAgreementModule::printLoanAgreement Skeleton
+	Contract GenerateLoanLetterAndAgreementModule::printLoanAgreement(number : Integer) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * The object CurrentLoanRequest exists
+		 */
+		precondition:
+			self.CurrentLoanRequest.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The system operation print was executed
+		 * The return value was true
+		 */
+		postcondition:
+			print(CurrentLoanRequest.AttachedLoanAgreement.Content, number) and
+			result = true
+	}
+
+////entity create operation 
+//Contract  GenerateLoanLetterAndAgreementModule::createLoanAccount(loanaccountid : Integer, balance : Real, status : LoanAccountStatus[NORMAL|HASPAIDINFULL]) : Boolean {
+//	
+//	/* definition: find specific LoanAccount instance by loanaccountid */
+//	definition:
+//		loanaccount:LoanAccount = LoanAccount.allInstance()->any(loa:LoanAccount | loa.LoanAccountID = loanaccountid)
+//	
+//	/* precondition: the instance loanaccount was not found in the system */
+//	precondition:
+//		loanaccount.oclIsUndefined() = true
+//	
+//	/* postcondition: 
+//	 * A LoanAccount instance loa was created.
+//	 * all properties of loa became the same values as inputs.
+//	 */
+//	postcondition:
+//		let loa:LoanAccount in
+//		loa.oclIsNew() and
+//		loa.LoanAccountID = loanaccountid and
+//		loa.Balance = balance and
+//		loa.Status = status and
+//		LoanAccount.allInstance()->includes(loa) and
+//		result = true
+//}
+//entity create operation 
+	Contract  LoanProcessingSystemSystem::bookNewLoan(requestid : Integer, loanid : Integer, accountid: Integer, startdate : Date, enddate : Date, repaymentdays : Integer) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * loan is the object loa in the instance set of class Loan. loa represents an object of class Loan, and loa meets:
+		 *     The attribute LoanID of the object loa is equal to loanid
+		 * r is the object lr in the instance set of class LoanRequest. lr represents an object of class LoanRequest, and lr meets:
+		 *     The attribute RequestID of the object lr is equal to requestid
+		 * la is the object lacc in the instance set of class LoanAccount. lacc represents an object of class LoanAccount, and lacc meets:
+		 *     The attribute LoanAccountID of the object lacc is equal to accountid
+		 */
+		definition:
+			loan:Loan = Loan.allInstance()->any(loa:Loan | loa.LoanID = loanid),
+			r:LoanRequest = LoanRequest.allInstance()->any(lr:LoanRequest | lr.RequestID = requestid),
+			la:LoanAccount = LoanAccount.allInstance()->any(lacc:LoanAccount | lacc.LoanAccountID = accountid)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * loan doesn't exist
+		 * r exists
+		 */
+		precondition:
+			loan.oclIsUndefined() = true and
+			r.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * loa represented the object of class Loan
+		 * lacc represented the object of class LoanAccount
+		 * The object loa was created
+		 * The attribute LoanID of the object loa became loanid
+		 * The attribute StartDate of the object loa became startdate
+		 * The attribute EndDate of the object loa became enddate
+		 * The attribute RePaymentDays of the object loa became repaymentdays
+		 * The attribute Status of the object loa became LSOPEN
+		 * The attribute RepaymentAmount of the object loa became the attribute LoanAmount of the object r
+		 * The attribute CurrentOverDueDate of the object loa became the day repaymentdays after startdate
+		 * If la didn't exist, take the following as postcondition(s):
+		 *     lacc became the return value of system operation createLoanAccount
+		 *     The object lacc was put into the instance set of class LoanAccount
+		 *     The attribute Balance of the object lacc became the attribute LoanAmount of the object r
+		 *     The object loa was linked to the object lacc by BelongedLoanAccount
+		 * Otherwise, take the following as postcondition(s):
+		 *     The attribute Balance of the object la became the previous value of the attribute Balance of the object la plus the attribute LoanAmount of the object r
+		 * The system operation transferFunds was executed
+		 * The attribute RemainAmountToPay of the object loa became the attribute LoanAmount of the object r
+		 * The object loa was put into the instance set of class Loan
+		 * The object r was linked to the object loa by ApprovalLoan
+		 * The object loa was linked to the object r by ReferedLoanRequest
+		 * The return value was true
+		 */
+		postcondition:
+			let loa:Loan in
+			loa.oclIsNew() and
+			loa.LoanID = loanid and
+			loa.StartDate = startdate and
+			loa.EndDate = enddate and
+			loa.RePaymentDays = repaymentdays and
+			loa.Status = LoanStatus::LSOPEN and
+			loa.RepaymentAmount = r.LoanAmount and
+//			loa.CurrentOverDueDate = startdate.After(repaymentdays) and
+//			if
+//				la.oclIsUndefined() = true
+//			then
+//				lacc = createLoanAccount(accountid) and
+//				LoanAccount.allInstance()->includes(lacc) and
+//				lacc.Balance = r.LoanAmount and
+//				loa.BelongedLoanAccount = lacc
+//			else
+//				la.Balance = la.Balance@pre + r.LoanAmount
+//			endif and
+//			transferFunds(accountid, r.LoanAmount) and
+//			loa.RemainAmountToPay = r.LoanAmount and
+//			Loan.allInstance()->includes(loa) and
+//			r.ApprovalLoan = loa and
+//			loa.ReferedLoanRequest = r and
+			result = true
+	}
+
+	Contract LoanProcessingSystemSystem::generateStandardPaymentNotice() : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * loans is the set of class Loan, including all loa in the instance set of class Loan. loa represents an object of class Loan, and loa meets:
+		 *     The attribute Status of the object loa is equal to LSOPEN
+		 *     The day 3 days after Today is after the attribute CurrentOverDueDate of the object loa
+		 */
+		definition:
+			loans:Set(Loan) = Loan.allInstance()->select(loa:Loan | loa.Status = LoanStatus::LSOPEN)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * loans exists
+		 */
+		precondition:
+			loans.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * For each object of class Loan in the set loans, l represented it(the object) and the following operations were performed:
+		 *     The system operation sendEmail was executed
+		 * The return value was true
+		 */
+		postcondition:
+			loans->forAll(l:Loan |
+				sendEmail(l.ReferedLoanRequest.Email, "OverDueSoon", "You account is OverDueSoon"))
+			and
+			result = true
+	}
+
+	Contract LoanProcessingSystemSystem::generateLateNotice() : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * loans is the set of class Loan, including all loa in the instance set of class Loan. loa represents an object of class Loan, and loa meets:
+		 *     The attribute Status of the object loa is equal to LSOPEN
+		 *     Today is after the attribute CurrentOverDueDate of the object loa
+		 */
+		definition:
+			loans:Set(Loan) = Loan.allInstance()->select(loa:Loan | loa.Status = LoanStatus::LSOPEN)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * loans exists
+		 */
+		precondition:
+			loans.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * For each object of class Loan in the set loans, l represented it(the object) and the following operations were performed:
+		 *     The system operation sendEmail was executed
+		 * The return value was true
+		 */
+		postcondition:
+			loans->forAll(l:Loan |
+				sendEmail(l.ReferedLoanRequest.Email, "OverDued", "You are overdued, please repayment ASAP"))
+			and
+			result = true
+	}
+
+//Contract LoanManagementModule::loanPayment Skeleton
+	Contract LoanProcessingSystemSystem::loanPayment(loanid : Integer) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * loan is the object loa in the instance set of class Loan. loa represents an object of class Loan, and loa meets:
+		 *     The attribute LoanID of the object loa is equal to loanid
+		 */
+		definition:
+			loan:Loan = Loan.allInstance()->any(loa:Loan | loa.LoanID = loanid)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * loan exists
+		 * The attribute Status of the object loan is equal to LSOPEN
+		 */
+		precondition:
+			loan.oclIsUndefined() = false and
+			loan.Status = LoanStatus::LSOPEN
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The attribute RemainAmountToPay of the object loan became the previous value of the attribute RemainAmountToPay of the object loan minus the attribute RepaymentAmount of the object loan
+		 * The return value was true
+		 */
+		postcondition:
+			loan.RemainAmountToPay = loan.RemainAmountToPay@pre - loan.RepaymentAmount and
+			result = true
+	}
+
+//Contract LoanManagementModule::closeOutLoan Skeleton
+	Contract LoanProcessingSystemSystem::closeOutLoan(loanid : Integer) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * loan is the object loa in the instance set of class Loan. loa represents an object of class Loan, and loa meets:
+		 *     The attribute LoanID of the object loa is equal to loanid
+		 */
+		definition:
+			loan:Loan = Loan.allInstance()->any(loa:Loan | loa.LoanID = loanid)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * loan exists
+		 * The attribute Status of the object loan is equal to LSOPEN
+		 */
+		precondition:
+			loan.oclIsUndefined() = false and
+			loan.Status = LoanStatus::LSOPEN
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The attribute Status of the object loan became CLOSED
+		 * The return value was true
+		 */
+		postcondition:
+			loan.Status = LoanStatus::CLOSED and
+			result = true
+	}
+
+//entity create operation 
+	Contract  ManageLoanTermCRUDService::createLoanTerm(itemid : Integer, content : String) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * loanterm is the object loa in the instance set of class LoanTerm. loa represents an object of class LoanTerm, and loa meets:
+		 *     The attribute ItemID of the object loa is equal to itemid
+		 */
+		definition:
+			loanterm:LoanTerm = LoanTerm.allInstance()->any(loa:LoanTerm | loa.ItemID = itemid)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * loanterm doesn't exist
+		 */
+		precondition:
+			loanterm.oclIsUndefined() = true
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * loa represented the object of class LoanTerm
+		 * The object loa was created
+		 * The attribute ItemID of the object loa became itemid
+		 * The attribute Content of the object loa became content
+		 * The object loa was put into the instance set of class LoanTerm
+		 * The return value was true
+		 */
+		postcondition:
+			let loa:LoanTerm in
+			loa.oclIsNew() and
+			loa.ItemID = itemid and
+			loa.Content = content and
+			LoanTerm.allInstance()->includes(loa) and
+			result = true
+	}
+
+//entity query operation 
+	Contract  ManageLoanTermCRUDService::queryLoanTerm(itemid : Integer) : LoanTerm {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * loanterm is the object loa in the instance set of class LoanTerm. loa represents an object of class LoanTerm, and loa meets:
+		 *     The attribute ItemID of the object loa is equal to itemid
+		 */
+		definition:
+			loanterm:LoanTerm = LoanTerm.allInstance()->any(loa:LoanTerm | loa.ItemID = itemid)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * loanterm exists
+		 */
+		precondition:
+			loanterm.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The return value was loanterm
+		 */
+		postcondition:
+			result = loanterm
+	}
+
+//entity modify operation 
+	Contract  ManageLoanTermCRUDService::modifyLoanTerm(itemid : Integer, content : String) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * loanterm is the object loa in the instance set of class LoanTerm. loa represents an object of class LoanTerm, and loa meets:
+		 *     The attribute ItemID of the object loa is equal to itemid
+		 */
+		definition:
+			loanterm:LoanTerm = LoanTerm.allInstance()->any(loa:LoanTerm | loa.ItemID = itemid)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * loanterm exists
+		 */
+		precondition:
+			loanterm.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The attribute ItemID of the object loanterm became itemid
+		 * The attribute Content of the object loanterm became content
+		 * The return value was true
+		 */
+		postcondition:
+			loanterm.ItemID = itemid and
+			loanterm.Content = content and
+			result = true
+	}
+
+//entity delete operation 
+	Contract  ManageLoanTermCRUDService::deleteLoanTerm(itemid : Integer) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * loanterm is the object loa in the instance set of class LoanTerm. loa represents an object of class LoanTerm, and loa meets:
+		 *     The attribute ItemID of the object loa is equal to itemid
+		 */
+		definition:
+			loanterm:LoanTerm = LoanTerm.allInstance()->any(loa:LoanTerm | loa.ItemID = itemid)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * loanterm exists
+		 * The object loanterm is in the instance set of class LoanTerm
+		 */
+		precondition:
+			loanterm.oclIsUndefined() = false and
+			LoanTerm.allInstance()->includes(loanterm)
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The object loanterm was deleted from the instance set of class LoanTerm
+		 * The return value was true
+		 */
+		postcondition:
+			LoanTerm.allInstance()->excludes(loanterm) and
+			result = true
+	}
+
+//Contract ThirdPartServices::getCheckingAccountStatus Skeleton
+	Contract ThirdPartyServices::getCheckingAccountStatus(cid : Integer) : CheckingAccount {
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * None
+		 */
+		precondition:
+			true
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The return value was null
+		 */
+		postcondition:
+			result = null
+	}
+
+	Contract ThirdPartyServices::getCreditHistory(securityid : Integer, name :String) : CreditHistory {
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * None
+		 */
+		precondition:
+			true
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The return value was null
+		 */
+		postcondition:
+			result = null
+	}
+
+////Contract ThirdPartServices::sendEmail Skeleton
+	Contract ThirdPartyServices::sendEmail(emailaddress : String, title : String, content :String) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * None
+		 */
+		precondition:
+			true
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The return value was true
+		 */
+		postcondition:
+			result = true
+	}
+
+//Contract ThirdPartServices::print Skeleton
+	Contract ThirdPartyServices::print(content : String, numbers : Integer) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * None
+		 */
+		precondition:
+			true
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The return value was true
+		 */
+		postcondition:
+			result = true
+	}
+
+//Contract ThirdPartServices::createLoanAccount Skeleton
+	Contract ThirdPartyServices::createLoanAccount(id : Integer) : LoanAccount {
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * None
+		 */
+		precondition:
+			true
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The return value was null
+		 */
+		postcondition:
+			result = null
+	}
+
+//Contract ThirdPartServices::TransferFunds Skeleton
+	Contract ThirdPartyServices::transferFunds(id : Integer, amount : Real) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * None
+		 */
+		precondition:
+			true
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The return value was true
+		 */
+		postcondition:
+			result = true
+	}
+
+	Contract LoanProcessingSystemSystem::listBookedLoans() : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * None
+		 */
+		precondition:
+			true
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The return value was true
+		 */
+		postcondition:
+			result = true
+	}
+
+}
+
+DomainModel LoanProcessingSystem {
+
+	// Submitted -> READYFORREVIEW -> REFERENCESVALIDATED -> APPROVED
+	Entity LoanRequest {
+		Status : LoanRequestStatus[SUBMITTED|REFERENCESVALIDATED|APPROVED|READYFORREVIEW|INCOMPLETEINFORMATION]
+		RequestID : Integer
+		Name : String
+		LoanAmount : Real
+		LoanPurpose : String
+		Income : Real
+		PhoneNumber : Integer
+		PostalAddress : String
+		ZipCode : Integer
+		Email : String
+		WorkReferences : String
+		CreditReferences : String
+		CheckingAccountNumber : Integer
+		SecurityNumber : Integer
+		CreditScore : Integer
+
+		[Refer]
+		ApprovalLoan : Loan Association
+		RequestedCAHistory : CheckingAccount Association
+		RequestedCreditHistory : CreditHistory Association
+		AttachedApprovalLetter : ApprovalLetter Association
+		AttachedLoanAgreement : LoanAgreement Association
+		AttachedLoanTerms : LoanTerm* Association
+		[INV]
+		inv UniqueRequestID : LoanRequest.allInstance()->isUnique(l:LoanRequest | l.RequestID)
+		inv CreditScoreGreatAndEqualZero : CreditScore >= 0
+	}
+
+	Entity Loan {
+		LoanID : Integer
+		RemainAmountToPay : Real
+		Status : LoanStatus[LSOPEN|CLOSED]
+		IsPaidinFull : Boolean
+		StartDate : Date
+		EndDate : Date
+		CurrentOverDueDate : Date
+		RePaymentDays : Integer
+		RepaymentAmount : Real
+
+		[Refer]
+		ReferedLoanRequest : LoanRequest ! Association
+		BelongedLoanAccount : LoanAccount Association
+		[INV]
+		inv UniqueLoanID : Loan.allInstance()->isUnique(l:Loan | l.LoanID)
+		inv RemainAmountToPayGreatAndEqualZero : RemainAmountToPay >= 0
+		inv RepaymentAmountGreatAndEqualZero : RepaymentAmount >= 0
+		inv RePaymentDaysGreatAndEqualZero : RePaymentDays >= 0
+	}
+
+	Entity LoanTerm {
+		ItemID : Integer
+		Content : String
+		[INV]
+		inv UniqueLoanID : Loan.allInstance()->isUnique(l:Loan | l.LoanID)
+	}
+
+	Entity CheckingAccount {
+		Balance : Real
+		Status : CheckingAccountStatus[GOODSTANDING|SUSPENDED]
+		[INV]
+		inv BalanceGreatAndEqualZero : Balance >= 0
+	}
+
+	Entity CreditHistory {
+		OutstandingDebt : Real
+		BadDebits : Integer
+		[INV]
+		inv OutstandingDebtGreatAndEqualZero : OutstandingDebt >= 0
+		inv BadDebitsGreatAndEqualZero : BadDebits >= 0
+	}
+
+	Entity LoanAccount {
+		LoanAccountID : Integer
+		Balance : Real
+		Status : LoanAccountStatus[NORMAL|HASPAIDINFULL]
+		[INV]
+		inv UniqueLoanID : Loan.allInstance()->isUnique(l:Loan | l.LoanID)
+		inv BalanceGreatAndEqualZero : Balance >= 0
+	}
+
+	Entity ApprovalLetter {
+		Content : String
+	}
+
+	Entity LoanAgreement {
+		@Description( "The loan agreement" ) Content : String
+	}
+
+}
+

@@ -1,7 +1,0 @@
-*.jar
-.DS_Store
-**/target/
-src-gen
-!MainTest.java
-!ThirdPartServices.java
-!ThirdPartServicesImpl.java

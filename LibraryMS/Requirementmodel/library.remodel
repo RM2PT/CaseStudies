@@ -1,0 +1,1604 @@
+UseCaseModel LibraryManagementSystem {
+
+	UC::searchBook() @Description( "The user searchs books" )
+	UC::listBookHistory() @Description( "The user views book history" )
+	UC::makeReservation() @Description( "The user makes a book reservation" )
+	UC::recommendBook() @Description( "The user recommends books to the library" )
+	UC::cancelReservation() @Description( "The user cancels reservation" )
+	UC::manageUser() @Description( "The administrator manages user information, including entering, inquiring, modifying and deleting of user information" )
+	UC::manageBook() @Description( "The administrator manages book information, including entering, inquiring, modifying and deleting of book information" )
+	UC::manageSubject() @Description( "The administrator manages subject information, including entering, inquiring, modifying and deleting of sunject information" )
+	UC::manageBookCopy() @Description( "The administrator manages book's copy information, including entering, inquiring, modifying and deleting of  book's copy information" )
+	UC::manageLibrarian() @Description( "The administrator manages librarian information, including entering, inquiring, modifying and deleting of librarian information" )
+	UC::listRecommendBook() @Description( "The administrator views books recommended by users" )
+	UC::borrowBook()
+	UC::renewBook()
+	UC::payOverDueFee()
+	UC::returnBook()
+	UC::checkOverDueandComputeOverDueFee() @Description( "check over due and compute over due fee" )
+	UC::dueSoonNotification() @Description( "due soon notification" )
+	UC::countDownSuspensionDay() @Description( "count down suspension day" )
+	UC::sendNotificationEmail() @Description( "The third part system sends notification email" )
+
+	Actor User {
+		@Description( "The user") searchBook
+		listBookHistory
+		makeReservation
+		recommendBook
+		cancelReservation
+	}
+
+	Actor Faculty extends User {
+		// UC::FacultyLogin()  
+		// UC::FacultyLogout()   
+		@Description( "The faculty user") }
+
+	Actor Student extends User {
+		// UC::studentLogin()  
+		// UC::studentLogout()   
+		@Description( "The student user") }
+
+	Actor Administrator {
+		@Description( "The administrator") manageUser
+		manageBook
+		manageSubject
+		manageBookCopy
+		manageLibrarian
+		listRecommendBook
+	}
+
+	Actor Librarian {
+		borrowBook
+		renewBook
+		payOverDueFee
+		returnBook
+	}
+
+	Actor Scheduler {
+		@Description( "The scheduler") checkOverDueandComputeOverDueFee
+		dueSoonNotification
+		countDownSuspensionDay
+	}
+
+	Actor ThirdPartSystem {
+		@Description( "The third part system") sendNotificationEmail
+	}
+
+	/* System Controller */
+	Service LibraryManagementSystemSystem {
+
+		[Operation]
+		recommendBook(uid, callNo, title, edition, author, publisher, description, isbn)
+		queryBookCopy(barcode)
+		addBookCopy(callNo, barcode, location)
+		deleteBookCopy(barcode)
+//		
+		makeReservation(uid, barcode)
+		cancelReservation(uid, barcode)
+		borrowBook(uid, barcode)
+		renewBook(uid, barcode)
+		returnBook(barcode)
+		payOverDueFee(uid, fee)
+		// regular checking
+		checkOverDueandComputeOverDueFee()
+		dueSoonNotification()
+		countDownSuspensionDay()
+
+		[TempProperty]
+	}
+
+// list book
+	Service ListBookHistory {
+
+		[Operation]
+		listBorrowHistory(uid)
+		listHodingBook(uid)
+		listOverDueBook(uid)
+		listReservationBook(uid)
+		listRecommendBook(uid)
+
+	}
+
+// for book
+	Service SearchBook {
+
+		[Operation]
+		searchBookByBarCode(barcode)
+		searchBookByTitle(title)
+		searchBookByAuthor(authorname)
+		searchBookByISBN(iSBNnumber)
+		searchBookBySubject(subject)
+
+	}
+
+	Service ManageUserCRUDService {
+
+		[Operation]
+		createUser(userid, name, sex, password, email, faculty, loanednumber, borrowstatus, suspensiondays, overduefee)
+		queryUser(userid)
+		modifyUser(userid, name, sex, password, email, faculty, loanednumber, borrowstatus, suspensiondays, overduefee)
+		deleteUser(userid)
+		createStudent(userID, name, sex, password, email, faculty, major, programme, registrationStatus)
+		createFaculty(userID, name, sex, password, email, faculty, position, status)
+		modifyStudent(userID, name, sex, password, email, faculty, major, programme, registrationStatus)
+		modifyFaculty(userID, name, sex, password, email, faculty, major, position, status)
+
+	}
+
+	Service ManageBookCRUDService {
+
+		[Operation]
+		createBook(callno, title, edition, author, publisher, description, isbn, copynum)
+		queryBook(callno)
+		modifyBook(callno, title, edition, author, publisher, description, isbn, copynum)
+		deleteBook(callno)
+
+	}
+
+	Service ManageSubjectCRUDService {
+
+		[Operation]
+		createSubject(name)
+		querySubject(name)
+		modifySubject(name)
+		deleteSubject(name)
+
+	}
+
+	Service ManageBookCopyCRUDService {
+
+		[Operation]
+		addBookCopy(callNo, barcode, location)
+		queryBookCopy(barcode)
+		modifyBookCopy(barcode, status, location, isreserved)
+		deleteBookCopy(barcode)
+
+	}
+
+	Service ManageLibrarianCRUDService {
+
+		[Operation]
+		createLibrarian(librarianid, name, password)
+		queryLibrarian(librarianid)
+		modifyLibrarian(librarianid, name, password)
+		deleteLibrarian(librarianid)
+
+	}
+
+	Service ThirdPartyServices{
+
+		[Operation]
+		sendNotificationEmail(email)
+
+	}
+
+//	Contract LibraryManagementSystemSystem::dueSoonNotification()  {
+//
+//		/*
+//		 * Generated by RM2DOc - Definition
+//		 * users is the set of class User, including all user in the instance set of class User. user represents an object of class User, and user meets:
+//		 *     At least one loan exists in all objects which user is linked to by LoanedBook. loan represents an object of class Loan, and loan meets:
+//		 *         The attribute IsReturned of the object loan is equal to false
+//		 *         The day 3 days after Today is after the attribute DueDate of the object loan
+//		 */
+//		definition:
+//			users:Set(User) = User.allInstance()->select(user:User | user.LoanedBook->exists(loan:Loan | loan.IsReturned = false and Today.After(3).isAfter(loan.DueDate)))
+//
+//		/*
+//		 * Generated by RM2DOc - Precondition
+//		 * None
+//		 */
+//		precondition:
+//			true
+//
+//		/*
+//		 * Generated by RM2DOc - Postcondition
+//		 * For each object of class User in the set users, u represented it(the object) and the following operations were performed:
+//		 *     The system operation sendNotificationEmail was executed
+//		 */
+//		postcondition:
+//			users->forAll(u:User |
+//				sendNotificationEmail(u.Email))
+//	}
+//Contract dueSoonNotification()  { 
+//	precondition: true   
+//	postcondition: let users:Set(User) = User.allInstance()->select(user:User | user.LoanedBook->exists(loan:Loan | loan.isReturned = false and Today.After(3) = loan.DueDate)) in 
+//					users->forAll(u:User | sendNotificationEmail(u))
+//}  
+//	Contract LibraryManagementSystemSystem::checkOverDueandComputeOverDueFee() {
+//
+//		/*
+//		 * Generated by RM2DOc - Definition
+//		 * loans is the set of class Loan, including all loan in the instance set of class Loan. loan represents an object of class Loan, and loan meets:
+//		 *     The attribute IsReturned of the object loan is equal to false
+//		 *     The attribute DueDate of the object loan is before Today
+//		 */
+//		definition:
+//			loans:Set(Loan) = Loan.allInstance()->select(loan:Loan | loan.IsReturned = false and loan.DueDate.isBefore(Today))
+//
+//		/*
+//		 * Generated by RM2DOc - Precondition
+//		 * None
+//		 */
+//		precondition:
+//			true
+//
+//		/*
+//		 * Generated by RM2DOc - Postcondition
+//		 * For each object of class Loan in the set loans, loan represented it(the object) and the following operations were performed:
+//		 *     The attribute IsReturned of the object loan was equal to false
+//		 *     If the day 3 days before Today was after the attribute DueDate of the object loan, and the attribute OverDue3Days of the object loan was equal to false, take the following as postcondition(s):
+//		 *         The attribute BorrowStatus of the object loan became SUSPEND
+//		 *         The system operation sendNotificationEmail was executed
+//		 *         The attribute OverDue3Days of the object loan became true
+//		 *     If the day 10 days before Today was after the attribute DueDate of the object loan, and the attribute OverDue10Days of the object loan was equal to false, take the following as postcondition(s):
+//		 *         The attribute SuspensionDays of the object loan became the previous value of the attribute SuspensionDays of the object loan plus 14
+//		 *         The system operation sendNotificationEmail was executed
+//		 *         The attribute OverDue10Days of the object loan became true
+//		 *     If the day 17 days before Today was after the attribute DueDate of the object loan, and the attribute OverDue17Days of the object loan was equal to false, take the following as postcondition(s):
+//		 *         The attribute SuspensionDays of the object loan became the previous value of the attribute SuspensionDays of the object loan plus 30
+//		 *         The system operation sendNotificationEmail was executed
+//		 *         The attribute OverDue17Days of the object loan became true
+//		 *     If the day 31 days before Today was after the attribute DueDate of the object loan, and the attribute OverDue31Days of the object loan was equal to false, take the following as postcondition(s):
+//		 *         The attribute OverDueFee of the object loan became 60
+//		 *         The system operation sendNotificationEmail was executed
+//		 *         The attribute OverDue31Days of the object loan became true
+//		 *         The attribute OverDueFee of the object loan became the previous value of the attribute OverDueFee of the object loan plus the attribute OverDueFee of the object loan
+//		 */
+//		postcondition:
+//			loans->forAll(loan:Loan |
+//				loan.IsReturned = false and
+//				if
+//					Today.Before(3).isAfter(loan.DueDate) and
+//					loan.OverDue3Days = false
+//				then
+//					loan.LoanedUser.BorrowStatus = BorrowStatus::SUSPEND and
+//					sendNotificationEmail(loan.LoanedUser.Email) and
+//					loan.OverDue3Days = true
+//				endif and
+//				if
+//					Today.Before(10).isAfter(loan.DueDate) and
+//					loan.OverDue10Days = false
+//				then
+//					loan.LoanedUser.SuspensionDays = loan.LoanedUser.SuspensionDays@pre + 14 and
+//					sendNotificationEmail(loan.LoanedUser.Email) and
+//					loan.OverDue10Days = true
+//				endif and
+//				if
+//					Today.Before(17).isAfter(loan.DueDate) and
+//					loan.OverDue17Days = false
+//				then
+//					loan.LoanedUser.SuspensionDays = loan.LoanedUser.SuspensionDays@pre + 30 and
+//					sendNotificationEmail(loan.LoanedUser.Email) and
+//					loan.OverDue17Days = true
+//				endif and
+//				if
+//					Today.Before(31).isAfter(loan.DueDate) and
+//					loan.OverDue31Days = false
+//				then
+//					loan.OverDueFee = 60 and
+//					sendNotificationEmail(loan.LoanedUser.Email) and
+//					loan.OverDue31Days = true and
+//					loan.LoanedUser.OverDueFee = loan.LoanedUser.OverDueFee@pre + loan.OverDueFee
+//				endif
+//			)
+//	}
+//	Contract LibraryManagementSystemSystem::countDownSuspensionDay() {
+//
+//		/*
+//		 * Generated by RM2DOc - Definition
+//		 * users is the set of class User, including all u in the instance set of class User. u represents an object of class User, and u meets:
+//		 *     The attribute SuspensionDays of the object u is greater than 0
+//		 */
+//		definition:
+//			users:Set(User) = User.allInstance()->select(u:User | u.SuspensionDays > 0)
+//
+//		/*
+//		 * Generated by RM2DOc - Precondition
+//		 * None
+//		 */
+//		precondition:
+//			true
+//
+//		/*
+//		 * Generated by RM2DOc - Postcondition
+//		 * For each object of class User in the set users, u represented it(the object) and the following operations were performed:
+//		 *     The attribute SuspensionDays of the object u was equal to the previous value of the attribute SuspensionDays of the object u minus 1
+//		 *     If the attribute BorrowStatus of the object u was equal to SUSPEND, and the attribute OverDueFee of the object u was equal to 0, and the attribute SuspensionDays of the object u was equal to 0, take the following as postcondition(s):
+//		 *         The attribute BorrowStatus of the object u became NORMAL
+//		 */
+//		postcondition:
+//			users->forAll(u:User |
+//				u.SuspensionDays = u.SuspensionDays@pre - 1 and
+//				if
+//					u.BorrowStatus = BorrowStatus::SUSPEND and
+//					u.OverDueFee = 0 and
+//					u.SuspensionDays = 0
+//				then
+//					u.BorrowStatus = BorrowStatus::NORMAL
+//				endif
+//			)
+//	}
+	/* List records */
+	Contract ListBookHistory::listBorrowHistory(uid:String): Set(Loan) {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * user is the object u in the instance set of class User. u represents an object of class User, and u meets:
+		 *     The attribute UserID of the object u is equal to uid
+		 */
+		definition:
+			user:User = User.allInstance()->any(u:User | u.UserID = uid)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * user exists
+		 */
+		precondition:
+			user.oclIsUndefined() = false
+
+		// postcondition: result = user.LoanedBook->collect(l:Loan| l.LoanedCopy)
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The return value was the object which user was linked to by LoanedBook
+		 */
+		postcondition:
+			result = user.LoanedBook
+
+	}
+
+	Contract ListBookHistory::listHodingBook(uid:String): Set(Loan) {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * user is the object u in the instance set of class User. u represents an object of class User, and u meets:
+		 *     The attribute UserID of the object u is equal to uid
+		 */
+		definition:
+			user:User = User.allInstance()->any(u:User | u.UserID = uid),
+			t:Set(Loan) = user.LoanedBook
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * user exists
+		 */
+		precondition:
+			user.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The return value was the set of class Loan, including all l in all objects which user was linked to by LoanedBook. l represented an object of class Loan, and l meet:
+		 *     The attribute IsReturned of the object l was equal to false
+		 */
+		postcondition:
+			result = t->select(l:Loan | l.IsReturned = false)
+	// return t.stream().filter(nmsl -> nmsl.getIsReturned() == false).collect(Collectors.toList());
+	}
+
+	Contract ListBookHistory::listOverDueBook(uid:String): Set(BookCopy) {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * user is the object u in the instance set of class User. u represents an object of class User, and u meets:
+		 *     The attribute UserID of the object u is equal to uid
+		 * loans is the set of class Loan, including all l in all objects which user is linked to by LoanedBook. l represents an object of class Loan, and l meets:
+		 *     The attribute IsReturned of the object l is equal to false
+		 *     The attribute OverDueFee of the object l is greater than 0
+		 */
+		definition:
+			user:User = User.allInstance()->any(u:User | u.UserID = uid),
+			t:Set(Loan) = user.LoanedBook,
+			loans:Set(Loan) = t->select(l:Loan | l.IsReturned = false and l.OverDueFee > 0)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * user exists
+		 * loans exists
+		 */
+		precondition:
+			user.oclIsUndefined() = false and
+			loans.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The return value was all objects which each object in the set loans was linked to by LoanedCopy
+		 */
+		postcondition:
+			result = null
+	}
+
+	Contract ListBookHistory::listReservationBook(uid:String): Set(BookCopy) {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * user is the object u in the instance set of class User. u represents an object of class User, and u meets:
+		 *     The attribute UserID of the object u is equal to uid
+		 * res is the Set of class Reserve, including  which user is linked to
+		 */
+		definition:
+			user:User = User.allInstance()->any(u:User | u.UserID = uid),
+			res:Set(Reserve) = user.ReservedBook
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * user exists
+		 * res exists
+		 */
+		precondition:
+			user.oclIsUndefined() = false and
+			res.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The return value was all objects which each object in the set res was linked to by ReservedCopy
+		 */
+		postcondition:
+			result = null
+	}
+
+	Contract ListBookHistory::listRecommendBook(uid:String): Set(RecommendBook) {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * user is the object u in the instance set of class User. u represents an object of class User, and u meets:
+		 *     The attribute UserID of the object u is equal to uid
+		 * rBooks is the Set of class RecommendBook, including  which user is linked to
+		 */
+		definition:
+			user:User = User.allInstance()->any(u:User | u.UserID = uid),
+			rBooks:Set(RecommendBook) = user.RecommendedBook
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * user exists
+		 * rBooks exists
+		 */
+		precondition:
+			user.oclIsUndefined() = false and
+			rBooks.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The return value was rBooks
+		 */
+		postcondition:
+			result = rBooks
+
+	}
+
+	/* For Book and Book Copy*/
+	Contract LibraryManagementSystemSystem::recommendBook(uid:String, callNo : String, title : String, edition : String, author : String, publisher : String, description : String, isbn : String) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * user is the object u in the instance set of class User. u represents an object of class User, and u meets:
+		 *     The attribute UserID of the object u is equal to uid
+		 * rb is the object r in the instance set of class RecommendBook. r represents an object of class RecommendBook, and r meets:
+		 *     The attribute CallNo of the object r is equal to callNo
+		 */
+		definition:
+			user:User = User.allInstance()->any(u:User | u.UserID = uid),
+			rb:RecommendBook = RecommendBook.allInstance()->any(r:RecommendBook | r.CallNo = callNo)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * user exists
+		 * rb doesn't exist
+		 */
+		precondition:
+			user.oclIsUndefined() = false and
+			rb.oclIsUndefined() = true
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * r represented the object of class RecommendBook
+		 * The object r was created
+		 * The attribute CallNo of the object r became callNo
+		 * The attribute Title of the object r became title
+		 * The attribute Edition of the object r became edition
+		 * The attribute Author of the object r became author
+		 * The attribute Publisher of the object r became publisher
+		 * The attribute Description of the object r became description
+		 * The attribute ISBn of the object r became isbn
+		 * The attribute RecommendDate of the object r became Today
+		 * The object r was linked to the object user by RecommendUser
+		 * The object user was linked to the object r by RecommendedBook
+		 * The object r was put into the instance set of class RecommendBook
+		 * The return value was true
+		 */
+		postcondition:
+			let r:RecommendBook in
+			r.oclIsNew() and
+			r.CallNo = callNo and
+			r.Title = title and
+			r.Edition = edition and
+			r.Author = author and
+			r.Publisher = publisher and
+			r.Description = description and
+			r.ISBn = isbn and
+			r.RecommendDate = Today and
+			r.RecommendUser = user and
+			user.RecommendedBook->includes(r) and
+			RecommendBook.allInstance()->includes(r) and
+			result = true
+	}
+
+	/* For student account*/
+	Contract ManageUserCRUDService::createStudent(userID : String, name : String, sex : Sex[M|F], password : String, email : String, faculty : String, major : String, programme : Programme[BACHELOR|MASTER|PHD], registrationStatus : StudentStatus[GRADUATED|PROGRAMMING]) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * user is the object u in the instance set of class Student. u represents an object of class Student, and u meets:
+		 *     The attribute UserID of the object u is equal to userID
+		 */
+		definition:
+			user:Student = Student.allInstance()->any(u:Student | u.UserID = userID)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * user doesn't exist
+		 */
+		precondition:
+			user.oclIsUndefined() = true
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * u represented the object of class Student
+		 * The object u was created
+		 * The attribute UserID of the object u became userID
+		 * The attribute Name of the object u became name
+		 * The attribute Email of the object u became email
+		 * The attribute Password of the object u became password
+		 * The attribute Sex of the object u became sex
+		 * The attribute Faculty of the object u became faculty
+		 * The attribute LoanedNumber of the object u became 0
+		 * The attribute BorrowStatus of the object u became NORMAL
+		 * The attribute SuspensionDays of the object u became 0
+		 * The attribute OverDueFee of the object u became 0
+		 * The attribute Major of the object u became major
+		 * The attribute Programme of the object u became programme
+		 * The attribute RegistrationStatus of the object u became registrationStatus
+		 * The object u was put into the instance set of class User
+		 * The object u was put into the instance set of class Student
+		 * The return value was true
+		 */
+		postcondition:
+			let u:Student in
+			u.oclIsNew() and
+			u.UserID = userID and
+			u.Name = name and
+			u.Email = email and
+			u.Password = password and
+			u.Sex = sex and
+			u.Faculty = faculty and
+			u.LoanedNumber = 0 and
+			u.BorrowStatus = BorrowStatus::NORMAL and
+			u.SuspensionDays = 0 and
+			u.OverDueFee = 0 and
+			u.Major = major and
+			u.Programme = programme and
+			u.RegistrationStatus = registrationStatus and
+			User.allInstance()->includes(u) and
+			Student.allInstance()->includes(u) and
+			result = true
+	}
+
+	Contract ManageUserCRUDService::modifyStudent(userID : String, name : String, sex : Sex[M|F], password : String, email : String, faculty : String, major : String, programme : Programme[BACHELOR|MASTER|PHD], registrationStatus : StudentStatus[GRADUATED|PROGRAMMING]) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * user is the object u in the instance set of class Student. u represents an object of class Student, and u meets:
+		 *     The attribute UserID of the object u is equal to userID
+		 */
+		definition:
+			user:Student = Student.allInstance()->any(u:Student | u.UserID = userID)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * user exists
+		 */
+		precondition:
+			user.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The attribute UserID of the object user became userID
+		 * The attribute Name of the object user became name
+		 * The attribute Email of the object user became email
+		 * The attribute Password of the object user became password
+		 * The attribute Sex of the object user became sex
+		 * The attribute Faculty of the object user became faculty
+		 * The attribute LoanedNumber of the object user became 0
+		 * The attribute BorrowStatus of the object user became NORMAL
+		 * The attribute SuspensionDays of the object user became 0
+		 * The attribute OverDueFee of the object user became 0
+		 * The attribute Major of the object user became major
+		 * The attribute Programme of the object user became programme
+		 * The attribute RegistrationStatus of the object user became registrationStatus
+		 * The return value was true
+		 */
+		postcondition:
+			user.UserID = userID and
+			user.Name = name and
+			user.Email = email and
+			user.Password = password and
+			user.Sex = sex and
+			user.Faculty = faculty and
+			user.LoanedNumber = 0 and
+			user.BorrowStatus = BorrowStatus::NORMAL and
+			user.SuspensionDays = 0 and
+			user.OverDueFee = 0 and
+			user.Major = major and
+			user.Programme = programme and
+			user.RegistrationStatus = registrationStatus and
+			result = true
+	}
+
+	/* For faculty account*/
+	Contract ManageUserCRUDService::createFaculty(userID : String, name : String, sex : Sex[M|F], password : String, email : String, faculty : String, position : FacultyPosition[ASSISTANTPROFESSORS|ASSOCIATEPROFESSOR|PROFESSOR|CHAIRPROFESSOR], status : FacultyStatus[HASRETIRED|INPOSITION]) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * user is the object u in the instance set of class Faculty. u represents an object of class Faculty, and u meets:
+		 *     The attribute UserID of the object u is equal to userID
+		 */
+		definition:
+			user:Faculty = Faculty.allInstance()->any(u:Faculty | u.UserID = userID)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * user doesn't exist
+		 */
+		precondition:
+			user.oclIsUndefined() = true
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * u represented the object of class Faculty
+		 * The object u was created
+		 * The attribute UserID of the object u became userID
+		 * The attribute Name of the object u became name
+		 * The attribute Email of the object u became email
+		 * The attribute Password of the object u became password
+		 * The attribute Sex of the object u became sex
+		 * The attribute Faculty of the object u became faculty
+		 * The attribute LoanedNumber of the object u became 0
+		 * The attribute BorrowStatus of the object u became NORMAL
+		 * The attribute SuspensionDays of the object u became 0
+		 * The attribute OverDueFee of the object u became 0
+		 * The attribute Position of the object u became position
+		 * The attribute Status of the object u became status
+		 * The object u was put into the instance set of class User
+		 * The object u was put into the instance set of class Faculty
+		 * The return value was true
+		 */
+		postcondition:
+			let u:Faculty in
+			u.oclIsNew() and
+			u.UserID = userID and
+			u.Name = name and
+			u.Email = email and
+			u.Password = password and
+			u.Sex = sex and
+			u.Faculty = faculty and
+			u.LoanedNumber = 0 and
+			u.BorrowStatus = BorrowStatus::NORMAL and
+			u.SuspensionDays = 0 and
+			u.OverDueFee = 0 and
+			u.Position = position and
+			u.Status = status and
+			User.allInstance()->includes(u) and
+			Faculty.allInstance()->includes(u) and
+			result = true
+	}
+
+	/* For faculty account*/
+	Contract ManageUserCRUDService::modifyFaculty(userID : String, name : String, sex : Sex[M|F], password : String, email : String, faculty : String, major : String, position : FacultyPosition[ASSISTANTPROFESSORS|ASSOCIATEPROFESSOR|PROFESSOR|CHAIRPROFESSOR], status : FacultyStatus[HASRETIRED|INPOSITION]) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * user is the object u in the instance set of class Faculty. u represents an object of class Faculty, and u meets:
+		 *     The attribute UserID of the object u is equal to userID
+		 */
+		definition:
+			user:Faculty = Faculty.allInstance()->any(u:Faculty | u.UserID = userID)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * user exists
+		 */
+		precondition:
+			user.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The attribute UserID of the object user became userID
+		 * The attribute Name of the object user became name
+		 * The attribute Email of the object user became email
+		 * The attribute Password of the object user became password
+		 * The attribute Sex of the object user became sex
+		 * The attribute Faculty of the object user became faculty
+		 * The attribute LoanedNumber of the object user became 0
+		 * The attribute BorrowStatus of the object user became NORMAL
+		 * The attribute SuspensionDays of the object user became 0
+		 * The attribute OverDueFee of the object user became 0
+		 * The attribute Position of the object user became position
+		 * The attribute Status of the object user became status
+		 * The return value was true
+		 */
+		postcondition:
+			user.UserID = userID and
+			user.Name = name and
+			user.Email = email and
+			user.Password = password and
+			user.Sex = sex and
+			user.Faculty = faculty and
+			user.LoanedNumber = 0 and
+			user.BorrowStatus = BorrowStatus::NORMAL and
+			user.SuspensionDays = 0 and
+			user.OverDueFee = 0 and
+			user.Position = position and
+			user.Status = status and
+			result = true
+	}
+
+	Contract ThirdPartyServices::sendNotificationEmail(email: String) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * The email is not equal to null
+		 */
+		precondition:
+			email <> ""
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The return value was true
+		 */
+		postcondition:
+			result = true
+
+	}
+
+//entity create operation 
+	Contract  ManageUserCRUDService::createUser(userid : String, name : String, sex : Sex[M|F], password : String, email : String, faculty : String, loanednumber : Integer, borrowstatus : BorrowStatus[NORMAL|SUSPEND], suspensiondays : Integer, overduefee : Real) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * user is the object use in the instance set of class User. use represents an object of class User, and use meets:
+		 *     The attribute UserID of the object use is equal to userid
+		 */
+		definition:
+			user:User = User.allInstance()->any(use:User | use.UserID = userid)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * user doesn't exist
+		 */
+		precondition:
+			user.oclIsUndefined() = true
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * use represented the object of class User
+		 * The object use was created
+		 * The attribute UserID of the object use became userid
+		 * The attribute Name of the object use became name
+		 * The attribute Sex of the object use became sex
+		 * The attribute Password of the object use became password
+		 * The attribute Email of the object use became email
+		 * The attribute Faculty of the object use became faculty
+		 * The attribute LoanedNumber of the object use became loanednumber
+		 * The attribute BorrowStatus of the object use became borrowstatus
+		 * The attribute SuspensionDays of the object use became suspensiondays
+		 * The attribute OverDueFee of the object use became overduefee
+		 * The object use was put into the instance set of class User
+		 * The return value was true
+		 */
+		postcondition:
+			let use:User in
+			use.oclIsNew() and
+			use.UserID = userid and
+			use.Name = name and
+			use.Sex = sex and
+			use.Password = password and
+			use.Email = email and
+			use.Faculty = faculty and
+			use.LoanedNumber = loanednumber and
+			use.BorrowStatus = borrowstatus and
+			use.SuspensionDays = suspensiondays and
+			use.OverDueFee = overduefee and
+			User.allInstance()->includes(use) and
+			result = true
+	}
+
+//entity query operation 
+	Contract  ManageUserCRUDService::queryUser(userid : String) : User {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * user is the object use in the instance set of class User. use represents an object of class User, and use meets:
+		 *     The attribute UserID of the object use is equal to userid
+		 */
+		definition:
+			user:User = User.allInstance()->any(use:User | use.UserID = userid)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * user exists
+		 */
+		precondition:
+			user.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The return value was user
+		 */
+		postcondition:
+			result = user
+	}
+
+//entity modify operation 
+	Contract  ManageUserCRUDService::modifyUser(userid : String, name : String, sex : Sex[M|F], password : String, email : String, faculty : String, loanednumber : Integer, borrowstatus : BorrowStatus[NORMAL|SUSPEND], suspensiondays : Integer, overduefee : Real) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * user is the object use in the instance set of class User. use represents an object of class User, and use meets:
+		 *     The attribute UserID of the object use is equal to userid
+		 */
+		definition:
+			user:User = User.allInstance()->any(use:User | use.UserID = userid)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * user exists
+		 */
+		precondition:
+			user.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The attribute UserID of the object user became userid
+		 * The attribute Name of the object user became name
+		 * The attribute Sex of the object user became sex
+		 * The attribute Password of the object user became password
+		 * The attribute Email of the object user became email
+		 * The attribute Faculty of the object user became faculty
+		 * The attribute LoanedNumber of the object user became loanednumber
+		 * The attribute BorrowStatus of the object user became borrowstatus
+		 * The attribute SuspensionDays of the object user became suspensiondays
+		 * The attribute OverDueFee of the object user became overduefee
+		 * The return value was true
+		 */
+		postcondition:
+			user.UserID = userid and
+			user.Name = name and
+			user.Sex = sex and
+			user.Password = password and
+			user.Email = email and
+			user.Faculty = faculty and
+			user.LoanedNumber = loanednumber and
+			user.BorrowStatus = borrowstatus and
+			user.SuspensionDays = suspensiondays and
+			user.OverDueFee = overduefee and
+			result = true
+	}
+
+//entity delete operation 
+	Contract  ManageUserCRUDService::deleteUser(userid : String) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * user is the object use in the instance set of class User. use represents an object of class User, and use meets:
+		 *     The attribute UserID of the object use is equal to userid
+		 */
+		definition:
+			user:User = User.allInstance()->any(use:User | use.UserID = userid)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * user exists
+		 * The object user is in the instance set of class User
+		 */
+		precondition:
+			user.oclIsUndefined() = false and
+			User.allInstance()->includes(user)
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The object user was deleted from the instance set of class User
+		 * The return value was true
+		 */
+		postcondition:
+			User.allInstance()->excludes(user) and
+			result = true
+	}
+
+//entity create operation 
+	Contract  ManageBookCRUDService::createBook(callno : String, title : String, edition : String, author : String, publisher : String, description : String, isbn : String, copynum : Integer) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * book is the object boo in the instance set of class Book. boo represents an object of class Book, and boo meets:
+		 *     The attribute CallNo of the object boo is equal to callno
+		 */
+		definition:
+			book:Book = Book.allInstance()->any(boo:Book | boo.CallNo = callno)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * book doesn't exist
+		 */
+		precondition:
+			book.oclIsUndefined() = true
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * boo represented the object of class Book
+		 * The object boo was created
+		 * The attribute CallNo of the object boo became callno
+		 * The attribute Title of the object boo became title
+		 * The attribute Edition of the object boo became edition
+		 * The attribute Author of the object boo became author
+		 * The attribute Publisher of the object boo became publisher
+		 * The attribute Description of the object boo became description
+		 * The attribute ISBn of the object boo became isbn
+		 * The attribute CopyNum of the object boo became copynum
+		 * The object boo was put into the instance set of class Book
+		 * The return value was true
+		 */
+		postcondition:
+			let boo:Book in
+			boo.oclIsNew() and
+			boo.CallNo = callno and
+			boo.Title = title and
+			boo.Edition = edition and
+			boo.Author = author and
+			boo.Publisher = publisher and
+			boo.Description = description and
+			boo.ISBn = isbn and
+			boo.CopyNum = copynum and
+			Book.allInstance()->includes(boo) and
+			result = true
+	}
+
+//entity query operation 
+	Contract  ManageBookCRUDService::queryBook(callno : String) : Book {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * book is the object boo in the instance set of class Book. boo represents an object of class Book, and boo meets:
+		 *     The attribute CallNo of the object boo is equal to callno
+		 */
+		definition:
+			book:Book = Book.allInstance()->any(boo:Book | boo.CallNo = callno)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * book exists
+		 */
+		precondition:
+			book.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The return value was book
+		 */
+		postcondition:
+			result = book
+	}
+
+//entity modify operation 
+	Contract  ManageBookCRUDService::modifyBook(callno : String, title : String, edition : String, author : String, publisher : String, description : String, isbn : String, copynum : Integer) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * book is the object boo in the instance set of class Book. boo represents an object of class Book, and boo meets:
+		 *     The attribute CallNo of the object boo is equal to callno
+		 */
+		definition:
+			book:Book = Book.allInstance()->any(boo:Book | boo.CallNo = callno)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * book exists
+		 */
+		precondition:
+			book.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The attribute CallNo of the object book became callno
+		 * The attribute Title of the object book became title
+		 * The attribute Edition of the object book became edition
+		 * The attribute Author of the object book became author
+		 * The attribute Publisher of the object book became publisher
+		 * The attribute Description of the object book became description
+		 * The attribute ISBn of the object book became isbn
+		 * The attribute CopyNum of the object book became copynum
+		 * The return value was true
+		 */
+		postcondition:
+			book.CallNo = callno and
+			book.Title = title and
+			book.Edition = edition and
+			book.Author = author and
+			book.Publisher = publisher and
+			book.Description = description and
+			book.ISBn = isbn and
+			book.CopyNum = copynum and
+			result = true
+	}
+
+//entity delete operation 
+	Contract  ManageBookCRUDService::deleteBook(callno : String) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * book is the object boo in the instance set of class Book. boo represents an object of class Book, and boo meets:
+		 *     The attribute CallNo of the object boo is equal to callno
+		 */
+		definition:
+			book:Book = Book.allInstance()->any(boo:Book | boo.CallNo = callno)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * book exists
+		 * The object book is in the instance set of class Book
+		 */
+		precondition:
+			book.oclIsUndefined() = false and
+			Book.allInstance()->includes(book)
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The object book was deleted from the instance set of class Book
+		 * The return value was true
+		 */
+		postcondition:
+			Book.allInstance()->excludes(book) and
+			result = true
+	}
+
+//entity create operation 
+	Contract  ManageSubjectCRUDService::createSubject(name : String) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * subject is the object sub in the instance set of class Subject. sub represents an object of class Subject, and sub meets:
+		 *     The attribute Name of the object sub is equal to name
+		 */
+		definition:
+			subject:Subject = Subject.allInstance()->any(sub:Subject | sub.Name = name)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * subject doesn't exist
+		 */
+		precondition:
+			subject.oclIsUndefined() = true
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * sub represented the object of class Subject
+		 * The object sub was created
+		 * The attribute Name of the object sub became name
+		 * The object sub was put into the instance set of class Subject
+		 * The return value was true
+		 */
+		postcondition:
+			let sub:Subject in
+			sub.oclIsNew() and
+			sub.Name = name and
+			Subject.allInstance()->includes(sub) and
+			result = true
+	}
+
+//entity query operation 
+	Contract  ManageSubjectCRUDService::querySubject(name : String) : Subject {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * subject is the object sub in the instance set of class Subject. sub represents an object of class Subject, and sub meets:
+		 *     The attribute Name of the object sub is equal to name
+		 */
+		definition:
+			subject:Subject = Subject.allInstance()->any(sub:Subject | sub.Name = name)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * subject exists
+		 */
+		precondition:
+			subject.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The return value was subject
+		 */
+		postcondition:
+			result = subject
+	}
+
+//entity modify operation 
+	Contract  ManageSubjectCRUDService::modifySubject(name : String) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * subject is the object sub in the instance set of class Subject. sub represents an object of class Subject, and sub meets:
+		 *     The attribute Name of the object sub is equal to name
+		 */
+		definition:
+			subject:Subject = Subject.allInstance()->any(sub:Subject | sub.Name = name)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * subject exists
+		 */
+		precondition:
+			subject.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The attribute Name of the object subject became name
+		 * The return value was true
+		 */
+		postcondition:
+			subject.Name = name and
+			result = true
+	}
+
+//entity delete operation 
+	Contract  ManageSubjectCRUDService::deleteSubject(name : String) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * subject is the object sub in the instance set of class Subject. sub represents an object of class Subject, and sub meets:
+		 *     The attribute Name of the object sub is equal to name
+		 */
+		definition:
+			subject:Subject = Subject.allInstance()->any(sub:Subject | sub.Name = name)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * subject exists
+		 * The object subject is in the instance set of class Subject
+		 */
+		precondition:
+			subject.oclIsUndefined() = false and
+			Subject.allInstance()->includes(subject)
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The object subject was deleted from the instance set of class Subject
+		 * The return value was true
+		 */
+		postcondition:
+			Subject.allInstance()->excludes(subject) and
+			result = true
+	}
+
+	Contract ManageBookCopyCRUDService::addBookCopy(callNo:String, barcode : String, location : String) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * book is the object b in the instance set of class Book. b represents an object of class Book, and b meets:
+		 *     The attribute CallNo of the object b is equal to callNo
+		 * bc is the object c in all objects which book is linked to by Copys. c represents an object of class BookCopy, and c meets:
+		 *     The attribute Barcode of the object c is equal to barcode
+		 */
+		definition:
+			book:Book = Book.allInstance()->any(b:Book | b.CallNo = callNo),
+			bc:BookCopy = BookCopy.allInstance()->any(c:BookCopy | c.Barcode = barcode)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * book exists
+		 * bc doesn't exist
+		 */
+		precondition:
+			book.oclIsUndefined() = false and
+			bc.oclIsUndefined() = true
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * copy represented the object of class BookCopy
+		 * The object copy was created
+		 * The attribute Barcode of the object copy became barcode
+		 * The attribute Status of the object copy became AVAILABLE
+		 * The attribute Location of the object copy became location
+		 * The attribute IsReserved of the object copy became false
+		 * The object book was linked to the object copy by Copys
+		 * The object copy was linked to the object book by BookBelongs
+		 * The attribute CopyNum of the object book became the previous value of the attribute CopyNum of the object book plus 1
+		 * The object copy was put into the instance set of class BookCopy
+		 * The return value was true
+		 */
+		postcondition:
+			let copy:BookCopy in
+			copy.oclIsNew() and
+			copy.Barcode = barcode and
+			copy.Status = CopyStatus::AVAILABLE and
+			copy.Location = location and
+			copy.IsReserved = false and
+			book.Copys->includes(copy) and
+			copy.BookBelongs = book and
+			book.CopyNum = book.CopyNum@pre + 1 and
+			BookCopy.allInstance()->includes(copy) and
+			result = true
+	}
+
+//entity query operation 
+	Contract  ManageBookCopyCRUDService::queryBookCopy(barcode : String) : BookCopy {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * bookcopy is the object boo in the instance set of class BookCopy. boo represents an object of class BookCopy, and boo meets:
+		 *     The attribute Barcode of the object boo is equal to barcode
+		 */
+		definition:
+			bookcopy:BookCopy = BookCopy.allInstance()->any(boo:BookCopy | boo.Barcode = barcode)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * bookcopy exists
+		 */
+		precondition:
+			bookcopy.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The return value was bookcopy
+		 */
+		postcondition:
+			result = bookcopy
+	}
+
+//entity modify operation 
+	Contract  ManageBookCopyCRUDService::modifyBookCopy(barcode : String, status : CopyStatus[AVAILABLE|INPROCESSING|LIBUSEONLY|ONHOLDSHELF|LOANED], location : String, isreserved : Boolean) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * bookcopy is the object boo in the instance set of class BookCopy. boo represents an object of class BookCopy, and boo meets:
+		 *     The attribute Barcode of the object boo is equal to barcode
+		 */
+		definition:
+			bookcopy:BookCopy = BookCopy.allInstance()->any(boo:BookCopy | boo.Barcode = barcode)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * bookcopy exists
+		 */
+		precondition:
+			bookcopy.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The attribute Barcode of the object bookcopy became barcode
+		 * The attribute Status of the object bookcopy became status
+		 * The attribute Location of the object bookcopy became location
+		 * The attribute IsReserved of the object bookcopy became isreserved
+		 * The return value was true
+		 */
+		postcondition:
+			bookcopy.Barcode = barcode and
+			bookcopy.Status = status and
+			bookcopy.Location = location and
+			bookcopy.IsReserved = isreserved and
+			result = true
+	}
+
+//entity delete operation 
+	Contract  ManageBookCopyCRUDService::deleteBookCopy(barcode : String) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * bookcopy is the object boo in the instance set of class BookCopy. boo represents an object of class BookCopy, and boo meets:
+		 *     The attribute Barcode of the object boo is equal to barcode
+		 */
+		definition:
+			bookcopy:BookCopy = BookCopy.allInstance()->any(boo:BookCopy | boo.Barcode = barcode)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * bookcopy exists
+		 * The object bookcopy is in the instance set of class BookCopy
+		 */
+		precondition:
+			bookcopy.oclIsUndefined() = false and
+			BookCopy.allInstance()->includes(bookcopy)
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The object bookcopy was deleted from the instance set of class BookCopy
+		 * The return value was true
+		 */
+		postcondition:
+			BookCopy.allInstance()->excludes(bookcopy) and
+			result = true
+	}
+
+//entity create operation 
+	Contract  ManageLibrarianCRUDService::createLibrarian(librarianid : String, name : String, password : String) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * librarian is the object lib in the instance set of class Librarian. lib represents an object of class Librarian, and lib meets:
+		 *     The attribute LibrarianID of the object lib is equal to librarianid
+		 */
+		definition:
+			librarian:Librarian = Librarian.allInstance()->any(lib:Librarian | lib.LibrarianID = librarianid)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * librarian doesn't exist
+		 */
+		precondition:
+			librarian.oclIsUndefined() = true
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * lib represented the object of class Librarian
+		 * The object lib was created
+		 * The attribute LibrarianID of the object lib became librarianid
+		 * The attribute Name of the object lib became name
+		 * The attribute Password of the object lib became password
+		 * The object lib was put into the instance set of class Librarian
+		 * The return value was true
+		 */
+		postcondition:
+			let lib:Librarian in
+			lib.oclIsNew() and
+			lib.LibrarianID = librarianid and
+			lib.Name = name and
+			lib.Password = password and
+			Librarian.allInstance()->includes(lib) and
+			result = true
+	}
+
+//entity query operation 
+	Contract  ManageLibrarianCRUDService::queryLibrarian(librarianid : String) : Librarian {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * librarian is the object lib in the instance set of class Librarian. lib represents an object of class Librarian, and lib meets:
+		 *     The attribute LibrarianID of the object lib is equal to librarianid
+		 */
+		definition:
+			librarian:Librarian = Librarian.allInstance()->any(lib:Librarian | lib.LibrarianID = librarianid)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * librarian exists
+		 */
+		precondition:
+			librarian.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The return value was librarian
+		 */
+		postcondition:
+			result = librarian
+	}
+
+//entity modify operation 
+	Contract  ManageLibrarianCRUDService::modifyLibrarian(librarianid : String, name : String, password : String) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * librarian is the object lib in the instance set of class Librarian. lib represents an object of class Librarian, and lib meets:
+		 *     The attribute LibrarianID of the object lib is equal to librarianid
+		 */
+		definition:
+			librarian:Librarian = Librarian.allInstance()->any(lib:Librarian | lib.LibrarianID = librarianid)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * librarian exists
+		 */
+		precondition:
+			librarian.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The attribute LibrarianID of the object librarian became librarianid
+		 * The attribute Name of the object librarian became name
+		 * The attribute Password of the object librarian became password
+		 * The return value was true
+		 */
+		postcondition:
+			librarian.LibrarianID = librarianid and
+			librarian.Name = name and
+			librarian.Password = password and
+			result = true
+	}
+
+//entity delete operation 
+	Contract  ManageLibrarianCRUDService::deleteLibrarian(librarianid : String) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * librarian is the object lib in the instance set of class Librarian. lib represents an object of class Librarian, and lib meets:
+		 *     The attribute LibrarianID of the object lib is equal to librarianid
+		 */
+		definition:
+			librarian:Librarian = Librarian.allInstance()->any(lib:Librarian | lib.LibrarianID = librarianid)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * librarian exists
+		 * The object librarian is in the instance set of class Librarian
+		 */
+		precondition:
+			librarian.oclIsUndefined() = false and
+			Librarian.allInstance()->includes(librarian)
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The object librarian was deleted from the instance set of class Librarian
+		 * The return value was true
+		 */
+		postcondition:
+			Librarian.allInstance()->excludes(librarian) and
+			result = true
+	}
+
+}
+
+DomainModel LibraryManagementSystem {
+
+	/* Domain Model */
+	@AutoCRUD
+	Entity User {
+		@Description( "The user account" ) UserID : String
+		Name : String
+		Sex : Sex[M|F]
+		Password : String
+		Email : String
+		Faculty : String
+		/* Library related information */
+		LoanedNumber : Integer
+		BorrowStatus : BorrowStatus[NORMAL|SUSPEND]
+		SuspensionDays : Integer
+		OverDueFee : Real
+
+		[Refer]
+		LoanedBook : Loan* Association
+		ReservedBook : Reserve* Association
+		RecommendedBook : RecommendBook* Association
+		[INV]
+		inv UniqueUserID : User.allInstance()->isUnique(u:User | u.UserID)
+		inv OverDueFeeGreatThanEqualZero : OverDueFee >= 0
+		inv LoanedNumberGreatThanEqualZero : LoanedNumber >= 0
+		inv SuspensionDaysGreatThanEqualZero : SuspensionDays >= 0
+	}
+
+	Entity Student extends User {
+		@Description( "The student account" ) Major : String
+		Programme : Programme[BACHELOR|MASTER|PHD]
+		RegistrationStatus : StudentStatus[GRADUATED|PROGRAMMING]
+		[INV]
+		inv StudentLoanLessThanEqualTwelve: Student.allInstance()->forAll(stu : Student | stu.LoanedNumber <= 12)
+		inv StudentLoanedBookAssociationInvariants : super.LoanedBook.size() <= 12 ASSOCINV
+	}
+
+	Entity Faculty extends User {
+		@Description( "The facuity account" ) Position : FacultyPosition[ASSISTANTPROFESSORS|ASSOCIATEPROFESSOR|PROFESSOR|CHAIRPROFESSOR]
+		Status : FacultyStatus[HASRETIRED|INPOSITION]
+		[INV]
+		inv FacultyLoanLessthanEqualTwentyFour: Student.allInstance()->forAll(stu : Student | stu.LoanedNumber <= 24)
+		inv FacultyLoanedBookAssociationInvariants : super.LoanedBook.size() <= 24 ASSOCINV
+	}
+
+	@AutoCRUD
+	Entity Book {
+		@Description( "Books owned by the library" ) CallNo : String
+		Title : String
+		Edition : String
+		Author : String
+		Publisher : String
+		Description : String
+		ISBn : String
+		CopyNum: Integer
+
+		[Refer]
+		Copys : BookCopy* ! Association
+		Subject : Subject* Association
+		[INV]
+		inv BookCallNoUnique : Book.allInstance()->isUnique(b:Book | b.CallNo)
+		inv BookISBNUnique : Book.allInstance()->isUnique(b:Book | b.ISBn)
+		inv BookCopyNumGreatThanEqualZero : CopyNum >= 0
+	}
+
+	@AutoCRUD
+	Entity Subject {
+		@Description( "The subject of books" ) Name : String
+//		[Refer]
+//		SuperSubject : Subject ! Association
+//		SubSubject : Subject* Association
+	}
+
+	@AutoCRUD
+	Entity BookCopy {
+		@Description( "The copy of a book for borrowing" ) Barcode : String
+		Status : CopyStatus[AVAILABLE|INPROCESSING|LIBUSEONLY|ONHOLDSHELF|LOANED]
+		Location : String
+		IsReserved : Boolean
+
+		[Refer]
+		BookBelongs : Book Association
+		LoanedRecord : Loan* Association
+		ReservationRecord : Reserve* Association
+		[INV]
+		inv BarCodeUnique : BookCopy.allInstance()->isUnique(bc:BookCopy | bc.Barcode)
+	}
+
+	Entity Loan {
+		@Description( "The record of borrowing books" ) LoanDate : Date
+		RenewDate : Date
+		DueDate : Date
+		ReturnDate : Date
+		RenewedTimes : Integer
+		IsReturned : Boolean // for list loaning book and loaned book
+		OverDueFee : Real
+		OverDue3Days : Boolean
+		OverDue10Days : Boolean
+		OverDue17Days : Boolean
+		OverDue31Days : Boolean
+
+		[Refer]
+		LoanedUser : User ! Association
+		LoanedCopy : BookCopy ! Association
+		LoanLibrarian : Librarian Association
+		ReturnLibrarian : Librarian Association
+		[INV]
+		inv OverDueFeeGreatThanEqualZero : OverDueFee >= 0
+		inv RenewedTimesLessThanEqualSix :  RenewedTimes >=0 and RenewedTimes <= 6
+		inv LoanOverDueFeeGreatThanEqualZero : OverDueFee >= 0
+		inv RenewDataAfterLoanDate : if (RenewDate.oclIsUndefined() = false) then RenewDate.isAfter(LoanDate) endif
+		inv DueDateAfterLoanDate : DueDate.isAfter(LoanDate)
+		inv ReturnDateAfterORSameLoanDate : if (ReturnDate.oclIsUndefined() = false) then ReturnDate.isAfter(LoanDate) or ReturnDate.isEqual(LoanDate) endif
+		inv DueDateAfterORSameRenewDate : if (RenewDate.oclIsUndefined() = false) then DueDate.isAfter(RenewDate) or DueDate.isEqual(RenewDate) endif
+		inv ReturnDateSameORAfterRenewDate : if (RenewDate.oclIsUndefined() = false and ReturnDate.oclIsUndefined() = false) then ReturnDate.isAfter(RenewDate) or ReturnDate.isEqual(RenewDate) endif
+	}
+
+	Entity Reserve {
+		@Description( "The record of book reservation" ) ReserveDate : Date
+		IsReserveClosed : Boolean // for list all reserving book and reserved book 
+
+		[Refer]
+		ReservedCopy : BookCopy ! Association
+		ReservedUser : User ! Association
+	}
+
+	Entity RecommendBook extends Book {
+		@Description( "The book recommended by users to the library" ) RecommendDate : Date
+
+		[Refer]
+		RecommendUser : User ! Association
+		[INV]
+		inv BookCallNoUnique : Book.allInstance()->isUnique(b:Book | b.CallNo)
+		inv BookISBNUnique : Book.allInstance()->isUnique(b:Book | b.ISBn)
+		inv BookCopyNumGreatThanEqualZero : super.CopyNum >= 0
+	}
+
+	Entity Administrator {
+		@Description( "The administrator account" ) AdminID : String
+		UserName : String
+		Password : String
+		[INV]
+		inv AdministratorIDUnique : Administrator.allInstance()->isUnique(a : Administrator | a.AdminID)
+	}
+
+	@AutoCRUD
+	Entity Librarian {
+		@Description( "The librarian account" ) LibrarianID : String
+		Name : String
+		Password : String
+		[INV] 
+		inv LibrarianIDUnique : Librarian.allInstance()->isUnique(l:Librarian | l.LibrarianID)
+	}
+
+}
+

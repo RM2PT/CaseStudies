@@ -1,0 +1,704 @@
+UseCaseModel ParkMS {
+
+	UC::manuallyAllowOut definedBySSD(ManuallyAllowOutSSD) relatedService(ManuallyAllowOutService)
+	UC::manuallyAllowEntry definedBySSD(ManuallyAllowEntrySSD) relatedService(ManuallyAllowEntryService)
+	UC::automaticEntry definedBySSD(AutomaticEntrySSD) relatedService(AutomaticEntryService)
+	UC::automaticOut definedBySSD(AutomaticOutSSD) relatedService(AutomaticOutService)
+	UC::setPrice definedBySSD(SetPriceSSD) relatedService(SetPriceService)
+	UC::getHistory definedBySSD(GetHistorySSD) relatedService(GetHistoryService)
+	UC::register definedBySSD(RegisterSSD) relatedService(RegisterService)
+	UC::recharge definedBySSD(RechargeSSD) relatedService(RechargeService)
+	UC::openPark
+	UC::closePark
+
+	Actor Driver {
+		automaticEntry
+		automaticOut
+		register
+		recharge
+	}
+
+	Actor SystemManager {
+		setPrice
+		getHistory
+	}
+
+	Actor ParkManager {
+		manuallyAllowEntry
+		manuallyAllowOut
+		openPark
+		closePark
+	}
+
+	Interaction SetPriceSSD {
+
+		[Participants: SystemManager SetPriceService]
+
+	}
+
+	Interaction GetHistorySSD {
+
+		[Participants: SystemManager GetHistoryService]
+
+	}
+
+	Interaction AutomaticEntrySSD {
+
+		[Participants: Driver AutomaticEntryService]
+
+	}
+
+	Interaction ManuallyAllowOutSSD {
+
+		[Participants: ParkManager ManuallyAllowOutService]
+
+	}
+
+	Interaction ManuallyAllowEntrySSD {
+
+		[Participants: ParkManager ManuallyAllowEntryService]
+
+	}
+
+	Interaction AutomaticOutSSD {
+
+		[Participants: Driver AutomaticOutService]
+
+		CallMessage::AutomaticOutSSDCallMessage1(scanPlateNumber AutomaticOutSSDCallMessage1SendingEnd -> AutomaticOutSSDExecution1StartEnd)
+		ReturnMessage::AutomaticOutSSDCallMessage1Return(AutomaticOutSSDExecution1FinishEnd -> AutomaticOutSSDCallMessage1ReturnReceivingEnd AutomaticOutSSDCallMessage1)
+		CallMessage::AutomaticOutSSDCallMessage3(onlinePay AutomaticOutSSDCallMessage3SendingEnd -> AutomaticOutSSDExecution2StartEnd)
+		ReturnMessage::AutomaticOutSSDCallMessage3Return(AutomaticOutSSDExecution2FinishEnd -> AutomaticOutSSDCallMessage3ReturnReceivingEnd AutomaticOutSSDCallMessage3)
+
+		Execution::AutomaticOutSSDExecution1(AutomaticOutService AutomaticOutSSDExecution1StartEnd AutomaticOutSSDExecution1FinishEnd)
+		Execution::AutomaticOutSSDExecution2(AutomaticOutService AutomaticOutSSDExecution2StartEnd AutomaticOutSSDExecution2FinishEnd)
+
+		MessageEnd::AutomaticOutSSDCallMessage1SendingEnd(Driver AutomaticOutSSDCallMessage1)
+		ExecutionEnd::AutomaticOutSSDExecution1StartEnd(AutomaticOutService AutomaticOutSSDExecution1)
+		ExecutionEnd::AutomaticOutSSDExecution1FinishEnd(AutomaticOutService AutomaticOutSSDExecution1)
+		MessageEnd::AutomaticOutSSDCallMessage1ReturnReceivingEnd(Driver AutomaticOutSSDCallMessage1Return)
+		MessageEnd::AutomaticOutSSDCallMessage3SendingEnd(Driver AutomaticOutSSDCallMessage3)
+		ExecutionEnd::AutomaticOutSSDExecution2StartEnd(AutomaticOutService AutomaticOutSSDExecution2)
+		ExecutionEnd::AutomaticOutSSDExecution2FinishEnd(AutomaticOutService AutomaticOutSSDExecution2)
+		MessageEnd::AutomaticOutSSDCallMessage3ReturnReceivingEnd(Driver AutomaticOutSSDCallMessage3Return)
+
+	}
+
+	Interaction RegisterSSD {
+
+		[Participants: Driver RegisterService]
+
+		CallMessage::RegisterSSDCallMessage1(registerMember RegisterSSDCallMessage1SendingEnd -> RegisterSSDExecution1StartEnd)
+		ReturnMessage::RegisterSSDCallMessage1Return(RegisterSSDExecution1FinishEnd -> RegisterSSDCallMessage1ReturnReceivingEnd RegisterSSDCallMessage1)
+		CallMessage::RegisterSSDCallMessage3(registerVehicle RegisterSSDCallMessage3SendingEnd -> RegisterSSDExecution2StartEnd)
+		ReturnMessage::RegisterSSDCallMessage3Return(RegisterSSDExecution2FinishEnd -> RegisterSSDCallMessage3ReturnReceivingEnd RegisterSSDCallMessage3)
+
+		Execution::RegisterSSDExecution1(RegisterService RegisterSSDExecution1StartEnd RegisterSSDExecution1FinishEnd)
+		Execution::RegisterSSDExecution2(RegisterService RegisterSSDExecution2StartEnd RegisterSSDExecution2FinishEnd)
+
+		MessageEnd::RegisterSSDCallMessage1SendingEnd(Driver RegisterSSDCallMessage1)
+		ExecutionEnd::RegisterSSDExecution1StartEnd(RegisterService RegisterSSDExecution1)
+		ExecutionEnd::RegisterSSDExecution1FinishEnd(RegisterService RegisterSSDExecution1)
+		MessageEnd::RegisterSSDCallMessage1ReturnReceivingEnd(Driver RegisterSSDCallMessage1Return)
+		MessageEnd::RegisterSSDCallMessage3SendingEnd(Driver RegisterSSDCallMessage3)
+		ExecutionEnd::RegisterSSDExecution2StartEnd(RegisterService RegisterSSDExecution2)
+		ExecutionEnd::RegisterSSDExecution2FinishEnd(RegisterService RegisterSSDExecution2)
+		MessageEnd::RegisterSSDCallMessage3ReturnReceivingEnd(Driver RegisterSSDCallMessage3Return)
+
+	}
+
+	Interaction RechargeSSD {
+
+		[Participants: Driver RechargeService]
+
+	}
+
+	Service ParkMSSystem {
+
+		[Operation]
+		openPark(parkID)
+		closePark(parkID)
+
+		[TempProperty]
+		CurrentPark: Park
+		CurrentParkRecord: ParkRecord
+		CurrentMember: Member
+		CurrentPayment: Real
+
+	}
+
+	Service ThirdPartyServices {
+
+	}
+
+	Service SetPriceService {
+
+		[Operation]
+		setSmallPrice(parkID, price)
+		setLargePrice(parkID, price)
+		setMotoPrice(parkID, price)
+
+	}
+
+	Service GetHistoryService {
+
+		[Operation]
+		getHistoryByPlateNumber(plateNumber)
+		getHistoryByEntryTime(from,to)
+		getHistoryByOutTime(from,to)
+		getHistoryByMember(memberID)
+
+	}
+
+	Service AutomaticEntryService {
+
+		[Operation]
+		automaticEntry(plateNumber,time)
+
+		[TempProperty]
+		RecordID:Integer
+
+	}
+
+	Service ManuallyAllowOutService {
+
+		[Operation]
+		manuallyAllowOut(plateNumber,time)
+
+	}
+
+	Service ManuallyAllowEntryService {
+
+		[Operation]
+		manuallyAllowEntry(plateNumber,type,time)
+
+	}
+
+	Service AutomaticOutService {
+
+		[Operation]
+		scanPlateNumber(plateNumber, time)
+		onlinePay(memberID)
+
+	}
+
+	Service RegisterService {
+
+		[Operation]
+		registerMember(memberID, name)
+		registerVehicle(vehicleID, plateNumber, type)
+
+	}
+
+	Service RechargeService {
+
+		[Operation]
+		recharge(memberID,amount)
+
+	}
+
+	Service ManageParkCRUDService {
+
+		[Operation]
+		createPark(id, name, location, smallprice, largeprice, motoprice)
+		queryPark(id)
+		modifyPark(id, name, location, smallprice, largeprice, motoprice)
+		deletePark(id)
+
+	}
+
+	Service ManageVehicleCRUDService {
+
+		[Operation]
+		createVehicle(id, platenumber, type)
+		queryVehicle(id)
+		modifyVehicle(id, platenumber, type)
+		deleteVehicle(id)
+
+	}
+
+	// entity create operation 
+	Contract  ManageParkCRUDService::createPark(id : Integer, name : String, location : String, smallprice : Real, largeprice : Real, motoprice : Real) : Boolean {
+
+		/* definition: find specific Park instance by id */
+		definition:
+			park:Park = Park.allInstance()->any(par:Park | par.Id = id)
+
+		/* precondition: the instance park was not found in the system */
+		precondition:
+			park.oclIsUndefined() = true
+
+		/* postcondition: 
+		 * A Park instance par was created.
+		 * all properties of par became the same values as inputs.
+		 */
+		postcondition:
+			let par:Park in
+			par.oclIsNew() and
+			par.Id = id and
+			par.Name = name and
+			par.Location = location and
+			par.SmallPrice = smallprice and
+			par.LargePrice = largeprice and
+			par.MotoPrice = motoprice and
+			Park.allInstance()->includes(par) and
+			result = true
+	}
+
+//entity query operation 
+	Contract  ManageParkCRUDService::queryPark(id : Integer) : Park {
+
+		/* definition: find specific Park instance by id */
+		definition:
+			park:Park = Park.allInstance()->any(par:Park | par.Id = id)
+
+		/* precondition: the instance park was found in the system */
+		precondition:
+			park.oclIsUndefined() = false
+
+		/* postcondition: return found the instance park */
+		postcondition:
+			result = park
+	}
+
+//entity modify operation 
+	Contract  ManageParkCRUDService::modifyPark(id : Integer, name : String, location : String, smallprice : Real, largeprice : Real, motoprice : Real) : Boolean {
+
+		/* definition: find specific Park instance by id */
+		definition:
+			park:Park = Park.allInstance()->any(par:Park | par.Id = id)
+
+		/* precondition: the instance park was found in the system */
+		precondition:
+			park.oclIsUndefined() = false
+
+		/* postcondition: all properties of par became the same values as inputs. */
+		postcondition:
+			park.Id = id and
+			park.Name = name and
+			park.Location = location and
+			park.SmallPrice = smallprice and
+			park.LargePrice = largeprice and
+			park.MotoPrice = motoprice and
+			result = true
+	}
+
+//entity delete operation 
+	Contract  ManageParkCRUDService::deletePark(id : Integer) : Boolean {
+
+		/* definition: find specific Park instance by id */
+		definition:
+			park:Park = Park.allInstance()->any(par:Park | par.Id = id)
+
+		/* precondition: the instance park was found in the system */
+		precondition:
+			park.oclIsUndefined() = false and
+			Park.allInstance()->includes(park)
+
+		/* postcondition: the instance park was deleted from the system */
+		postcondition:
+			Park.allInstance()->excludes(park) and
+			result = true
+	}
+
+//entity create operation 
+	Contract  ManageVehicleCRUDService::createVehicle(id : Integer, platenumber : String, type : VehicleType[SMALL|LARGE|MOTOCYCLE|SPECIAL]) : Boolean {
+
+		/* definition: find specific Vehicle instance by id */
+		definition:
+			vehicle:Vehicle = Vehicle.allInstance()->any(veh:Vehicle | veh.Id = id)
+
+		/* precondition: the instance vehicle was not found in the system */
+		precondition:
+			vehicle.oclIsUndefined() = true
+
+		/* postcondition: 
+		 * A Vehicle instance veh was created.
+		 * all properties of veh became the same values as inputs.
+		 */
+		postcondition:
+			let veh:Vehicle in
+			veh.oclIsNew() and
+			veh.Id = id and
+			veh.PlateNumber = platenumber and
+			veh.Type = type and
+			Vehicle.allInstance()->includes(veh) and
+			result = true
+	}
+
+//entity query operation 
+	Contract  ManageVehicleCRUDService::queryVehicle(id : Integer) : Vehicle {
+
+		/* definition: find specific Vehicle instance by id */
+		definition:
+			vehicle:Vehicle = Vehicle.allInstance()->any(veh:Vehicle | veh.Id = id)
+
+		/* precondition: the instance vehicle was found in the system */
+		precondition:
+			vehicle.oclIsUndefined() = false
+
+		/* postcondition: return found the instance vehicle */
+		postcondition:
+			result = vehicle
+	}
+
+//entity modify operation 
+	Contract  ManageVehicleCRUDService::modifyVehicle(id : Integer, platenumber : String, type : VehicleType[SMALL|LARGE|MOTOCYCLE|SPECIAL]) : Boolean {
+
+		/* definition: find specific Vehicle instance by id */
+		definition:
+			vehicle:Vehicle = Vehicle.allInstance()->any(veh:Vehicle | veh.Id = id)
+
+		/* precondition: the instance vehicle was found in the system */
+		precondition:
+			vehicle.oclIsUndefined() = false
+
+		/* postcondition: all properties of veh became the same values as inputs. */
+		postcondition:
+			vehicle.Id = id and
+			vehicle.PlateNumber = platenumber and
+			vehicle.Type = type and
+			result = true
+	}
+
+//entity delete operation 
+	Contract  ManageVehicleCRUDService::deleteVehicle(id : Integer) : Boolean {
+
+		/* definition: find specific Vehicle instance by id */
+		definition:
+			vehicle:Vehicle = Vehicle.allInstance()->any(veh:Vehicle | veh.Id = id)
+
+		/* precondition: the instance vehicle was found in the system */
+		precondition:
+			vehicle.oclIsUndefined() = false and
+			Vehicle.allInstance()->includes(vehicle)
+
+		/* postcondition: the instance vehicle was deleted from the system */
+		postcondition:
+			Vehicle.allInstance()->excludes(vehicle) and
+			result = true
+	}
+
+	Contract AutomaticEntryService::automaticEntry(plateNumber : String, time : Date) : Boolean {
+
+		definition:
+			isParking:ParkRecord = ParkRecord.allInstance()->any(r:ParkRecord|r.PlateNumber=plateNumber and r.IsParking=true)
+
+		precondition:
+			CurrentPark.oclIsUndefined() = false and
+			CurrentPark.IsOpened = true and
+			isParking.oclIsUndefined() = true
+		postcondition:
+			let parkRecord:ParkRecord in
+			parkRecord.oclIsNew() and
+			parkRecord.PlateNumber = plateNumber and
+			parkRecord.EntryTime = time and
+			parkRecord.IsParking = true and
+			parkRecord.Id = self.RecordID@pre+1 and
+			self.RecordID = self.RecordID@pre+1 and
+			ParkRecord.allInstance()->includes(parkRecord) and
+			CurrentPark.OwningRecords->includes(parkRecord) and
+			result = true
+	}
+
+	Contract AutomaticOutService::scanPlateNumber(plateNumber : String, time : Date) : Real {
+
+		definition:
+			parkRecord:ParkRecord = ParkRecord.allInstance()->any(r:ParkRecord|r.PlateNumber=plateNumber and r.IsParking=true),
+			vehicle:Vehicle = Vehicle.allInstance()->any(v:Vehicle|v.PlateNumber=plateNumber)
+
+		precondition:
+			parkRecord.oclIsUndefined() = false and
+			parkRecord.IsParking = true
+		postcondition:
+			parkRecord.IsParking = false and
+			parkRecord.Type = vehicle.Type and
+			if
+				vehicle.Type = VehicleType::SPECIAL
+			then
+				CurrentPayment = 0
+			else
+				if
+					vehicle.Type = VehicleType::SMALL
+				then
+					// CurrentPayment = parkRecord.SmallPrice*(time.DayOfYear-parkRecordtime.DayOfYear)
+					CurrentPayment = 1
+				else
+					if
+						vehicle.Type = VehicleType::LARGE
+					then
+						CurrentPayment = 2
+					else
+						CurrentPayment = 3
+					endif
+				endif
+			endif and
+			result = CurrentPayment
+	}
+
+	Contract AutomaticOutService::onlinePay(memberID:Integer) : Boolean {
+
+		definition:
+			member:Member = Member.allInstance()->any(m:Member|m.Id=memberID)
+
+		precondition:
+			member.oclIsUndefined() = false and
+			member.Balance >= CurrentPayment
+		postcondition:
+			member.Balance = member.Balance@pre-CurrentPayment and
+			result = true
+	}
+
+	Contract SetPriceService::setSmallPrice(parkID : Integer, price : Real) : Boolean {
+
+		definition:
+			park:Park = Park.allInstance()->any(p:Park|p.Id=parkID)
+
+		precondition:
+			park.oclIsUndefined() = false
+
+		postcondition:
+			park.SmallPrice = price and
+			result = true
+	}
+
+	Contract SetPriceService::setLargePrice(parkID : Integer, price : Real) : Boolean {
+
+		definition:
+			park:Park = Park.allInstance()->any(p:Park|p.Id=parkID)
+
+		precondition:
+			park.oclIsUndefined() = false
+
+		postcondition:
+			park.LargePrice = price and
+			result = true
+	}
+
+	Contract SetPriceService::setMotoPrice(parkID : Integer, price : Real) : Boolean {
+
+		definition:
+			park:Park = Park.allInstance()->any(p:Park|p.Id=parkID)
+
+		precondition:
+			park.oclIsUndefined() = false
+
+		postcondition:
+			park.MotoPrice = price and
+			result = true
+	}
+
+	Contract GetHistoryService::getHistoryByMember(memberID : Integer) : Set(ParkRecord) {
+
+		definition:
+			member:Member = Member.allInstance()->any(m:Member|m.Id=memberID)
+
+		precondition:
+			member.oclIsUndefined() = false
+
+		postcondition:
+			result = ParkRecord.allInstance()->select(r:ParkRecord|member.OwningVehicles->exists(v:Vehicle|v.PlateNumber=r.PlateNumber))
+	}
+
+	Contract GetHistoryService::getHistoryByOutTime(from : Date, to : Date) : Set(ParkRecord) {
+
+		precondition:
+			true
+
+		postcondition:
+			result = ParkRecord.allInstance()->select(r:ParkRecord|r.OutTime.isAfter(from) and r.OutTime.isBefore(to))
+	}
+
+	Contract GetHistoryService::getHistoryByEntryTime(from : Date, to : Date) : Set(ParkRecord) {
+
+		precondition:
+			true
+
+		postcondition:
+			result = ParkRecord.allInstance()->select(r:ParkRecord|r.EntryTime.isAfter(from) and r.EntryTime.isBefore(to))
+	}
+
+	Contract GetHistoryService::getHistoryByPlateNumber(plateNumber : String) : Set(ParkRecord) {
+
+		precondition:
+			true
+
+		postcondition:
+			result = ParkRecord.allInstance()->select(r:ParkRecord|r.PlateNumber=plateNumber)
+	}
+
+	Contract RegisterService::registerMember(memberID : Integer, name : String) : Boolean {
+
+		definition:
+			member:Member = Member.allInstance()->any(m:Member|m.Id=memberID)
+
+		precondition:
+			member.oclIsUndefined() = true
+
+		postcondition:
+			let newMember:Member in
+			newMember.oclIsNew() and
+			newMember.Id = memberID and
+			newMember.Name = name and
+			Member.allInstance()->includes(newMember) and
+			CurrentMember = newMember and
+			result = true
+	}
+
+	Contract RegisterService::registerVehicle(vehicleID : Integer, plateNumber : String, type:VehicleType[SMALL|LARGE|MOTO|SPECIAL]) : Boolean {
+
+		definition:
+			vehicle:Vehicle = Vehicle.allInstance()->any(v:Vehicle|v.Id=vehicleID)
+
+		precondition:
+			CurrentMember.oclIsUndefined() = false and
+			vehicle.oclIsUndefined() = true
+		postcondition:
+			let newVehicle:Vehicle in
+			newVehicle.oclIsNew() and
+			newVehicle.Id = vehicleID and
+			newVehicle.PlateNumber = plateNumber and
+			newVehicle.Type = type and
+			Vehicle.allInstance()->includes(newVehicle) and
+			CurrentMember.OwningVehicles->includes(newVehicle) and
+			newVehicle.OwnedMember = CurrentMember and
+			result = true
+	}
+
+	Contract RechargeService::recharge(memberID : Integer, amount : Real) : Boolean {
+
+		definition:
+			member:Member = Member.allInstance()->any(m:Member|m.Id=memberID)
+
+		precondition:
+			member.oclIsUndefined() = false
+		postcondition:
+			member.Balance = member.Balance@pre+amount and
+			result = true
+	}
+
+	Contract ManuallyAllowOutService::manuallyAllowOut(plateNumber : String, time : Date) : Boolean {
+
+		definition:
+			parkRecord:ParkRecord = ParkRecord.allInstance()->any(r:ParkRecord|r.PlateNumber=plateNumber and r.IsParking=true)
+
+		precondition:
+			parkRecord.oclIsUndefined() = false and
+			parkRecord.IsParking = true
+		postcondition:
+			parkRecord.IsParking = false and
+			result = true
+	}
+
+	Contract ManuallyAllowEntryService::manuallyAllowEntry(plateNumber : String, type : VehicleType[SMALL|LARGE|MOTO|SPECIAL], time : Date) : Boolean {
+
+		definition:
+			vehicle:Vehicle = Vehicle.allInstance()->any(v:Vehicle|v.PlateNumber=plateNumber)
+
+		precondition:
+			CurrentPark.oclIsUndefined() = false and
+			CurrentPark.IsOpened = true
+		postcondition:
+			let parkRecord:ParkRecord in
+			parkRecord.oclIsNew() and
+			parkRecord.Id = CurrentPark.OwningRecords@pre.size()+1 and
+			parkRecord.PlateNumber = plateNumber and
+			parkRecord.Type = type and
+			parkRecord.EntryTime = time and
+			parkRecord.IsParking = true and
+			ParkRecord.allInstance()->includes(parkRecord) and
+			CurrentPark.OwningRecords->includes(parkRecord) and
+			result = true
+	}
+
+	Contract ParkMSSystem::openPark(parkID : Integer) : Boolean {
+
+		definition:
+			park:Park = Park.allInstance()->any(p:Park|p.Id=parkID)
+
+		precondition:
+			park.oclIsUndefined() = false and
+			park.IsOpened = false
+		postcondition:
+			park.IsOpened = true and
+			CurrentPark = park and
+			result = true
+	}
+
+	Contract ParkMSSystem::closePark(parkID : Integer) : Boolean {
+
+		definition:
+			park:Park = Park.allInstance()->any(p:Park|p.Id=parkID)
+
+		precondition:
+			park.oclIsUndefined() = false and
+			park.IsOpened = true
+		postcondition:
+			park.IsOpened = false and
+			result = true
+	}
+
+}
+
+DomainModel ParkMS {
+
+	Entity ParkRecord {
+		Id : Integer
+		PlateNumber : String
+		Type : VehicleType[SMALL|LARGE|MOTOCYCLE|SPECIAL]
+		EntryTime : Date
+		OutTime : Date
+		IsParking : Boolean
+		TotalPayment : Real
+		Description : String
+
+		[Refer]
+		OwnedPark : Park ! Association
+		[INV]
+		inv	RecordIDUnique: ParkRecord.allInstance()->isUnique(r:ParkRecord|r.Id)
+	}
+
+	@AutoCRUD Entity Park {
+		Id : Integer
+		Name : String
+		Location : String
+		SmallPrice : Real
+		LargePrice : Real
+		MotoPrice : Real
+		IsOpened : Boolean
+
+		[Refer]
+		OwningMembers : Member* Association
+		OwningRecords : ParkRecord* Composition
+		[INV]
+		inv ParkIDUnique: Park.allInstance()->isUnique(p:Park|p.Id)
+		inv SmallPriceGreaterEqualThanZero: SmallPrice >= 0
+		inv LargePriceGreaterEqualThanZero: LargePrice >= 0
+		inv MotoPriceGreaterEqualThanZero: MotoPrice >= 0
+	}
+
+	@AutoCRUD Entity Vehicle {
+		Id : Integer
+		PlateNumber : String
+		Type : VehicleType[SMALL|LARGE|MOTOCYCLE|SPECIAL]
+
+		[Refer]
+		OwnedMember : Member ! Association
+		[INV]
+		inv VehicleIDUnique : Vehicle.allInstance()->isUnique(v:Vehicle|v.Id)
+		inv VehiclePlateNumberUnique : Vehicle.allInstance()->isUnique(v:Vehicle|v.PlateNumber)
+	}
+
+	Entity Member {
+		Id : Integer
+		Name : String
+		Balance : Real
+
+		[Refer]
+		Parks : Park* ! Aggregation
+		OwningVehicles : Vehicle* Composition
+		[INV]
+		inv MemberIDUnique: Member.allInstance()->isUnique(m:Member|m.Id)
+	}
+
+}
+
