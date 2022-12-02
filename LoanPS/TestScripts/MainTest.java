@@ -44,7 +44,14 @@ public class MainTest extends ApplicationTest {
         new Main().start(stage);
     }
     
-   
+    @Test
+    public void integrationTest() {
+    	atestSubmitLoanRequest();
+    	btestEnterValidatedCreditReference();
+    	ctestEnterValidatedCreditReference();
+    	dtestGenerateLoanLetterAndAgreement();
+    	ftestLoanManagementModule();
+    }
    
     public void TestTwoTabs() {
     	
