@@ -1,0 +1,379 @@
+UseCaseModel MicroKnowledge {
+
+	UC::searchMicroknowledge definedBySSD(SearchMicroknowledgeSSD)
+//	relatedService(SearchMicroknowledgeService)
+	UC::starMicroknowledge definedBySSD(StarMicroknowledgeSSD)
+//	relatedService(StarMicroknowledgeService)
+	UC::writeComment definedBySSD(WriteCommentSSD)
+//	relatedService(WriteCommentService)
+	UC::listMicroknowledgeOfUser definedBySSD(ListMicroknowledgeOfUserSSD)
+//	relatedService(ListMicroknowledgeOfUserService)
+	UC::listStaredMicroknowledge
+	UC::manageMicroknowledge
+	UC::manageUser
+	UC::logIn
+
+	Actor Uploader extends User {
+		manageMicroknowledge
+	}
+
+	Actor Reader extends User {
+		searchMicroknowledge
+		starMicroknowledge
+		writeComment
+		listStaredMicroknowledge
+		listMicroknowledgeOfUser
+	}
+
+	Actor Administrator {
+		manageUser
+	}
+
+	Actor User {
+		logIn
+	}
+
+	Interaction SearchMicroknowledgeSSD {
+
+		[Participants: Reader MicroKnowledgeSystem]
+
+		CallMessage::SearchMicroknowledgeSSDCallMessage1(searchMicroknowledge SearchMicroknowledgeSSDCallMessage1SendingEnd -> SearchMicroknowledgeSSDExecution1StartEnd)
+		ReturnMessage::SearchMicroknowledgeSSDCallMessage1Return(SearchMicroknowledgeSSDExecution1FinishEnd -> SearchMicroknowledgeSSDCallMessage1ReturnReceivingEnd SearchMicroknowledgeSSDCallMessage1)
+		CallMessage::SearchMicroknowledgeSSDCallMessage3(viewMicroknowledge SearchMicroknowledgeSSDCallMessage3SendingEnd -> SearchMicroknowledgeSSDExecution2StartEnd)
+		ReturnMessage::SearchMicroknowledgeSSDCallMessage3Return(SearchMicroknowledgeSSDExecution2FinishEnd -> SearchMicroknowledgeSSDCallMessage3ReturnReceivingEnd SearchMicroknowledgeSSDCallMessage3)
+
+		Execution::SearchMicroknowledgeSSDExecution1(MicroKnowledgeSystem SearchMicroknowledgeSSDExecution1StartEnd SearchMicroknowledgeSSDExecution1FinishEnd)
+		Execution::SearchMicroknowledgeSSDExecution2(MicroKnowledgeSystem SearchMicroknowledgeSSDExecution2StartEnd SearchMicroknowledgeSSDExecution2FinishEnd)
+
+		MessageEnd::SearchMicroknowledgeSSDCallMessage1SendingEnd(Reader SearchMicroknowledgeSSDCallMessage1)
+		ExecutionEnd::SearchMicroknowledgeSSDExecution1StartEnd(MicroKnowledgeSystem SearchMicroknowledgeSSDExecution1)
+		ExecutionEnd::SearchMicroknowledgeSSDExecution1FinishEnd(MicroKnowledgeSystem SearchMicroknowledgeSSDExecution1)
+		MessageEnd::SearchMicroknowledgeSSDCallMessage1ReturnReceivingEnd(Reader SearchMicroknowledgeSSDCallMessage1Return)
+		MessageEnd::SearchMicroknowledgeSSDCallMessage3SendingEnd(Reader SearchMicroknowledgeSSDCallMessage3)
+		ExecutionEnd::SearchMicroknowledgeSSDExecution2StartEnd(MicroKnowledgeSystem SearchMicroknowledgeSSDExecution2)
+		ExecutionEnd::SearchMicroknowledgeSSDExecution2FinishEnd(MicroKnowledgeSystem SearchMicroknowledgeSSDExecution2)
+		MessageEnd::SearchMicroknowledgeSSDCallMessage3ReturnReceivingEnd(Reader SearchMicroknowledgeSSDCallMessage3Return)
+
+	}
+
+	Interaction WriteCommentSSD {
+
+		[Participants: Reader MicroKnowledgeSystem]
+
+		CallMessage::WriteCommentSSDCallMessage1(viewMicroknowledge WriteCommentSSDCallMessage1SendingEnd -> WriteCommentSSDExecution1StartEnd)
+		ReturnMessage::WriteCommentSSDCallMessage1Return(WriteCommentSSDExecution1FinishEnd -> WriteCommentSSDCallMessage1ReturnReceivingEnd WriteCommentSSDCallMessage1)
+		CallMessage::WriteCommentSSDCallMessage5(writeComment WriteCommentSSDCallMessage5SendingEnd -> WriteCommentSSDExecution3StartEnd)
+		ReturnMessage::WriteCommentSSDCallMessage5Return(WriteCommentSSDExecution3FinishEnd -> WriteCommentSSDCallMessage5ReturnReceivingEnd WriteCommentSSDCallMessage5)
+
+		Execution::WriteCommentSSDExecution1(MicroKnowledgeSystem WriteCommentSSDExecution1StartEnd WriteCommentSSDExecution1FinishEnd)
+		Execution::WriteCommentSSDExecution3(MicroKnowledgeSystem WriteCommentSSDExecution3StartEnd WriteCommentSSDExecution3FinishEnd)
+
+		MessageEnd::WriteCommentSSDCallMessage1SendingEnd(Reader WriteCommentSSDCallMessage1)
+		ExecutionEnd::WriteCommentSSDExecution1StartEnd(MicroKnowledgeSystem WriteCommentSSDExecution1)
+		ExecutionEnd::WriteCommentSSDExecution1FinishEnd(MicroKnowledgeSystem WriteCommentSSDExecution1)
+		MessageEnd::WriteCommentSSDCallMessage1ReturnReceivingEnd(Reader WriteCommentSSDCallMessage1Return)
+		MessageEnd::WriteCommentSSDCallMessage5SendingEnd(Reader WriteCommentSSDCallMessage5)
+		ExecutionEnd::WriteCommentSSDExecution3StartEnd(MicroKnowledgeSystem WriteCommentSSDExecution3)
+		ExecutionEnd::WriteCommentSSDExecution3FinishEnd(MicroKnowledgeSystem WriteCommentSSDExecution3)
+		MessageEnd::WriteCommentSSDCallMessage5ReturnReceivingEnd(Reader WriteCommentSSDCallMessage5Return)
+
+	}
+
+	Interaction StarMicroknowledgeSSD {
+
+		[Participants: Reader MicroKnowledgeSystem]
+
+		CallMessage::StarMicroknowledgeSSDCallMessage1(viewMicroknowledge StarMicroknowledgeSSDCallMessage1SendingEnd -> StarMicroknowledgeSSDExecution1StartEnd)
+		ReturnMessage::StarMicroknowledgeSSDCallMessage1Return(StarMicroknowledgeSSDExecution1FinishEnd -> StarMicroknowledgeSSDCallMessage1ReturnReceivingEnd StarMicroknowledgeSSDCallMessage1)
+		CallMessage::StarMicroknowledgeSSDCallMessage5(starMicroknowledge StarMicroknowledgeSSDCallMessage5SendingEnd -> StarMicroknowledgeSSDExecution3StartEnd)
+		ReturnMessage::StarMicroknowledgeSSDCallMessage5Return(StarMicroknowledgeSSDExecution3FinishEnd -> StarMicroknowledgeSSDCallMessage5ReturnReceivingEnd StarMicroknowledgeSSDCallMessage5)
+
+		Execution::StarMicroknowledgeSSDExecution1(MicroKnowledgeSystem StarMicroknowledgeSSDExecution1StartEnd StarMicroknowledgeSSDExecution1FinishEnd)
+		Execution::StarMicroknowledgeSSDExecution3(MicroKnowledgeSystem StarMicroknowledgeSSDExecution3StartEnd StarMicroknowledgeSSDExecution3FinishEnd)
+
+		MessageEnd::StarMicroknowledgeSSDCallMessage1SendingEnd(Reader StarMicroknowledgeSSDCallMessage1)
+		ExecutionEnd::StarMicroknowledgeSSDExecution1StartEnd(MicroKnowledgeSystem StarMicroknowledgeSSDExecution1)
+		ExecutionEnd::StarMicroknowledgeSSDExecution1FinishEnd(MicroKnowledgeSystem StarMicroknowledgeSSDExecution1)
+		MessageEnd::StarMicroknowledgeSSDCallMessage1ReturnReceivingEnd(Reader StarMicroknowledgeSSDCallMessage1Return)
+		MessageEnd::StarMicroknowledgeSSDCallMessage5SendingEnd(Reader StarMicroknowledgeSSDCallMessage5)
+		ExecutionEnd::StarMicroknowledgeSSDExecution3StartEnd(MicroKnowledgeSystem StarMicroknowledgeSSDExecution3)
+		ExecutionEnd::StarMicroknowledgeSSDExecution3FinishEnd(MicroKnowledgeSystem StarMicroknowledgeSSDExecution3)
+		MessageEnd::StarMicroknowledgeSSDCallMessage5ReturnReceivingEnd(Reader StarMicroknowledgeSSDCallMessage5Return)
+
+	}
+
+	Interaction ListMicroknowledgeOfUserSSD {
+
+		[Participants: Reader MicroKnowledgeSystem]
+
+		CallMessage::ListMicroknowledgeOfUserSSDCallMessage1(searchUserByName ListMicroknowledgeOfUserSSDCallMessage1SendingEnd -> ListMicroknowledgeOfUserSSDExecution1StartEnd)
+		ReturnMessage::ListMicroknowledgeOfUserSSDCallMessage1Return(ListMicroknowledgeOfUserSSDExecution1FinishEnd -> ListMicroknowledgeOfUserSSDCallMessage1ReturnReceivingEnd ListMicroknowledgeOfUserSSDCallMessage1)
+		CallMessage::ListMicroknowledgeOfUserSSDCallMessage3(listMicroknowledgeOfUser ListMicroknowledgeOfUserSSDCallMessage3SendingEnd -> ListMicroknowledgeOfUserSSDExecution2StartEnd)
+		ReturnMessage::ListMicroknowledgeOfUserSSDCallMessage3Return(ListMicroknowledgeOfUserSSDExecution2FinishEnd -> ListMicroknowledgeOfUserSSDCallMessage3ReturnReceivingEnd ListMicroknowledgeOfUserSSDCallMessage3)
+
+		Execution::ListMicroknowledgeOfUserSSDExecution1(MicroKnowledgeSystem ListMicroknowledgeOfUserSSDExecution1StartEnd ListMicroknowledgeOfUserSSDExecution1FinishEnd)
+		Execution::ListMicroknowledgeOfUserSSDExecution2(MicroKnowledgeSystem ListMicroknowledgeOfUserSSDExecution2StartEnd ListMicroknowledgeOfUserSSDExecution2FinishEnd)
+
+		MessageEnd::ListMicroknowledgeOfUserSSDCallMessage1SendingEnd(Reader ListMicroknowledgeOfUserSSDCallMessage1)
+		ExecutionEnd::ListMicroknowledgeOfUserSSDExecution1StartEnd(MicroKnowledgeSystem ListMicroknowledgeOfUserSSDExecution1)
+		ExecutionEnd::ListMicroknowledgeOfUserSSDExecution1FinishEnd(MicroKnowledgeSystem ListMicroknowledgeOfUserSSDExecution1)
+		MessageEnd::ListMicroknowledgeOfUserSSDCallMessage1ReturnReceivingEnd(Reader ListMicroknowledgeOfUserSSDCallMessage1Return)
+		MessageEnd::ListMicroknowledgeOfUserSSDCallMessage3SendingEnd(Reader ListMicroknowledgeOfUserSSDCallMessage3)
+		ExecutionEnd::ListMicroknowledgeOfUserSSDExecution2StartEnd(MicroKnowledgeSystem ListMicroknowledgeOfUserSSDExecution2)
+		ExecutionEnd::ListMicroknowledgeOfUserSSDExecution2FinishEnd(MicroKnowledgeSystem ListMicroknowledgeOfUserSSDExecution2)
+		MessageEnd::ListMicroknowledgeOfUserSSDCallMessage3ReturnReceivingEnd(Reader ListMicroknowledgeOfUserSSDCallMessage3Return)
+
+	}
+
+	Service MicroKnowledgeSystem {
+
+		[Operation]
+		logIn(userId,password)
+		searchUserByName(name)
+		listMicroknowledgeOfUser(id)
+//		searchMicroknowledge by keywords
+		searchMicroknowledge(keywords)
+		viewMicroknowledge(id)
+		writeComment(content)
+		starMicroknowledge()
+		listStaredMicroknowledge()
+
+		[TempProperty]
+		CurrentUser : User
+		CurrentMicroknowledge : Microknowledge
+
+	}
+
+	Service ManageUserService {
+
+		[Operation]
+		createUser(id,password,name)
+
+	}
+
+	Service ManageMicroknowledgeService {
+
+		[Operation]
+		createMicroknowledge(id,keywords,content)
+		modifyMicroknowledge(id,keywords,content)
+
+	}
+
+	Service SearchMicroknowledgeService{
+
+		[Operation]
+		searchMicroknowledge(keywords)
+		viewMicroknowledge(id)
+
+	}
+
+	Service ListMicroknowledgeOfUserService{
+
+		[Operation]
+		searchUserByName(name)
+		listMicroknowledgeOfUser(id)
+
+	}
+
+//	Service MicroKnowledgeSystem {
+//
+//		[Operation]
+//		readMicroknowledge(id)
+//		verifyReader(id)
+//		writeComment(content)
+//		searchMicroknowledge(keywords)
+//		starMicroknowledge()
+//		listStaredMicroknowledge()
+//
+//		[TempProperty]
+//		CurrentReader : Reader
+//		CurrentMicroknowledge : Microknowledge
+//
+//	}
+	Service ThirdPartyServices {
+
+	}
+
+	Contract ManageUserService::createUser(id : String, password : String, name : String) : Boolean {
+
+		definition:
+			up:User = User.allInstance()->any(u:User | u.Id = id)
+
+		precondition:
+			up.oclIsUndefined() = true
+		postcondition:
+			let user:User in
+			user.oclIsNew() and
+			user.Id = id and
+			user.Password = password and
+			user.Name = name and
+			User.allInstance()->includes(user) and
+			result = true
+	}
+
+	Contract MicroKnowledgeSystem::logIn(userId : String, password : String) : Boolean {
+
+		definition:
+			user:User = User.allInstance()->any(u:User | u.Id = userId)
+
+		precondition:
+			user.oclIsUndefined() = false and
+			user.Password = password
+
+		postcondition:
+			self.CurrentUser = user and
+			result = true
+	} //
+
+	Contract ManageMicroknowledgeService::createMicroknowledge(id : String, keywords : String, content : String) : Boolean {
+
+		definition:
+			microknowledge:Microknowledge = Microknowledge.allInstance()->any(m:Microknowledge | m.Id = id)
+
+		precondition:
+			microknowledge.oclIsUndefined() = true
+		postcondition:
+			let mk:Microknowledge in
+			mk.oclIsNew() and
+			mk.Id = id and
+			mk.Keywords = keywords and
+			mk.Content = content and
+			mk.StarNumber = 0 and
+			mk.LastEditTime.isEqual(Now) and
+			CurrentUser.ContainedMicroknowledge->includes(mk) and
+			mk.BelongedUser = CurrentUser and
+			Microknowledge.allInstance()->includes(mk) and
+			result = true
+	}
+
+	Contract ManageMicroknowledgeService::modifyMicroknowledge(id : String, keywords : String, content : String) : Boolean {
+
+		definition:
+			mk:Microknowledge = CurrentUser.ContainedMicroknowledge->any(m:Microknowledge | m.Id = id)
+
+		precondition:
+			mk.oclIsUndefined() = false
+		postcondition:
+			mk.Id = id and
+			mk.Keywords = keywords and
+			mk.Content = content and
+			mk.StarNumber = mk.StarNumber@pre and
+			mk.LastEditTime.isEqual(Now) and
+			result = true
+	}
+
+	Contract MicroKnowledgeSystem::searchUserByName(name : String) : Set(User) {
+
+		precondition:
+			name <> ""
+		postcondition:
+			result = User.allInstance()->select(u:User| u.Name = name)
+	}
+
+	Contract MicroKnowledgeSystem::listMicroknowledgeOfUser(id : String) : Set(Microknowledge) {
+
+		definition:
+			user:User = User.allInstance()->any(u:User | u.Id = id)
+
+		precondition:
+			user.oclIsUndefined() = false
+		postcondition:
+			result = user.ContainedMicroknowledge
+	}
+
+	Contract MicroKnowledgeSystem::searchMicroknowledge(keywords:String) : Set(Microknowledge) {
+
+		precondition:
+			keywords <> ""
+		postcondition:
+			result = Microknowledge.allInstance()->select(mk:Microknowledge| mk.Keywords = keywords)
+	}
+
+	Contract MicroKnowledgeSystem::viewMicroknowledge(id : String) : Microknowledge {
+
+		definition:
+			mk:Microknowledge = Microknowledge.allInstance()->any(m:Microknowledge | m.Id = id)
+
+		precondition:
+			mk.oclIsUndefined() = false
+		postcondition:
+			CurrentMicroknowledge = mk and
+			result = mk
+	}
+
+	Contract MicroKnowledgeSystem::starMicroknowledge() : Boolean {
+
+		precondition:
+			CurrentMicroknowledge.oclIsUndefined() = false and
+			CurrentUser.oclIsUndefined() = false
+		postcondition:
+			CurrentUser.StaredMicroknowledge->includes(CurrentMicroknowledge) and
+			CurrentMicroknowledge.StarNumber = CurrentMicroknowledge.StarNumber@pre+1 and
+			result = true
+	}
+
+	Contract MicroKnowledgeSystem::writeComment(content:String) : Boolean {
+
+		precondition:
+			CurrentMicroknowledge.oclIsUndefined() = false and
+			CurrentUser.oclIsUndefined() = false
+		postcondition:
+			let comment:Comment in
+			comment.oclIsNew() and
+			comment.Content = content and
+			comment.WritingTime.isEqual(Now) and
+			Comment.allInstance()->includes(comment) and
+			CurrentMicroknowledge.ContainedComment->includes(comment) and
+			comment.CommenttoMicroknowledge = CurrentMicroknowledge and
+			CurrentUser.ReadertoComment->includes(comment) and
+			comment.CommenttoReader = CurrentUser and
+			result = true
+
+	}
+
+	Contract MicroKnowledgeSystem::listStaredMicroknowledge() : Set(Microknowledge) {
+
+		precondition:
+			CurrentUser.oclIsUndefined() = false
+		postcondition:
+			result = CurrentUser.StaredMicroknowledge
+	}
+
+}
+
+DomainModel MicroKnowledge {
+
+	Entity User {
+		Id : String
+		Password : String
+		Name : String
+
+		[Refer]
+		StaredMicroknowledge : Microknowledge* Association
+		ReadertoComment : Comment* Association
+		ContainedMicroknowledge : Microknowledge* Association
+	}
+
+	Entity Microknowledge {
+		Id : String
+		Keywords : String
+		Content : String
+		StarNumber : Integer
+		LastEditTime : Date
+
+		[Refer]
+		BelongedUser : User Association
+		ContainedComment : Comment* Association
+	}
+
+	Entity Comment {
+		Content : String
+		WritingTime : Date
+
+		[Refer]
+		CommenttoReader : User ! Association
+		CommenttoMicroknowledge : Microknowledge ! Association
+	}
+
+}
+

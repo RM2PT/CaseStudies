@@ -1,0 +1,849 @@
+UseCaseModel Takeout {
+
+	UC::search
+	UC::checkOrder
+	UC::publicOrderInfo
+	UC::acceptOrder
+	UC::ercommendOrder
+	UC::excursionPublicOrder
+	UC::manageStore
+	UC::manageDilivery
+	UC::manageCustomer
+	UC::processOrder definedBySSD(ProcessOrderSSD) relatedService(ProcessOrderService)
+	UC::manageItem
+	UC::enterStore
+	UC::terminateOrder
+
+	Actor Customer {
+		search
+		checkOrder
+		processOrder
+		enterStore
+	}
+
+	Actor Business {
+		checkOrder
+		publicOrderInfo
+		manageItem
+		enterStore
+	}
+
+	Actor Administer {
+		manageStore
+		manageDilivery
+		manageCustomer
+	}
+
+	Actor Dilivery {
+		acceptOrder
+		excursionPublicOrder
+		ercommendOrder
+		terminateOrder
+	}
+
+	Interaction ProcessOrderSSD {
+
+		[Participants: Customer ProcessOrderService]
+
+		CallMessage::ProcessOrderSSDCallMessage1(makeNewOrder ProcessOrderSSDCallMessage1SendingEnd -> ProcessOrderSSDExecution1StartEnd)
+		ReturnMessage::ProcessOrderSSDCallMessage1Return(ProcessOrderSSDExecution1FinishEnd -> ProcessOrderSSDCallMessage1ReturnReceivingEnd ProcessOrderSSDCallMessage1)
+		CallMessage::ProcessOrderSSDCallMessage3(enterItem ProcessOrderSSDCallMessage3SendingEnd -> ProcessOrderSSDExecution2StartEnd)
+		ReturnMessage::ProcessOrderSSDCallMessage3Return(ProcessOrderSSDExecution2FinishEnd -> ProcessOrderSSDCallMessage3ReturnReceivingEnd ProcessOrderSSDCallMessage3)
+		CallMessage::ProcessOrderSSDCallMessage5(endOrder ProcessOrderSSDCallMessage5SendingEnd -> ProcessOrderSSDExecution3StartEnd)
+		ReturnMessage::ProcessOrderSSDCallMessage5Return(ProcessOrderSSDExecution3FinishEnd -> ProcessOrderSSDCallMessage5ReturnReceivingEnd ProcessOrderSSDCallMessage5)
+		CallMessage::ProcessOrderSSDCallMessage7(makeCashPayment ProcessOrderSSDCallMessage7SendingEnd -> ProcessOrderSSDExecution4StartEnd)
+		ReturnMessage::ProcessOrderSSDCallMessage7Return(ProcessOrderSSDExecution4FinishEnd -> ProcessOrderSSDCallMessage7ReturnReceivingEnd ProcessOrderSSDCallMessage7)
+		CallMessage::ProcessOrderSSDCallMessage9(makeCardPayment ProcessOrderSSDCallMessage9SendingEnd -> ProcessOrderSSDExecution5StartEnd)
+		ReturnMessage::ProcessOrderSSDCallMessage9Return(ProcessOrderSSDExecution5FinishEnd -> ProcessOrderSSDCallMessage9ReturnReceivingEnd ProcessOrderSSDCallMessage9)
+
+		Execution::ProcessOrderSSDExecution1(ProcessOrderService ProcessOrderSSDExecution1StartEnd ProcessOrderSSDExecution1FinishEnd)
+		Execution::ProcessOrderSSDExecution2(ProcessOrderService ProcessOrderSSDExecution2StartEnd ProcessOrderSSDExecution2FinishEnd)
+		Execution::ProcessOrderSSDExecution3(ProcessOrderService ProcessOrderSSDExecution3StartEnd ProcessOrderSSDExecution3FinishEnd)
+		Execution::ProcessOrderSSDExecution4(ProcessOrderService ProcessOrderSSDExecution4StartEnd ProcessOrderSSDExecution4FinishEnd)
+		Execution::ProcessOrderSSDExecution5(ProcessOrderService ProcessOrderSSDExecution5StartEnd ProcessOrderSSDExecution5FinishEnd)
+
+		CombinedFragment:: combinedFragement1 -> loop {
+
+			[Participants: ProcessOrderService Customer]
+
+			combinedFragement1StartEnd -> combinedFragement1FinishEnd
+
+			Operand::hasMoreItems(condition1End combinedFragement1FinishEnd)
+		}
+
+		CombinedFragment:: combinedFragement2 -> alt {
+
+			[Participants: ProcessOrderService Customer]
+
+			combinedFragement2StartEnd -> combinedFragement2FinishEnd
+
+			Operand::cash(condition2End condition4End)
+			Operand::card(condition4End combinedFragement2FinishEnd)
+		}
+
+		MessageEnd::ProcessOrderSSDCallMessage1SendingEnd(Customer ProcessOrderSSDCallMessage1)
+		ExecutionEnd::ProcessOrderSSDExecution1StartEnd(ProcessOrderService ProcessOrderSSDExecution1)
+		ExecutionEnd::ProcessOrderSSDExecution1FinishEnd(ProcessOrderService ProcessOrderSSDExecution1)
+		MessageEnd::ProcessOrderSSDCallMessage1ReturnReceivingEnd(Customer ProcessOrderSSDCallMessage1Return)
+		CombinedFragmentEnd::combinedFragement1StartEnd(combinedFragement1)
+		OperandEnd::condition1End(hasMoreItems)
+		MessageEnd::ProcessOrderSSDCallMessage3SendingEnd(Customer ProcessOrderSSDCallMessage3)
+		ExecutionEnd::ProcessOrderSSDExecution2StartEnd(ProcessOrderService ProcessOrderSSDExecution2)
+		ExecutionEnd::ProcessOrderSSDExecution2FinishEnd(ProcessOrderService ProcessOrderSSDExecution2)
+		MessageEnd::ProcessOrderSSDCallMessage3ReturnReceivingEnd(Customer ProcessOrderSSDCallMessage3Return)
+		CombinedFragmentEnd::combinedFragement1FinishEnd(combinedFragement1)
+		MessageEnd::ProcessOrderSSDCallMessage5SendingEnd(Customer ProcessOrderSSDCallMessage5)
+		ExecutionEnd::ProcessOrderSSDExecution3StartEnd(ProcessOrderService ProcessOrderSSDExecution3)
+		ExecutionEnd::ProcessOrderSSDExecution3FinishEnd(ProcessOrderService ProcessOrderSSDExecution3)
+		MessageEnd::ProcessOrderSSDCallMessage5ReturnReceivingEnd(Customer ProcessOrderSSDCallMessage5Return)
+		CombinedFragmentEnd::combinedFragement2StartEnd(combinedFragement2)
+		OperandEnd::condition2End(cash)
+		MessageEnd::ProcessOrderSSDCallMessage7SendingEnd(Customer ProcessOrderSSDCallMessage7)
+		ExecutionEnd::ProcessOrderSSDExecution4StartEnd(ProcessOrderService ProcessOrderSSDExecution4)
+		ExecutionEnd::ProcessOrderSSDExecution4FinishEnd(ProcessOrderService ProcessOrderSSDExecution4)
+		MessageEnd::ProcessOrderSSDCallMessage7ReturnReceivingEnd(Customer ProcessOrderSSDCallMessage7Return)
+		OperandEnd::condition4End(card)
+		MessageEnd::ProcessOrderSSDCallMessage9SendingEnd(Customer ProcessOrderSSDCallMessage9)
+		ExecutionEnd::ProcessOrderSSDExecution5StartEnd(ProcessOrderService ProcessOrderSSDExecution5)
+		ExecutionEnd::ProcessOrderSSDExecution5FinishEnd(ProcessOrderService ProcessOrderSSDExecution5)
+		MessageEnd::ProcessOrderSSDCallMessage9ReturnReceivingEnd(Customer ProcessOrderSSDCallMessage9Return)
+		CombinedFragmentEnd::combinedFragement2FinishEnd(combinedFragement2)
+
+	}
+
+	Service TakeoutSystem{
+
+		[Operation]
+		search(itemname)
+		enterStore(id)
+		excursionPublicOrder(id)
+		acceptOrder(name)
+		terminateOrder(name)
+
+		[TempProperty]
+		CurrentStore : Store
+		CurrentDilivery: Dilivery
+
+	}
+
+	Service ThirdPartyServices {
+
+	}
+
+	Service ProcessOrderService {
+
+		[Operation]
+		makeNewOrder()
+		enterItem(id, quantity)
+		endOrder()
+		makeCashPayment(amount)
+		makeCardPayment()
+
+		[TempProperty]
+		CurrentOrderLine : OrderLineItem
+		CurrentSale : Sale
+		CurrentPaymentMethod : PaymentMethod[CASH|CARD]
+
+	}
+
+	Service ManageItemCRUDService {
+
+		[Operation]
+		createItem(id, name, price, stocknumber, orderprice)
+		queryItem(id)
+		modifyItem(id, name, price, stocknumber, orderprice)
+		deleteItem(id)
+
+	}
+
+	Service ManageStoreCRUDService {
+
+		[Operation]
+		createStore(id, name, address, isopened)
+		queryStore(id)
+		modifyStore(id, name, address, isopened)
+		deleteStore(id)
+
+	}
+
+	Service ManageDiliveryCRUDService {
+
+		[Operation]
+		createDilivery(id, name)
+
+	}
+
+	Contract  ManageDiliveryCRUDService::createDilivery(id : String, name : String) : Boolean {
+
+		definition:
+			di:Dilivery = Dilivery.allInstance()->any(ite:Dilivery | ite.Id = id)
+
+		precondition:
+			di.oclIsUndefined() = true
+		postcondition:
+			let temp:Dilivery in
+			temp.oclIsNew() and
+			temp.Id = id and
+			temp.Name = name and
+			Dilivery.allInstance()->includes(temp) and
+			CurrentDilivery = temp and
+			result = true
+	}
+
+	Contract TakeoutSystem::acceptOrder(name : String) : Boolean {
+
+		definition:
+			order:Sale = Sale.allInstance()->any(s:Sale | s.Name = name)
+
+		precondition:
+			order.oclIsUndefined() = false and
+			order.IsAccept = false
+		postcondition:
+			order.IsAccept = true and
+			order.SaletoDilivery = CurrentDilivery and
+			CurrentDilivery.DiliverytoSale->includes(order) and
+			result = true
+	}
+
+	Contract TakeoutSystem::terminateOrder(name : String) : Boolean {
+
+		definition:
+			order:Sale = Sale.allInstance()->any(s:Sale | s.Name = name)
+
+		precondition:
+			order.oclIsUndefined() = false and
+			order.IsAccept = true and
+			order.SaletoDilivery = CurrentDilivery
+
+		postcondition:
+			order.IsComplete = true and
+			result = true
+	}
+
+	Contract TakeoutSystem::excursionPublicOrder(id : String) : Set(Sale) {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * cd is the object s in the instance set of class CashDesk. s represents an object of class CashDesk, and s meets:
+		 *     The attribute Id of the object s is equal to cashDeskID
+		 */
+		definition:
+			di:Dilivery = Dilivery.allInstance()->any(s:Dilivery | s.Id = id)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * cd exists
+		 * The attribute IsOpened of the object cd is equal to false
+		 * CurrentStore exists
+		 * The attribute IsOpened of the object CurrentStore is equal to true
+		 */
+		precondition:
+			di.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The object CurrentCashDesk became cd
+		 * The attribute IsOpened of the object cd became true
+		 * The return value was true
+		 */
+		postcondition:
+			result = Sale.allInstance()
+
+	}
+
+	Contract TakeoutSystem::enterStore(id : Integer) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * cd is the object s in the instance set of class CashDesk. s represents an object of class CashDesk, and s meets:
+		 *     The attribute Id of the object s is equal to cashDeskID
+		 */
+		definition:
+			store:Store = Store.allInstance()->any(s:Store | s.Id = id)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * cd exists
+		 * The attribute IsOpened of the object cd is equal to false
+		 * CurrentStore exists
+		 * The attribute IsOpened of the object CurrentStore is equal to true
+		 */
+		precondition:
+			store.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The object CurrentCashDesk became cd
+		 * The attribute IsOpened of the object cd became true
+		 * The return value was true
+		 */
+		postcondition:
+			self.CurrentStore = store and
+			result = true
+
+	}
+
+	Contract  ManageItemCRUDService::createItem(id : Integer, name : String, price : Real, stocknumber : Integer, orderprice : Real) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * item is the object ite in the instance set of class Item. ite represents an object of class Item, and ite meets:
+		 *     The attribute Barcode of the object ite is equal to barcode
+		 */
+		definition:
+			item:Item = Item.allInstance()->any(ite:Item | ite.Id = id)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * item doesn't exist
+		 */
+		precondition:
+			item.oclIsUndefined() = true and
+			CurrentStore.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * ite represented the object of class Item
+		 * The object ite was created
+		 * The attribute Barcode of the object ite became barcode
+		 * The attribute Name of the object ite became name
+		 * The attribute Price of the object ite became price
+		 * The attribute StockNumber of the object ite became stocknumber
+		 * The attribute OrderPrice of the object ite became orderprice
+		 * The object ite was put into the instance set of class Item
+		 * The return value was true
+		 */
+		postcondition:
+			let ite:Item in
+			ite.oclIsNew() and
+			ite.Id = id and
+			ite.Name = name and
+			ite.Price = price and
+			ite.StockNumber = stocknumber and
+			ite.OrderPrice = orderprice and
+			ite.ItemtoStore = CurrentStore and
+			Item.allInstance()->includes(ite) and
+			result = true
+
+	}
+
+//entity query operation 
+	Contract  ManageItemCRUDService::queryItem(id : Integer) : Item {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * item is the object ite in the instance set of class Item. ite represents an object of class Item, and ite meets:
+		 *     The attribute Barcode of the object ite is equal to barcode
+		 */
+		definition:
+			item:Item = Item.allInstance()->any(ite:Item | ite.Id = id)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * item exists
+		 */
+		precondition:
+			item.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The return value was item
+		 */
+		postcondition:
+			result = item
+	}
+
+//entity modify operation 
+	Contract  ManageItemCRUDService::modifyItem(id : Integer, name : String, price : Real, stocknumber : Integer, orderprice : Real) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * item is the object ite in the instance set of class Item. ite represents an object of class Item, and ite meets:
+		 *     The attribute Barcode of the object ite is equal to barcode
+		 */
+		definition:
+			item:Item = Item.allInstance()->any(ite:Item | ite.Id = id)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * item exists
+		 */
+		precondition:
+			item.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The attribute Barcode of the object item became barcode
+		 * The attribute Name of the object item became name
+		 * The attribute Price of the object item became price
+		 * The attribute StockNumber of the object item became stocknumber
+		 * The attribute OrderPrice of the object item became orderprice
+		 * The return value was true
+		 */
+		postcondition:
+			item.Id = id and
+			item.Name = name and
+			item.Price = price and
+			item.StockNumber = stocknumber and
+			item.OrderPrice = orderprice and
+			result = true
+
+	}
+
+//entity delete operation 
+	Contract  ManageItemCRUDService::deleteItem(id : Integer) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * item is the object ite in the instance set of class Item. ite represents an object of class Item, and ite meets:
+		 *     The attribute Barcode of the object ite is equal to barcode
+		 */
+		definition:
+			item:Item = Item.allInstance()->any(ite:Item | ite.Id = id)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * item exists
+		 * The object item is in the instance set of class Item
+		 */
+		precondition:
+			item.oclIsUndefined() = false and
+			Item.allInstance()->includes(item)
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The object item was deleted from the instance set of class Item
+		 * The return value was true
+		 */
+		postcondition:
+			Item.allInstance()->excludes(item) and
+			result = true
+
+	}
+
+	Contract TakeoutSystem::search(itemname : String) : Item {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * item is the object ite in the instance set of class Item. ite represents an object of class Item, and ite meets:
+		 *     The attribute Barcode of the object ite is equal to barcode
+		 */
+		definition:
+			item:Item = Item.allInstance()->any(ite:Item | ite.Name = itemname and ite.ItemtoStore = CurrentStore)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * item exists
+		 */
+		precondition:
+			item.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The return value was item
+		 */
+		postcondition:
+			result = item
+	}
+
+	Contract  ManageStoreCRUDService::createStore(id : Integer, name : String, address : String, isopened : Boolean) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * store is the object sto in the instance set of class Store. sto represents an object of class Store, and sto meets:
+		 *     The attribute Id of the object sto is equal to id
+		 */
+		definition:
+			store:Store = Store.allInstance()->any(sto:Store | sto.Id = id)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * store doesn't exist
+		 */
+		precondition:
+			store.oclIsUndefined() = true
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * sto represented the object of class Store
+		 * The object sto was created
+		 * The attribute Id of the object sto became id
+		 * The attribute Name of the object sto became name
+		 * The attribute Address of the object sto became address
+		 * The attribute IsOpened of the object sto became isopened
+		 * The object sto was put into the instance set of class Store
+		 * The return value was true
+		 */
+		postcondition:
+			let sto:Store in
+			sto.oclIsNew() and
+			sto.Id = id and
+			sto.Name = name and
+			sto.Address = address and
+			sto.IsOpened = isopened and
+			Store.allInstance()->includes(sto) and
+			result = true
+
+	}
+
+//entity query operation 
+	Contract  ManageStoreCRUDService::queryStore(id : Integer) : Store {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * store is the object sto in the instance set of class Store. sto represents an object of class Store, and sto meets:
+		 *     The attribute Id of the object sto is equal to id
+		 */
+		definition:
+			store:Store = Store.allInstance()->any(sto:Store | sto.Id = id)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * store exists
+		 */
+		precondition:
+			store.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The return value was store
+		 */
+		postcondition:
+			result = store
+
+	}
+
+//entity modify operation 
+	Contract  ManageStoreCRUDService::modifyStore(id : Integer, name : String, address : String, isopened : Boolean) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * store is the object sto in the instance set of class Store. sto represents an object of class Store, and sto meets:
+		 *     The attribute Id of the object sto is equal to id
+		 */
+		definition:
+			store:Store = Store.allInstance()->any(sto:Store | sto.Id = id)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * store exists
+		 */
+		precondition:
+			store.oclIsUndefined() = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The attribute Id of the object store became id
+		 * The attribute Name of the object store became name
+		 * The attribute Address of the object store became address
+		 * The attribute IsOpened of the object store became isopened
+		 * The return value was true
+		 */
+		postcondition:
+			store.Id = id and
+			store.Name = name and
+			store.Address = address and
+			store.IsOpened = isopened and
+			result = true
+
+	}
+
+//entity delete operation 
+	Contract  ManageStoreCRUDService::deleteStore(id : Integer) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * store is the object sto in the instance set of class Store. sto represents an object of class Store, and sto meets:
+		 *     The attribute Id of the object sto is equal to id
+		 */
+		definition:
+			store:Store = Store.allInstance()->any(sto:Store | sto.Id = id)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * store exists
+		 * The object store is in the instance set of class Store
+		 */
+		precondition:
+			store.oclIsUndefined() = false and
+			Store.allInstance()->includes(store)
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The object store was deleted from the instance set of class Store
+		 * The return value was true
+		 */
+		postcondition:
+			Store.allInstance()->excludes(store) and
+			result = true
+
+	}
+
+	Contract ProcessOrderService::makeNewOrder() : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * CurrentCashDesk exists
+		 * The attribute IsOpened of the object CurrentCashDesk is equal to true
+		 * (CurrentSale doesn't exist, or (CurrentSale exists, and the attribute IsComplete of the object CurrentSale is equal to true))
+		 */
+		precondition:
+			CurrentStore.oclIsUndefined() = false and
+			(CurrentSale.oclIsUndefined() = true or
+				(CurrentSale.oclIsUndefined() = false and
+					CurrentSale.IsComplete = true
+				)
+			)
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * s represented the object of class Sale
+		 * The object s was created
+		 * The object s was linked to the object CurrentCashDesk by BelongedCashDesk
+		 * The object CurrentCashDesk was linked to the object s by ContainedSales
+		 * The attribute IsComplete of the object s became false
+		 * The attribute IsReadytoPay of the object s became false
+		 * The object s was put into the instance set of class Sale
+		 * The object CurrentSale became s
+		 * The return value was true
+		 */
+		postcondition:
+			let s:Sale in
+			s.oclIsNew() and
+			s.SaletoStore = CurrentStore and
+			CurrentStore.StoretoSale->includes(s) and
+			s.IsComplete = false and
+			s.IsReadytoPay = false and
+			Sale.allInstance()->includes(s) and
+			self.CurrentSale = s and
+			result = true
+
+	}
+
+	Contract ProcessOrderService::enterItem(id : Integer, quantity : Integer) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * item is the object i in the instance set of class Item. i represents an object of class Item, and i meets:
+		 *     The attribute Barcode of the object i is equal to barcode
+		 */
+		definition:
+			item:Item = Item.allInstance()->any(i:Item | i.Id = id)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * CurrentSale exists
+		 * The attribute IsComplete of the object CurrentSale is equal to false
+		 * item exists
+		 * The attribute StockNumber of the object item is greater than 0
+		 */
+		precondition:
+			CurrentSale.oclIsUndefined() = false and
+			CurrentSale.IsComplete = false and
+			item.oclIsUndefined() = false and
+			item.StockNumber > 0
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * sli represented the object of class SalesLineItem
+		 * The object sli was created
+		 * The object CurrentSaleLine became sli
+		 * The object sli was linked to the object CurrentSale by BelongedSale
+		 * The object CurrentSale was linked to the object sli by ContainedSalesLine
+		 * The attribute Quantity of the object sli became quantity
+		 * The object sli was linked to the object item by BelongedItem
+		 * The attribute StockNumber of the object item became the previous value of the attribute StockNumber of the object item minus quantity
+		 * The attribute Subamount of the object sli became the attribute Price of the object item times quantity
+		 * The object sli was put into the instance set of class SalesLineItem
+		 * The return value was true
+		 */
+		postcondition:
+			let sli:OrderLineItem in
+			sli.oclIsNew() and
+			self.CurrentOrderLine = sli and
+			sli.OrderLineItemtoSale = CurrentSale and
+			CurrentSale.SaletoOrderLineItem->includes(sli) and
+			sli.Quantity = quantity and
+			sli.OrderLineItemtoItem = item and
+			item.StockNumber = item.StockNumber@pre - quantity and
+			sli.Subamount = item.Price * quantity and
+			OrderLineItem.allInstance()->includes(sli) and
+			result = true
+
+	}
+
+	Contract ProcessOrderService::endOrder() : Real {
+
+		/*
+		 * Generated by RM2DOc - Definition
+		 * sls is the Set of class SalesLineItem, including  which CurrentSale is linked to
+		 * sub is the Set of Real, including the Subamount of each object in the set sls
+		 */
+		definition:
+			sls:Set(OrderLineItem) = CurrentSale.SaletoOrderLineItem,
+			sub:Set(Real) = sls->collect(s:OrderLineItem | s.Subamount)
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * CurrentSale exists
+		 * The attribute IsComplete of the object CurrentSale is equal to false
+		 * The attribute IsReadytoPay of the object CurrentSale is equal to false
+		 */
+		precondition:
+			CurrentSale.oclIsUndefined() = false and
+			CurrentSale.IsComplete = false and
+			CurrentSale.IsReadytoPay = false
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * The attribute Amount of the object CurrentSale became the sum of sub
+		 * The attribute IsReadytoPay of the object CurrentSale became true
+		 * The return value was the attribute Amount of the object CurrentSale
+		 */
+		postcondition:
+			CurrentSale.Amount = sub.sum() and
+			CurrentSale.IsReadytoPay = true and
+			result = CurrentSale.Amount
+
+	}
+
+	Contract ProcessOrderService::makeCashPayment(amount : Real) : Boolean {
+
+		/*
+		 * Generated by RM2DOc - Precondition
+		 * CurrentSale exists
+		 * The attribute IsComplete of the object CurrentSale is equal to false
+		 * The attribute IsReadytoPay of the object CurrentSale is equal to true
+		 * The amount is greater than or equal to the attribute Amount of the object CurrentSale
+		 */
+		precondition:
+			CurrentSale.oclIsUndefined() = false and
+			CurrentSale.IsComplete = false and
+			CurrentSale.IsReadytoPay = true and
+			amount >= CurrentSale.Amount
+
+		/*
+		 * Generated by RM2DOc - Postcondition
+		 * cp represented the object of class CashPayment
+		 * The object cp was created
+		 * The attribute AmountTendered of the object cp became amount
+		 * The object cp was linked to the object CurrentSale by BelongedSale
+		 * The object CurrentSale was linked to the object cp by AssoicatedPayment
+		 * The object CurrentSale was linked to the object CurrentStore by Belongedstore
+		 * The object CurrentStore was linked to the object CurrentSale by Sales
+		 * The attribute IsComplete of the object CurrentSale became true
+		 * The attribute Time of the object CurrentSale was equal to Now
+		 * The attribute Balance of the object cp became amount minus the attribute Amount of the object CurrentSale
+		 * The object cp was put into the instance set of class CashPayment
+		 * The return value was true
+		 */
+		postcondition:
+			let cp:CashPayment in
+			cp.oclIsNew() and
+			cp.AmountTendered = amount and
+			cp.PaymenttoSale = CurrentSale and
+			CurrentSale.SaletoPayment = cp and
+			CurrentSale.SaletoStore = CurrentStore and
+			CurrentStore.StoretoSale->includes(CurrentSale) and
+			cp.Balance = amount - CurrentSale.Amount and
+			CashPayment.allInstance()->includes(cp) and
+			CurrentSale.IsAccept = false and
+			CurrentSale.Name = CurrentStore.Name and
+			result = true
+
+	}
+
+}
+
+DomainModel Takeout {
+
+	Entity Item {
+		Id : Integer
+		Name : String
+		Price : Real
+		StockNumber : Integer
+		OrderPrice : Real
+
+		[Refer]
+		ItemtoProductCatalog : ProductCatalog ! Association
+		ItemtoStore : Store ! Association
+	}
+
+	Entity OrderLineItem {
+		Quantity : Integer
+		Subamount : Real
+
+		[Refer]
+		OrderLineItemtoItem : Item Association
+		OrderLineItemtoSale : Sale ! Association
+	}
+
+	Entity Sale {
+		Time : Date
+		IsComplete : Boolean
+		Amount : Real
+		IsReadytoPay : Boolean
+		IsAccept : Boolean
+		Name : String
+
+		[Refer]
+		SaletoOrderLineItem : OrderLineItem* Association
+		SaletoPayment : Payment ! Association
+		SaletoStore : Store Association
+		SaletoCutomer : Cutomer Association
+		SaletoDilivery : Dilivery Association
+	}
+
+	Entity Payment {
+		AmountTendered : Real
+
+		[Refer]
+		PaymenttoSale : Sale Association
+	}
+
+	Entity CashPayment extends Payment {
+		Balance : Real
+	}
+
+	Entity CardPayment extends Payment {
+		CardAcountNUmber : String
+		ExpireDate : Date
+	}
+
+	Entity Store {
+		Id : Integer
+		Name : String
+		Address : String
+		IsOpened : Boolean
+
+		[Refer]
+		StoretoSale : Sale* ! Association
+		StoretoItem : Item* Association
+		StoretoProductCatalog : ProductCatalog* Association
+	}
+
+	Entity ProductCatalog {
+		Id : Integer
+		Name : String
+
+		[Refer]
+		ProductCatalogtoItem : Item* Association
+	}
+
+	Entity Cutomer {
+		Id : String
+		Address : String
+		Name : String
+	}
+
+	Entity Dilivery {
+		Id : String
+		Name : String
+		Attribute3 : String
+
+		[Refer]
+		DiliverytoSale : Sale* ! Association
+	}
+
+}
+

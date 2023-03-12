@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+	<html>
+	<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>Prototype</title>
+	<link rel="stylesheet" href="/css/layui.css"></link>
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script src="/js/layui.js"></script>
+	<script>
+	function formatDate(t) { 
+	if(isNaN(t)){
+	return ""; 
+	}else{
+	var now=new Date(t);
+	var year=now.getFullYear();
+	var month=now.getMonth()+1; 
+	var date=now.getDate(); 
+	return year+"-"+month+"-"+date; 
+	}
+	} 
+		//JavaScript代码区域
+		layui.use("element", function() {
+			var element = layui.element;
+			var $ = layui.jquery, element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+		});
+		$(document).ready(function() {
+	$.ajax({
+	type: "GET",
+	url: "/state/ModelTable",
+	data: {},
+	dataType: "json",
+	success: function(data){
+	var html="";
+	$.each(data, function (i, item) {
+	html+='<tr align="center" style="height:60px">';
+	html+='<td >'+item.location+'</td>';
+	html+='<td >'+item.version+'</td>';
+	html+='<td >'+item.id+'</td>';
+	html+='</tr>';
+	});
+	$("#Model_table").html(html);
+	}
+	});
+	$.ajax({
+	type: "GET",
+	url: "/state/ModelAccessLinkTable",
+	data: {},
+	dataType: "json",
+	success: function(data){
+	var html="";
+	$.each(data, function (i, item) {
+	html+='<tr align="center" style="height:60px">';
+	html+='<td >'+item.symbol+'</td>';
+	html+='<td >'+item.currentVisitNumber+'</td>';
+	html+='<td >'+item.maximumVisitNumber+'</td>';
+	html+='</tr>';
+	});
+	$("#ModelAccessLink_table").html(html);
+	}
+	});
+	$.ajax({
+	type: "GET",
+	url: "/state/OnlineModelTable",
+	data: {},
+	dataType: "json",
+	success: function(data){
+	var html="";
+	$.each(data, function (i, item) {
+	html+='<tr align="center" style="height:60px">';
+	html+='<td >'+item.id+'</td>';
+	html+='<td >'+item.assignedResource+'</td>';
+	html+='</tr>';
+	});
+	$("#OnlineModel_table").html(html);
+	}
+	});
+	$.ajax({
+	type: "GET",
+	url: "/state/AdministratorTable",
+	data: {},
+	dataType: "json",
+	success: function(data){
+	var html="";
+	$.each(data, function (i, item) {
+	html+='<tr align="center" style="height:60px">';
+	html+='<td >'+item.id+'</td>';
+	html+='</tr>';
+	});
+	$("#Administrator_table").html(html);
+	}
+	});
+	$.ajax({
+	type: "GET",
+	url: "/state/APITable",
+	data: {},
+	dataType: "json",
+	success: function(data){
+	var html="";
+	$.each(data, function (i, item) {
+	html+='<tr align="center" style="height:60px">';
+	html+='<td >'+item.token+'</td>';
+	html+='<td >'+item.isValid+'</td>';
+	html+='</tr>';
+	});
+	$("#API_table").html(html);
+	}
+	});
+	$.ajax({
+	type: "GET",
+	url: "/state/DataSetTable",
+	data: {},
+	dataType: "json",
+	success: function(data){
+	var html="";
+	$.each(data, function (i, item) {
+	html+='<tr align="center" style="height:60px">';
+	html+='<td >'+item.id+'</td>';
+	html+='<td >'+item.content+'</td>';
+	html+='</tr>';
+	});
+	$("#DataSet_table").html(html);
+	}
+	});
+	});
+	</script>
+	</head>
+	<body class="layui-layout-body">
+		<div class="layui-layout layui-layout-admin">
+			<div class="layui-header">
+				<div class="layui-logo">Prototype DLMMS</div>
+				<ul class="layui-nav layui-layout-left">
+						<li class="layui-nav-item"><a href="/main/index" id="s_function">System Function</a></li>
+						<li class="layui-nav-item layui-this"><a href="/main/index2" id="s_state">System State</a></li>
+				</ul>
+			</div>
+		<div class="layui-tab layui-tab-brief">
+				<ul class="layui-tab-title">
+			<li class="layui-this" id="Model">Model</li>
+			<li id="ModelAccessLink">ModelAccessLink</li>
+			<li id="OnlineModel">OnlineModel</li>
+			<li id="Administrator">Administrator</li>
+			<li id="API">API</li>
+			<li id="DataSet">DataSet</li>
+				</ul>
+				<div class="layui-tab-content" style="height: 100px;">
+					<div class="layui-tab-item layui-show" >
+						<table style="margin: auto;width:600px;"  border="1">
+							<thead>
+								<tr align="center" style="height:100px">
+								<td style="font-weight: bold">Location</td>
+								<td style="font-weight: bold">Version</td>
+								<td style="font-weight: bold">Id</td>
+								</tr>
+							</thead>
+							<tbody id="Model_table">
+							</tbody>
+						</table>
+					</div>
+					<div class="layui-tab-item" >
+						<table style="margin: auto;width:600px;"  border="1">
+							<thead>
+								<tr align="center" style="height:100px">
+								<td style="font-weight: bold">Symbol</td>
+								<td style="font-weight: bold">CurrentVisitNumber</td>
+								<td style="font-weight: bold">MaximumVisitNumber</td>
+								</tr>
+							</thead>
+							<tbody id="ModelAccessLink_table">
+							</tbody>
+						</table>
+					</div>
+					<div class="layui-tab-item" >
+						<table style="margin: auto;width:600px;"  border="1">
+							<thead>
+								<tr align="center" style="height:100px">
+								<td style="font-weight: bold">Id</td>
+								<td style="font-weight: bold">AssignedResource</td>
+								</tr>
+							</thead>
+							<tbody id="OnlineModel_table">
+							</tbody>
+						</table>
+					</div>
+					<div class="layui-tab-item" >
+						<table style="margin: auto;width:600px;"  border="1">
+							<thead>
+								<tr align="center" style="height:100px">
+								<td style="font-weight: bold">Id</td>
+								</tr>
+							</thead>
+							<tbody id="Administrator_table">
+							</tbody>
+						</table>
+					</div>
+					<div class="layui-tab-item" >
+						<table style="margin: auto;width:600px;"  border="1">
+							<thead>
+								<tr align="center" style="height:100px">
+								<td style="font-weight: bold">Token</td>
+								<td style="font-weight: bold">IsValid</td>
+								</tr>
+							</thead>
+							<tbody id="API_table">
+							</tbody>
+						</table>
+					</div>
+					<div class="layui-tab-item" >
+						<table style="margin: auto;width:600px;"  border="1">
+							<thead>
+								<tr align="center" style="height:100px">
+								<td style="font-weight: bold">Id</td>
+								<td style="font-weight: bold">Content</td>
+								</tr>
+							</thead>
+							<tbody id="DataSet_table">
+							</tbody>
+						</table>
+					</div>
+			</div> 
+		</div>
+	</body>
+	</html>
+	
