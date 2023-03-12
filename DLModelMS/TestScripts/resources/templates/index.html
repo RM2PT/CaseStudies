@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+	<html>
+	<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>Prototype</title>
+	<link rel="stylesheet" href="/css/layui.css"></link>
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script src="/js/layui.js"></script>
+	 <style>
+        ol li a {
+            background-color: rgba(0,0,0,1) !important;
+        }
+
+        .three_this {
+            background-color: #808080 !important;
+        }
+    </style>
+	<script>
+		//JavaScript代码区域
+		layui.use("element", function() {
+			var element = layui.element;
+			var $ = layui.jquery, element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+			
+			 $(".menu_three").on("click", function () {
+                
+                $(this).next().toggle();
+                $.each($(this).parent().siblings(), function (i, e) {
+                    $(e).find("ol").hide();;
+                });
+               
+            })
+            $("ol").on("click", "li a", function () {
+                $.each($(this).parent().siblings(), function (i, e) {
+                    $(e).find("a").removeClass('three_this')
+                });
+                $(this).addClass('three_this');                            // 添加当前元素的样式
+
+            })
+		
+		});
+		$(document).ready(function() {
+			$("dd>a").click(function(e) {
+				e.preventDefault();
+				$("#iframeMain").attr("src", $(this).attr("href"));
+			});
+										
+			$("ol>li>a").click(function(e) {
+					e.preventDefault();
+					$("#iframeMain").attr("src", $(this).attr("href"));
+			});
+		});
+	</script>
+	</head>
+	<body class="layui-layout-body">
+		<div class="layui-layout layui-layout-admin">
+			<div class="layui-header">
+				<div class="layui-logo">Prototype DLMMS</div>
+				<!-- 头部区域（可配合layui已有的水平导航） -->
+				<ul class="layui-nav layui-layout-left">
+					<li class="layui-nav-item layui-this"><a href="/main/index" id="s_function">System Function</a></li>
+					<li class="layui-nav-item"><a href="/main/index2" id="s_state">System State</a></li>
+				</ul>
+			</div>
+			
+			<div class="layui-side layui-bg-black">
+				<div class="layui-side-scroll">
+					<ul class="layui-nav layui-nav-tree">
+						<li class="layui-nav-item">
+							<a class="" href="javascript:;" id="ModelOwner">ModelOwner</a>
+							<dl class="layui-nav-child">
+							<dd >
+							<a href="/main/uploadModel" id="uploadModel"> uploadModel</a>
+							</dd>
+							</dl>
+							<dl class="layui-nav-child">
+							<dd >
+								<a href="javascript:;"  class="menu_three " id="manageAdministrator"> manageAdministrator</a>
+								<ol class="layui-nav-child" style="display: none;">
+									<li><a href="/main/createAdministrator" id="createAdministrator">&emsp;createAdministrator</a></li>
+									<li><a href="/main/queryAdministrator" id="queryAdministrator">&emsp;queryAdministrator</a></li>
+									<li><a href="/main/modifyAdministrator" id="modifyAdministrator">&emsp;modifyAdministrator</a></li>
+									<li><a href="/main/deleteAdministrator" id="deleteAdministrator">&emsp;deleteAdministrator</a></li>
+								</ol>
+							</dd>
+							</dl>
+							<dl class="layui-nav-child">
+							<dd >
+							<a href="/main/deleteModel" id="deleteModel"> deleteModel</a>
+							</dd>
+							</dl>
+						</li>
+						<li class="layui-nav-item">
+							<a class="" href="javascript:;" id="ModelAdministrator">ModelAdministrator</a>
+							<dl class="layui-nav-child">
+							<dd >
+								<a href="javascript:;"  class="menu_three " id="manageModel"> manageModel</a>
+								<ol class="layui-nav-child" style="display: none;">
+									<li><a href="/main/createModel" id="createModel">&emsp;createModel</a></li>
+									<li><a href="/main/queryModel" id="queryModel">&emsp;queryModel</a></li>
+									<li><a href="/main/modifyModel" id="modifyModel">&emsp;modifyModel</a></li>
+									<li><a href="/main/deleteModel" id="deleteModel">&emsp;deleteModel</a></li>
+								</ol>
+							</dd>
+							</dl>
+							<dl class="layui-nav-child">
+							<dd >
+								<a href="javascript:;"  class="menu_three " id="manageOnlineModel"> manageOnlineModel</a>
+								<ol class="layui-nav-child" style="display: none;">
+									<li><a href="/main/createOnlineModel" id="createOnlineModel">&emsp;createOnlineModel</a></li>
+									<li><a href="/main/queryOnlineModel" id="queryOnlineModel">&emsp;queryOnlineModel</a></li>
+									<li><a href="/main/modifyOnlineModel" id="modifyOnlineModel">&emsp;modifyOnlineModel</a></li>
+									<li><a href="/main/deleteOnlineModel" id="deleteOnlineModel">&emsp;deleteOnlineModel</a></li>
+								</ol>
+							</dd>
+							</dl>
+							<dl class="layui-nav-child">
+							<dd >
+								<a href="javascript:;"  class="menu_three " id="manageModelAccess"> manageModelAccess</a>
+								<ol class="layui-nav-child" style="display: none;">
+									<li><a href="/main/createModelAccess" id="createModelAccess">&emsp;createModelAccess</a></li>
+									<li><a href="/main/queryModelAccess" id="queryModelAccess">&emsp;queryModelAccess</a></li>
+									<li><a href="/main/modifyModelAccess" id="modifyModelAccess">&emsp;modifyModelAccess</a></li>
+									<li><a href="/main/deleteModelAccess" id="deleteModelAccess">&emsp;deleteModelAccess</a></li>
+								</ol>
+							</dd>
+							</dl>
+							<dl class="layui-nav-child">
+							<dd >
+								<a href="javascript:;"  class="menu_three " id="manageAPI"> manageAPI</a>
+								<ol class="layui-nav-child" style="display: none;">
+									<li><a href="/main/createAPI" id="createAPI">&emsp;createAPI</a></li>
+									<li><a href="/main/queryAPI" id="queryAPI">&emsp;queryAPI</a></li>
+									<li><a href="/main/modifyAPI" id="modifyAPI">&emsp;modifyAPI</a></li>
+									<li><a href="/main/deleteAPI" id="deleteAPI">&emsp;deleteAPI</a></li>
+								</ol>
+							</dd>
+							</dl>
+							<dl class="layui-nav-child">
+							<dd >
+								<a href="javascript:;"  class="menu_three " id="manageDataSet"> manageDataSet</a>
+								<ol class="layui-nav-child" style="display: none;">
+									<li><a href="/main/createDataSet" id="createDataSet">&emsp;createDataSet</a></li>
+									<li><a href="/main/queryDataSet" id="queryDataSet">&emsp;queryDataSet</a></li>
+									<li><a href="/main/modifyDataSet" id="modifyDataSet">&emsp;modifyDataSet</a></li>
+									<li><a href="/main/deleteDataSet" id="deleteDataSet">&emsp;deleteDataSet</a></li>
+								</ol>
+							</dd>
+							</dl>
+						</li>
+						<li class="layui-nav-item">
+							<a class="" href="javascript:;" id="ModelVisitor">ModelVisitor</a>
+							<dl class="layui-nav-child">
+							<dd >
+							<a href="/main/visitModel" id="visitModel"> visitModel</a>
+							</dd>
+							</dl>
+							<dl class="layui-nav-child">
+							<dd >
+							<a href="/main/visitOnlineModel" id="visitOnlineModel"> visitOnlineModel</a>
+							</dd>
+							</dl>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="layui-body">
+						<iframe id="iframeMain" 
+					style="width: 100%; height: 100%;" src="/main/welcome">
+				</iframe>
+			</div>
+		</div>
+	</body>
+	</html>
+	

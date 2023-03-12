@@ -1,0 +1,483 @@
+UseCaseModel DLModelMS1 {
+
+	UC::uploadModel definedBySSD(UploadModelSSD) relatedService(UploadModelService)
+	UC::deployModel definedBySSD(DeployModelSSD) relatedService(DeployModelService)
+	UC::downloadModel definedBySSD(DownloadModelSSD) relatedService(DownloadModelService)
+	UC::callModel
+	UC::manageModel
+	UC::manageRunningModel
+
+//	UC::askForAPI definedBySSD(AskForAPISSD) relatedService(AskForAPIService)
+	Actor Owner {
+		uploadModel
+		deployModel
+		manageModel
+		manageRunningModel
+	}
+
+	Actor User {
+		downloadModel
+		callModel
+//		askForAPI
+	}
+
+	Interaction UploadModelSSD {
+
+		[Participants: Owner UploadModelService]
+
+		CallMessage::UploadModelSSDCallMessage1(uploadModelInformation UploadModelSSDCallMessage1SendingEnd -> UploadModelSSDExecution1StartEnd)
+		ReturnMessage::UploadModelSSDCallMessage1Return(UploadModelSSDExecution1FinishEnd -> UploadModelSSDCallMessage1ReturnReceivingEnd UploadModelSSDCallMessage1)
+		CallMessage::UploadModelSSDCallMessage3(uploadModelAttachment UploadModelSSDCallMessage3SendingEnd -> UploadModelSSDExecution2StartEnd)
+		ReturnMessage::UploadModelSSDCallMessage3Return(UploadModelSSDExecution2FinishEnd -> UploadModelSSDCallMessage3ReturnReceivingEnd UploadModelSSDCallMessage3)
+		CallMessage::UploadModelSSDCallMessage5(uploadDataSet UploadModelSSDCallMessage5SendingEnd -> UploadModelSSDExecution3StartEnd)
+		ReturnMessage::UploadModelSSDCallMessage5Return(UploadModelSSDExecution3FinishEnd -> UploadModelSSDCallMessage5ReturnReceivingEnd UploadModelSSDCallMessage5)
+
+		Execution::UploadModelSSDExecution1(UploadModelService UploadModelSSDExecution1StartEnd UploadModelSSDExecution1FinishEnd)
+		Execution::UploadModelSSDExecution2(UploadModelService UploadModelSSDExecution2StartEnd UploadModelSSDExecution2FinishEnd)
+		Execution::UploadModelSSDExecution3(UploadModelService UploadModelSSDExecution3StartEnd UploadModelSSDExecution3FinishEnd)
+
+		MessageEnd::UploadModelSSDCallMessage1SendingEnd(Owner UploadModelSSDCallMessage1)
+		ExecutionEnd::UploadModelSSDExecution1StartEnd(UploadModelService UploadModelSSDExecution1)
+		ExecutionEnd::UploadModelSSDExecution1FinishEnd(UploadModelService UploadModelSSDExecution1)
+		MessageEnd::UploadModelSSDCallMessage1ReturnReceivingEnd(Owner UploadModelSSDCallMessage1Return)
+		MessageEnd::UploadModelSSDCallMessage3SendingEnd(Owner UploadModelSSDCallMessage3)
+		ExecutionEnd::UploadModelSSDExecution2StartEnd(UploadModelService UploadModelSSDExecution2)
+		ExecutionEnd::UploadModelSSDExecution2FinishEnd(UploadModelService UploadModelSSDExecution2)
+		MessageEnd::UploadModelSSDCallMessage3ReturnReceivingEnd(Owner UploadModelSSDCallMessage3Return)
+		MessageEnd::UploadModelSSDCallMessage5SendingEnd(Owner UploadModelSSDCallMessage5)
+		ExecutionEnd::UploadModelSSDExecution3StartEnd(UploadModelService UploadModelSSDExecution3)
+		ExecutionEnd::UploadModelSSDExecution3FinishEnd(UploadModelService UploadModelSSDExecution3)
+		MessageEnd::UploadModelSSDCallMessage5ReturnReceivingEnd(Owner UploadModelSSDCallMessage5Return)
+
+	}
+
+	Interaction DeployModelSSD {
+
+		[Participants: Owner DeployModelService]
+
+		CallMessage::DeployModelSSDCallMessage3(deployModel DeployModelSSDCallMessage3SendingEnd -> DeployModelSSDExecution2StartEnd)
+		ReturnMessage::DeployModelSSDCallMessage3Return(DeployModelSSDExecution2FinishEnd -> DeployModelSSDCallMessage3ReturnReceivingEnd DeployModelSSDCallMessage3)
+		CallMessage::DeployModelSSDCallMessage7(createKey DeployModelSSDCallMessage7SendingEnd -> DeployModelSSDExecution4StartEnd)
+		ReturnMessage::DeployModelSSDCallMessage7Return(DeployModelSSDExecution4FinishEnd -> DeployModelSSDCallMessage7ReturnReceivingEnd DeployModelSSDCallMessage7)
+		CallMessage::DeployModelSSDCallMessage5(viewModel DeployModelSSDCallMessage5SendingEnd -> DeployModelSSDExecution3StartEnd)
+		ReturnMessage::DeployModelSSDCallMessage5Return(DeployModelSSDExecution3FinishEnd -> DeployModelSSDCallMessage5ReturnReceivingEnd DeployModelSSDCallMessage5)
+
+		Execution::DeployModelSSDExecution2(DeployModelService DeployModelSSDExecution2StartEnd DeployModelSSDExecution2FinishEnd)
+		Execution::DeployModelSSDExecution4(DeployModelService DeployModelSSDExecution4StartEnd DeployModelSSDExecution4FinishEnd)
+		Execution::DeployModelSSDExecution3(DeployModelService DeployModelSSDExecution3StartEnd DeployModelSSDExecution3FinishEnd)
+
+		CombinedFragment:: combinedFragement1 -> loop {
+
+			[Participants: Owner DeployModelService]
+
+			combinedFragement1StartEnd -> combinedFragement1FinishEnd
+
+			Operand::needMoreKeys(condition1End combinedFragement1FinishEnd)
+		}
+
+		MessageEnd::DeployModelSSDCallMessage5SendingEnd(Owner DeployModelSSDCallMessage5)
+		ExecutionEnd::DeployModelSSDExecution3StartEnd(DeployModelService DeployModelSSDExecution3)
+		ExecutionEnd::DeployModelSSDExecution3FinishEnd(DeployModelService DeployModelSSDExecution3)
+		MessageEnd::DeployModelSSDCallMessage5ReturnReceivingEnd(Owner DeployModelSSDCallMessage5Return)
+		MessageEnd::DeployModelSSDCallMessage3SendingEnd(Owner DeployModelSSDCallMessage3)
+		ExecutionEnd::DeployModelSSDExecution2StartEnd(DeployModelService DeployModelSSDExecution2)
+		ExecutionEnd::DeployModelSSDExecution2FinishEnd(DeployModelService DeployModelSSDExecution2)
+		MessageEnd::DeployModelSSDCallMessage3ReturnReceivingEnd(Owner DeployModelSSDCallMessage3Return)
+		CombinedFragmentEnd::combinedFragement1StartEnd(combinedFragement1)
+		OperandEnd::condition1End(needMoreKeys)
+		MessageEnd::DeployModelSSDCallMessage7SendingEnd(Owner DeployModelSSDCallMessage7)
+		ExecutionEnd::DeployModelSSDExecution4StartEnd(DeployModelService DeployModelSSDExecution4)
+		ExecutionEnd::DeployModelSSDExecution4FinishEnd(DeployModelService DeployModelSSDExecution4)
+		MessageEnd::DeployModelSSDCallMessage7ReturnReceivingEnd(Owner DeployModelSSDCallMessage7Return)
+		CombinedFragmentEnd::combinedFragement1FinishEnd(combinedFragement1)
+
+	}
+
+	Interaction DownloadModelSSD {
+
+		[Participants: User DownloadModelService]
+
+		CallMessage::DownloadModelSSDCallMessage1(searchModelByKeyword DownloadModelSSDCallMessage1SendingEnd -> DownloadModelSSDExecution1StartEnd)
+		ReturnMessage::DownloadModelSSDCallMessage1Return(DownloadModelSSDExecution1FinishEnd -> DownloadModelSSDCallMessage1ReturnReceivingEnd DownloadModelSSDCallMessage1)
+		CallMessage::DownloadModelSSDCallMessage3(viewModel DownloadModelSSDCallMessage3SendingEnd -> DownloadModelSSDExecution2StartEnd)
+		ReturnMessage::DownloadModelSSDCallMessage3Return(DownloadModelSSDExecution2FinishEnd -> DownloadModelSSDCallMessage3ReturnReceivingEnd DownloadModelSSDCallMessage3)
+		CallMessage::DownloadModelSSDCallMessage5(downModel DownloadModelSSDCallMessage5SendingEnd -> DownloadModelSSDExecution3StartEnd)
+		ReturnMessage::DownloadModelSSDCallMessage5Return(DownloadModelSSDExecution3FinishEnd -> DownloadModelSSDCallMessage5ReturnReceivingEnd DownloadModelSSDCallMessage5)
+
+		Execution::DownloadModelSSDExecution1(DownloadModelService DownloadModelSSDExecution1StartEnd DownloadModelSSDExecution1FinishEnd)
+		Execution::DownloadModelSSDExecution2(DownloadModelService DownloadModelSSDExecution2StartEnd DownloadModelSSDExecution2FinishEnd)
+		Execution::DownloadModelSSDExecution3(DownloadModelService DownloadModelSSDExecution3StartEnd DownloadModelSSDExecution3FinishEnd)
+
+		MessageEnd::DownloadModelSSDCallMessage1SendingEnd(User DownloadModelSSDCallMessage1)
+		ExecutionEnd::DownloadModelSSDExecution1StartEnd(DownloadModelService DownloadModelSSDExecution1)
+		ExecutionEnd::DownloadModelSSDExecution1FinishEnd(DownloadModelService DownloadModelSSDExecution1)
+		MessageEnd::DownloadModelSSDCallMessage1ReturnReceivingEnd(User DownloadModelSSDCallMessage1Return)
+		MessageEnd::DownloadModelSSDCallMessage3SendingEnd(User DownloadModelSSDCallMessage3)
+		ExecutionEnd::DownloadModelSSDExecution2StartEnd(DownloadModelService DownloadModelSSDExecution2)
+		ExecutionEnd::DownloadModelSSDExecution2FinishEnd(DownloadModelService DownloadModelSSDExecution2)
+		MessageEnd::DownloadModelSSDCallMessage3ReturnReceivingEnd(User DownloadModelSSDCallMessage3Return)
+		MessageEnd::DownloadModelSSDCallMessage5SendingEnd(User DownloadModelSSDCallMessage5)
+		ExecutionEnd::DownloadModelSSDExecution3StartEnd(DownloadModelService DownloadModelSSDExecution3)
+		ExecutionEnd::DownloadModelSSDExecution3FinishEnd(DownloadModelService DownloadModelSSDExecution3)
+		MessageEnd::DownloadModelSSDCallMessage5ReturnReceivingEnd(User DownloadModelSSDCallMessage5Return)
+
+	}
+
+	Service DLModelMS1System {
+
+		[Operation]
+		viewModel(modelId)
+//		queryModel(modelId)
+		callModel(keyId)
+
+		[TempProperty]
+		CurrentModel : Model
+		CurrentRunningModel : RunningModel
+
+	}
+
+	Service ManageModelService {
+
+		[Operation]
+		updateModelInformation(id, title,keyword, version, description)
+		updateDataSet(id, content)
+
+		[TempProperty]
+	}
+
+	Service ManageRunningModelService {
+
+		[Operation]
+		modifyRunningModel(runningModelId,assignedResource,api)
+		modifyKey(keyId,isValid)
+
+		[TempProperty]
+	}
+
+	Service UploadModelService {
+
+		[Operation]
+		uploadModelInformation(id, title, keyword,version, description)
+		uploadModelAttachment()
+		uploadDataSet(id, content)
+
+	}
+
+	Service DeployModelService {
+
+		[Operation]
+		viewModel(modelId)
+		deployModel(runningModelId,assignedResource,api)
+		createKey(keyId)
+
+	}
+
+	Service DownloadModelService {
+
+		[Operation]
+		searchModelByKeyword(keyword)
+		viewModel(modelId)
+		downModel(id)
+
+	}
+
+	Service AskForAPIService {
+
+		[Operation]
+		listRunningModel(modelId)
+		askForAPI(runningModelId)
+
+	}
+
+	Service ThirdPartyServices {
+
+		[Operation]
+		generateURL()
+		download(url)
+		sendEmail(id,content)
+
+	}
+
+//	Contract DeployModelService::queryModel(modelId : String) : Model {
+//
+//		definition:
+//			a:Model = Model.allInstance()->any(e:Model| e.Id = modelId)
+//
+//		precondition:
+//			a.oclIsUndefined() = false
+//		postcondition:
+//			self.CurrentModel = a and
+//			result = a
+//	}
+	Contract UploadModelService::uploadModelInformation(id : String, title : String, keyword:String, version : String, description : String) : Boolean {
+
+		definition:
+			a:Model = Model.allInstance()->any(b:Model| b.Id = id)
+
+		precondition:
+			a.oclIsUndefined() = true
+
+		postcondition:
+			let e:Model in
+			e.oclIsNew() and
+			e.Id = id and
+			e.Title = title and
+			e.Keyword = keyword and
+			e.Version = version and
+			e.Description = description and
+			e.LastUpdateTime.isEqual(Now) and
+			Model.allInstance()->includes(e) and
+			self.CurrentModel = e and
+			result = true
+	}
+
+	Contract UploadModelService::uploadModelAttachment() : Boolean {
+
+		precondition:
+			CurrentModel.oclIsUndefined() = false and
+			CurrentModel.ModeltoAttachment.oclIsUndefined() = true
+		postcondition:
+			let c:Attachment in
+			c.oclIsNew() and
+			c.URL = generateURL() and
+			CurrentModel.ModeltoAttachment = c and
+			Attachment.allInstance()->includes(c) and
+			result = true
+	}
+
+	Contract UploadModelService::uploadDataSet(id : String, content : String) : Boolean {
+
+		definition:
+			a:DataSet = DataSet.allInstance()->any(b:DataSet| b.Id = id)
+
+		precondition:
+			a.oclIsUndefined() = true and
+			CurrentModel.oclIsUndefined() = false
+		postcondition:
+			let c:DataSet in
+			c.oclIsNew() and
+			c.Id = id and
+			c.Content = content and
+			c.LastUpdateTime.isEqual(Now) and
+			DataSet.allInstance()->includes(c) and
+			CurrentModel.ContainedDataSet->includes(c) and
+			result = true
+	}
+
+	Contract DeployModelService::deployModel(runningModelId : String, assignedResource : String, api : String) : Boolean {
+
+		definition:
+			a:RunningModel = RunningModel.allInstance()->any(e:RunningModel| e.Id = runningModelId)
+
+		precondition:
+			CurrentModel.oclIsUndefined() = false and
+			a.oclIsUndefined() = true
+		postcondition:
+			let b:RunningModel in
+			b.oclIsNew() and
+			b.Id = runningModelId and
+			b.AssignedResource = assignedResource and
+			b.API = api and
+			RunningModel.allInstance()->includes(b) and
+			b.BelongedModel = CurrentModel and
+			CurrentModel.ContainedRunningModel->includes(b) and
+			self.CurrentRunningModel = b and
+			result = true
+	}
+
+	Contract DeployModelService::createKey(keyId : String) : Boolean {
+
+		definition:
+			key:Mykey = Mykey.allInstance()->any(e:Mykey| e.Id = keyId)
+
+		precondition:
+			key.oclIsUndefined() = true
+		postcondition:
+			let b:Mykey in
+			b.oclIsNew() and
+			b.Id = keyId and
+			b.IsValid = true and
+			Mykey.allInstance()->includes(b) and
+			b.BelongedRunningModel = CurrentRunningModel and
+			CurrentRunningModel.ContainedKey->includes(b) and
+			result = true
+	}
+
+	Contract DLModelMS1System::callModel(keyId : String) : String {
+
+		definition:
+			key:Mykey = Mykey.allInstance()->any(e:Mykey| e.Id = keyId)
+
+//			,a:RunningModel = key.BelongedRunningModel
+		precondition:
+			key.oclIsUndefined() = false and
+//			a.oclIsUndefined() = false and
+			key.IsValid = true
+		postcondition:
+			result = key.BelongedRunningModel.API
+	}
+
+	Contract DownloadModelService::searchModelByKeyword(keyword : String) : Set(Model) {
+
+		precondition:
+			keyword <> ""
+		postcondition:
+			result = Model.allInstance()->select(m:Model| m.Keyword = keyword)
+	}
+
+	Contract DLModelMS1System::viewModel(modelId : String) : Model {
+
+		definition:
+			a:Model = Model.allInstance()->any(b:Model| b.Id = modelId)
+
+		precondition:
+			a.oclIsUndefined() = false
+		postcondition:
+			self.CurrentModel = a and
+			result = a
+	}
+
+	Contract DownloadModelService::downModel(id : String): Boolean {
+
+		definition:
+			a:Model = Model.allInstance()->any(b:Model| b.Id = id)
+
+		precondition:
+			a.oclIsUndefined() = false
+		postcondition:
+			download(a.ModeltoAttachment.URL) and
+			result = true
+	}
+
+	Contract ManageModelService::updateModelInformation(id : String, title : String, keyword : String, version : String, description : String) : Boolean {
+
+		definition:
+			e:Model = Model.allInstance()->any(b:Model| b.Id = id)
+
+		precondition:
+			e.oclIsUndefined() = false
+
+		postcondition:
+			e.Id = id and
+			e.Title = title and
+			e.Keyword = keyword and
+			e.Version = version and
+			e.Description = description and
+			e.LastUpdateTime.isEqual(Now) and
+			result = true
+	}
+
+	Contract ManageModelService::updateDataSet(id : String, content : String) : Boolean {
+
+		definition:
+			c:DataSet = DataSet.allInstance()->any(b:DataSet| b.Id = id)
+
+		precondition:
+			c.oclIsUndefined() = false
+		postcondition:
+			c.Id = id and
+			c.Content = content and
+			c.LastUpdateTime.isEqual(Now) and
+			result = true
+	}
+
+	Contract ManageRunningModelService::modifyRunningModel(runningModelId : String, assignedResource : String, api : String) : Boolean {
+
+		definition:
+			a:RunningModel = RunningModel.allInstance()->any(e:RunningModel| e.Id = runningModelId)
+
+		precondition:
+			a.oclIsUndefined() = false
+		postcondition:
+			a.Id = runningModelId and
+			a.AssignedResource = assignedResource and
+			a.API = api and
+			result = true
+	}
+
+	Contract ManageRunningModelService::modifyKey(keyId : String, isValid : Boolean) : Boolean {
+
+		definition:
+			key:Mykey = Mykey.allInstance()->any(e:Mykey| e.Id = keyId)
+
+		precondition:
+			key.oclIsUndefined() = false
+		postcondition:
+			key.Id = keyId and
+			key.IsValid = isValid and
+			result = true
+	}
+
+	Contract ThirdPartyServices::generateURL() : String {
+
+		precondition:
+			true
+		postcondition:
+			result = ""
+	}
+
+	Contract ThirdPartyServices::download(url : String) : Boolean {
+
+		precondition:
+			url <> ""
+		postcondition:
+			result = true
+	}
+
+}
+
+DomainModel DLModelMS1 {
+
+	Entity Model {
+		Title : String
+		Version : String
+		Id : String
+		Description : String
+//		StarNumber : Integer
+		LastUpdateTime : Date
+		Keyword : String
+
+		[Refer]
+		ContainedRunningModel : RunningModel* Association
+		ContainedDataSet : DataSet* Association
+		ModeltoAttachment : Attachment Association
+		[INV]
+		inv UniqueId : Model.allInstance()->isUnique(e:Model| e.Id)
+	}
+
+	Entity RunningModel {
+		Id : String
+		AssignedResource : String
+		API : String
+
+		[Refer]
+		ContainedKey : Mykey* ! Association
+		BelongedModel : Model ! Association
+		[INV]
+		inv UniqueId : RunningModel.allInstance()->isUnique(e:RunningModel| e.Id)
+	}
+
+	Entity Mykey {
+		Id : String
+		IsValid : Boolean
+
+		[Refer]
+		BelongedRunningModel : RunningModel Association
+		[INV]
+		inv UniqueToken : Mykey.allInstance()->isUnique(e:Mykey| e.Id)
+	}
+
+	Entity DataSet {
+		Id : String
+		Content : String
+		LastUpdateTime : Date
+		[INV]
+		inv UniqueId : DataSet.allInstance()->isUnique(e:DataSet| e.Id)
+	}
+
+	Entity Attachment {
+		URL : String
+	}
+
+}
+
