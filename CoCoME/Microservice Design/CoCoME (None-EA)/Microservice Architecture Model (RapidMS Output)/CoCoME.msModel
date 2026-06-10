@@ -1,0 +1,203 @@
+MicroServiceModel CoCoME {
+	MicroService StoreManagerService {
+		ProvidedInterface openStore{
+			[Operation]
+			openStore
+			CallChain openStore {
+				service AdministratorService : AdministratorService {
+					Message 1 {
+						operation manageStore
+					}
+				}
+			}
+		}
+		ProvidedInterface closeStore{
+			[Operation]
+			closeStore
+			CallChain closeStore {
+				service AdministratorService : AdministratorService {
+					Message 1 {
+						operation manageStore
+					}
+				}
+			}
+		}
+		ProvidedInterface manageOrderEntry{
+			[Operation]
+			createOrderEntry
+			queryOrderEntry
+			updateOrderEntry
+			modifyOrderEntry
+		}
+		ProvidedInterface manageCashier{
+			[Operation]
+			createCashier
+			queryCashier
+			updateCashier
+			modifyCashier
+		}
+		RequiredInterface manageStore
+		RequiredInterface manageItem
+		DomainModel StoreManagerService {
+			 Entity CardPayment {
+				CardAccountNumber : String
+				ExpiryDate : Date
+				[Refer]
+			}
+			 Entity CashPayment {
+				Balance : Real
+				[Refer]
+			}
+			@AutoCRUD Entity Cashier {
+				Id : Integer
+				Name : String
+				[Refer]
+			}
+			 Entity OrderEntry {
+				Quantity : Integer
+				SubAmount : Real
+				[Refer]
+			}
+		}
+	}
+	MicroService CashierService {
+		ProvidedInterface manageCashDesk{
+			[Operation]
+			createCashDesk
+			queryCashDesk
+			updateCashDesk
+			modifyCashDesk
+		}
+		ProvidedInterface manageProductCatalog{
+			[Operation]
+			createProductCatalog
+			queryProductCatalog
+			updateProductCatalog
+			modifyProductCatalog
+		}
+		ProvidedInterface manageSale{
+			[Operation]
+			createSale
+			querySale
+			updateSale
+			modifySale
+		}
+		RequiredInterface manageStore
+		RequiredInterface manageItem
+		DomainModel CashierService {
+			 Entity Sale {
+				Time : Date
+				IsComplete : Boolean
+				Amount : Real
+				IsReadytoPay : Boolean
+				[Refer]
+				BelongedCashDesk : CashDesk  Association
+				ContainedSalesLine : SalesLineItem  Association
+				AssoicatedPayment : Payment  Association
+			}
+			@AutoCRUD Entity ProductCatalog {
+				Id : Integer
+				Name : String
+				[Refer]
+			}
+			@AutoCRUD Entity CashDesk {
+				Id : Integer
+				Name : String
+				IsOpened : Boolean
+				[Refer]
+				ContainedSales : Sale  Association
+			}
+			 Entity Payment {
+				AmountTendered : Real
+				[Refer]
+				BelongedSale : Sale  Association
+			}
+			 Entity SalesLineItem {
+				Quantity : Integer
+				Subamount : Real
+				[Refer]
+				BelongedSale : Sale  Association
+			}
+		}
+	}
+	MicroService AdministratorService {
+		ProvidedInterface manageCashier{
+			[Operation]
+			createCashier
+			queryCashier
+			updateCashier
+			modifyCashier
+		}
+		ProvidedInterface manageSupplier{
+			[Operation]
+			createSupplier
+			querySupplier
+			updateSupplier
+			modifySupplier
+		}
+		ProvidedInterface manageStore{
+			[Operation]
+			createStore
+			queryStore
+			updateStore
+			modifyStore
+		}
+		ProvidedInterface manageProductCatalog{
+			[Operation]
+			createProductCatalog
+			queryProductCatalog
+			updateProductCatalog
+			modifyProductCatalog
+		}
+		ProvidedInterface manageCashDesk{
+			[Operation]
+			createCashDesk
+			queryCashDesk
+			updateCashDesk
+			modifyCashDesk
+		}
+		ProvidedInterface manageItem{
+			[Operation]
+			createItem
+			queryItem
+			updateItem
+			modifyItem
+		}
+		RequiredInterface manageOrderEntry
+		RequiredInterface manageCashDesk
+		RequiredInterface manageProductCatalog
+		RequiredInterface manageCashier
+		RequiredInterface manageSale
+		DomainModel AdministratorService {
+			 Entity OrderProduct {
+				Id : Integer
+				Time : Date
+				OrderStatus : Integer
+				Amount : Real
+				[Refer]
+				Supplier : Supplier  Association
+			}
+			@AutoCRUD Entity Store {
+				Id : Integer
+				Name : String
+				Address : String
+				IsOpened : Boolean
+				[Refer]
+				Items : Item  Association
+			}
+			@AutoCRUD Entity Item {
+				Barcode : Integer
+				Name : String
+				Price : Real
+				StockNumber : Integer
+				OrderPrice : Real
+				[Refer]
+			}
+			@AutoCRUD Entity Supplier {
+				Id : Integer
+				Name : String
+				[Refer]
+			}
+		}
+	}
+}

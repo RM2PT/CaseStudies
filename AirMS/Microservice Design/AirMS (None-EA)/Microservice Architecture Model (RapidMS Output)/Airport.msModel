@@ -1,0 +1,178 @@
+MicroServiceModel Airport {
+	MicroService OrdinaryService {
+		ProvidedInterface repair{
+			[Operation]
+			repair
+		}
+		DomainModel OrdinaryService {
+			 Entity TbRepair {
+				Id : Integer
+				Repairname : String
+				Phone : String
+				Place : String
+				RepairsStatus : Integer
+				DeviceId : String
+				Status : Integer
+				DescribeContent : String
+				Score : Integer
+				Remark : String
+				Time : Date
+				[Refer]
+			}
+			 Entity Role {
+				Id : Integer
+				RoleCode : Integer
+				Remark : String
+				[Refer]
+			}
+			 Entity DeviceInfo {
+				Id : Integer
+				Name : String
+				Brand : String
+				Type : String
+				Address : String
+				AdminName : String
+				ContactsName : String
+				Status : Integer
+				Remark : String
+				[Refer]
+			}
+		}
+	}
+	MicroService ShareService {
+		ProvidedInterface routine{
+			[Operation]
+			routine
+		}
+		DomainModel ShareService {
+			 Entity User {
+				Id : Integer
+				Name : String
+				Password : String
+				Phone : String
+				[Refer]
+			}
+			 Entity TerminalEquipment {
+				Id : Integer
+				Name : String
+				Address : String
+				Description : String
+				Type : Integer
+				Remark : String
+				[Refer]
+			}
+			 Entity OperationStatus {
+				Id : Integer
+				Remark : String
+				Status : String
+				Value : String
+				ValueUnit : String
+				Time : Date
+				Name : String
+				[Refer]
+			}
+		}
+	}
+	MicroService ManageService {
+		ProvidedInterface manage{
+			[Operation]
+			create
+			query
+			update
+			modify
+		}
+		DomainModel ManageService {
+			 Entity TbRepairExtra {
+				Id : Integer
+				Admin : Boolean
+				IsReject : Boolean
+				RejectCause : String
+				RelayNum : Integer
+				Arbitrate : Boolean
+				IsAccept : Boolean
+				IsComplete : Boolean
+				Time : Date
+				Resolvent : String
+				Cause : String
+				[Refer]
+			}
+			 Entity Department {
+				Id : Integer
+				Name : String
+				ContactRerson : String
+				Principal : String
+				Phone : String
+				BriefInfo : String
+				DescribeContent : String
+				Remark : String
+				[Refer]
+			}
+			 Entity DeviceAssociationGroup {
+				Id : Integer
+				Name : String
+				Remark : String
+				[Refer]
+			}
+		}
+	}
+	MicroService MasterService {
+		ProvidedInterface handle{
+			[Operation]
+			handle
+		}
+		DomainModel MasterService {
+			 Entity EquipmentFailureType {
+				Id : Integer
+				Name : String
+				DescribeContent : String
+				Remark : String
+				[Refer]
+			}
+			 Entity DeviceLocationGroup {
+				Id : Integer
+				Name : String
+				Remark : String
+				[Refer]
+			}
+			 Entity DeviceStatus {
+				Id : Integer
+				Name : String
+				Remark : String
+				[Refer]
+			}
+		}
+	}
+	MicroService WorkerService {
+		ProvidedInterface maintain{
+			[Operation]
+			maintain
+		}
+		DomainModel WorkerService {
+			 Entity ProcessingFees {
+				Id : Integer
+				ProjectName : String
+				Price : Real
+				Number : Integer
+				TotalPrice : Real
+				Remake : String
+				[Refer]
+			}
+			 Entity WorkReport {
+				Id : Integer
+				Name : String
+				Content : String
+				Time : Date
+				[Refer]
+			}
+			 Entity WorkTask {
+				Id : Integer
+				StaffName : String
+				AdminName : String
+				Phone : String
+				Section : String
+				Remark : String
+				[Refer]
+			}
+		}
+	}
+}

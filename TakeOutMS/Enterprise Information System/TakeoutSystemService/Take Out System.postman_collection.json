@@ -1,0 +1,362 @@
+{
+	"info": {
+		"_postman_id": "e8b0df63-9977-4310-851b-e936433ef123",
+		"name": "Take Out System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "13950282"
+	},
+	"item": [
+		{
+			"name": "create Delivery",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8098/takeout/delivery?id=123&name=Second Delivery",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8098",
+					"path": [
+						"takeout",
+						"delivery"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "123"
+						},
+						{
+							"key": "name",
+							"value": "Second Delivery"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Accept order",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8098/takeout/saleOrder?name=Pehla Order",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8098",
+					"path": [
+						"takeout",
+						"saleOrder"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "123",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "Pehla Order"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Store",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8098/takeout/store?name=Azhar Store&id=55558888&address=Lahore pakistan&isOpened=true",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8098",
+					"path": [
+						"takeout",
+						"store"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Azhar Store"
+						},
+						{
+							"key": "id",
+							"value": "55558888"
+						},
+						{
+							"key": "address",
+							"value": "Lahore pakistan"
+						},
+						{
+							"key": "isOpened",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Enter Store",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8098/takeout/enterStore?id=55558888",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8098",
+					"path": [
+						"takeout",
+						"enterStore"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Azhar Store",
+							"disabled": true
+						},
+						{
+							"key": "address",
+							"value": "Lahore pakistan",
+							"disabled": true
+						},
+						{
+							"key": "isOpened",
+							"value": "true",
+							"disabled": true
+						},
+						{
+							"key": "id",
+							"value": "55558888"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Item",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8098/takeout/item?id=11111&name=test Item 3&price=10.0&stockNumber=10&orderPrice=5.0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8098",
+					"path": [
+						"takeout",
+						"item"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "11111"
+						},
+						{
+							"key": "name",
+							"value": "test Item 3"
+						},
+						{
+							"key": "price",
+							"value": "10.0"
+						},
+						{
+							"key": "stockNumber",
+							"value": "10"
+						},
+						{
+							"key": "orderPrice",
+							"value": "5.0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Accept Order",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8098/takeout/acceptOrder?name=testSale",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8098",
+					"path": [
+						"takeout",
+						"acceptOrder"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "11111",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "testSale"
+						},
+						{
+							"key": "price",
+							"value": "10.0",
+							"disabled": true
+						},
+						{
+							"key": "stockNumber",
+							"value": "10",
+							"disabled": true
+						},
+						{
+							"key": "orderPrice",
+							"value": "5.0",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create sale",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8098/takeout/order",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8098",
+					"path": [
+						"takeout",
+						"order"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "test Item 1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Terminate Order",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8098/takeout/terminateOrder?name=testSale1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8098",
+					"path": [
+						"takeout",
+						"terminateOrder"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "123",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "testSale1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "End Order",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8098/takeout/endOrder"
+			},
+			"response": []
+		},
+		{
+			"name": "Enter Item",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8098/takeout/enterItem?id=111151&quantity=4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8098",
+					"path": [
+						"takeout",
+						"enterItem"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "111151"
+						},
+						{
+							"key": "quantity",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "End Order",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8098/takeout/order/cashPayment?amount=40",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8098",
+					"path": [
+						"takeout",
+						"order",
+						"cashPayment"
+					],
+					"query": [
+						{
+							"key": "amount",
+							"value": "40"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

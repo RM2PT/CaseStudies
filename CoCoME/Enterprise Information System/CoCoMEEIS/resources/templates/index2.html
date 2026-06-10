@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+	<html>
+	<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>Prototype</title>
+	<link rel="stylesheet" href="/css/layui.css"></link>
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script src="/js/layui.js"></script>
+	<script>
+	function formatDate(t) { 
+	if(isNaN(t)){
+	return ""; 
+	}else{
+	var now=new Date(t);
+	var year=now.getFullYear();
+	var month=now.getMonth()+1; 
+	var date=now.getDate(); 
+	return year+"-"+month+"-"+date; 
+	}
+	} 
+		//JavaScript代码区域
+		layui.use("element", function() {
+			var element = layui.element;
+			var $ = layui.jquery, element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+		});
+		$(document).ready(function() {
+	$.ajax({
+	type: "GET",
+	url: "/state/StoreTable",
+	data: {},
+	dataType: "json",
+	success: function(data){
+	var html="";
+	$.each(data, function (i, item) {
+	html+='<tr align="center" style="height:60px">';
+	html+='<td >'+item.id+'</td>';
+	html+='<td >'+item.name+'</td>';
+	html+='<td >'+item.address+'</td>';
+	html+='<td >'+item.isOpened+'</td>';
+	html+='</tr>';
+	});
+	$("#Store_table").html(html);
+	}
+	});
+	$.ajax({
+	type: "GET",
+	url: "/state/ProductCatalogTable",
+	data: {},
+	dataType: "json",
+	success: function(data){
+	var html="";
+	$.each(data, function (i, item) {
+	html+='<tr align="center" style="height:60px">';
+	html+='<td >'+item.id+'</td>';
+	html+='<td >'+item.name+'</td>';
+	html+='</tr>';
+	});
+	$("#ProductCatalog_table").html(html);
+	}
+	});
+	$.ajax({
+	type: "GET",
+	url: "/state/CashDeskTable",
+	data: {},
+	dataType: "json",
+	success: function(data){
+	var html="";
+	$.each(data, function (i, item) {
+	html+='<tr align="center" style="height:60px">';
+	html+='<td >'+item.id+'</td>';
+	html+='<td >'+item.name+'</td>';
+	html+='<td >'+item.isOpened+'</td>';
+	html+='</tr>';
+	});
+	$("#CashDesk_table").html(html);
+	}
+	});
+	$.ajax({
+	type: "GET",
+	url: "/state/SaleTable",
+	data: {},
+	dataType: "json",
+	success: function(data){
+	var html="";
+	$.each(data, function (i, item) {
+	html+='<tr align="center" style="height:60px">';
+	html+='<td >'+formatDate(item.time)+'</td>';
+	html+='<td >'+item.isComplete+'</td>';
+	html+='<td >'+item.amount+'</td>';
+	html+='<td >'+item.isReadytoPay+'</td>';
+	html+='</tr>';
+	});
+	$("#Sale_table").html(html);
+	}
+	});
+	$.ajax({
+	type: "GET",
+	url: "/state/CashierTable",
+	data: {},
+	dataType: "json",
+	success: function(data){
+	var html="";
+	$.each(data, function (i, item) {
+	html+='<tr align="center" style="height:60px">';
+	html+='<td >'+item.id+'</td>';
+	html+='<td >'+item.name+'</td>';
+	html+='</tr>';
+	});
+	$("#Cashier_table").html(html);
+	}
+	});
+	$.ajax({
+	type: "GET",
+	url: "/state/SalesLineItemTable",
+	data: {},
+	dataType: "json",
+	success: function(data){
+	var html="";
+	$.each(data, function (i, item) {
+	html+='<tr align="center" style="height:60px">';
+	html+='<td >'+item.quantity+'</td>';
+	html+='<td >'+item.subamount+'</td>';
+	html+='</tr>';
+	});
+	$("#SalesLineItem_table").html(html);
+	}
+	});
+	$.ajax({
+	type: "GET",
+	url: "/state/ItemTable",
+	data: {},
+	dataType: "json",
+	success: function(data){
+	var html="";
+	$.each(data, function (i, item) {
+	html+='<tr align="center" style="height:60px">';
+	html+='<td >'+item.barcode+'</td>';
+	html+='<td >'+item.name+'</td>';
+	html+='<td >'+item.price+'</td>';
+	html+='<td >'+item.stockNumber+'</td>';
+	html+='<td >'+item.orderPrice+'</td>';
+	html+='</tr>';
+	});
+	$("#Item_table").html(html);
+	}
+	});
+	$.ajax({
+	type: "GET",
+	url: "/state/PaymentTable",
+	data: {},
+	dataType: "json",
+	success: function(data){
+	var html="";
+	$.each(data, function (i, item) {
+	html+='<tr align="center" style="height:60px">';
+	html+='<td >'+item.amountTendered+'</td>';
+	html+='</tr>';
+	});
+	$("#Payment_table").html(html);
+	}
+	});
+	$.ajax({
+	type: "GET",
+	url: "/state/CashPaymentTable",
+	data: {},
+	dataType: "json",
+	success: function(data){
+	var html="";
+	$.each(data, function (i, item) {
+	html+='<tr align="center" style="height:60px">';
+	html+='<td >'+item.balance+'</td>';
+	html+='</tr>';
+	});
+	$("#CashPayment_table").html(html);
+	}
+	});
+	$.ajax({
+	type: "GET",
+	url: "/state/CardPaymentTable",
+	data: {},
+	dataType: "json",
+	success: function(data){
+	var html="";
+	$.each(data, function (i, item) {
+	html+='<tr align="center" style="height:60px">';
+	html+='<td >'+item.cardAccountNumber+'</td>';
+	html+='<td >'+formatDate(item.expiryDate)+'</td>';
+	html+='</tr>';
+	});
+	$("#CardPayment_table").html(html);
+	}
+	});
+	$.ajax({
+	type: "GET",
+	url: "/state/OrderEntryTable",
+	data: {},
+	dataType: "json",
+	success: function(data){
+	var html="";
+	$.each(data, function (i, item) {
+	html+='<tr align="center" style="height:60px">';
+	html+='<td >'+item.quantity+'</td>';
+	html+='<td >'+item.subAmount+'</td>';
+	html+='</tr>';
+	});
+	$("#OrderEntry_table").html(html);
+	}
+	});
+	$.ajax({
+	type: "GET",
+	url: "/state/SupplierTable",
+	data: {},
+	dataType: "json",
+	success: function(data){
+	var html="";
+	$.each(data, function (i, item) {
+	html+='<tr align="center" style="height:60px">';
+	html+='<td >'+item.id+'</td>';
+	html+='<td >'+item.name+'</td>';
+	html+='</tr>';
+	});
+	$("#Supplier_table").html(html);
+	}
+	});
+	$.ajax({
+	type: "GET",
+	url: "/state/OrderProductTable",
+	data: {},
+	dataType: "json",
+	success: function(data){
+	var html="";
+	$.each(data, function (i, item) {
+	html+='<tr align="center" style="height:60px">';
+	html+='<td >'+item.id+'</td>';
+	html+='<td >'+formatDate(item.time)+'</td>';
+	html+='<td >'+item.orderStatus+'</td>';
+	html+='<td >'+item.amount+'</td>';
+	html+='</tr>';
+	});
+	$("#OrderProduct_table").html(html);
+	}
+	});
+	});
+	</script>
+	</head>
+	<body class="layui-layout-body">
+		<div class="layui-layout layui-layout-admin">
+			<div class="layui-header">
+				<div class="layui-logo">Prototype CoCoME</div>
+				<ul class="layui-nav layui-layout-left">
+						<li class="layui-nav-item"><a href="/main/index" id="s_function">System Function</a></li>
+						<li class="layui-nav-item layui-this"><a href="/main/index2" id="s_state">System State</a></li>
+				</ul>
+			</div>
+		<div class="layui-tab layui-tab-brief">
+				<ul class="layui-tab-title">
+			<li class="layui-this" id="Store">Store</li>
+			<li id="ProductCatalog">ProductCatalog</li>
+			<li id="CashDesk">CashDesk</li>
+			<li id="Sale">Sale</li>
+			<li id="Cashier">Cashier</li>
+			<li id="SalesLineItem">SalesLineItem</li>
+			<li id="Item">Item</li>
+			<li id="Payment">Payment</li>
+			<li id="CashPayment">CashPayment</li>
+			<li id="CardPayment">CardPayment</li>
+			<li id="OrderEntry">OrderEntry</li>
+			<li id="Supplier">Supplier</li>
+			<li id="OrderProduct">OrderProduct</li>
+				</ul>
+				<div class="layui-tab-content" style="height: 100px;">
+					<div class="layui-tab-item layui-show" >
+						<table style="margin: auto;width:600px;"  border="1">
+							<thead>
+								<tr align="center" style="height:100px">
+								<td style="font-weight: bold">Id</td>
+								<td style="font-weight: bold">Name</td>
+								<td style="font-weight: bold">Address</td>
+								<td style="font-weight: bold">IsOpened</td>
+								</tr>
+							</thead>
+							<tbody id="Store_table">
+							</tbody>
+						</table>
+					</div>
+					<div class="layui-tab-item" >
+						<table style="margin: auto;width:600px;"  border="1">
+							<thead>
+								<tr align="center" style="height:100px">
+								<td style="font-weight: bold">Id</td>
+								<td style="font-weight: bold">Name</td>
+								</tr>
+							</thead>
+							<tbody id="ProductCatalog_table">
+							</tbody>
+						</table>
+					</div>
+					<div class="layui-tab-item" >
+						<table style="margin: auto;width:600px;"  border="1">
+							<thead>
+								<tr align="center" style="height:100px">
+								<td style="font-weight: bold">Id</td>
+								<td style="font-weight: bold">Name</td>
+								<td style="font-weight: bold">IsOpened</td>
+								</tr>
+							</thead>
+							<tbody id="CashDesk_table">
+							</tbody>
+						</table>
+					</div>
+					<div class="layui-tab-item" >
+						<table style="margin: auto;width:600px;"  border="1">
+							<thead>
+								<tr align="center" style="height:100px">
+								<td style="font-weight: bold">Time</td>
+								<td style="font-weight: bold">IsComplete</td>
+								<td style="font-weight: bold">Amount</td>
+								<td style="font-weight: bold">IsReadytoPay</td>
+								</tr>
+							</thead>
+							<tbody id="Sale_table">
+							</tbody>
+						</table>
+					</div>
+					<div class="layui-tab-item" >
+						<table style="margin: auto;width:600px;"  border="1">
+							<thead>
+								<tr align="center" style="height:100px">
+								<td style="font-weight: bold">Id</td>
+								<td style="font-weight: bold">Name</td>
+								</tr>
+							</thead>
+							<tbody id="Cashier_table">
+							</tbody>
+						</table>
+					</div>
+					<div class="layui-tab-item" >
+						<table style="margin: auto;width:600px;"  border="1">
+							<thead>
+								<tr align="center" style="height:100px">
+								<td style="font-weight: bold">Quantity</td>
+								<td style="font-weight: bold">Subamount</td>
+								</tr>
+							</thead>
+							<tbody id="SalesLineItem_table">
+							</tbody>
+						</table>
+					</div>
+					<div class="layui-tab-item" >
+						<table style="margin: auto;width:600px;"  border="1">
+							<thead>
+								<tr align="center" style="height:100px">
+								<td style="font-weight: bold">Barcode</td>
+								<td style="font-weight: bold">Name</td>
+								<td style="font-weight: bold">Price</td>
+								<td style="font-weight: bold">StockNumber</td>
+								<td style="font-weight: bold">OrderPrice</td>
+								</tr>
+							</thead>
+							<tbody id="Item_table">
+							</tbody>
+						</table>
+					</div>
+					<div class="layui-tab-item" >
+						<table style="margin: auto;width:600px;"  border="1">
+							<thead>
+								<tr align="center" style="height:100px">
+								<td style="font-weight: bold">AmountTendered</td>
+								</tr>
+							</thead>
+							<tbody id="Payment_table">
+							</tbody>
+						</table>
+					</div>
+					<div class="layui-tab-item" >
+						<table style="margin: auto;width:600px;"  border="1">
+							<thead>
+								<tr align="center" style="height:100px">
+								<td style="font-weight: bold">Balance</td>
+								</tr>
+							</thead>
+							<tbody id="CashPayment_table">
+							</tbody>
+						</table>
+					</div>
+					<div class="layui-tab-item" >
+						<table style="margin: auto;width:600px;"  border="1">
+							<thead>
+								<tr align="center" style="height:100px">
+								<td style="font-weight: bold">CardAccountNumber</td>
+								<td style="font-weight: bold">ExpiryDate</td>
+								</tr>
+							</thead>
+							<tbody id="CardPayment_table">
+							</tbody>
+						</table>
+					</div>
+					<div class="layui-tab-item" >
+						<table style="margin: auto;width:600px;"  border="1">
+							<thead>
+								<tr align="center" style="height:100px">
+								<td style="font-weight: bold">Quantity</td>
+								<td style="font-weight: bold">SubAmount</td>
+								</tr>
+							</thead>
+							<tbody id="OrderEntry_table">
+							</tbody>
+						</table>
+					</div>
+					<div class="layui-tab-item" >
+						<table style="margin: auto;width:600px;"  border="1">
+							<thead>
+								<tr align="center" style="height:100px">
+								<td style="font-weight: bold">Id</td>
+								<td style="font-weight: bold">Name</td>
+								</tr>
+							</thead>
+							<tbody id="Supplier_table">
+							</tbody>
+						</table>
+					</div>
+					<div class="layui-tab-item" >
+						<table style="margin: auto;width:600px;"  border="1">
+							<thead>
+								<tr align="center" style="height:100px">
+								<td style="font-weight: bold">Id</td>
+								<td style="font-weight: bold">Time</td>
+								<td style="font-weight: bold">OrderStatus</td>
+								<td style="font-weight: bold">Amount</td>
+								</tr>
+							</thead>
+							<tbody id="OrderProduct_table">
+							</tbody>
+						</table>
+					</div>
+			</div> 
+		</div>
+	</body>
+	</html>
+	

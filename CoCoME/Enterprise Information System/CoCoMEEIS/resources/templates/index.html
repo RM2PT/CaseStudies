@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+	<html>
+	<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>Prototype</title>
+	<link rel="stylesheet" href="/css/layui.css"></link>
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script src="/js/layui.js"></script>
+	 <style>
+        ol li a {
+            background-color: rgba(0,0,0,1) !important;
+        }
+
+        .three_this {
+            background-color: #808080 !important;
+        }
+    </style>
+	<script>
+		//JavaScript代码区域
+		layui.use("element", function() {
+			var element = layui.element;
+			var $ = layui.jquery, element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+			
+			 $(".menu_three").on("click", function () {
+                
+                $(this).next().toggle();
+                $.each($(this).parent().siblings(), function (i, e) {
+                    $(e).find("ol").hide();;
+                });
+               
+            })
+            $("ol").on("click", "li a", function () {
+                $.each($(this).parent().siblings(), function (i, e) {
+                    $(e).find("a").removeClass('three_this')
+                });
+                $(this).addClass('three_this');                            // 添加当前元素的样式
+
+            })
+		
+		});
+		$(document).ready(function() {
+			$("dd>a").click(function(e) {
+				e.preventDefault();
+				$("#iframeMain").attr("src", $(this).attr("href"));
+			});
+										
+			$("ol>li>a").click(function(e) {
+					e.preventDefault();
+					$("#iframeMain").attr("src", $(this).attr("href"));
+			});
+		});
+	</script>
+	</head>
+	<body class="layui-layout-body">
+		<div class="layui-layout layui-layout-admin">
+			<div class="layui-header">
+				<div class="layui-logo">Prototype CoCoME</div>
+				<!-- 头部区域（可配合layui已有的水平导航） -->
+				<ul class="layui-nav layui-layout-left">
+					<li class="layui-nav-item layui-this"><a href="/main/index" id="s_function">System Function</a></li>
+					<li class="layui-nav-item"><a href="/main/index2" id="s_state">System State</a></li>
+				</ul>
+			</div>
+			
+			<div class="layui-side layui-bg-black">
+				<div class="layui-side-scroll">
+					<ul class="layui-nav layui-nav-tree">
+						<li class="layui-nav-item">
+							<a class="" href="javascript:;" id="Cashier">Cashier</a>
+							<dl class="layui-nav-child">
+							<dd >
+								<a href="javascript:;"  class="menu_three " id="processSale"> processSale</a>
+								<ol class="layui-nav-child" style="display: none;">
+									<li><a href="/main/makeNewSale" id="makeNewSale">&emsp;makeNewSale</a></li>
+									<li><a href="/main/enterItem" id="enterItem">&emsp;enterItem</a></li>
+									<li><a href="/main/endSale" id="endSale">&emsp;endSale</a></li>
+									<li><a href="/main/makeCashPayment" id="makeCashPayment">&emsp;makeCashPayment</a></li>
+									<li><a href="/main/makeCardPayment" id="makeCardPayment">&emsp;makeCardPayment</a></li>
+								</ol>
+							</dd>
+							</dl>
+							<dl class="layui-nav-child">
+							<dd >
+							<a href="/main/openCashDesk" id="openCashDesk"> openCashDesk</a>
+							</dd>
+							</dl>
+							<dl class="layui-nav-child">
+							<dd >
+							<a href="/main/closeCashDesk" id="closeCashDesk"> closeCashDesk</a>
+							</dd>
+							</dl>
+						</li>
+						<li class="layui-nav-item">
+							<a class="" href="javascript:;" id="StoreManager">StoreManager</a>
+							<dl class="layui-nav-child">
+							<dd >
+							<a href="/main/orderProducts" id="orderProducts"> orderProducts</a>
+							</dd>
+							</dl>
+							<dl class="layui-nav-child">
+							<dd >
+							<a href="/main/receiveOrderedProduct" id="receiveOrderedProduct"> receiveOrderedProduct</a>
+							</dd>
+							</dl>
+							<dl class="layui-nav-child">
+							<dd >
+							<a href="/main/showStockReports" id="showStockReports"> showStockReports</a>
+							</dd>
+							</dl>
+							<dl class="layui-nav-child">
+							<dd >
+							<a href="/main/changePrice" id="changePrice"> changePrice</a>
+							</dd>
+							</dl>
+							<dl class="layui-nav-child">
+							<dd >
+							<a href="/main/listSuppliers" id="listSuppliers"> listSuppliers</a>
+							</dd>
+							</dl>
+							<dl class="layui-nav-child">
+							<dd >
+							<a href="/main/openStore" id="openStore"> openStore</a>
+							</dd>
+							</dl>
+							<dl class="layui-nav-child">
+							<dd >
+							<a href="/main/closeStore" id="closeStore"> closeStore</a>
+							</dd>
+							</dl>
+						</li>
+						<li class="layui-nav-item">
+							<a class="" href="javascript:;" id="Administrator">Administrator</a>
+							<dl class="layui-nav-child">
+							<dd >
+								<a href="javascript:;"  class="menu_three " id="manageStore"> manageStore</a>
+								<ol class="layui-nav-child" style="display: none;">
+									<li><a href="/main/createStore" id="createStore">&emsp;createStore</a></li>
+									<li><a href="/main/queryStore" id="queryStore">&emsp;queryStore</a></li>
+									<li><a href="/main/modifyStore" id="modifyStore">&emsp;modifyStore</a></li>
+									<li><a href="/main/deleteStore" id="deleteStore">&emsp;deleteStore</a></li>
+								</ol>
+							</dd>
+							</dl>
+							<dl class="layui-nav-child">
+							<dd >
+								<a href="javascript:;"  class="menu_three " id="manageProductCatalog"> manageProductCatalog</a>
+								<ol class="layui-nav-child" style="display: none;">
+									<li><a href="/main/createProductCatalog" id="createProductCatalog">&emsp;createProductCatalog</a></li>
+									<li><a href="/main/queryProductCatalog" id="queryProductCatalog">&emsp;queryProductCatalog</a></li>
+									<li><a href="/main/modifyProductCatalog" id="modifyProductCatalog">&emsp;modifyProductCatalog</a></li>
+									<li><a href="/main/deleteProductCatalog" id="deleteProductCatalog">&emsp;deleteProductCatalog</a></li>
+								</ol>
+							</dd>
+							</dl>
+							<dl class="layui-nav-child">
+							<dd >
+								<a href="javascript:;"  class="menu_three " id="manageCashDesk"> manageCashDesk</a>
+								<ol class="layui-nav-child" style="display: none;">
+									<li><a href="/main/createCashDesk" id="createCashDesk">&emsp;createCashDesk</a></li>
+									<li><a href="/main/queryCashDesk" id="queryCashDesk">&emsp;queryCashDesk</a></li>
+									<li><a href="/main/modifyCashDesk" id="modifyCashDesk">&emsp;modifyCashDesk</a></li>
+									<li><a href="/main/deleteCashDesk" id="deleteCashDesk">&emsp;deleteCashDesk</a></li>
+								</ol>
+							</dd>
+							</dl>
+							<dl class="layui-nav-child">
+							<dd >
+								<a href="javascript:;"  class="menu_three " id="manageCashier"> manageCashier</a>
+								<ol class="layui-nav-child" style="display: none;">
+									<li><a href="/main/createCashier" id="createCashier">&emsp;createCashier</a></li>
+									<li><a href="/main/queryCashier" id="queryCashier">&emsp;queryCashier</a></li>
+									<li><a href="/main/modifyCashier" id="modifyCashier">&emsp;modifyCashier</a></li>
+									<li><a href="/main/deleteCashier" id="deleteCashier">&emsp;deleteCashier</a></li>
+								</ol>
+							</dd>
+							</dl>
+							<dl class="layui-nav-child">
+							<dd >
+								<a href="javascript:;"  class="menu_three " id="manageItem"> manageItem</a>
+								<ol class="layui-nav-child" style="display: none;">
+									<li><a href="/main/createItem" id="createItem">&emsp;createItem</a></li>
+									<li><a href="/main/queryItem" id="queryItem">&emsp;queryItem</a></li>
+									<li><a href="/main/modifyItem" id="modifyItem">&emsp;modifyItem</a></li>
+									<li><a href="/main/deleteItem" id="deleteItem">&emsp;deleteItem</a></li>
+								</ol>
+							</dd>
+							</dl>
+							<dl class="layui-nav-child">
+							<dd >
+								<a href="javascript:;"  class="menu_three " id="manageSupplier"> manageSupplier</a>
+								<ol class="layui-nav-child" style="display: none;">
+									<li><a href="/main/createSupplier" id="createSupplier">&emsp;createSupplier</a></li>
+									<li><a href="/main/querySupplier" id="querySupplier">&emsp;querySupplier</a></li>
+									<li><a href="/main/modifySupplier" id="modifySupplier">&emsp;modifySupplier</a></li>
+									<li><a href="/main/deleteSupplier" id="deleteSupplier">&emsp;deleteSupplier</a></li>
+								</ol>
+							</dd>
+							</dl>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="layui-body">
+						<iframe id="iframeMain" 
+					style="width: 100%; height: 100%;" src="/main/welcome">
+				</iframe>
+			</div>
+		</div>
+	</body>
+	</html>
+	

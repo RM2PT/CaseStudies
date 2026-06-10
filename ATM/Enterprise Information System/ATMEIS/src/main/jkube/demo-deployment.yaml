@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: mysql
+  name: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: mysql
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.network/mynet: "true"
+        io.kompose.service: mysql
+    spec:
+      containers:
+        - image: my_mysql
+          name: mysql
+          ports:
+            - containerPort: 3306
+          resources: {}
+          imagePullPolicy: Never
+        - image: my_web
+          name: springboot
+          ports:
+            - containerPort: 8080
+          resources: {}
+          imagePullPolicy: Never
+        - image: redis:4
+          name: redis
+          ports:
+            - containerPort: 6379
+          resources: {}
+      restartPolicy: Always
+      
+status: {}

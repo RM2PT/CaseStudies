@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+	<html>
+	<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>Prototype</title>
+	<link rel="stylesheet" href="/css/layui.css"></link>
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script src="/js/layui.js"></script>
+	 <style>
+        ol li a {
+            background-color: rgba(0,0,0,1) !important;
+        }
+
+        .three_this {
+            background-color: #808080 !important;
+        }
+    </style>
+	<script>
+		//JavaScript代码区域
+		layui.use("element", function() {
+			var element = layui.element;
+			var $ = layui.jquery, element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+			
+			 $(".menu_three").on("click", function () {
+                
+                $(this).next().toggle();
+                $.each($(this).parent().siblings(), function (i, e) {
+                    $(e).find("ol").hide();;
+                });
+               
+            })
+            $("ol").on("click", "li a", function () {
+                $.each($(this).parent().siblings(), function (i, e) {
+                    $(e).find("a").removeClass('three_this')
+                });
+                $(this).addClass('three_this');                            // 添加当前元素的样式
+
+            })
+		
+		});
+		$(document).ready(function() {
+			$("dd>a").click(function(e) {
+				e.preventDefault();
+				$("#iframeMain").attr("src", $(this).attr("href"));
+			});
+										
+			$("ol>li>a").click(function(e) {
+					e.preventDefault();
+					$("#iframeMain").attr("src", $(this).attr("href"));
+			});
+		});
+	</script>
+	</head>
+	<body class="layui-layout-body">
+		<div class="layui-layout layui-layout-admin">
+			<div class="layui-header">
+				<div class="layui-logo">Prototype LoanProcessingSystem</div>
+				<!-- 头部区域（可配合layui已有的水平导航） -->
+				<ul class="layui-nav layui-layout-left">
+					<li class="layui-nav-item layui-this"><a href="/main/index" id="s_function">System Function</a></li>
+					<li class="layui-nav-item"><a href="/main/index2" id="s_state">System State</a></li>
+				</ul>
+			</div>
+			
+			<div class="layui-side layui-bg-black">
+				<div class="layui-side-scroll">
+					<ul class="layui-nav layui-nav-tree">
+						<li class="layui-nav-item">
+							<a class="" href="javascript:;" id="LoanOfficer">LoanOfficer</a>
+							<dl class="layui-nav-child">
+							<dd >
+								<a href="javascript:;"  class="menu_three " id="evaluateLoanRequest"> evaluateLoanRequest</a>
+								<ol class="layui-nav-child" style="display: none;">
+									<li><a href="/main/InteractionEvaluateLoanRequestModuleExecution1" id="InteractionEvaluateLoanRequestModuleExecution1">&emsp;InteractionEvaluateLoanRequestModuleExecution1</a></li>
+									<li><a href="/main/InteractionEvaluateLoanRequestModuleExecution2" id="InteractionEvaluateLoanRequestModuleExecution2">&emsp;InteractionEvaluateLoanRequestModuleExecution2</a></li>
+									<li><a href="/main/InteractionEvaluateLoanRequestModuleExecution3" id="InteractionEvaluateLoanRequestModuleExecution3">&emsp;InteractionEvaluateLoanRequestModuleExecution3</a></li>
+									<li><a href="/main/InteractionEvaluateLoanRequestModuleExecution4" id="InteractionEvaluateLoanRequestModuleExecution4">&emsp;InteractionEvaluateLoanRequestModuleExecution4</a></li>
+									<li><a href="/main/InteractionEvaluateLoanRequestModuleExecution5" id="InteractionEvaluateLoanRequestModuleExecution5">&emsp;InteractionEvaluateLoanRequestModuleExecution5</a></li>
+									<li><a href="/main/InteractionEvaluateLoanRequestModuleExecution6" id="InteractionEvaluateLoanRequestModuleExecution6">&emsp;InteractionEvaluateLoanRequestModuleExecution6</a></li>
+									<li><a href="/main/InteractionEvaluateLoanRequestModuleExecution7" id="InteractionEvaluateLoanRequestModuleExecution7">&emsp;InteractionEvaluateLoanRequestModuleExecution7</a></li>
+								</ol>
+							</dd>
+							</dl>
+							<dl class="layui-nav-child">
+							<dd >
+								<a href="javascript:;"  class="menu_three " id="manageLoanTerm"> manageLoanTerm</a>
+								<ol class="layui-nav-child" style="display: none;">
+									<li><a href="/main/createLoanTerm" id="createLoanTerm">&emsp;createLoanTerm</a></li>
+									<li><a href="/main/queryLoanTerm" id="queryLoanTerm">&emsp;queryLoanTerm</a></li>
+									<li><a href="/main/modifyLoanTerm" id="modifyLoanTerm">&emsp;modifyLoanTerm</a></li>
+									<li><a href="/main/deleteLoanTerm" id="deleteLoanTerm">&emsp;deleteLoanTerm</a></li>
+								</ol>
+							</dd>
+							</dl>
+						</li>
+						<li class="layui-nav-item">
+							<a class="" href="javascript:;" id="LoanAssistant">LoanAssistant</a>
+							<dl class="layui-nav-child">
+							<dd >
+							<a href="/main/enterValidatedCreditReferences" id="enterValidatedCreditReferences"> enterValidatedCreditReferences</a>
+							</dd>
+							</dl>
+						</li>
+						<li class="layui-nav-item">
+							<a class="" href="javascript:;" id="LoanClerk">LoanClerk</a>
+							<dl class="layui-nav-child">
+							<dd >
+								<a href="javascript:;"  class="menu_three " id="generateLoanLetterAndAgreement"> generateLoanLetterAndAgreement</a>
+								<ol class="layui-nav-child" style="display: none;">
+									<li><a href="/main/InteractionGenerateLoanLetterAndAgreementExecution1" id="InteractionGenerateLoanLetterAndAgreementExecution1">&emsp;InteractionGenerateLoanLetterAndAgreementExecution1</a></li>
+									<li><a href="/main/InteractionGenerateLoanLetterAndAgreementExecution2" id="InteractionGenerateLoanLetterAndAgreementExecution2">&emsp;InteractionGenerateLoanLetterAndAgreementExecution2</a></li>
+									<li><a href="/main/InteractionGenerateLoanLetterAndAgreementExecution3" id="InteractionGenerateLoanLetterAndAgreementExecution3">&emsp;InteractionGenerateLoanLetterAndAgreementExecution3</a></li>
+									<li><a href="/main/InteractionGenerateLoanLetterAndAgreementExecution4" id="InteractionGenerateLoanLetterAndAgreementExecution4">&emsp;InteractionGenerateLoanLetterAndAgreementExecution4</a></li>
+									<li><a href="/main/InteractionGenerateLoanLetterAndAgreementExecution5" id="InteractionGenerateLoanLetterAndAgreementExecution5">&emsp;InteractionGenerateLoanLetterAndAgreementExecution5</a></li>
+								</ol>
+							</dd>
+							</dl>
+							<dl class="layui-nav-child">
+							<dd >
+							<a href="/main/bookNewLoan" id="bookNewLoan"> bookNewLoan</a>
+							</dd>
+							</dl>
+							<dl class="layui-nav-child">
+							<dd >
+							<a href="/main/loanPayment" id="loanPayment"> loanPayment</a>
+							</dd>
+							</dl>
+							<dl class="layui-nav-child">
+							<dd >
+							<a href="/main/closeOutLoan" id="closeOutLoan"> closeOutLoan</a>
+							</dd>
+							</dl>
+						</li>
+						<li class="layui-nav-item">
+							<a class="" href="javascript:;" id="Scheduler">Scheduler</a>
+							<dl class="layui-nav-child">
+							<dd >
+							<a href="/main/generateStandardPaymentNotice" id="generateStandardPaymentNotice"> generateStandardPaymentNotice</a>
+							</dd>
+							</dl>
+							<dl class="layui-nav-child">
+							<dd >
+							<a href="/main/generateLateNotice" id="generateLateNotice"> generateLateNotice</a>
+							</dd>
+							</dl>
+						</li>
+						<li class="layui-nav-item">
+							<a class="" href="javascript:;" id="Applicant">Applicant</a>
+							<dl class="layui-nav-child">
+							<dd >
+							<a href="/main/submitLoanRequest" id="submitLoanRequest"> submitLoanRequest</a>
+							</dd>
+							</dl>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="layui-body">
+						<iframe id="iframeMain" 
+					style="width: 100%; height: 100%;" src="/main/welcome">
+				</iframe>
+			</div>
+		</div>
+	</body>
+	</html>
+	

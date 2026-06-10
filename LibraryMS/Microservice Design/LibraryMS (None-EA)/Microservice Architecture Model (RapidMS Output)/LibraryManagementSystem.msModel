@@ -1,0 +1,421 @@
+MicroServiceModel LibraryManagementSystem {
+	MicroService SchedulerService {
+		ProvidedInterface countDownSuspensionDay{
+			[Operation]
+			countDownSuspensionDay
+			CallChain countDownSuspensionDay {
+				service AdministratorService : AdministratorService {
+					Message 1 {
+						operation manageUser
+					}
+				}
+			}
+		}
+		ProvidedInterface checkOverDueandComputeOverDueFee{
+			[Operation]
+			checkOverDueandComputeOverDueFee
+			CallChain checkOverDueandComputeOverDueFee {
+				service ThirdPartSystemService : ThirdPartSystemService {
+					Message 1 {
+						operation manageLoan
+					}
+				}
+			}
+		}
+		ProvidedInterface dueSoonNotification{
+			[Operation]
+			dueSoonNotification
+			CallChain dueSoonNotification {
+				service AdministratorService : AdministratorService {
+					Message 1 {
+						operation manageUser
+					}
+				}
+			}
+		}
+		RequiredInterface manageUser
+		RequiredInterface manageLoan
+		DomainModel SchedulerService {
+			 Entity Administrator {
+				AdminID : String
+				UserName : String
+				Password : String
+				[Refer]
+			}
+		}
+	}
+	MicroService LibrarianService {
+		ProvidedInterface borrowBook{
+			[Operation]
+			borrowBook
+			CallChain borrowBook {
+				service AdministratorService : AdministratorService {
+					Message 1 to StudentService {
+						operation manageUser
+					}
+				}
+				service StudentService : StudentService {
+					Message 2 to UserService {
+						operation manageStudent
+					}
+				}
+				service UserService : UserService {
+					Message 3 to StudentService {
+						operation manageFaculty
+					}
+				}
+				service StudentService : StudentService {
+					Message 4 to FacultyService {
+						operation manageBookCopy
+					}
+				}
+				service FacultyService : FacultyService {
+					Message 5 to ThirdPartSystemService {
+						operation manageReserve
+					}
+				}
+				service ThirdPartSystemService : ThirdPartSystemService {
+					Message 6 {
+						operation manageLoan
+					}
+				}
+			}
+		}
+		ProvidedInterface returnBook{
+			[Operation]
+			returnBook
+			CallChain returnBook {
+				service StudentService : StudentService {
+					Message 1 to ThirdPartSystemService {
+						operation manageBookCopy
+					}
+				}
+				service ThirdPartSystemService : ThirdPartSystemService {
+					Message 2 to ThirdPartSystemService {
+						operation manageLoan
+					}
+				}
+				service ThirdPartSystemService : ThirdPartSystemService {
+					Message 3 to FacultyService {
+						operation manageLoan
+					}
+				}
+				service FacultyService : FacultyService {
+					Message 4 {
+						operation manageReserve
+					}
+				}
+			}
+		}
+		ProvidedInterface renewBook{
+			[Operation]
+			renewBook
+			CallChain renewBook {
+				service AdministratorService : AdministratorService {
+					Message 1 to StudentService {
+						operation manageUser
+					}
+				}
+				service StudentService : StudentService {
+					Message 2 to UserService {
+						operation manageStudent
+					}
+				}
+				service UserService : UserService {
+					Message 3 to StudentService {
+						operation manageFaculty
+					}
+				}
+				service StudentService : StudentService {
+					Message 4 to ThirdPartSystemService {
+						operation manageBookCopy
+					}
+				}
+				service ThirdPartSystemService : ThirdPartSystemService {
+					Message 5 {
+						operation manageLoan
+					}
+				}
+			}
+		}
+		ProvidedInterface payOverDueFee{
+			[Operation]
+			payOverDueFee
+			CallChain payOverDueFee {
+				service AdministratorService : AdministratorService {
+					Message 1 to ThirdPartSystemService {
+						operation manageUser
+					}
+				}
+				service ThirdPartSystemService : ThirdPartSystemService {
+					Message 2 {
+						operation manageLoan
+					}
+				}
+			}
+		}
+		ProvidedInterface manageRecommendBook{
+			[Operation]
+			createRecommendBook
+			queryRecommendBook
+			updateRecommendBook
+			modifyRecommendBook
+		}
+		RequiredInterface manageUser
+		RequiredInterface manageStudent
+		RequiredInterface manageFaculty
+		RequiredInterface manageBookCopy
+		RequiredInterface manageReserve
+		RequiredInterface manageLoan
+		DomainModel LibrarianService {
+			 Entity RecommendBook {
+				RecommendDate : Date
+				[Refer]
+			}
+		}
+	}
+	MicroService UserService {
+		ProvidedInterface recommendBook{
+			[Operation]
+			recommendBook
+			CallChain recommendBook {
+				service AdministratorService : AdministratorService {
+					Message 1 to LibrarianService {
+						operation manageUser
+					}
+				}
+				service LibrarianService : LibrarianService {
+					Message 2 to LibrarianService {
+						operation manageRecommendBook
+					}
+				}
+				service LibrarianService : LibrarianService {
+					Message 3 {
+						operation manageRecommendBook
+					}
+				}
+			}
+		}
+		ProvidedInterface searchBook{
+			[Operation]
+			searchBook
+		}
+		ProvidedInterface makeReservation{
+			[Operation]
+			makeReservation
+			CallChain makeReservation {
+				service AdministratorService : AdministratorService {
+					Message 1 to StudentService {
+						operation manageUser
+					}
+				}
+				service StudentService : StudentService {
+					Message 2 to FacultyService {
+						operation manageBookCopy
+					}
+				}
+				service FacultyService : FacultyService {
+					Message 3 {
+						operation manageReserve
+					}
+				}
+			}
+		}
+		ProvidedInterface cancelReservation{
+			[Operation]
+			cancelReservation
+			CallChain cancelReservation {
+				service AdministratorService : AdministratorService {
+					Message 1 to StudentService {
+						operation manageUser
+					}
+				}
+				service StudentService : StudentService {
+					Message 2 to FacultyService {
+						operation manageBookCopy
+					}
+				}
+				service FacultyService : FacultyService {
+					Message 3 {
+						operation manageReserve
+					}
+				}
+			}
+		}
+		ProvidedInterface listBookHistory{
+			[Operation]
+			listBookHistory
+		}
+		ProvidedInterface manageFaculty{
+			[Operation]
+			createFaculty
+			queryFaculty
+			updateFaculty
+			modifyFaculty
+		}
+		RequiredInterface manageUser
+		RequiredInterface manageBookCopy
+		RequiredInterface manageReserve
+		RequiredInterface manageRecommendBook
+		DomainModel UserService {
+			 Entity Faculty {
+				Position : Integer
+				Status : Integer
+				[Refer]
+			}
+			@AutoCRUD Entity Book {
+				CallNo : String
+				Title : String
+				Edition : String
+				Author : String
+				Publisher : String
+				Description : String
+				ISBn : String
+				CopyNum : Integer
+				[Refer]
+			}
+		}
+	}
+	MicroService StudentService {
+		ProvidedInterface manageBookCopy{
+			[Operation]
+			createBookCopy
+			queryBookCopy
+			updateBookCopy
+			modifyBookCopy
+		}
+		ProvidedInterface manageStudent{
+			[Operation]
+			createStudent
+			queryStudent
+			updateStudent
+			modifyStudent
+		}
+		DomainModel StudentService {
+			@AutoCRUD Entity BookCopy {
+				Barcode : String
+				Status : Integer
+				Location : String
+				IsReserved : Boolean
+				[Refer]
+			}
+			 Entity Student {
+				Major : String
+				Programme : Integer
+				RegistrationStatus : Integer
+				[Refer]
+			}
+		}
+	}
+	MicroService FacultyService {
+		ProvidedInterface manageReserve{
+			[Operation]
+			createReserve
+			queryReserve
+			updateReserve
+			modifyReserve
+		}
+		DomainModel FacultyService {
+			 Entity Reserve {
+				ReserveDate : Date
+				IsReserveClosed : Boolean
+				[Refer]
+			}
+			@AutoCRUD Entity Librarian {
+				LibrarianID : String
+				Name : String
+				Password : String
+				[Refer]
+			}
+		}
+	}
+	MicroService AdministratorService {
+		ProvidedInterface manageLibrarian{
+			[Operation]
+			createLibrarian
+			queryLibrarian
+			updateLibrarian
+			modifyLibrarian
+		}
+		ProvidedInterface manageBook{
+			[Operation]
+			createBook
+			queryBook
+			updateBook
+			modifyBook
+		}
+		ProvidedInterface manageBookCopy{
+			[Operation]
+			createBookCopy
+			queryBookCopy
+			updateBookCopy
+			modifyBookCopy
+		}
+		ProvidedInterface manageSubject{
+			[Operation]
+			createSubject
+			querySubject
+			updateSubject
+			modifySubject
+		}
+		ProvidedInterface listRecommendBook{
+			[Operation]
+			listRecommendBook
+		}
+		ProvidedInterface manageUser{
+			[Operation]
+			createUser
+			queryUser
+			updateUser
+			modifyUser
+		}
+		DomainModel AdministratorService {
+			@AutoCRUD Entity User {
+				UserID : String
+				Name : String
+				Sex : Integer
+				Password : String
+				Email : String
+				Faculty : String
+				LoanedNumber : Integer
+				BorrowStatus : Integer
+				SuspensionDays : Integer
+				OverDueFee : Real
+				[Refer]
+			}
+			@AutoCRUD Entity Subject {
+				Name : String
+				[Refer]
+			}
+		}
+	}
+	MicroService ThirdPartSystemService {
+		ProvidedInterface sendNotificationEmail{
+			[Operation]
+			sendNotificationEmail
+		}
+		ProvidedInterface manageLoan{
+			[Operation]
+			createLoan
+			queryLoan
+			updateLoan
+			modifyLoan
+		}
+		DomainModel ThirdPartSystemService {
+			 Entity Loan {
+				LoanDate : Date
+				RenewDate : Date
+				DueDate : Date
+				ReturnDate : Date
+				RenewedTimes : Integer
+				IsReturned : Boolean
+				OverDueFee : Real
+				OverDue3Days : Boolean
+				OverDue10Days : Boolean
+				OverDue17Days : Boolean
+				OverDue31Days : Boolean
+				[Refer]
+			}
+		}
+	}
+}

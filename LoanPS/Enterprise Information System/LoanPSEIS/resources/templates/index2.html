@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+	<html>
+	<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>Prototype</title>
+	<link rel="stylesheet" href="/css/layui.css"></link>
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script src="/js/layui.js"></script>
+	<script>
+	function formatDate(t) { 
+	if(isNaN(t)){
+	return ""; 
+	}else{
+	var now=new Date(t);
+	var year=now.getFullYear();
+	var month=now.getMonth()+1; 
+	var date=now.getDate(); 
+	return year+"-"+month+"-"+date; 
+	}
+	} 
+		//JavaScript代码区域
+		layui.use("element", function() {
+			var element = layui.element;
+			var $ = layui.jquery, element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+		});
+		$(document).ready(function() {
+	$.ajax({
+	type: "GET",
+	url: "/state/LoanRequestTable",
+	data: {},
+	dataType: "json",
+	success: function(data){
+	var html="";
+	$.each(data, function (i, item) {
+	html+='<tr align="center" style="height:60px">';
+	html+='<td >'+item.status+'</td>';
+	html+='<td >'+item.requestID+'</td>';
+	html+='<td >'+item.name+'</td>';
+	html+='<td >'+item.loanAmount+'</td>';
+	html+='<td >'+item.loanPurpose+'</td>';
+	html+='<td >'+item.income+'</td>';
+	html+='<td >'+item.phoneNumber+'</td>';
+	html+='<td >'+item.postalAddress+'</td>';
+	html+='<td >'+item.zipCode+'</td>';
+	html+='<td >'+item.email+'</td>';
+	html+='<td >'+item.workReferences+'</td>';
+	html+='<td >'+item.creditReferences+'</td>';
+	html+='<td >'+item.checkingAccountNumber+'</td>';
+	html+='<td >'+item.securityNumber+'</td>';
+	html+='<td >'+item.creditScore+'</td>';
+	html+='</tr>';
+	});
+	$("#LoanRequest_table").html(html);
+	}
+	});
+	$.ajax({
+	type: "GET",
+	url: "/state/LoanTable",
+	data: {},
+	dataType: "json",
+	success: function(data){
+	var html="";
+	$.each(data, function (i, item) {
+	html+='<tr align="center" style="height:60px">';
+	html+='<td >'+item.loanID+'</td>';
+	html+='<td >'+item.remainAmountToPay+'</td>';
+	html+='<td >'+item.status+'</td>';
+	html+='<td >'+item.isPaidinFull+'</td>';
+	html+='<td >'+formatDate(item.startDate)+'</td>';
+	html+='<td >'+formatDate(item.endDate)+'</td>';
+	html+='<td >'+formatDate(item.currentOverDueDate)+'</td>';
+	html+='<td >'+item.rePaymentDays+'</td>';
+	html+='<td >'+item.repaymentAmount+'</td>';
+	html+='</tr>';
+	});
+	$("#Loan_table").html(html);
+	}
+	});
+	$.ajax({
+	type: "GET",
+	url: "/state/LoanTermTable",
+	data: {},
+	dataType: "json",
+	success: function(data){
+	var html="";
+	$.each(data, function (i, item) {
+	html+='<tr align="center" style="height:60px">';
+	html+='<td >'+item.itemID+'</td>';
+	html+='<td >'+item.content+'</td>';
+	html+='</tr>';
+	});
+	$("#LoanTerm_table").html(html);
+	}
+	});
+	$.ajax({
+	type: "GET",
+	url: "/state/CheckingAccountTable",
+	data: {},
+	dataType: "json",
+	success: function(data){
+	var html="";
+	$.each(data, function (i, item) {
+	html+='<tr align="center" style="height:60px">';
+	html+='<td >'+item.balance+'</td>';
+	html+='<td >'+item.status+'</td>';
+	html+='</tr>';
+	});
+	$("#CheckingAccount_table").html(html);
+	}
+	});
+	$.ajax({
+	type: "GET",
+	url: "/state/CreditHistoryTable",
+	data: {},
+	dataType: "json",
+	success: function(data){
+	var html="";
+	$.each(data, function (i, item) {
+	html+='<tr align="center" style="height:60px">';
+	html+='<td >'+item.outstandingDebt+'</td>';
+	html+='<td >'+item.badDebits+'</td>';
+	html+='</tr>';
+	});
+	$("#CreditHistory_table").html(html);
+	}
+	});
+	$.ajax({
+	type: "GET",
+	url: "/state/LoanAccountTable",
+	data: {},
+	dataType: "json",
+	success: function(data){
+	var html="";
+	$.each(data, function (i, item) {
+	html+='<tr align="center" style="height:60px">';
+	html+='<td >'+item.loanAccountID+'</td>';
+	html+='<td >'+item.balance+'</td>';
+	html+='<td >'+item.status+'</td>';
+	html+='</tr>';
+	});
+	$("#LoanAccount_table").html(html);
+	}
+	});
+	$.ajax({
+	type: "GET",
+	url: "/state/ApprovalLetterTable",
+	data: {},
+	dataType: "json",
+	success: function(data){
+	var html="";
+	$.each(data, function (i, item) {
+	html+='<tr align="center" style="height:60px">';
+	html+='<td >'+item.content+'</td>';
+	html+='</tr>';
+	});
+	$("#ApprovalLetter_table").html(html);
+	}
+	});
+	$.ajax({
+	type: "GET",
+	url: "/state/LoanAgreementTable",
+	data: {},
+	dataType: "json",
+	success: function(data){
+	var html="";
+	$.each(data, function (i, item) {
+	html+='<tr align="center" style="height:60px">';
+	html+='<td >'+item.content+'</td>';
+	html+='</tr>';
+	});
+	$("#LoanAgreement_table").html(html);
+	}
+	});
+	});
+	</script>
+	</head>
+	<body class="layui-layout-body">
+		<div class="layui-layout layui-layout-admin">
+			<div class="layui-header">
+				<div class="layui-logo">Prototype LoanProcessingSystem</div>
+				<ul class="layui-nav layui-layout-left">
+						<li class="layui-nav-item"><a href="/main/index" id="s_function">System Function</a></li>
+						<li class="layui-nav-item layui-this"><a href="/main/index2" id="s_state">System State</a></li>
+				</ul>
+			</div>
+		<div class="layui-tab layui-tab-brief">
+				<ul class="layui-tab-title">
+			<li class="layui-this" id="LoanRequest">LoanRequest</li>
+			<li id="Loan">Loan</li>
+			<li id="LoanTerm">LoanTerm</li>
+			<li id="CheckingAccount">CheckingAccount</li>
+			<li id="CreditHistory">CreditHistory</li>
+			<li id="LoanAccount">LoanAccount</li>
+			<li id="ApprovalLetter">ApprovalLetter</li>
+			<li id="LoanAgreement">LoanAgreement</li>
+				</ul>
+				<div class="layui-tab-content" style="height: 100px;">
+					<div class="layui-tab-item layui-show" >
+						<table style="margin: auto;width:600px;"  border="1">
+							<thead>
+								<tr align="center" style="height:100px">
+								<td style="font-weight: bold">Status</td>
+								<td style="font-weight: bold">RequestID</td>
+								<td style="font-weight: bold">Name</td>
+								<td style="font-weight: bold">LoanAmount</td>
+								<td style="font-weight: bold">LoanPurpose</td>
+								<td style="font-weight: bold">Income</td>
+								<td style="font-weight: bold">PhoneNumber</td>
+								<td style="font-weight: bold">PostalAddress</td>
+								<td style="font-weight: bold">ZipCode</td>
+								<td style="font-weight: bold">Email</td>
+								<td style="font-weight: bold">WorkReferences</td>
+								<td style="font-weight: bold">CreditReferences</td>
+								<td style="font-weight: bold">CheckingAccountNumber</td>
+								<td style="font-weight: bold">SecurityNumber</td>
+								<td style="font-weight: bold">CreditScore</td>
+								</tr>
+							</thead>
+							<tbody id="LoanRequest_table">
+							</tbody>
+						</table>
+					</div>
+					<div class="layui-tab-item" >
+						<table style="margin: auto;width:600px;"  border="1">
+							<thead>
+								<tr align="center" style="height:100px">
+								<td style="font-weight: bold">LoanID</td>
+								<td style="font-weight: bold">RemainAmountToPay</td>
+								<td style="font-weight: bold">Status</td>
+								<td style="font-weight: bold">IsPaidinFull</td>
+								<td style="font-weight: bold">StartDate</td>
+								<td style="font-weight: bold">EndDate</td>
+								<td style="font-weight: bold">CurrentOverDueDate</td>
+								<td style="font-weight: bold">RePaymentDays</td>
+								<td style="font-weight: bold">RepaymentAmount</td>
+								</tr>
+							</thead>
+							<tbody id="Loan_table">
+							</tbody>
+						</table>
+					</div>
+					<div class="layui-tab-item" >
+						<table style="margin: auto;width:600px;"  border="1">
+							<thead>
+								<tr align="center" style="height:100px">
+								<td style="font-weight: bold">ItemID</td>
+								<td style="font-weight: bold">Content</td>
+								</tr>
+							</thead>
+							<tbody id="LoanTerm_table">
+							</tbody>
+						</table>
+					</div>
+					<div class="layui-tab-item" >
+						<table style="margin: auto;width:600px;"  border="1">
+							<thead>
+								<tr align="center" style="height:100px">
+								<td style="font-weight: bold">Balance</td>
+								<td style="font-weight: bold">Status</td>
+								</tr>
+							</thead>
+							<tbody id="CheckingAccount_table">
+							</tbody>
+						</table>
+					</div>
+					<div class="layui-tab-item" >
+						<table style="margin: auto;width:600px;"  border="1">
+							<thead>
+								<tr align="center" style="height:100px">
+								<td style="font-weight: bold">OutstandingDebt</td>
+								<td style="font-weight: bold">BadDebits</td>
+								</tr>
+							</thead>
+							<tbody id="CreditHistory_table">
+							</tbody>
+						</table>
+					</div>
+					<div class="layui-tab-item" >
+						<table style="margin: auto;width:600px;"  border="1">
+							<thead>
+								<tr align="center" style="height:100px">
+								<td style="font-weight: bold">LoanAccountID</td>
+								<td style="font-weight: bold">Balance</td>
+								<td style="font-weight: bold">Status</td>
+								</tr>
+							</thead>
+							<tbody id="LoanAccount_table">
+							</tbody>
+						</table>
+					</div>
+					<div class="layui-tab-item" >
+						<table style="margin: auto;width:600px;"  border="1">
+							<thead>
+								<tr align="center" style="height:100px">
+								<td style="font-weight: bold">Content</td>
+								</tr>
+							</thead>
+							<tbody id="ApprovalLetter_table">
+							</tbody>
+						</table>
+					</div>
+					<div class="layui-tab-item" >
+						<table style="margin: auto;width:600px;"  border="1">
+							<thead>
+								<tr align="center" style="height:100px">
+								<td style="font-weight: bold">Content</td>
+								</tr>
+							</thead>
+							<tbody id="LoanAgreement_table">
+							</tbody>
+						</table>
+					</div>
+			</div> 
+		</div>
+	</body>
+	</html>
+	

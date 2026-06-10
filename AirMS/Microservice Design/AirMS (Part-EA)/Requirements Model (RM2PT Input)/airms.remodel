@@ -1,0 +1,374 @@
+UseCaseModel Airport {
+
+	UC::manageUser()
+	UC::manageDevice()
+	UC::assignTask()
+	UC::submitRepairResult()
+	UC::seekHelp()
+	UC::inquireRequest
+	UC::score
+	UC::raiseRepair definedBySSD(RaiseRepairSSD) relatedService(RaiseRepairService)
+
+	Actor GroundStaff{
+		inquireRequest
+		score
+	raiseRepair
+	}
+
+	Actor Manager{
+	raiseRepair
+	}
+
+	Actor Master{
+		assignTask
+	raiseRepair
+	}
+
+	Actor Worker{
+		seekHelp
+	submitRepairResult
+	}
+
+	Actor Admin {
+		manageUser
+		manageDevice
+	}
+
+	Interaction RaiseRepairSSD {
+
+		[Participants: GroundStaff Manager Master RaiseRepairService]
+
+		CallMessage::RaiseRepairSSDCallMessage1(submitRequest RaiseRepairSSDCallMessage1SendingEnd -> RaiseRepairSSDExecution1StartEnd)
+		ReturnMessage::RaiseRepairSSDCallMessage1Return(RaiseRepairSSDExecution1FinishEnd -> RaiseRepairSSDCallMessage1ReturnReceivingEnd RaiseRepairSSDCallMessage1)
+		CallMessage::RaiseRepairSSDCallMessage3(managerApprove1 RaiseRepairSSDCallMessage3SendingEnd -> RaiseRepairSSDExecution2StartEnd)
+		ReturnMessage::RaiseRepairSSDCallMessage3Return(RaiseRepairSSDExecution2FinishEnd -> RaiseRepairSSDCallMessage3ReturnReceivingEnd RaiseRepairSSDCallMessage3)
+		CallMessage::RaiseRepairSSDCallMessage5(masterApprove RaiseRepairSSDCallMessage5SendingEnd -> RaiseRepairSSDExecution3StartEnd)
+		ReturnMessage::RaiseRepairSSDCallMessage5Return(RaiseRepairSSDExecution3FinishEnd -> RaiseRepairSSDCallMessage5ReturnReceivingEnd RaiseRepairSSDCallMessage5)
+		CallMessage::RaiseRepairSSDCallMessage7(managerReject RaiseRepairSSDCallMessage7SendingEnd -> RaiseRepairSSDExecution4StartEnd)
+		ReturnMessage::RaiseRepairSSDCallMessage7Return(RaiseRepairSSDExecution4FinishEnd -> RaiseRepairSSDCallMessage7ReturnReceivingEnd RaiseRepairSSDCallMessage7)
+		CallMessage::RaiseRepairSSDCallMessage9(managerApprove2 RaiseRepairSSDCallMessage9SendingEnd -> RaiseRepairSSDExecution5StartEnd)
+		ReturnMessage::RaiseRepairSSDCallMessage9Return(RaiseRepairSSDExecution5FinishEnd -> RaiseRepairSSDCallMessage9ReturnReceivingEnd RaiseRepairSSDCallMessage9)
+		CallMessage::RaiseRepairSSDCallMessage11(masterReject RaiseRepairSSDCallMessage11SendingEnd -> RaiseRepairSSDExecution6StartEnd)
+		ReturnMessage::RaiseRepairSSDCallMessage11Return(RaiseRepairSSDExecution6FinishEnd -> RaiseRepairSSDCallMessage11ReturnReceivingEnd RaiseRepairSSDCallMessage11)
+
+		Execution::RaiseRepairSSDExecution1(RaiseRepairService RaiseRepairSSDExecution1StartEnd RaiseRepairSSDExecution1FinishEnd)
+		Execution::RaiseRepairSSDExecution2(RaiseRepairService RaiseRepairSSDExecution2StartEnd RaiseRepairSSDExecution2FinishEnd)
+		Execution::RaiseRepairSSDExecution3(RaiseRepairService RaiseRepairSSDExecution3StartEnd RaiseRepairSSDExecution3FinishEnd)
+		Execution::RaiseRepairSSDExecution4(RaiseRepairService RaiseRepairSSDExecution4StartEnd RaiseRepairSSDExecution4FinishEnd)
+		Execution::RaiseRepairSSDExecution5(RaiseRepairService RaiseRepairSSDExecution5StartEnd RaiseRepairSSDExecution5FinishEnd)
+		Execution::RaiseRepairSSDExecution6(RaiseRepairService RaiseRepairSSDExecution6StartEnd RaiseRepairSSDExecution6FinishEnd)
+
+		CombinedFragment:: combinedFragement1 -> alt {
+
+			[Participants: RaiseRepairService Manager Master]
+
+			combinedFragement1StartEnd -> combinedFragement1FinishEnd
+
+			Operand::condition1(condition1End combinedFragement1FinishEnd)
+		}
+
+		CombinedFragment:: combinedFragement2 -> alt {
+
+			[Participants: RaiseRepairService Manager Master]
+
+			combinedFragement2StartEnd -> combinedFragement2FinishEnd
+
+			Operand::condition2(condition2End combinedFragement2FinishEnd)
+		}
+
+		CombinedFragment:: combinedFragement3 -> alt {
+
+			[Participants: RaiseRepairService Manager Master]
+
+			combinedFragement3StartEnd -> combinedFragement3FinishEnd
+
+			Operand::condition3(condition3End combinedFragement3FinishEnd)
+		}
+
+		MessageEnd::RaiseRepairSSDCallMessage1SendingEnd(GroundStaff RaiseRepairSSDCallMessage1)
+		ExecutionEnd::RaiseRepairSSDExecution1StartEnd(RaiseRepairService RaiseRepairSSDExecution1)
+		ExecutionEnd::RaiseRepairSSDExecution1FinishEnd(RaiseRepairService RaiseRepairSSDExecution1)
+		MessageEnd::RaiseRepairSSDCallMessage1ReturnReceivingEnd(GroundStaff RaiseRepairSSDCallMessage1Return)
+		CombinedFragmentEnd::combinedFragement1StartEnd(combinedFragement1)
+		OperandEnd::condition1End(condition1)
+		MessageEnd::RaiseRepairSSDCallMessage3SendingEnd(Manager RaiseRepairSSDCallMessage3)
+		ExecutionEnd::RaiseRepairSSDExecution2StartEnd(RaiseRepairService RaiseRepairSSDExecution2)
+		ExecutionEnd::RaiseRepairSSDExecution2FinishEnd(RaiseRepairService RaiseRepairSSDExecution2)
+		MessageEnd::RaiseRepairSSDCallMessage3ReturnReceivingEnd(Manager RaiseRepairSSDCallMessage3Return)
+		MessageEnd::RaiseRepairSSDCallMessage5SendingEnd(Master RaiseRepairSSDCallMessage5)
+		ExecutionEnd::RaiseRepairSSDExecution3StartEnd(RaiseRepairService RaiseRepairSSDExecution3)
+		ExecutionEnd::RaiseRepairSSDExecution3FinishEnd(RaiseRepairService RaiseRepairSSDExecution3)
+		MessageEnd::RaiseRepairSSDCallMessage5ReturnReceivingEnd(Master RaiseRepairSSDCallMessage5Return)
+		CombinedFragmentEnd::combinedFragement1FinishEnd(combinedFragement1)
+		CombinedFragmentEnd::combinedFragement2StartEnd(combinedFragement2)
+		OperandEnd::condition2End(condition2)
+		MessageEnd::RaiseRepairSSDCallMessage7SendingEnd(Manager RaiseRepairSSDCallMessage7)
+		ExecutionEnd::RaiseRepairSSDExecution4StartEnd(RaiseRepairService RaiseRepairSSDExecution4)
+		ExecutionEnd::RaiseRepairSSDExecution4FinishEnd(RaiseRepairService RaiseRepairSSDExecution4)
+		MessageEnd::RaiseRepairSSDCallMessage7ReturnReceivingEnd(Manager RaiseRepairSSDCallMessage7Return)
+		CombinedFragmentEnd::combinedFragement2FinishEnd(combinedFragement2)
+		CombinedFragmentEnd::combinedFragement3StartEnd(combinedFragement3)
+		OperandEnd::condition3End(condition3)
+		MessageEnd::RaiseRepairSSDCallMessage9SendingEnd(Manager RaiseRepairSSDCallMessage9)
+		ExecutionEnd::RaiseRepairSSDExecution5StartEnd(RaiseRepairService RaiseRepairSSDExecution5)
+		ExecutionEnd::RaiseRepairSSDExecution5FinishEnd(RaiseRepairService RaiseRepairSSDExecution5)
+		MessageEnd::RaiseRepairSSDCallMessage9ReturnReceivingEnd(Manager RaiseRepairSSDCallMessage9Return)
+		MessageEnd::RaiseRepairSSDCallMessage11SendingEnd(Master RaiseRepairSSDCallMessage11)
+		ExecutionEnd::RaiseRepairSSDExecution6StartEnd(RaiseRepairService RaiseRepairSSDExecution6)
+		ExecutionEnd::RaiseRepairSSDExecution6FinishEnd(RaiseRepairService RaiseRepairSSDExecution6)
+		MessageEnd::RaiseRepairSSDCallMessage11ReturnReceivingEnd(Master RaiseRepairSSDCallMessage11Return)
+		CombinedFragmentEnd::combinedFragement3FinishEnd(combinedFragement3)
+
+	}
+
+	Service AirportSystem {
+
+		[Operation]
+		createStaff(id, name, pswd, phone, role, bossid)
+		createDevice(id, name, location, contactsid)
+
+	}
+
+	Service RepairService {
+
+		[Operation]
+//		raiseRepair(id, sid, did, name, description, price, time)
+		approve(sid, rid, reject, suggestion)
+		finishRepair(id, sid, did, res)
+		feedback(id, sid, score, des)
+
+	}
+
+	Service ThirdPartyServices {
+
+	}
+
+	Service RaiseRepairService {
+
+		[Operation]
+		submitRequest()
+		managerApprove1()
+		masterApprove()
+		managerReject()
+		managerApprove2()
+		masterReject()
+
+	}
+
+//	Service SubmitRepairRequestService {
+//
+//		[Operation]
+//		raiseRequest(id, sid, did, name, description, price, time)
+//
+//	}
+	Contract AirportSystem::createStaff(id : Integer, name : String, pswd : String, phone : String, role : Integer, bossid : Integer) : Boolean {
+
+		definition:
+			sta:Staff = Staff.allInstance()->any(u:Staff | u.Id = id),
+			bo:Staff = Staff.allInstance()->any(uu:Staff | uu.Id = bossid)
+
+		precondition:
+			sta.oclIsUndefined() = true
+
+		postcondition:
+			let s:Staff in
+			s.oclIsNew() and
+			s.Id = id and
+			s.Name = name and
+			s.Password = pswd and
+			s.Phone = phone and
+			s.Role = role and
+			if
+				bo.oclIsUndefined() = false
+			then
+				s.Boss = bo
+			endif and
+			Staff.allInstance()->includes(s) and
+			result = true
+	}
+
+	Contract AirportSystem::createDevice(id : Integer, name : String, location : String, contactsid : Integer) : Boolean {
+
+		definition:
+			dev:Device = Device.allInstance()->any(u:Device | u.Id = id),
+			sta:Staff = Staff.allInstance()->any(uu:Staff | uu.Id = contactsid)
+
+		precondition:
+			dev.oclIsUndefined() = true and
+			sta.oclIsUndefined() = false
+
+		postcondition:
+			let d:Device in
+			d.oclIsNew() and
+			d.Id = id and
+			d.Name = name and
+			d.Location = location and
+			d.Contacts = sta and
+			Device.allInstance()->includes(dev) and
+			result = true
+	}
+
+	Contract RepairService::approve(sid : Integer, rid : Integer, reject : Boolean, suggestion : String) : ApprovalHistory {
+
+		definition:
+			rep:Repair = Repair.allInstance()->any(u:Repair | u.Id = rid),
+			sta:Staff = Staff.allInstance()->any(uu:Staff | uu.Id = sid)
+
+		precondition:
+			rep.oclIsUndefined() = false and
+			sta.oclIsUndefined() = false
+
+		postcondition:
+			let ah:ApprovalHistory in
+			ah.oclIsNew() and
+			ah.Reject = reject and
+			ah.Suggestion = suggestion and
+			ApprovalHistory.allInstance()->includes(ah) and
+			rep.History->includes(ah) and
+			if
+				reject <> false
+			then
+				if
+					rep.Process = 0 and // STAFFREQUEST
+					sta.Role = 1 // MASTER
+				then
+					rep.Process = 1 // MASTERAPPROVE
+				else
+					if
+						rep.Process = 1 and // MASTERAPPROVE
+						sta.Role = 2 // MANAGER
+					then
+						rep.Process = 2 // MANAGERAPPROVE
+					else
+						if
+							rep.Process = 2 and // MANAGERAPPROVE
+							sta.Role = 3 // WORKER
+						then
+							rep.Process = 3 // WORKERAPPROVE
+						endif
+					endif
+				endif
+			else
+				rep.Process = 5 // REJECT
+			endif and
+			Repair.allInstance()->includes(rep) and
+			result = ah
+	}
+
+	Contract RepairService::finishRepair(id : Integer, sid : Integer, did : Integer, res : String) : Boolean {
+
+		definition:
+			rep:Repair = Repair.allInstance()->any(u:Repair | u.Id = id),
+			sta:Staff = Staff.allInstance()->any(uu:Staff | uu.Id = sid),
+			dev:Device = Device.allInstance()->any(uuu:Device | uuu.Id = did)
+
+		precondition:
+			dev.Contacts = sta and
+			sta.Role = 3
+		postcondition:
+			rep.Process = 7 and // FINISH
+			result = true
+	}
+
+	// 用户反馈，可能会返工
+	Contract RepairService::feedback(id : Integer, sid : Integer, score : Integer, des : String) : Boolean {
+
+		definition:
+			rep:Repair = Repair.allInstance()->any(u:Repair | u.Id = id),
+			sta:Staff = Staff.allInstance()->any(uu:Staff | uu.Id = sid)
+
+		precondition:
+			rep.RaiseStaff = sta and
+			sta.Role = 0 and
+			rep.Process = 7 // FINISH
+		postcondition:
+			rep.Score = score and
+			if
+				score >= 3
+			then
+				rep.Close = true
+			else
+				rep.Close = false and
+				rep.Description = des and
+				rep.Process = 0 // 重新进入维修列表
+			endif and
+			Repair.allInstance()->includes(rep) and
+			result = true
+	}
+
+//	Contract SubmitRepairRequestService::raiseRequest(id : Integer, sid : Integer, did : Integer, name : String, description : String, price : Integer, time : Date) : Boolean {
+//
+//		definition:
+//			dev:Device = Device.allInstance()->any(u:Device | u.Id = did),
+//			sta:Staff = Staff.allInstance()->any(uu:Staff | uu.Id = sid)
+//
+//		precondition:
+//			dev.oclIsUndefined() = false and
+//			sta.oclIsUndefined() = false
+//
+//		postcondition:
+//			let r:Repair in
+//			r.oclIsNew() and
+//			r.Id = id and
+//			r.Repairname = name and
+//			r.Price = price and
+//			r.Description = description and
+//			r.FailTime = time and
+//			r.Process = 0 and
+//			r.RelatedDevice = dev and
+//			r.RaiseStaff = sta and
+//			Repair.allInstance()->includes(r) and
+//			result = true
+//	}
+}
+
+DomainModel AirMS {
+
+	Entity Repair {
+		Id : Integer
+		Repairname : String
+		Price : Integer // 预估价格
+		Description : String
+		Score:Integer // 1-5
+		FailTime:Date
+		Close : Boolean
+		Process : Integer
+//		Process : RpStatus[STAFFREQUEST|MASTERAPPROVE|MANAGERAPPROVE|WORKERAPPROVE|UNDERREPAIR|REJECT|FINISH]
+		Result : String
+
+		[Refer]
+		History : ApprovalHistory* Association
+		RelatedDevice : Device Association
+		RaiseStaff : Staff Association
+	}
+
+	@AutoCRUD Entity Staff {
+		Id : Integer
+		Name : String
+		Password : String
+		Phone : String
+		Role : Integer
+
+//		Role : RoleType[GROUNFDSTAFF|MASTER|MANAGER|WORKER]
+		[Refer]
+		Boss : Staff Association
+	}
+
+	@AutoCRUD Entity Device {
+		Id:Integer
+		Name:String
+		Location:String
+
+		[Refer]
+		Contacts : Staff Association
+	}
+
+	Entity ApprovalHistory {
+		Id:Integer
+		StaffId:Integer
+		Reject:Boolean
+		Suggestion:String
+	}
+
+}
+

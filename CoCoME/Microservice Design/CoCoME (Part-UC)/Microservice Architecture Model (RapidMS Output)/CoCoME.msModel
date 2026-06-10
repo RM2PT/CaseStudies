@@ -1,0 +1,243 @@
+MicroServiceModel CoCoME {
+	MicroService StoreManagerService {
+		ProvidedInterface orderProducts{
+			[Operation]
+			orderProducts
+		}
+		ProvidedInterface listSuppliers{
+			[Operation]
+			listSuppliers
+		}
+		ProvidedInterface openStore{
+			[Operation]
+			openStore
+		}
+		ProvidedInterface changePrice{
+			[Operation]
+			changePrice
+			CallChain changePrice {
+				service AdministratorService : AdministratorService {
+					Message 1 {
+						operation manageItem
+					}
+				}
+			}
+		}
+		ProvidedInterface receiveOrderedProduct{
+			[Operation]
+			receiveOrderedProduct
+			CallChain receiveOrderedProduct {
+				service AdministratorService : AdministratorService {
+					Message 1 {
+						operation manageOrderProduct
+					}
+				}
+			}
+		}
+		ProvidedInterface showStockReports{
+			[Operation]
+			showStockReports
+		}
+		ProvidedInterface closeStore{
+			[Operation]
+			closeStore
+		}
+		ProvidedInterface manageStore{
+			[Operation]
+			createStore
+			queryStore
+			updateStore
+			modifyStore
+		}
+		ProvidedInterface manageOrderEntry{
+			[Operation]
+			createOrderEntry
+			queryOrderEntry
+			updateOrderEntry
+			modifyOrderEntry
+		}
+		RequiredInterface manageCashDesk
+		RequiredInterface manageProductCatalog
+		RequiredInterface manageItem
+		RequiredInterface manageSale
+		RequiredInterface manageOrderProduct
+		DomainModel StoreManagerService {
+			 Entity CardPayment {
+				CardAccountNumber : String
+				ExpiryDate : Date
+				[Refer]
+			}
+			 Entity CashPayment {
+				Balance : Real
+				[Refer]
+			}
+			@AutoCRUD Entity Store {
+				Id : Integer
+				Name : String
+				Address : String
+				IsOpened : Boolean
+				[Refer]
+				Cashiers : Cashier  Association
+			}
+			@AutoCRUD Entity Cashier {
+				Id : Integer
+				Name : String
+				[Refer]
+				WorkedStore : Store  Association
+			}
+			 Entity OrderEntry {
+				Quantity : Integer
+				SubAmount : Real
+				[Refer]
+			}
+		}
+	}
+	MicroService CashierService {
+		ProvidedInterface closeCashDesk{
+			[Operation]
+			closeCashDesk
+		}
+		ProvidedInterface processSale{
+			[Operation]
+			processSale
+		}
+		ProvidedInterface openCashDesk{
+			[Operation]
+			openCashDesk
+		}
+		ProvidedInterface manageCashDesk{
+			[Operation]
+			createCashDesk
+			queryCashDesk
+			updateCashDesk
+			modifyCashDesk
+		}
+		ProvidedInterface manageProductCatalog{
+			[Operation]
+			createProductCatalog
+			queryProductCatalog
+			updateProductCatalog
+			modifyProductCatalog
+		}
+		ProvidedInterface manageSale{
+			[Operation]
+			createSale
+			querySale
+			updateSale
+			modifySale
+		}
+		RequiredInterface manageStore
+		RequiredInterface manageItem
+		DomainModel CashierService {
+			 Entity Sale {
+				Time : Date
+				IsComplete : Boolean
+				Amount : Real
+				IsReadytoPay : Boolean
+				[Refer]
+				BelongedCashDesk : CashDesk  Association
+				ContainedSalesLine : SalesLineItem  Association
+				AssoicatedPayment : Payment  Association
+			}
+			@AutoCRUD Entity ProductCatalog {
+				Id : Integer
+				Name : String
+				[Refer]
+			}
+			@AutoCRUD Entity CashDesk {
+				Id : Integer
+				Name : String
+				IsOpened : Boolean
+				[Refer]
+				ContainedSales : Sale  Association
+			}
+			 Entity Payment {
+				AmountTendered : Real
+				[Refer]
+				BelongedSale : Sale  Association
+			}
+			 Entity SalesLineItem {
+				Quantity : Integer
+				Subamount : Real
+				[Refer]
+				BelongedSale : Sale  Association
+			}
+		}
+	}
+	MicroService AdministratorService {
+		ProvidedInterface manageCashier{
+			[Operation]
+			createCashier
+			queryCashier
+			updateCashier
+			modifyCashier
+		}
+		ProvidedInterface manageSupplier{
+			[Operation]
+			createSupplier
+			querySupplier
+			updateSupplier
+			modifySupplier
+		}
+		ProvidedInterface manageStore{
+			[Operation]
+			createStore
+			queryStore
+			updateStore
+			modifyStore
+		}
+		ProvidedInterface manageCashDesk{
+			[Operation]
+			createCashDesk
+			queryCashDesk
+			updateCashDesk
+			modifyCashDesk
+		}
+		ProvidedInterface manageProductCatalog{
+			[Operation]
+			createProductCatalog
+			queryProductCatalog
+			updateProductCatalog
+			modifyProductCatalog
+		}
+		ProvidedInterface manageItem{
+			[Operation]
+			createItem
+			queryItem
+			updateItem
+			modifyItem
+		}
+		ProvidedInterface manageOrderProduct{
+			[Operation]
+			createOrderProduct
+			queryOrderProduct
+			updateOrderProduct
+			modifyOrderProduct
+		}
+		RequiredInterface manageOrderEntry
+		RequiredInterface manageProductCatalog
+		DomainModel AdministratorService {
+			 Entity OrderProduct {
+				Id : Integer
+				Time : Date
+				OrderStatus : Integer
+				Amount : Real
+				[Refer]
+				Supplier : Supplier  Association
+			}
+			@AutoCRUD Entity Item {
+				Barcode : Integer
+				Name : String
+				Price : Real
+				StockNumber : Integer
+				OrderPrice : Real
+				[Refer]
+			}
+			@AutoCRUD Entity Supplier {
+				Id : Integer
+				Name : String
+				[Refer]
+			}
+		}
+	}
+}

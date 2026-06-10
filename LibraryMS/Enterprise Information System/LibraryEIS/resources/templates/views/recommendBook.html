@@ -1,0 +1,113 @@
+<head>
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<link rel="stylesheet" href="/css/layui.css"></link>
+	<script src="/js/layui.js"></script>
+	<script type="text/javascript">
+	function execute() {
+	
+	var uid=$("#uid").val();
+	var callNo=$("#callNo").val();
+	var title=$("#title").val();
+	var edition=$("#edition").val();
+	var author=$("#author").val();
+	var publisher=$("#publisher").val();
+	var description=$("#description").val();
+	var isbn=$("#isbn").val();
+		$.ajax({
+			 type : "POST",
+			 url : "/LibraryManagementSystemSystem/recommendBook",
+	data : {
+	uid:uid,
+	callNo:callNo,
+	title:title,
+	edition:edition,
+	author:author,
+	publisher:publisher,
+	description:description,
+	isbn:isbn
+	},
+	dataType : "json",
+	success : function(data,info,request) {
+		//console.log(data);
+		var a=JSON.stringify(data.data) 
+		document.getElementById("data").innerHTML=a 
+		var setToken = request.getResponseHeader("Authorization");
+		if (data.msg == "success") {
+			alert("execute success");
+		} else {
+			alert(data.msg);
+		}
+	},
+	error : function(data) {
+		console.log(data);
+	}
+	});
+	}
+	</script>
+	</head>
+	<body>
+		<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;"><legend>Operation Parameter</legend></fieldset>
+	<div class="layui-form-item">
+	<label class="layui-form-label">uid</label>
+	<div class="layui-input-inline">
+	<input type="text" name="uid" id="uid" placeholder="Please enter content" autocomplete="off" class="layui-input">
+	</div>
+	</div>
+	<div class="layui-form-item">
+	<label class="layui-form-label">callNo</label>
+	<div class="layui-input-inline">
+	<input type="text" name="callNo" id="callNo" placeholder="Please enter content" autocomplete="off" class="layui-input">
+	</div>
+	</div>
+	<div class="layui-form-item">
+	<label class="layui-form-label">title</label>
+	<div class="layui-input-inline">
+	<input type="text" name="title" id="title" placeholder="Please enter content" autocomplete="off" class="layui-input">
+	</div>
+	</div>
+	<div class="layui-form-item">
+	<label class="layui-form-label">edition</label>
+	<div class="layui-input-inline">
+	<input type="text" name="edition" id="edition" placeholder="Please enter content" autocomplete="off" class="layui-input">
+	</div>
+	</div>
+	<div class="layui-form-item">
+	<label class="layui-form-label">author</label>
+	<div class="layui-input-inline">
+	<input type="text" name="author" id="author" placeholder="Please enter content" autocomplete="off" class="layui-input">
+	</div>
+	</div>
+	<div class="layui-form-item">
+	<label class="layui-form-label">publisher</label>
+	<div class="layui-input-inline">
+	<input type="text" name="publisher" id="publisher" placeholder="Please enter content" autocomplete="off" class="layui-input">
+	</div>
+	</div>
+	<div class="layui-form-item">
+	<label class="layui-form-label">description</label>
+	<div class="layui-input-inline">
+	<input type="text" name="description" id="description" placeholder="Please enter content" autocomplete="off" class="layui-input">
+	</div>
+	</div>
+	<div class="layui-form-item">
+	<label class="layui-form-label">isbn</label>
+	<div class="layui-input-inline">
+	<input type="text" name="isbn" id="isbn" placeholder="Please enter content" autocomplete="off" class="layui-input">
+	</div>
+	</div>
+	<div class="layui-form-item">
+	<button class="layui-btn" style="margin-left: 100px; margin-top: 50px;" onclick="execute();" id="executeButton">execute</button>
+	</div>
+	<fieldset class="layui-elem-field layui-field-title" style="margin-top: 100px;"><legend>Operation Return</legend></fieldset>
+	<div style="padding: 15px;margin-left:15px; ">
+	<div class="layui-row layui-col-space15">
+	<div class="layui-col-md6">
+	<div class="layui-card" align="center">
+	<div class="layui-card-body " style="background-color: 	#FFFFFB;">
+	<span id="data" style="font-weight:bold;"></span>
+	</div>
+	</div>
+	</div>
+	</div></div>
+	</body>
+	

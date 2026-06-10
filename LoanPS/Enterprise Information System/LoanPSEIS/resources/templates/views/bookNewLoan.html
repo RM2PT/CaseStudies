@@ -1,0 +1,97 @@
+<head>
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<link rel="stylesheet" href="/css/layui.css"></link>
+	<script src="/js/layui.js"></script>
+	<script type="text/javascript">
+	function execute() {
+	
+	var requestid=$("#requestid").val();
+	var loanid=$("#loanid").val();
+	var accountid=$("#accountid").val();
+	var startdate=$("#startdate").val();
+	var enddate=$("#enddate").val();
+	var repaymentdays=$("#repaymentdays").val();
+		$.ajax({
+			 type : "POST",
+			 url : "/LoanProcessingSystemSystem/bookNewLoan",
+	data : {
+	requestid:requestid,
+	loanid:loanid,
+	accountid:accountid,
+	startdate:startdate,
+	enddate:enddate,
+	repaymentdays:repaymentdays
+	},
+	dataType : "json",
+	success : function(data,info,request) {
+		//console.log(data);
+		var a=JSON.stringify(data.data) 
+		document.getElementById("data").innerHTML=a 
+		var setToken = request.getResponseHeader("Authorization");
+		if (data.msg == "success") {
+			alert("execute success");
+		} else {
+			alert(data.msg);
+		}
+	},
+	error : function(data) {
+		console.log(data);
+	}
+	});
+	}
+	</script>
+	</head>
+	<body>
+		<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;"><legend>Operation Parameter</legend></fieldset>
+	<div class="layui-form-item">
+	<label class="layui-form-label">requestid</label>
+	<div class="layui-input-inline">
+	<input type="text" name="requestid" id="requestid" placeholder="Please enter content" autocomplete="off" class="layui-input">
+	</div>
+	</div>
+	<div class="layui-form-item">
+	<label class="layui-form-label">loanid</label>
+	<div class="layui-input-inline">
+	<input type="text" name="loanid" id="loanid" placeholder="Please enter content" autocomplete="off" class="layui-input">
+	</div>
+	</div>
+	<div class="layui-form-item">
+	<label class="layui-form-label">accountid</label>
+	<div class="layui-input-inline">
+	<input type="text" name="accountid" id="accountid" placeholder="Please enter content" autocomplete="off" class="layui-input">
+	</div>
+	</div>
+	<div class="layui-form-item">
+	<label class="layui-form-label">startdate</label>
+	<div class="layui-input-inline">
+	<input type="text" name="startdate" id="startdate" placeholder="Please enter content" autocomplete="off" class="layui-input">
+	</div>
+	</div>
+	<div class="layui-form-item">
+	<label class="layui-form-label">enddate</label>
+	<div class="layui-input-inline">
+	<input type="text" name="enddate" id="enddate" placeholder="Please enter content" autocomplete="off" class="layui-input">
+	</div>
+	</div>
+	<div class="layui-form-item">
+	<label class="layui-form-label">repaymentdays</label>
+	<div class="layui-input-inline">
+	<input type="text" name="repaymentdays" id="repaymentdays" placeholder="Please enter content" autocomplete="off" class="layui-input">
+	</div>
+	</div>
+	<div class="layui-form-item">
+	<button class="layui-btn" style="margin-left: 100px; margin-top: 50px;" onclick="execute();" id="executeButton">execute</button>
+	</div>
+	<fieldset class="layui-elem-field layui-field-title" style="margin-top: 100px;"><legend>Operation Return</legend></fieldset>
+	<div style="padding: 15px;margin-left:15px; ">
+	<div class="layui-row layui-col-space15">
+	<div class="layui-col-md6">
+	<div class="layui-card" align="center">
+	<div class="layui-card-body " style="background-color: 	#FFFFFB;">
+	<span id="data" style="font-weight:bold;"></span>
+	</div>
+	</div>
+	</div>
+	</div></div>
+	</body>
+	

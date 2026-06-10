@@ -1,0 +1,138 @@
+MicroServiceModel LoanProcessingSystem {
+	MicroService LoanAssistantService {
+		ProvidedInterface manageLoanRequest{
+			[Operation]
+			createLoanRequest
+			queryLoanRequest
+			updateLoanRequest
+			modifyLoanRequest
+		}
+		RequiredInterface manageLoan
+		RequiredInterface manageCheckingAccount
+		RequiredInterface manageCreditHistory
+		RequiredInterface manageApprovalLetter
+		RequiredInterface manageLoanAgreement
+		DomainModel LoanAssistantService {
+			 Entity LoanTerm {
+				ItemID : Integer
+				Content : String
+				[Refer]
+			}
+			 Entity LoanRequest {
+				Status : Integer
+				RequestID : Integer
+				Name : String
+				LoanAmount : Real
+				LoanPurpose : String
+				Income : Real
+				PhoneNumber : Integer
+				PostalAddress : String
+				ZipCode : Integer
+				Email : String
+				WorkReferences : String
+				CreditReferences : String
+				CheckingAccountNumber : Integer
+				SecurityNumber : Integer
+				CreditScore : Integer
+				[Refer]
+				AttachedLoanTerms : LoanTerm  Association
+			}
+		}
+	}
+	MicroService SchedulerService {
+		ProvidedInterface manageLoanAccount{
+			[Operation]
+			createLoanAccount
+			queryLoanAccount
+			updateLoanAccount
+			modifyLoanAccount
+		}
+		DomainModel SchedulerService {
+			 Entity LoanAccount {
+				LoanAccountID : Integer
+				Balance : Real
+				Status : Integer
+				[Refer]
+			}
+		}
+	}
+	MicroService ApplicantService {
+		ProvidedInterface manageApprovalLetter{
+			[Operation]
+			createApprovalLetter
+			queryApprovalLetter
+			updateApprovalLetter
+			modifyApprovalLetter
+		}
+		DomainModel ApplicantService {
+			 Entity ApprovalLetter {
+				Content : String
+				[Refer]
+			}
+		}
+	}
+	MicroService LoanOfficerService {
+		ProvidedInterface manageLoan{
+			[Operation]
+			createLoan
+			queryLoan
+			updateLoan
+			modifyLoan
+		}
+		ProvidedInterface manageCreditHistory{
+			[Operation]
+			createCreditHistory
+			queryCreditHistory
+			updateCreditHistory
+			modifyCreditHistory
+		}
+		RequiredInterface manageLoanRequest
+		RequiredInterface manageLoanAccount
+		DomainModel LoanOfficerService {
+			 Entity Loan {
+				LoanID : Integer
+				RemainAmountToPay : Real
+				Status : Integer
+				IsPaidinFull : Boolean
+				StartDate : Date
+				EndDate : Date
+				CurrentOverDueDate : Date
+				RePaymentDays : Integer
+				RepaymentAmount : Real
+				[Refer]
+			}
+			 Entity CreditHistory {
+				OutstandingDebt : Real
+				BadDebits : Integer
+				[Refer]
+			}
+		}
+	}
+	MicroService LoanClerkService {
+		ProvidedInterface manageCheckingAccount{
+			[Operation]
+			createCheckingAccount
+			queryCheckingAccount
+			updateCheckingAccount
+			modifyCheckingAccount
+		}
+		ProvidedInterface manageLoanAgreement{
+			[Operation]
+			createLoanAgreement
+			queryLoanAgreement
+			updateLoanAgreement
+			modifyLoanAgreement
+		}
+		DomainModel LoanClerkService {
+			 Entity LoanAgreement {
+				Content : String
+				[Refer]
+			}
+			 Entity CheckingAccount {
+				Balance : Real
+				Status : Integer
+				[Refer]
+			}
+		}
+	}
+}

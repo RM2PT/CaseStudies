@@ -1,0 +1,1499 @@
+UseCaseModel Airport {
+
+	UC::routine() relatedService(RoutineService)
+	UC::repair() relatedService(RepairService)
+	UC::handle() relatedService(HandleService)
+	UC::maintain() relatedService(MaintainService)
+	UC::manage() relatedService(ManageService)
+
+//	UC::workReportSubmit()
+//	UC::submitRepair()
+//	UC::notAcceptAa()
+//	UC::acceptedAa()
+//	UC::completedAa()
+//	UC::tbInfo()
+//	UC::scoring()
+//	UC::notAcceptBa()
+//	UC::acceptedBa()
+//	UC::completedBa()
+//	UC::allocation()
+//	UC::transmit()
+//	UC::backtransmit()
+//	UC::setWorkTask()
+//	UC::setTerminalEquipment()
+//	UC::arbitration()
+//	UC::approval()
+//	UC::receiveTb()
+//	UC::completeTb()
+//	UC::rocessingFees()
+//	UC::setOperationStatus()
+	Actor Share{
+		routine
+	}
+
+	Actor Ordinary{ // 鏅�氱敤鎴�
+		repair
+//		submitRepair
+//		submitRepairExtra
+//		notAcceptAa
+//		acceptedAa
+//		completedAa
+//		scoring
+//		tbInfo // 鎶ヤ慨宸ュ崟淇℃伅
+//		//
+//		sendVoice // 鍙戦�佽闊�
+//		pushInfo // 鎺ㄩ��
+//		savePwd // 淇濆瓨瀵嗙爜
+	}
+
+	Actor Manage{ // 鍊欑绠＄悊鐢ㄦ埛鍜岄儴闂ㄧ粡鐞�
+		manage
+//		approval
+//		arbitration
+	}
+
+	Actor Master{ // 閮ㄩ棬闃熼暱
+		handle
+//		notAcceptBa
+//		acceptedBa
+//		completedBa
+//		allocation // 鍒嗛厤缁欓儴闂ㄥ憳宸�
+//		transmit // 杞彂
+//		backtransmit // 閫�鍥�
+//		setWorkTask // 璁剧疆鍊肩彮琛�
+//		setTerminalEquipment // 璁剧疆鍊欐満妤艰澶�
+	}
+
+	Actor Worker{ // 閮ㄩ棬浜哄憳
+		maintain
+//		completeTb
+//		receiveTb
+//		rocessingFees // 缁翠慨璐圭敤
+//		setOperationStatus
+	}
+
+	Service AirportSystem {
+
+		[Operation]
+		createUser(id, name, password, phone, roleCode,departmentid)
+		queryUser(id)
+		modifyUser(id, name, password, phone, roleCode,departmentid)
+		deleteUser(id)
+		createDeviceStatus(id,name,remark)
+		queryDeviceStatus(id)
+		modifyDeviceStatus(id,name,remark)
+		deleteDeviceStatus(id)
+		createDepartment(id, name,contactRerson, principal, phone, briefInfo, describeContent, remark)
+		queryDepartment(id)
+		modifyDepartment(id, name,contactRerson, principal, phone, briefInfo, describeContent, remark)
+		deleteDepartment(id)
+		createDeviceAssociationGroup(id,name,remark)
+		queryDeviceAssociationGroup(id)
+		modifyDeviceAssociationGroup(id,name,remark)
+		deleteDeviceAssociationGroup(id)
+		createRole(id, remark, roleCode)
+		queryRole(id)
+		modifyRole(id, remark, roleCode)
+		deleteRole(id)
+		createEquipmentFailureType(id,name, describeContent,remark)
+		queryEquipmentFailureType(id)
+		modifyEquipmentFailureType(id,name, describeContent,remark)
+		deleteEquipmentFailureType(id)
+		createDeviceInfo(id,name,brand,type,address,adminName,contactsName,remark)
+		queryDeviceInfo(id)
+		modifyDeviceInfo(id,name,brand,type,address,adminName,contactsName,remark)
+		deleteDeviceInfo(id)
+		createDeviceLocationGroup(id,name,remark)
+		queryDeviceLocationGroup(id)
+		modifyDeviceLocationGroup(id,name,remark)
+		deleteDeviceLocationGroup(id)
+
+		[TempProperty]
+		Currentuser : User
+		Currentrepair : TbRepair
+
+	}
+
+	Service ThirdPartyServices {
+
+		[Operation]
+		thirdPartyCardPaymentService()
+
+	}
+
+	Service RoutineService {
+
+		[Operation]
+		userLogin(name, password)
+		workReportSubmit(name, content, section, remark)
+
+	}
+
+	Service RepairService {
+
+		[Operation]
+		submitRepair(departmentid, assignDepartId, repairname, phone, place, repairsStatus, deviceId, describeContent, failureTypeId)
+		notAcceptAa() // 鏅�氱敤鎴锋湭鍙楃悊鍒楄〃
+		acceptedAa() // 鏅�氱敤鎴峰凡鍙楃悊鍒楄〃
+		completedAa() // 鏅�氱敤鎴峰凡瀹屾垚鍒楄〃
+		tbInfo(id) // 鏌愭潯淇濅慨鍗曠殑淇℃伅
+		scoring(tbid, score, remark)
+		sendVoice() // 鍙戦�佽闊�
+		pushInfo() // 鎺ㄩ��
+		savePwd() // 淇濆瓨瀵嗙爜
+
+	}
+
+	Service HandleService {
+
+		[Operation]
+		notAcceptBa() // 閮ㄩ棬闃熼暱鏈彈鐞嗗垪琛�
+		acceptedBa() // 閮ㄩ棬闃熼暱宸插彈鐞嗗垪琛�
+		completedBa() // 閮ㄩ棬闃熼暱宸插畬鎴愬垪琛�
+		allocation(userId, tbId) // 鎸囨淳鍛樺伐
+		transmit(departId, tbId) // 杞彂鍏朵粬閮ㄩ棬
+		backtransmit(tbId, rejectCause) // 閫�鍥炲伐鍗�
+		setWorkTask(staffName, adminName, phone, section, remark) // 鎺掔彮
+		setTerminalEquipment(name, address, description, type, remark, deviceInfoId) // 鍊欐満妤艰澶�
+
+	}
+
+	Service MaintainService{
+
+		[Operation]
+		receiveTb(tbId) // 鍙楃悊鎶ヤ慨鍗�
+		completeTb(tbId, cause, resolvent) // 瀹屾垚鎶ヤ慨
+		rocessingFees(tbId, projectName, price, number, remake) // 璁剧疆鎶ヤ慨浠诲姟澶勭悊缁翠慨璐圭敤
+		setOperationStatus(name, value, valueUnit, status, remark, equipmentId) // 璁剧疆鍊欐満妤艰澶囪繍琛岀姸鍐�
+
+	}
+
+	Service ManageService {
+
+		[Operation]
+		approval(tbId, isApproved) // 鍊欑瀹℃壒
+		arbitration(tbId, departmentid) // 浠茶
+
+	}
+
+	Contract ThirdPartyServices::thirdPartyCardPaymentService() : Boolean {
+
+		precondition:
+			true
+		postcondition:
+			result = true
+	}
+
+//-----------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------
+// 鐢ㄦ埛鐧诲綍
+	Contract  RoutineService::userLogin(name : String, password : String) : Boolean {
+
+		definition:
+			user:User = User.allInstance()->any(u:User | u.Name = name and u.Password = password)
+
+		precondition:
+			user.oclIsUndefined() = false
+		postcondition:
+			self.Currentuser = user and
+			result = true
+	}
+
+//-----------------------------------------------------------------------------------------
+// 宸ヤ綔姹囨姤
+	Contract  RoutineService::workReportSubmit(name:String, content:String, section:String, remark:String) : Boolean {
+
+		precondition:
+			Currentuser.oclIsUndefined() = false
+		postcondition:
+			let wr:WorkReport in
+			wr.oclIsNew() and
+			wr.Name = name and
+			wr.Time.isEqual(Now) and
+			wr.Content = content and
+			WorkReport.allInstance()->includes(wr) and
+			result = true
+	}
+
+//-----------------------------------------------------------------------------------------
+// 鏅�氱敤鎴�
+//鎶ヤ慨鍗曚綅锛堝繀閫夛級銆佹姤淇汉锛堝繀濉級銆佸弽棣堢數璇濓紙蹇呭～锛夈�佹姤淇綅缃紙蹇呭～锛夈�佹晠闅滅被鍒紙蹇呴�夛級,銆佹晠闅滄弿杩帮紙蹇呴�夛級
+	Contract  RepairService::submitRepair(departmentid:Integer, assignDepartId:Integer, repairname : String, phone : String, place : String, repairsStatus : Integer, deviceId : String, describeContent:String, failureTypeId:Integer) : Boolean {
+
+		definition:
+			dp:Department = Department.allInstance()->any(d:Department | d.Id = departmentid),
+			a_dp:Department = Department.allInstance()->any(d:Department | d.Id = assignDepartId),
+			eft:EquipmentFailureType = EquipmentFailureType.allInstance()->any(e:EquipmentFailureType | e.Id = failureTypeId)
+
+		precondition:
+			Currentuser.oclIsUndefined() = false and
+			repairname.oclIsUndefined() = false and
+			phone.oclIsUndefined() = false and
+			place.oclIsUndefined() = false and
+			repairsStatus.oclIsUndefined() = false and
+			dp.oclIsUndefined() = false and
+			a_dp.oclIsUndefined() = false and
+			deviceId.oclIsUndefined() = false and
+			eft.oclIsUndefined() = false
+
+		postcondition:
+			let tr:TbRepair in
+			let tre:TbRepairExtra in
+			tr.oclIsNew() and
+			tr.BelongedDepartment = dp and
+			tr.Repairname = repairname and
+			tr.Phone = phone and
+			tr.Place = place and
+			tr.RepairsStatus = repairsStatus and
+			tr.DeviceId = deviceId and
+			tr.DescribeContent = describeContent and
+			tr.Time.isEqual(Now) and
+			tr.Status = 0 and
+			tr.BelongedEFT = eft and
+			tr.BelongedUser = Currentuser and
+			TbRepair.allInstance()->includes(tr) and
+			self.Currentrepair = tr and
+			if
+				tr.Id.oclIsUndefined() = false
+			then
+				tre.oclIsNew() and
+				// 濡傛灉鎶ヤ慨鍖哄煙鏄�欐満妤煎垯闇�瑕佸�欑瀹℃牳
+				tre.Id = tr.Id and
+				if
+					tr.Place = "鍊欐満妤�"
+				then
+					tre.Admin = false
+				else
+					tre.Admin = true
+				endif and
+				tre.IsReject = false and
+				tre.IsAccept = false and
+				tre.IsComplete = false and
+				tre.Arbitrate = false and
+				tre.RelayNum = 0 and
+				tre.BelongedTbRepair = tr and
+				tre.BelongedAssignDepart = a_dp and
+				TbRepairExtra.allInstance()->includes(tre) and
+				result = true
+			else
+				result = false
+			endif
+
+	}
+
+////鎶ヤ慨浠诲姟澶勭悊  --------------涓婃姤浜哄皢鎶ヤ慨浠诲姟鎸囧畾缁欎竴涓淮淇儴闂�	
+//	Contract  RepairService::submitRepairExtra(departmentid:Integer, tbRId:Integer) : Boolean {
+//
+//		definition:
+//			tbRepair:TbRepair = TbRepair.allInstance()->any(tbRepair:TbRepair | tbRepair.Id = tbRId),
+//			dp:Department = Department.allInstance()->any(dp:Department | dp.Id = departmentid)
+//
+//		precondition:
+//			Currentuser.oclIsUndefined() = false and
+//			dp.oclIsUndefined() = false and
+//			tbRepair.AssoicatedTRE.oclIsUndefined() = true and
+//			tbRepair.oclIsUndefined() = false
+//
+//		postcondition:
+//			let tre:TbRepairExtra in
+//			tre.oclIsNew() and
+//			// 濡傛灉鎶ヤ慨鍖哄煙鏄�欐満妤煎垯闇�瑕佸�欑瀹℃牳
+//			tre.Id = tbRepair.Id and
+//			if
+//				tbRepair.place = "鍊欐満妤�"
+//			then
+//				tre.admin = false
+//			else
+//				tre.admin = true
+//			endif and
+//			tre.isReject = false and
+//			tre.isAccept = false and
+//			tre.isComplete = false and
+//			tre.arbitrate = false and
+//			tre.relayNum = 0 and
+//			tre.BelongedTbRepair = tbRepair and
+//			tre.BelongedAssignDepart = dp and
+//			TbRepairExtra.allInstance()->includes(tre) and
+//			result = true
+//	}
+////鏌ヨ褰撳墠鐢ㄦ埛鏈彈鐞嗙殑淇℃伅
+	Contract  RepairService::notAcceptAa() : Set(TbRepair) {
+
+		precondition:
+			Currentuser.oclIsUndefined() = false
+
+		postcondition:
+			result = TbRepair.allInstance()->select(tr:TbRepair | tr.Status = 0 and tr.BelongedUser = Currentuser)
+	}
+
+//鏌ヨ褰撳墠鐢ㄦ埛宸插彈鐞嗙殑淇℃伅
+	Contract  RepairService::acceptedAa() : Set(TbRepair) {
+
+		precondition:
+			Currentuser.oclIsUndefined() = false
+
+		postcondition:
+			result = TbRepair.allInstance()->select(tr:TbRepair | tr.Status = 1 and tr.BelongedUser = Currentuser)
+	}
+
+//鏌ヨ褰撳墠鐢ㄦ埛宸插畬鎴愮殑淇℃伅
+	Contract  RepairService::completedAa() : Set(TbRepair) {
+
+		precondition:
+			Currentuser.oclIsUndefined() = false
+
+		postcondition:
+			result = TbRepair.allInstance()->select(tr:TbRepair | tr.Status = 2 and tr.BelongedUser = Currentuser)
+	}
+
+//鐢ㄦ埛璇勪环
+	Contract  RepairService::scoring(tbid:Integer, score:Integer, remark:String) : Boolean {
+
+		definition:
+			tr:TbRepair = TbRepair.allInstance()->any(tbRepair:TbRepair | tbRepair.Id = tbid)
+
+		precondition:
+			Currentuser.oclIsUndefined() = false and
+			tr.oclIsUndefined() = false and
+			tr.BelongedUser = Currentuser
+
+		postcondition:
+			tr.Score = score and
+			tr.Remark = remark and
+			result = true
+	}
+
+//鏌ヨ鏌愪竴涓繚淇崟鐨勮缁嗕俊鎭�
+	Contract  RepairService::tbInfo(id:Integer) : TbRepair {
+
+		definition:
+			tr:TbRepair = TbRepair.allInstance()->any(t:TbRepair | t.Id = id)
+
+		precondition:
+			tr.oclIsUndefined() = false and
+			Currentuser.oclIsUndefined() = false
+
+		postcondition:
+			result = tr
+	}
+
+//-----------------------------------------------------------------------------------------
+// 閮ㄩ棬闃熼暱
+	Contract  HandleService::notAcceptBa() : Set(TbRepairExtra) {
+
+		// 鏌ヨ褰撳墠閮ㄩ棬鐨勬湭鍙楃悊宸ュ崟
+		// 1.鑾峰彇褰撳墠闃熼暱鐢ㄦ埛鐨勪俊鎭�
+		// 2.鍒ゆ柇璇ョ敤鎴锋墍灞為儴闂�
+		// 3.鏍规嵁涓変釜鍙傛暟杩涜鏌ヨ-----鏄惁鍙楃悊锛屽�欑鏄惁瀹℃牳锛屾墍灞為儴闂�
+		definition:
+			depart1:Department = Department.allInstance()->any(department:Department | department.Id = 1),
+			depart2:Department = Department.allInstance()->any(department:Department | department.Id = 2),
+			depart3:Department = Department.allInstance()->any(department:Department | department.Id = 3),
+			depart4:Department = Department.allInstance()->any(department:Department | department.Id = 4)
+
+		precondition:
+			Currentuser.oclIsUndefined() = false and
+			depart1.oclIsUndefined() = false and
+			depart2.oclIsUndefined() = false and
+			depart3.oclIsUndefined() = false and
+			depart4.oclIsUndefined() = false
+
+		postcondition:
+			if
+				Currentuser.BelongedDepartment = depart1
+			then
+				result = TbRepairExtra.allInstance()->select(tbe:TbRepairExtra | tbe.IsAccept = false and tbe.Admin = true  and tbe.BelongedAssignDepart = depart1)
+			else
+				if
+					Currentuser.BelongedDepartment = depart2
+				then
+					result = TbRepairExtra.allInstance()->select(tbe:TbRepairExtra | tbe.IsAccept = false and tbe.Admin = true  and tbe.BelongedAssignDepart = depart2)
+				else
+					if
+						Currentuser.BelongedDepartment = depart3
+					then
+						result = TbRepairExtra.allInstance()->select(tbe:TbRepairExtra | tbe.IsAccept = false and tbe.Admin = true  and tbe.BelongedAssignDepart = depart3)
+					else
+						result = TbRepairExtra.allInstance()->select(tbe:TbRepairExtra | tbe.IsAccept = false and tbe.Admin = true  and tbe.BelongedAssignDepart = depart4)
+					endif
+				endif
+
+			endif
+
+	}
+
+	Contract  HandleService::acceptedBa() : Set(TbRepairExtra) {
+
+		definition:
+			depart1:Department = Department.allInstance()->any(department:Department | department.Id = 1),
+			depart2:Department = Department.allInstance()->any(department:Department | department.Id = 2),
+			depart3:Department = Department.allInstance()->any(department:Department | department.Id = 3),
+			depart4:Department = Department.allInstance()->any(department:Department | department.Id = 4)
+
+		precondition:
+			Currentuser.oclIsUndefined() = false and
+			depart1.oclIsUndefined() = false and
+			depart2.oclIsUndefined() = false and
+			depart3.oclIsUndefined() = false and
+			depart4.oclIsUndefined() = false
+
+		postcondition:
+			if
+				depart1 = Currentuser.BelongedDepartment
+			then
+				result = TbRepairExtra.allInstance()->select(tbe:TbRepairExtra | tbe.IsAccept = true and tbe.IsComplete = false  and tbe.BelongedAssignDepart = depart1)
+			else
+				if
+					Currentuser.BelongedDepartment = depart2
+				then
+					result = TbRepairExtra.allInstance()->select(tbe:TbRepairExtra | tbe.IsAccept = true and tbe.IsComplete = false  and tbe.BelongedAssignDepart = depart2)
+				else
+					if
+						Currentuser.BelongedDepartment = depart3
+					then
+						result = TbRepairExtra.allInstance()->select(tbe:TbRepairExtra | tbe.IsAccept = true and tbe.IsComplete = false  and tbe.BelongedAssignDepart = depart3)
+					else
+						result = TbRepairExtra.allInstance()->select(tbe:TbRepairExtra | tbe.IsAccept = true and tbe.IsComplete = false  and tbe.BelongedAssignDepart = depart4)
+					endif
+				endif
+			endif
+
+	}
+
+	Contract  HandleService::completedBa() : Set(TbRepairExtra) {
+
+		definition:
+			depart1:Department = Department.allInstance()->any(department:Department | department.Id = 1),
+			depart2:Department = Department.allInstance()->any(department:Department | department.Id = 2),
+			depart3:Department = Department.allInstance()->any(department:Department | department.Id = 3),
+			depart4:Department = Department.allInstance()->any(department:Department | department.Id = 4)
+
+		precondition:
+			Currentuser.oclIsUndefined() = false and
+			depart1.oclIsUndefined() = false and
+			depart2.oclIsUndefined() = false and
+			depart3.oclIsUndefined() = false and
+			depart4.oclIsUndefined() = false
+
+		postcondition:
+			if
+				Currentuser.BelongedDepartment = depart1
+			then
+				result = TbRepairExtra.allInstance()->select(tbe:TbRepairExtra | tbe.IsComplete = true and tbe.BelongedAssignDepart = depart1)
+			else
+				if
+					Currentuser.BelongedDepartment = depart2
+				then
+					result = TbRepairExtra.allInstance()->select(tbe:TbRepairExtra | tbe.IsComplete = true and tbe.BelongedAssignDepart = depart2)
+				else
+					if
+						Currentuser.BelongedDepartment = depart3
+					then
+						result = TbRepairExtra.allInstance()->select(tbe:TbRepairExtra | tbe.IsComplete = true and tbe.BelongedAssignDepart = depart3)
+					else
+						result = TbRepairExtra.allInstance()->select(tbe:TbRepairExtra | tbe.IsComplete = true and tbe.BelongedAssignDepart = depart4)
+					endif
+				endif
+			endif
+
+	}
+
+//闃熼暱娲惧伐
+	Contract  HandleService::allocation(userId : Integer, tbId : Integer) : Boolean {
+
+		definition:
+			user:User = User.allInstance()->any(u:User | u.Id = userId),
+			tbRepairExtra:TbRepairExtra = TbRepairExtra.allInstance()->any(tre:TbRepairExtra | tre.Id = tbId)
+
+		precondition:
+			Currentuser.oclIsUndefined() = false and
+			user.oclIsUndefined() = false and
+			tbRepairExtra.oclIsUndefined() = false
+
+		postcondition:
+			tbRepairExtra.BelongedDistribution = user and
+			result = true
+	}
+
+//闃熼暱杞彂鍏朵粬閮ㄩ棬
+	Contract  HandleService::transmit(departId : Integer, tbId : Integer) : Boolean {
+
+		definition:
+			dp:Department = Department.allInstance()->any(d:Department | d.Id = departId),
+			tbRepairExtra:TbRepairExtra = TbRepairExtra.allInstance()->any(tre:TbRepairExtra | tre.Id = tbId)
+
+		precondition:
+			Currentuser.oclIsUndefined() = false and
+			dp.oclIsUndefined() = false and
+			tbRepairExtra.oclIsUndefined() = false and
+			tbRepairExtra.Arbitrate = false and
+			Currentuser.BelongedDepartment = tbRepairExtra.BelongedAssignDepart
+
+		postcondition:
+			tbRepairExtra.RelayNum = tbRepairExtra.RelayNum@pre + 1 and
+			tbRepairExtra.BelongedAssignDepart = dp and
+			result = true
+	}
+
+//闃熼暱閫�鍥炲伐鍗�
+	Contract  HandleService::backtransmit(tbId : Integer, rejectCause:String) : Boolean {
+
+		definition:
+			tbRepairExtra:TbRepairExtra = TbRepairExtra.allInstance()->any(tbRepair:TbRepairExtra | tbRepair.Id = tbId)
+
+		precondition:
+			Currentuser.oclIsUndefined() = false and
+			tbRepairExtra.oclIsUndefined() = false and
+			Currentuser.BelongedDepartment = tbRepairExtra.BelongedAssignDepart
+
+		postcondition:
+			tbRepairExtra.IsReject = true and
+			tbRepairExtra.RejectCause = rejectCause and
+			result = true
+	}
+
+//璁剧疆鍊肩彮琛�
+	Contract  HandleService::setWorkTask(staffName:String, adminName:String, phone:String, section:String, remark:String) : Boolean {
+
+		precondition:
+			Currentuser.oclIsUndefined() = false and
+			staffName.oclIsUndefined() = false and
+			adminName.oclIsUndefined() = false
+
+		postcondition:
+			let wt:WorkTask in
+			wt.oclIsNew() and
+			wt.StaffName = staffName and
+			wt.AdminName = adminName and
+			wt.Phone = phone and
+			wt.Section = section and
+			wt.Remark = remark and
+			WorkTask.allInstance()->includes(wt) and
+			result = true
+	}
+
+//璁剧疆鍊欐満妤艰澶�
+	Contract  HandleService::setTerminalEquipment(name:String, address:String, description:String, type:Integer, remark:String, deviceInfoId:Integer) : Boolean {
+
+		definition:
+			d:DeviceInfo = DeviceInfo.allInstance()->any(di:DeviceInfo | di.Id = deviceInfoId)
+
+		precondition:
+			Currentuser.oclIsUndefined() = false and
+			name.oclIsUndefined() = false and
+			address.oclIsUndefined() = false and
+			d.oclIsUndefined() = false
+
+		postcondition:
+			let te:TerminalEquipment in
+			te.oclIsNew() and
+			te.Name = name and
+			te.Address = address and
+			te.Description = description and
+			te.Type = type and
+			te.Remark = remark and
+			te.BelongedDeviceInfo = d and
+			TerminalEquipment.allInstance()->includes(te) and
+			result = true
+	}
+
+//------------------------------------------------------------
+//          閮ㄩ棬缁忕悊
+//浠茶
+	Contract  ManageService::arbitration(tbId : Integer, departmentid : Integer) : Boolean {
+
+		definition:
+			tbRepairExtra:TbRepairExtra = TbRepairExtra.allInstance()->any(t:TbRepairExtra | t.Id = tbId),
+			dp:Department = Department.allInstance()->any(d:Department | d.Id = departmentid),
+			role:Role = Role.allInstance()->any(r:Role | r.Id = 1) // 閮ㄩ棬缁忕悊鍜屼警绠¤鑹�
+
+		precondition:
+			Currentuser.oclIsUndefined() = false and
+			tbRepairExtra.oclIsUndefined() = false and
+			tbRepairExtra.RelayNum > 3 and
+			dp.oclIsUndefined() = false and
+			Currentuser.BelongedRole = role
+
+		postcondition:
+			tbRepairExtra.Arbitrate = true and
+			tbRepairExtra.BelongedAssignDepart = dp and
+			result = true
+	}
+
+//鍊欑瀹℃壒
+	Contract  ManageService::approval(tbId : Integer, isApproved : Boolean) : Boolean {
+
+		definition:
+			tbRepair:TbRepair = TbRepair.allInstance()->any(t:TbRepair | t.Id = tbId),
+			tre:TbRepairExtra = TbRepairExtra.allInstance()->any(t:TbRepairExtra | t.Id = tbId),
+			role:Role = Role.allInstance()->any(r:Role | r.Id = 1) // 閮ㄩ棬缁忕悊鍜屼警绠¤鑹�
+
+		precondition:
+			Currentuser.oclIsUndefined() = false and
+			Currentuser.BelongedRole = role and
+			tbRepair.oclIsUndefined() = false and
+			tre.oclIsUndefined() = false
+
+		postcondition:
+			if
+				isApproved = true
+			then
+				tre.IsReject = false and
+				tre.Admin = true and
+				result = true
+			else
+				tre.IsReject = true and
+				tre.Admin = false and
+				result = true
+			endif
+
+	}
+
+//------------------------------------------------------------
+//          閮ㄩ棬鍛樺伐
+//鎺ユ敹宸ュ崟
+	Contract  MaintainService::receiveTb(tbId : Integer) : Boolean {
+
+		definition:
+			tre:TbRepairExtra = TbRepairExtra.allInstance()->any(t:TbRepairExtra | t.Id = tbId),
+			role:Role = Role.allInstance()->any(r:Role | r.Id = 3) // 缁翠慨浜哄憳瑙掕壊
+
+		precondition:
+			Currentuser.oclIsUndefined() = false and
+			tre.oclIsUndefined() = false and
+			Currentuser.BelongedRole = role
+		postcondition:
+			tre.IsAccept = true and
+			tre.BelongedTbRepair.Status = 1 and
+			result = true
+	}
+
+//瀹屾垚宸ュ崟
+	Contract  MaintainService::completeTb(tbId : Integer, cause:String, resolvent:String) : Boolean {
+
+		definition:
+			tre:TbRepairExtra = TbRepairExtra.allInstance()->any(t:TbRepairExtra | t.Id = tbId),
+			role:Role = Role.allInstance()->any(r:Role | r.Id = 3) // 缁翠慨浜哄憳瑙掕壊
+
+		precondition:
+			Currentuser.oclIsUndefined() = false and
+			tre.oclIsUndefined() = false and
+			Currentuser.BelongedRole = role
+		postcondition:
+			tre.IsComplete = true and
+			tre.Cause = cause and
+			tre.Resolvent = resolvent and
+			tre.BelongedTbRepair.Status = 2 and
+			result = true
+	}
+
+//缁翠慨璐圭敤
+	Contract  MaintainService::rocessingFees(tbId : Integer, projectName:String, price:Real, number:Integer, remake:String) : Boolean {
+
+		definition:
+			tre:TbRepairExtra = TbRepairExtra.allInstance()->any(t:TbRepairExtra | t.Id = tbId),
+			role:Role = Role.allInstance()->any(r:Role | r.Id = 3) // 缁翠慨浜哄憳瑙掕壊
+
+		precondition:
+			Currentuser.oclIsUndefined() = false and
+			tre.oclIsUndefined() = false and
+			Currentuser.BelongedRole = role
+		postcondition:
+			let pf:ProcessingFees in
+			pf.oclIsNew() and
+			pf.ProjectName = projectName and
+			pf.Price = price and
+			pf.Number = number and
+			pf.TotalPrice = price * number and
+			pf.Remake = remake and
+			pf.BelongedTbRepair = tre.BelongedTbRepair and
+			ProcessingFees.allInstance()->includes(pf) and
+			result = true
+	}
+
+////  鍊欐満妤艰澶囪繍琛岀姸鍐佃褰�
+	Contract  MaintainService::setOperationStatus(name:String, value:String, valueUnit:String, status:String, remark:String, equipmentId:Integer) : Boolean {
+
+		definition:
+			te:TerminalEquipment = TerminalEquipment.allInstance()->any(t:TerminalEquipment | t.Id = equipmentId)
+
+		precondition:
+			Currentuser.oclIsUndefined() = false and
+			name.oclIsUndefined() = false and
+			value.oclIsUndefined() = false and
+			valueUnit.oclIsUndefined() = false and
+			te.oclIsUndefined() = false
+		postcondition:
+			let os:OperationStatus in
+			os.oclIsNew() and
+			os.Name = name and
+			os.Value = value and
+			os.ValueUnit = valueUnit and
+			os.Status = status and
+			os.Remark = remark and
+			os.Time.isEqual(Now) and
+			os.BelongedEquipment = te and
+			OperationStatus.allInstance()->includes(os) and
+			result = true
+	}
+
+//-----------------------------------------------------------------------------------------------------------------------------
+	Contract  AirportSystem::createUser(id : Integer, name : String, password : String, phone : String, roleCode : Integer, departmentid : Integer) : Boolean {
+
+		definition:
+			user:User = User.allInstance()->any(uu:User | uu.Id = id),
+			role:Role = Role.allInstance()->any(r:Role | r.RoleCode = roleCode),
+			dp:Department = Department.allInstance()->any(d:Department | d.Id = departmentid)
+
+		precondition:
+			user.oclIsUndefined() = true and
+			role.oclIsUndefined() = false and
+			dp.oclIsUndefined() = false
+
+		postcondition:
+			let u:User in
+			u.oclIsNew() and
+			u.Id = id and
+			u.Name = name and
+			u.Password = password and
+			u.Phone = phone and
+			u.BelongedDepartment = dp and
+			u.BelongedRole = role and
+			User.allInstance()->includes(u) and
+			result = true
+	}
+
+//entity query operation 
+	Contract  AirportSystem::queryUser(id : Integer) : User {
+
+		definition:
+			user:User = User.allInstance()->any(u:User | u.Id = id)
+
+		precondition:
+			user.oclIsUndefined() = false
+
+		postcondition:
+			result = user
+	}
+
+//entity modify operation 
+	Contract  AirportSystem::modifyUser(id : Integer, name : String, password : String, phone : String, roleCode : Integer, departmentid : Integer) : Boolean {
+
+		definition:
+			user:User = User.allInstance()->any(u:User | u.Id = id),
+			role:Role = Role.allInstance()->any(r:Role | r.RoleCode = roleCode),
+			dp:Department = Department.allInstance()->any(dd:Department | dd.Id = departmentid)
+
+		precondition:
+			user.oclIsUndefined() = false and
+			dp.oclIsUndefined() = false
+
+		postcondition:
+			user.Id = id and
+			user.Name = name and
+			user.Password = password and
+			user.BelongedDepartment = dp and
+			user.Phone = phone and
+			user.BelongedRole = role and
+			result = true
+	}
+
+//entity delete operation 
+	Contract  AirportSystem::deleteUser(id : Integer) : Boolean {
+
+		definition:
+			user:User = User.allInstance()->any(u:User | u.Id = id)
+
+		precondition:
+			user.oclIsUndefined() = false
+
+		postcondition:
+			User.allInstance()->excludes(user) and
+			result = true
+	}
+
+	Contract  AirportSystem::createRole(id:Integer, remark : String, roleCode : Integer) : Boolean {
+
+		definition:
+			role:Role = Role.allInstance()->any(ro:Role | ro.Id = id)
+
+		precondition:
+			role.oclIsUndefined() = true
+
+		postcondition:
+			let r:Role in
+			r.Id = id and
+			r.oclIsNew() and
+			r.Remark = remark and
+			r.RoleCode = roleCode and
+			Role.allInstance()->includes(r) and
+			result = true
+	}
+
+//entity query operation 
+	Contract  AirportSystem::queryRole(id : Integer) : Role {
+
+		definition:
+			role:Role = Role.allInstance()->any(r:Role | r.Id = id)
+
+		precondition:
+			role.oclIsUndefined() = false
+
+		postcondition:
+			result = role
+	}
+
+//entity modify operation 
+	Contract  AirportSystem::modifyRole(id : Integer, remark : String, roleCode : Integer) : Boolean {
+
+		definition:
+			role:Role = Role.allInstance()->any(r:Role | r.Id = id)
+
+		precondition:
+			role.oclIsUndefined() = false
+
+		postcondition:
+			role.Id = id and
+			role.Remark = remark and
+			role.RoleCode = roleCode and
+			result = true
+	}
+
+//entity delete operation 
+	Contract  AirportSystem::deleteRole(id : Integer) : Boolean {
+
+		definition:
+			role:Role = Role.allInstance()->any(r:Role | r.Id = id)
+
+		precondition:
+			role.oclIsUndefined() = false
+
+		postcondition:
+			Role.allInstance()->excludes(role) and
+			result = true
+	}
+
+	Contract  AirportSystem::createDepartment(id:Integer, name : String, contactRerson:String, principal:String, phone :String, briefInfo :String, describeContent:String, remark:String) : Boolean {
+
+		definition:
+			dep:Department = Department.allInstance()->any(dd:Department | dd.Id = id)
+
+		precondition:
+			dep.oclIsUndefined() = true
+
+		postcondition:
+			let d:Department in
+			d.oclIsNew() and
+			d.Id = id and
+			d.Name = name and
+			d.ContactRerson = contactRerson and
+			d.Principal = principal and
+			d.Phone = phone and
+			d.BriefInfo = briefInfo and
+			d.DescribeContent = describeContent and
+			d.Remark = remark and
+			Department.allInstance()->includes(d) and
+			result = true
+	}
+
+//entity query operation 
+	Contract  AirportSystem::queryDepartment(id : Integer) : Department {
+
+		definition:
+			dep:Department = Department.allInstance()->any(d:Department | d.Id = id)
+
+		precondition:
+			dep.oclIsUndefined() = false
+
+		postcondition:
+			result = dep
+	}
+
+//entity modify operation 
+	Contract  AirportSystem::modifyDepartment(id : Integer, name : String, contactRerson : String, principal : String, phone :String, briefInfo :String, describeContent : String, remark : String) : Boolean {
+
+		definition:
+			dep:Department = Department.allInstance()->any(d:Department | d.Id = id)
+
+		precondition:
+			dep.oclIsUndefined() = false
+
+		postcondition:
+			dep.Name = name and
+			dep.ContactRerson = contactRerson and
+			dep.Principal = principal and
+			dep.Phone = phone and
+			dep.BriefInfo = briefInfo and
+			dep.DescribeContent = describeContent and
+			dep.Remark = remark and
+			result = true
+	}
+
+//entity delete operation 
+	Contract  AirportSystem::deleteDepartment(id : Integer) : Boolean {
+
+		definition:
+			dep:Department = Department.allInstance()->any(d:Department | d.Id = id)
+
+		precondition:
+			dep.oclIsUndefined() = false
+
+		postcondition:
+			Department.allInstance()->excludes(dep) and
+			result = true
+	}
+
+	Contract  AirportSystem::createDeviceInfo(id:Integer, name : String, brand:String, type:String, address :String, adminName :String, contactsName:String, remark:String) : Boolean {
+
+		definition:
+			di:DeviceInfo = DeviceInfo.allInstance()->any(d:DeviceInfo | d.Id = id)
+
+		precondition:
+			di.oclIsUndefined() = true
+
+		postcondition:
+			let d:DeviceInfo in
+			d.oclIsNew() and
+			d.Id = id and
+			d.Name = name and
+			d.Brand = brand and
+			d.Type = type and
+			d.Address = address and
+			d.AdminName = adminName and
+			d.ContactsName = contactsName and
+			d.Remark = remark and
+			DeviceInfo.allInstance()->includes(d) and
+			result = true
+	}
+
+//entity query operation 
+	Contract  AirportSystem::queryDeviceInfo(id : Integer) : DeviceInfo {
+
+		definition:
+			dep:DeviceInfo = DeviceInfo.allInstance()->any(d:DeviceInfo | d.Id = id)
+
+		precondition:
+			dep.oclIsUndefined() = false
+
+		postcondition:
+			result = dep
+	}
+
+//entity modify operation 
+	Contract  AirportSystem::modifyDeviceInfo(id:Integer, name : String, brand:String, type:String, address :String, adminName :String, contactsName:String, remark:String) : Boolean {
+
+		definition:
+			dep:DeviceInfo = DeviceInfo.allInstance()->any(d:DeviceInfo | d.Id = id)
+
+		precondition:
+			dep.oclIsUndefined() = false
+
+		postcondition:
+			dep.Name = name and
+			dep.Brand = brand and
+			dep.Type = type and
+			dep.Address = address and
+			dep.AdminName = adminName and
+			dep.ContactsName = contactsName and
+			dep.Remark = remark and
+			result = true
+	}
+
+//entity delete operation 
+	Contract  AirportSystem::deleteDeviceInfo(id : Integer) : Boolean {
+
+		definition:
+			dep:DeviceInfo = DeviceInfo.allInstance()->any(d:DeviceInfo | d.Id = id)
+
+		precondition:
+			dep.oclIsUndefined() = false
+
+		postcondition:
+			DeviceInfo.allInstance()->excludes(dep) and
+			result = true
+	}
+
+	Contract  AirportSystem::createDeviceLocationGroup(id:Integer, name:String, remark : String): Boolean {
+
+		definition:
+			dg:DeviceLocationGroup = DeviceLocationGroup.allInstance()->any(d:DeviceLocationGroup | d.Id = id)
+
+		precondition:
+			dg.oclIsUndefined() = true
+
+		postcondition:
+			let d:DeviceLocationGroup in
+			d.oclIsNew() and
+			d.Id = id and
+			d.Name = name and
+			d.Remark = remark and
+			DeviceLocationGroup.allInstance()->includes(d) and
+			result = true
+	}
+
+	Contract  AirportSystem::queryDeviceLocationGroup(id:Integer): DeviceLocationGroup {
+
+		definition:
+			dg:DeviceLocationGroup = DeviceLocationGroup.allInstance()->any(d:DeviceLocationGroup | d.Id = id)
+
+		precondition:
+			dg.oclIsUndefined() = false
+
+		postcondition:
+			result = dg
+	}
+
+	Contract  AirportSystem::modifyDeviceLocationGroup(id:Integer, name:String, remark : String): Boolean {
+
+		definition:
+			dg:DeviceLocationGroup = DeviceLocationGroup.allInstance()->any(d:DeviceLocationGroup | d.Id = id)
+
+		precondition:
+			dg.oclIsUndefined() = false
+
+		postcondition:
+			dg.Id = id and
+			dg.Name = name and
+			dg.Remark = remark and
+			result = true
+	}
+
+	Contract  AirportSystem::deleteDeviceLocationGroup(id:Integer): Boolean {
+
+		definition:
+			dg:DeviceLocationGroup = DeviceLocationGroup.allInstance()->any(d:DeviceLocationGroup | d.Id = id)
+
+		precondition:
+			dg.oclIsUndefined() = false
+
+		postcondition:
+			DeviceLocationGroup.allInstance()->excludes(dg) and
+			result = true
+	}
+
+	Contract  AirportSystem::createEquipmentFailureType(id:Integer, name:String, describeContent:String, remark:String): Boolean {
+
+		definition:
+			eft:EquipmentFailureType = EquipmentFailureType.allInstance()->any(e:EquipmentFailureType | e.Id = id)
+
+		precondition:
+			eft.oclIsUndefined() = true
+		postcondition:
+			let e:EquipmentFailureType in
+			e.oclIsNew() and
+			e.Id = id and
+			e.Name = name and
+			e.Remark = remark and
+			e.DescribeContent = describeContent and
+			EquipmentFailureType.allInstance()->includes(e) and
+			result = true
+	}
+
+	Contract  AirportSystem::queryEquipmentFailureType(id:Integer): EquipmentFailureType {
+
+		definition:
+			eft:EquipmentFailureType = EquipmentFailureType.allInstance()->any(e:EquipmentFailureType | e.Id = id)
+
+		precondition:
+			eft.oclIsUndefined() = false
+		postcondition:
+			result = eft
+	}
+
+	Contract  AirportSystem::modifyEquipmentFailureType(id:Integer, name:String, describeContent:String, remark:String): Boolean {
+
+		definition:
+			eft:EquipmentFailureType = EquipmentFailureType.allInstance()->any(e:EquipmentFailureType | e.Id = id)
+
+		precondition:
+			eft.oclIsUndefined() = false
+		postcondition:
+			eft.Id = id and
+			eft.Name = name and
+			eft.Remark = remark and
+			eft.DescribeContent = describeContent and
+			result = true
+	}
+
+	Contract  AirportSystem::deleteEquipmentFailureType(id:Integer): Boolean {
+
+		definition:
+			eft:EquipmentFailureType = EquipmentFailureType.allInstance()->any(e:EquipmentFailureType | e.Id = id)
+
+		precondition:
+			eft.oclIsUndefined() = false
+		postcondition:
+			EquipmentFailureType.allInstance()->excludes(eft) and
+			result = true
+	}
+
+	Contract  AirportSystem::createDeviceStatus(id:Integer, name:String, remark:String): Boolean {
+
+		definition:
+			ds:DeviceStatus = DeviceStatus.allInstance()->any(dd:DeviceStatus | dd.Id = id)
+
+		precondition:
+			ds.oclIsUndefined() = true
+		postcondition:
+			let d:DeviceStatus in
+			d.oclIsNew() and
+			d.Id = id and
+			d.Name = name and
+			d.Remark = remark and
+			DeviceStatus.allInstance()->includes(d) and
+			result = true
+	}
+
+	Contract  AirportSystem::queryDeviceStatus(id:Integer): DeviceStatus {
+
+		definition:
+			ds:DeviceStatus = DeviceStatus.allInstance()->any(d:DeviceStatus | d.Id = id)
+
+		precondition:
+			ds.oclIsUndefined() = false
+		postcondition:
+			result = ds
+	}
+
+	Contract  AirportSystem::modifyDeviceStatus(id:Integer, name:String, remark:String): Boolean {
+
+		definition:
+			ds:DeviceStatus = DeviceStatus.allInstance()->any(d:DeviceStatus | d.Id = id)
+
+		precondition:
+			ds.oclIsUndefined() = false
+		postcondition:
+			ds.Id = id and
+			ds.Name = name and
+			ds.Remark = remark and
+			result = true
+	}
+
+	Contract  AirportSystem::deleteDeviceStatus(id:Integer): Boolean {
+
+		definition:
+			ds:DeviceStatus = DeviceStatus.allInstance()->any(d:DeviceStatus | d.Id = id)
+
+		precondition:
+			ds.oclIsUndefined() = false
+		postcondition:
+			DeviceStatus.allInstance()->excludes(ds) and
+			result = true
+	}
+
+	Contract  AirportSystem::createDeviceAssociationGroup(id:Integer, name:String, remark:String): Boolean {
+
+		definition:
+			dag:DeviceAssociationGroup = DeviceAssociationGroup.allInstance()->any(d:DeviceAssociationGroup | d.Id = id)
+
+		precondition:
+			dag.oclIsUndefined() = true
+		postcondition:
+			let d:DeviceAssociationGroup in
+			d.oclIsNew() and
+			d.Id = id and
+			d.Name = name and
+			d.Remark = remark and
+			DeviceAssociationGroup.allInstance()->includes(d) and
+			result = true
+	}
+
+	Contract  AirportSystem::queryDeviceAssociationGroup(id:Integer): DeviceAssociationGroup {
+
+		definition:
+			dag:DeviceAssociationGroup = DeviceAssociationGroup.allInstance()->any(d:DeviceAssociationGroup | d.Id = id)
+
+		precondition:
+			dag.oclIsUndefined() = false
+		postcondition:
+			result = dag
+	}
+
+	Contract  AirportSystem::modifyDeviceAssociationGroup(id:Integer, name:String, remark:String): Boolean {
+
+		definition:
+			dag:DeviceAssociationGroup = DeviceAssociationGroup.allInstance()->any(d:DeviceAssociationGroup | d.Id = id)
+
+		precondition:
+			dag.oclIsUndefined() = false
+		postcondition:
+			dag.Id = id and
+			dag.Name = name and
+			dag.Remark = remark and
+			result = true
+	}
+
+	Contract  AirportSystem::deleteDeviceAssociationGroup(id:Integer): Boolean {
+
+		definition:
+			dag:DeviceAssociationGroup = DeviceAssociationGroup.allInstance()->any(d:DeviceAssociationGroup | d.Id = id)
+
+		precondition:
+			dag.oclIsUndefined() = false
+		postcondition:
+			DeviceAssociationGroup.allInstance()->excludes(dag) and
+			result = true
+	}
+
+	Contract RepairService::sendVoice() : Boolean {
+
+		precondition:
+			true
+		postcondition:
+			result = true
+	}
+
+	Contract RepairService::pushInfo() : Boolean {
+
+		precondition:
+			true
+		postcondition:
+			result = true
+	}
+
+	Contract RepairService::savePwd() : Boolean {
+
+		precondition:
+			true
+		postcondition:
+			result = true
+	}
+
+// Service ManageDeviceStatusService {
+//
+//		[Operation]
+//		createDeviceStatus()
+//		queryDeviceStatus()
+//		modifyDeviceStatus()
+//		deleteDeviceStatus()
+//
+//	}
+//
+//	Service ManageUserService {
+//
+//		[Operation]
+//		createUser()
+//		queryUser()
+//		modifyUser()
+//		deleteUser()
+//
+//	}
+//
+//	Service ManageEquipmentFailureTypeService {
+//
+//		[Operation]
+//		createEquipmentFailureType()
+//		queryEquipmentFailureType()
+//		modifyEquipmentFailureType()
+//		deleteEquipmentFailureType()
+//
+//	}
+//
+//	Service ManageDeviceLocationGroupService {
+//
+//		[Operation]
+//		createDeviceLocationGroup()
+//		queryDeviceLocationGroup()
+//		modifyDeviceLocationGroup()
+//		deleteDeviceLocationGroup()
+//
+//	}
+//
+//	Service ManageDeviceInfoService {
+//
+//		[Operation]
+//		createDeviceInfo()
+//		queryDeviceInfo()
+//		modifyDeviceInfo()
+//		deleteDeviceInfo()
+//
+//	}
+//
+//	Service ManageDepartmentService {
+//
+//		[Operation]
+//		createDepartment()
+//		queryDepartment()
+//		modifyDepartment()
+//		deleteDepartment()
+//
+//	}
+//
+//	Service ManageDeviceAssociationGroupService {
+//
+//		[Operation]
+//		createDeviceAssociationGroup()
+//		queryDeviceAssociationGroup()
+//		modifyDeviceAssociationGroup()
+//		deleteDeviceAssociationGroup()
+//
+//	}
+//
+//	Service ManageRoleService {
+//
+//		[Operation]
+//		createRole()
+//		queryRole()
+//		modifyRole()
+//		deleteRole()
+//
+//	}
+}
+
+DomainModel T {
+
+	Entity WorkReport {
+		Id:Integer
+		Name:String
+		Content:String
+		Time:Date
+	}
+
+//  鍊肩彮琛�
+	Entity WorkTask {
+		Id:Integer
+		StaffName:String // 鍊肩彮浜哄鍚�
+		AdminName:String // 鎺掔彮浜哄鍚�
+		Phone:String // 鑱旂郴鐢佃瘽
+		Section:String // 鍊肩彮鍖洪棿
+		Remark:String
+	}
+
+//  鍊欐満妤艰澶囪〃
+	Entity TerminalEquipment {
+		Id:Integer
+		Name:String // 璁惧鍚嶇О
+		Address:String // 璁惧鍦板潃
+		Description:String // 璁惧鎻忚堪
+		Type:Integer // 璁惧绫诲瀷
+		Remark:String
+		[Refer]
+	}
+
+//  鍊欐満妤艰澶囪繍琛岀姸鍐佃〃
+	Entity OperationStatus {
+		Id:Integer
+		Remark:String
+		Status:String // 鐘舵��
+		Value:String // 褰撳墠鍊�
+		ValueUnit:String // 鍊煎崟浣�
+		Time :Date // 涓婃姤鏃堕棿
+		Name:String // 涓婃姤浜�
+		[Refer]
+	}
+
+	Entity User {
+		Id : Integer
+		Name : String
+		Password : String
+		Phone : String
+		[Refer]
+	}
+
+	Entity Role {
+		Id : Integer // 鏅�氱敤鎴凤紝绉戝缁忕悊 锛岀鐞嗕汉鍛� 锛岄儴闂ㄩ槦闀� 锛岄儴闂ㄤ汉鍛�
+		RoleCode :Integer
+		Remark : String
+		[Refer]
+	}
+
+	Entity Department { // 閮ㄩ棬淇℃伅琛�
+	// 閮ㄩ棬灞傜骇   ----
+	// 涓婄骇閮ㄩ棬id ----
+		Id:Integer
+		Name:String
+		ContactRerson:String // 閮ㄩ棬鑱旂郴浜�
+		Principal:String // 閮ㄩ棬璐熻矗浜�
+		Phone :String // 閮ㄩ棬鑱旂郴鐢佃瘽
+		BriefInfo :String // 閮ㄩ棬绠�浠�
+		DescribeContent:String // 閮ㄩ棬鑱岃矗鎻忚堪
+		Remark:String // 澶囨敞
+	}
+
+	Entity TbRepair { // 鎶ヤ慨浠诲姟琛�
+		Id : Integer
+		Repairname : String // 鎶ヤ慨浜�
+		Phone : String // 鎶ヤ慨鐢佃瘽
+		Place : String // 鎶ヤ慨浣嶇疆 //搴旇鏈夊叿浣撶殑鍑犱釜浣嶇疆渚涢�夋嫨
+		RepairsStatus : Integer // 鏁呴殰绫诲埆   鏈烘璁惧銆佸埗鍐峰埗鏆栬澶囥�佺収鏄庡強渚涚數璁惧銆佷緵姘村強鍦熷缓鐩稿叧銆佹苯杞︾淮淇绾�
+		DeviceId : String // 璁惧缂栧彿
+		Status :Integer // 鎶ヤ慨澶勭悊鐘舵��  ---姝ゅ瓧娈典娇鐢� 0 锛�1 锛�2    鍒嗗埆琛ㄧずisAccept=0 锛�1   isComplete = 1  
+		DescribeContent : String // 鏁呴殰鎻忚堪
+		Score:Integer // 璇勪环鍒嗘暟  1~5鏄�
+		Remark:String // 澶囨敞
+		Time:Date // 涓婃姤鏃堕棿
+		[Refer]
+		[INV]
+//		inv repairsStatus
+	}
+
+	Entity TbRepairExtra { // 鎶ヤ慨浠诲姟澶勭悊  --------------涓婃姤浜哄皢鎶ヤ慨浠诲姟鎸囧畾缁欎竴涓淮淇儴闂�
+		Id : Integer
+		Admin:Boolean // 鍊欑瀹℃牳
+		IsReject:Boolean // 閫�鍥�
+		RejectCause:String // 閫�鍥炲師鍥�
+		RelayNum:Integer // 杞彂娆℃暟
+		Arbitrate:Boolean // 鏄惁宸茬粡浠茶
+		IsAccept:Boolean // 鏄惁鍙楃悊
+		IsComplete:Boolean // 鏄惁瀹屾垚缁翠慨
+		Time:Date // 瀹屾垚鏃堕棿
+		Resolvent:String // 鏁呴殰澶勭悊琛屼负
+		Cause:String // 鏁呴殰鍘熷洜
+		//
+		[Refer]
+		[INV]
+		
+	}
+
+	// 鎶ヤ慨浠诲姟澶勭悊缁翠慨璐圭敤
+	Entity ProcessingFees {
+		Id:Integer
+		ProjectName:String // 缁翠慨椤圭洰
+		Price:Real // 缁翠慨鍗曚环
+		Number:Integer // 缁翠慨鏁伴噺
+		TotalPrice:Real // 缁翠慨鎬讳环
+		Remake:String // 澶囨敞
+		[Refer]
+	}
+
+	Entity DeviceInfo { // 璁惧淇℃伅琛�
+		Id:Integer //
+		Name:String // 璁惧鍚嶇О
+		Brand:String // 璁惧鍝佺墝
+		Type:String // 璁惧鍨嬪彿
+		Address:String // 璁惧瀹夎浣嶇疆
+		AdminName:String // 璁惧绠＄悊浜�
+		ContactsName:String // 璁惧鑱旂郴浜烘柟寮�
+		Status:Integer // 璁惧褰撳墠鐘舵��
+		Remark:String // 澶囨敞
+		[Refer]
+	}
+
+	Entity DeviceLocationGroup { // 璁惧浣嶇疆鍒嗙粍
+		Id:Integer //
+		Name:String // 璁惧浣嶇疆鍚嶇О
+		Remark:String // 澶囨敞
+	}
+
+	Entity EquipmentFailureType { // 璁惧鏁呴殰绫诲瀷
+		Id:Integer
+		Name:String //
+		DescribeContent:String // 璁惧鏁呴殰鑷鎻忚堪
+		Remark:String // 澶囨敞
+		[Refer]
+	}
+
+	Entity DeviceStatus { // 璁惧鐘舵��
+		Id:Integer //
+		Name:String //
+		Remark:String // 澶囨敞
+	}
+
+	Entity DeviceAssociationGroup { // 璁惧鍏宠仈鍒嗙粍
+		Id:Integer //
+		Name:String //
+		Remark:String
+	}
+
+}
+

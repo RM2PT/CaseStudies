@@ -1,0 +1,181 @@
+MicroServiceModel CoCoME {
+	MicroService StoreManagerService {
+		ProvidedInterface manageCashier{
+			[Operation]
+			createCashier
+			queryCashier
+			updateCashier
+			modifyCashier
+		}
+		ProvidedInterface manageSupplier{
+			[Operation]
+			createSupplier
+			querySupplier
+			updateSupplier
+			modifySupplier
+		}
+		ProvidedInterface manageStore{
+			[Operation]
+			createStore
+			queryStore
+			updateStore
+			modifyStore
+		}
+		ProvidedInterface manageCashDesk{
+			[Operation]
+			createCashDesk
+			queryCashDesk
+			updateCashDesk
+			modifyCashDesk
+		}
+		ProvidedInterface manageProductCatalog{
+			[Operation]
+			createProductCatalog
+			queryProductCatalog
+			updateProductCatalog
+			modifyProductCatalog
+		}
+		ProvidedInterface manageItem{
+			[Operation]
+			createItem
+			queryItem
+			updateItem
+			modifyItem
+		}
+		ProvidedInterface closeCashDesk{
+			[Operation]
+			closeCashDesk
+		}
+		ProvidedInterface processSale{
+			[Operation]
+			processSale
+		}
+		ProvidedInterface openCashDesk{
+			[Operation]
+			openCashDesk
+		}
+		ProvidedInterface orderProducts{
+			[Operation]
+			orderProducts
+		}
+		ProvidedInterface listSuppliers{
+			[Operation]
+			listSuppliers
+		}
+		ProvidedInterface openStore{
+			[Operation]
+			openStore
+		}
+		ProvidedInterface changePrice{
+			[Operation]
+			changePrice
+		}
+		ProvidedInterface receiveOrderedProduct{
+			[Operation]
+			receiveOrderedProduct
+		}
+		ProvidedInterface showStockReports{
+			[Operation]
+			showStockReports
+		}
+		ProvidedInterface closeStore{
+			[Operation]
+			closeStore
+		}
+		DomainModel StoreManagerService {
+			 Entity Sale {
+				Time : Date
+				IsComplete : Boolean
+				Amount : Real
+				IsReadytoPay : Boolean
+				[Refer]
+				Belongedstore : Store  Association
+				BelongedCashDesk : CashDesk  Association
+				ContainedSalesLine : SalesLineItem  Association
+				AssoicatedPayment : Payment  Association
+			}
+			 Entity CardPayment {
+				CardAccountNumber : String
+				ExpiryDate : Date
+				[Refer]
+			}
+			 Entity CashPayment {
+				Balance : Real
+				[Refer]
+			}
+			 Entity OrderProduct {
+				Id : Integer
+				Time : Date
+				OrderStatus : Integer
+				Amount : Real
+				[Refer]
+				Supplier : Supplier  Association
+				ContainedEntries : OrderEntry  Association
+			}
+			@AutoCRUD Entity ProductCatalog {
+				Id : Integer
+				Name : String
+				[Refer]
+				ContainedItems : Item  Association
+			}
+			@AutoCRUD Entity CashDesk {
+				Id : Integer
+				Name : String
+				IsOpened : Boolean
+				[Refer]
+				ContainedSales : Sale  Association
+				BelongedStore : Store  Association
+			}
+			 Entity Payment {
+				AmountTendered : Real
+				[Refer]
+				BelongedSale : Sale  Association
+			}
+			 Entity SalesLineItem {
+				Quantity : Integer
+				Subamount : Real
+				[Refer]
+				BelongedSale : Sale  Association
+				BelongedItem : Item  Association
+			}
+			@AutoCRUD Entity Cashier {
+				Id : Integer
+				Name : String
+				[Refer]
+				WorkedStore : Store  Association
+			}
+			 Entity OrderEntry {
+				Quantity : Integer
+				SubAmount : Real
+				[Refer]
+				Item : Item  Association
+			}
+			@AutoCRUD Entity Store {
+				Id : Integer
+				Name : String
+				Address : String
+				IsOpened : Boolean
+				[Refer]
+				AssociationCashdeskes : CashDesk  Association
+				Productcatalogs : ProductCatalog  Association
+				Items : Item  Association
+				Cashiers : Cashier  Association
+				Sales : Sale  Association
+			}
+			@AutoCRUD Entity Item {
+				Barcode : Integer
+				Name : String
+				Price : Real
+				StockNumber : Integer
+				OrderPrice : Real
+				[Refer]
+				BelongedCatalog : ProductCatalog  Association
+			}
+			@AutoCRUD Entity Supplier {
+				Id : Integer
+				Name : String
+				[Refer]
+			}
+		}
+	}
+}

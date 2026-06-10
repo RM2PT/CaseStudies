@@ -1,0 +1,65 @@
+plugins {
+    id 'org.springframework.boot' version '2.0.9.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'java'
+}
+
+group = 'com.example'
+sourceCompatibility = '1.8'
+
+configurations {
+    providedRuntime
+    all*.exclude module: 'spring-boot-starter-logging'
+}
+
+ext {
+    set('springCloudVersion', "Finchley.SR4")
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.cloud:spring-cloud-starter-config'
+    implementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.junit.jupiter:junit-jupiter:5.7.0'
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.16'
+
+    compile ('mysql:mysql-connector-java:5.1.44')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa:1.5.3.RELEASE')
+    compile ('com.googlecode.json-simple:json-simple:1.1')
+
+    compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.0'
+    compile group: 'org.javassist', name: 'javassist', version: '3.28.0-GA'
+
+    //Log4j
+    compile group: 'org.apache.logging.log4j', name: 'log4j-web', version: '2.11.1'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.1'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.1'
+
+    implementation group: 'io.cucumber', name: 'cucumber-java', version: '5.6.0'
+    implementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
+    implementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '5.0.3'
+
+    //Feign
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+    implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.4.1'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-ribbon'
+
+    compile "com.google.zxing:core:3.4.0"
+    compile "com.google.zxing:javase:3.4.0"
+
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}

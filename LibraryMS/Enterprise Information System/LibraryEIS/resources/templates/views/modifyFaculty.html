@@ -1,0 +1,121 @@
+<head>
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<link rel="stylesheet" href="/css/layui.css"></link>
+	<script src="/js/layui.js"></script>
+	<script type="text/javascript">
+	function execute() {
+	
+	var userID=$("#userID").val();
+	var name=$("#name").val();
+	var sex=$("#sex").val();
+	var password=$("#password").val();
+	var email=$("#email").val();
+	var faculty=$("#faculty").val();
+	var major=$("#major").val();
+	var position=$("#position").val();
+	var status=$("#status").val();
+		$.ajax({
+			 type : "PUT",
+			 url : "/ManageUserCRUDService/modifyFaculty",
+	data : {
+	userID:userID,
+	name:name,
+	sex:sex,
+	password:password,
+	email:email,
+	faculty:faculty,
+	major:major,
+	position:position,
+	status:status
+	},
+	dataType : "json",
+	success : function(data,info,request) {
+		//console.log(data);
+		var a=JSON.stringify(data.data) 
+		document.getElementById("data").innerHTML=a 
+		var setToken = request.getResponseHeader("Authorization");
+		if (data.msg == "success") {
+			alert("execute success");
+		} else {
+			alert(data.msg);
+		}
+	},
+	error : function(data) {
+		console.log(data);
+	}
+	});
+	}
+	</script>
+	</head>
+	<body>
+		<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;"><legend>Operation Parameter</legend></fieldset>
+	<div class="layui-form-item">
+	<label class="layui-form-label">userID</label>
+	<div class="layui-input-inline">
+	<input type="text" name="userID" id="userID" placeholder="Please enter content" autocomplete="off" class="layui-input">
+	</div>
+	</div>
+	<div class="layui-form-item">
+	<label class="layui-form-label">name</label>
+	<div class="layui-input-inline">
+	<input type="text" name="name" id="name" placeholder="Please enter content" autocomplete="off" class="layui-input">
+	</div>
+	</div>
+	<div class="layui-form-item">
+	<label class="layui-form-label">sex</label>
+	<div class="layui-input-inline">
+	<input type="text" name="sex" id="sex" placeholder="Please enter content" autocomplete="off" class="layui-input">
+	</div>
+	</div>
+	<div class="layui-form-item">
+	<label class="layui-form-label">password</label>
+	<div class="layui-input-inline">
+	<input type="text" name="password" id="password" placeholder="Please enter content" autocomplete="off" class="layui-input">
+	</div>
+	</div>
+	<div class="layui-form-item">
+	<label class="layui-form-label">email</label>
+	<div class="layui-input-inline">
+	<input type="text" name="email" id="email" placeholder="Please enter content" autocomplete="off" class="layui-input">
+	</div>
+	</div>
+	<div class="layui-form-item">
+	<label class="layui-form-label">faculty</label>
+	<div class="layui-input-inline">
+	<input type="text" name="faculty" id="faculty" placeholder="Please enter content" autocomplete="off" class="layui-input">
+	</div>
+	</div>
+	<div class="layui-form-item">
+	<label class="layui-form-label">major</label>
+	<div class="layui-input-inline">
+	<input type="text" name="major" id="major" placeholder="Please enter content" autocomplete="off" class="layui-input">
+	</div>
+	</div>
+	<div class="layui-form-item">
+	<label class="layui-form-label">position</label>
+	<div class="layui-input-inline">
+	<input type="text" name="position" id="position" placeholder="Please enter content" autocomplete="off" class="layui-input">
+	</div>
+	</div>
+	<div class="layui-form-item">
+	<label class="layui-form-label">status</label>
+	<div class="layui-input-inline">
+	<input type="text" name="status" id="status" placeholder="Please enter content" autocomplete="off" class="layui-input">
+	</div>
+	</div>
+	<div class="layui-form-item">
+	<button class="layui-btn" style="margin-left: 100px; margin-top: 50px;" onclick="execute();" id="executeButton">execute</button>
+	</div>
+	<fieldset class="layui-elem-field layui-field-title" style="margin-top: 100px;"><legend>Operation Return</legend></fieldset>
+	<div style="padding: 15px;margin-left:15px; ">
+	<div class="layui-row layui-col-space15">
+	<div class="layui-col-md6">
+	<div class="layui-card" align="center">
+	<div class="layui-card-body " style="background-color: 	#FFFFFB;">
+	<span id="data" style="font-weight:bold;"></span>
+	</div>
+	</div>
+	</div>
+	</div></div>
+	</body>
+	

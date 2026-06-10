@@ -1,0 +1,154 @@
+<head>
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<link rel="stylesheet" href="/css/layui.css"></link>
+	<script src="/js/layui.js"></script>
+	<script type="text/javascript">
+	function execute() {
+	
+	var requestid=$("#requestid").val();
+	var name=$("#name").val();
+	var loanamount=$("#loanamount").val();
+	var loanpurpose=$("#loanpurpose").val();
+	var income=$("#income").val();
+	var phonenumber=$("#phonenumber").val();
+	var postaladdress=$("#postaladdress").val();
+	var zipcode=$("#zipcode").val();
+	var email=$("#email").val();
+	var workreferences=$("#workreferences").val();
+	var creditreferences=$("#creditreferences").val();
+	var checkingaccountnumber=$("#checkingaccountnumber").val();
+	var securitynumber=$("#securitynumber").val();
+		$.ajax({
+			 type : "POST",
+			 url : "/SubmitLoanRequestModule/enterLoanInformation",
+	data : {
+	requestid:requestid,
+	name:name,
+	loanamount:loanamount,
+	loanpurpose:loanpurpose,
+	income:income,
+	phonenumber:phonenumber,
+	postaladdress:postaladdress,
+	zipcode:zipcode,
+	email:email,
+	workreferences:workreferences,
+	creditreferences:creditreferences,
+	checkingaccountnumber:checkingaccountnumber,
+	securitynumber:securitynumber
+	},
+	dataType : "json",
+	success : function(data,info,request) {
+		//console.log(data);
+		var a=JSON.stringify(data.data) 
+		document.getElementById("data").innerHTML=a 
+		var setToken = request.getResponseHeader("Authorization");
+		sessionStorage.setItem("CurrentLoanRequest", setToken);console.log(setToken);
+		if (data.msg == "success") {
+			alert("execute success");
+		} else {
+			alert(data.msg);
+		}
+	},
+	error : function(data) {
+		console.log(data);
+	}
+	});
+	}
+	</script>
+	</head>
+	<body>
+		<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;"><legend>Operation Parameter</legend></fieldset>
+	<div class="layui-form-item">
+	<label class="layui-form-label">requestid</label>
+	<div class="layui-input-inline">
+	<input type="text" name="requestid" id="requestid" placeholder="Please enter content" autocomplete="off" class="layui-input">
+	</div>
+	</div>
+	<div class="layui-form-item">
+	<label class="layui-form-label">name</label>
+	<div class="layui-input-inline">
+	<input type="text" name="name" id="name" placeholder="Please enter content" autocomplete="off" class="layui-input">
+	</div>
+	</div>
+	<div class="layui-form-item">
+	<label class="layui-form-label">loanamount</label>
+	<div class="layui-input-inline">
+	<input type="text" name="loanamount" id="loanamount" placeholder="Please enter content" autocomplete="off" class="layui-input">
+	</div>
+	</div>
+	<div class="layui-form-item">
+	<label class="layui-form-label">loanpurpose</label>
+	<div class="layui-input-inline">
+	<input type="text" name="loanpurpose" id="loanpurpose" placeholder="Please enter content" autocomplete="off" class="layui-input">
+	</div>
+	</div>
+	<div class="layui-form-item">
+	<label class="layui-form-label">income</label>
+	<div class="layui-input-inline">
+	<input type="text" name="income" id="income" placeholder="Please enter content" autocomplete="off" class="layui-input">
+	</div>
+	</div>
+	<div class="layui-form-item">
+	<label class="layui-form-label">phonenumber</label>
+	<div class="layui-input-inline">
+	<input type="text" name="phonenumber" id="phonenumber" placeholder="Please enter content" autocomplete="off" class="layui-input">
+	</div>
+	</div>
+	<div class="layui-form-item">
+	<label class="layui-form-label">postaladdress</label>
+	<div class="layui-input-inline">
+	<input type="text" name="postaladdress" id="postaladdress" placeholder="Please enter content" autocomplete="off" class="layui-input">
+	</div>
+	</div>
+	<div class="layui-form-item">
+	<label class="layui-form-label">zipcode</label>
+	<div class="layui-input-inline">
+	<input type="text" name="zipcode" id="zipcode" placeholder="Please enter content" autocomplete="off" class="layui-input">
+	</div>
+	</div>
+	<div class="layui-form-item">
+	<label class="layui-form-label">email</label>
+	<div class="layui-input-inline">
+	<input type="text" name="email" id="email" placeholder="Please enter content" autocomplete="off" class="layui-input">
+	</div>
+	</div>
+	<div class="layui-form-item">
+	<label class="layui-form-label">workreferences</label>
+	<div class="layui-input-inline">
+	<input type="text" name="workreferences" id="workreferences" placeholder="Please enter content" autocomplete="off" class="layui-input">
+	</div>
+	</div>
+	<div class="layui-form-item">
+	<label class="layui-form-label">creditreferences</label>
+	<div class="layui-input-inline">
+	<input type="text" name="creditreferences" id="creditreferences" placeholder="Please enter content" autocomplete="off" class="layui-input">
+	</div>
+	</div>
+	<div class="layui-form-item">
+	<label class="layui-form-label">checkingaccountnumber</label>
+	<div class="layui-input-inline">
+	<input type="text" name="checkingaccountnumber" id="checkingaccountnumber" placeholder="Please enter content" autocomplete="off" class="layui-input">
+	</div>
+	</div>
+	<div class="layui-form-item">
+	<label class="layui-form-label">securitynumber</label>
+	<div class="layui-input-inline">
+	<input type="text" name="securitynumber" id="securitynumber" placeholder="Please enter content" autocomplete="off" class="layui-input">
+	</div>
+	</div>
+	<div class="layui-form-item">
+	<button class="layui-btn" style="margin-left: 100px; margin-top: 50px;" onclick="execute();" id="executeButton">execute</button>
+	</div>
+	<fieldset class="layui-elem-field layui-field-title" style="margin-top: 100px;"><legend>Operation Return</legend></fieldset>
+	<div style="padding: 15px;margin-left:15px; ">
+	<div class="layui-row layui-col-space15">
+	<div class="layui-col-md6">
+	<div class="layui-card" align="center">
+	<div class="layui-card-body " style="background-color: 	#FFFFFB;">
+	<span id="data" style="font-weight:bold;"></span>
+	</div>
+	</div>
+	</div>
+	</div></div>
+	</body>
+	

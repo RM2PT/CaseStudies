@@ -1,0 +1,440 @@
+{
+	"info": {
+		"_postman_id": "33c7b9a1-9800-4167-b6c3-26d1c0459442",
+		"name": "Model System Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "13950282"
+	},
+	"item": [
+		{
+			"name": "Save Model",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8096/DlSystem/model?title=test Title&keyword=Test keywords&version=Second&description=Saving first Model&id=4444555",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8096",
+					"path": [
+						"DlSystem",
+						"model"
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "test Title"
+						},
+						{
+							"key": "keyword",
+							"value": "Test keywords"
+						},
+						{
+							"key": "version",
+							"value": "Second"
+						},
+						{
+							"key": "description",
+							"value": "Saving first Model"
+						},
+						{
+							"key": "id",
+							"value": "4444555"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Attachment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8096/DlSystem/attachment",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8096",
+					"path": [
+						"DlSystem",
+						"attachment"
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "test Title",
+							"disabled": true
+						},
+						{
+							"key": "keyword",
+							"value": "Test keywords",
+							"disabled": true
+						},
+						{
+							"key": "version",
+							"value": "first",
+							"disabled": true
+						},
+						{
+							"key": "description",
+							"value": "Saving first Model",
+							"disabled": true
+						},
+						{
+							"key": "id",
+							"value": "12131312",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save Dataset",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8096/DlSystem/dataset?id=12121212&content=Test content for Dataset",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8096",
+					"path": [
+						"DlSystem",
+						"dataset"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "12121212"
+						},
+						{
+							"key": "content",
+							"value": "Test content for Dataset"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save Running Model",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8096/DlSystem/deploy/model?runningModelId=12121212&assignedResource=Assgined Rescource test test&api=Test API",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8096",
+					"path": [
+						"DlSystem",
+						"deploy",
+						"model"
+					],
+					"query": [
+						{
+							"key": "runningModelId",
+							"value": "12121212"
+						},
+						{
+							"key": "assignedResource",
+							"value": "Assgined Rescource test test"
+						},
+						{
+							"key": "api",
+							"value": "Test API"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Key",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8096/DlSystem/createKey?id=12121212",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8096",
+					"path": [
+						"DlSystem",
+						"createKey"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "12121212"
+						},
+						{
+							"key": "content",
+							"value": "Test content for Dataset",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Attachment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": "http://localhost:8096/DlSystem/attachment"
+			},
+			"response": []
+		},
+		{
+			"name": "Search Model By Keyword",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8096/DlSystem/searchModel/keyword?keyword=Test keywords",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8096",
+					"path": [
+						"DlSystem",
+						"searchModel",
+						"keyword"
+					],
+					"query": [
+						{
+							"key": "keyword",
+							"value": "Test keywords"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Call Model",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8096/DlSystem/callModel?keyId=418660f5-8536-4a11-84b7-6f2bcb91fdd1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8096",
+					"path": [
+						"DlSystem",
+						"callModel"
+					],
+					"query": [
+						{
+							"key": "keyId",
+							"value": "418660f5-8536-4a11-84b7-6f2bcb91fdd1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View Model",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8096/DlSystem//view/model?modelId=418660f5-8536-4a11-84b7-6f2bcb91fdd1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8096",
+					"path": [
+						"DlSystem",
+						"",
+						"view",
+						"model"
+					],
+					"query": [
+						{
+							"key": "modelId",
+							"value": "418660f5-8536-4a11-84b7-6f2bcb91fdd1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Model Info",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8096/DlSystem//model/info?title=update Title&keyword=update keywords&version=Third Version&description=Saving first Model&id=418660f5-8536-4a11-84b7-6f2bcb91fdd1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8096",
+					"path": [
+						"DlSystem",
+						"",
+						"model",
+						"info"
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "update Title"
+						},
+						{
+							"key": "keyword",
+							"value": "update keywords"
+						},
+						{
+							"key": "version",
+							"value": "Third Version"
+						},
+						{
+							"key": "description",
+							"value": "Saving first Model"
+						},
+						{
+							"key": "id",
+							"value": "418660f5-8536-4a11-84b7-6f2bcb91fdd1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Dataset",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8096/DlSystem/update/dataset?id=12121212&content=Test content for Dataset",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8096",
+					"path": [
+						"DlSystem",
+						"update",
+						"dataset"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "12121212"
+						},
+						{
+							"key": "content",
+							"value": "Test content for Dataset"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Running Model",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8096/DlSystem/update/runningmodel?runningModelId=12121212&assignedResource=Assgined Rescource test testaaaa&api=Test API ASASASAS",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8096",
+					"path": [
+						"DlSystem",
+						"update",
+						"runningmodel"
+					],
+					"query": [
+						{
+							"key": "runningModelId",
+							"value": "12121212"
+						},
+						{
+							"key": "assignedResource",
+							"value": "Assgined Rescource test testaaaa"
+						},
+						{
+							"key": "api",
+							"value": "Test API ASASASAS"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Key",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8096/DlSystem/update/key?id=12121212",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8096",
+					"path": [
+						"DlSystem",
+						"update",
+						"key"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "12121212"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Generate URL",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8096/DlSystem/generate/url"
+			},
+			"response": []
+		},
+		{
+			"name": "Download ",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8096/DlSystem/download"
+			},
+			"response": []
+		}
+	]
+}

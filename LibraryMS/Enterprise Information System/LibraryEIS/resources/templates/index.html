@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+	<html>
+	<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>Prototype</title>
+	<link rel="stylesheet" href="/css/layui.css"></link>
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script src="/js/layui.js"></script>
+	 <style>
+        ol li a {
+            background-color: rgba(0,0,0,1) !important;
+        }
+
+        .three_this {
+            background-color: #808080 !important;
+        }
+    </style>
+	<script>
+		//JavaScript代码区域
+		layui.use("element", function() {
+			var element = layui.element;
+			var $ = layui.jquery, element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+			
+			 $(".menu_three").on("click", function () {
+                
+                $(this).next().toggle();
+                $.each($(this).parent().siblings(), function (i, e) {
+                    $(e).find("ol").hide();;
+                });
+               
+            })
+            $("ol").on("click", "li a", function () {
+                $.each($(this).parent().siblings(), function (i, e) {
+                    $(e).find("a").removeClass('three_this')
+                });
+                $(this).addClass('three_this');                            // 添加当前元素的样式
+
+            })
+		
+		});
+		$(document).ready(function() {
+			$("dd>a").click(function(e) {
+				e.preventDefault();
+				$("#iframeMain").attr("src", $(this).attr("href"));
+			});
+										
+			$("ol>li>a").click(function(e) {
+					e.preventDefault();
+					$("#iframeMain").attr("src", $(this).attr("href"));
+			});
+		});
+	</script>
+	</head>
+	<body class="layui-layout-body">
+		<div class="layui-layout layui-layout-admin">
+			<div class="layui-header">
+				<div class="layui-logo">Prototype LibraryManagementSystem</div>
+				<!-- 头部区域（可配合layui已有的水平导航） -->
+				<ul class="layui-nav layui-layout-left">
+					<li class="layui-nav-item layui-this"><a href="/main/index" id="s_function">System Function</a></li>
+					<li class="layui-nav-item"><a href="/main/index2" id="s_state">System State</a></li>
+				</ul>
+			</div>
+			
+			<div class="layui-side layui-bg-black">
+				<div class="layui-side-scroll">
+					<ul class="layui-nav layui-nav-tree">
+						<li class="layui-nav-item">
+							<a class="" href="javascript:;" id="User">User</a>
+							<dl class="layui-nav-child">
+							<dd >
+							<a href="/main/searchBook" id="searchBook"> searchBook</a>
+							</dd>
+							</dl>
+							<dl class="layui-nav-child">
+							<dd >
+							<a href="/main/listBookHistory" id="listBookHistory"> listBookHistory</a>
+							</dd>
+							</dl>
+							<dl class="layui-nav-child">
+							<dd >
+							<a href="/main/makeReservation" id="makeReservation"> makeReservation</a>
+							</dd>
+							</dl>
+							<dl class="layui-nav-child">
+							<dd >
+							<a href="/main/recommendBook" id="recommendBook"> recommendBook</a>
+							</dd>
+							</dl>
+							<dl class="layui-nav-child">
+							<dd >
+							<a href="/main/cancelReservation" id="cancelReservation"> cancelReservation</a>
+							</dd>
+							</dl>
+						</li>
+						<li class="layui-nav-item">
+							<a class="" href="javascript:;" id="Faculty">Faculty</a>
+						</li>
+						<li class="layui-nav-item">
+							<a class="" href="javascript:;" id="Student">Student</a>
+						</li>
+						<li class="layui-nav-item">
+							<a class="" href="javascript:;" id="Administrator">Administrator</a>
+							<dl class="layui-nav-child">
+							<dd >
+								<a href="javascript:;"  class="menu_three " id="manageUser"> manageUser</a>
+								<ol class="layui-nav-child" style="display: none;">
+									<li><a href="/main/createUser" id="createUser">&emsp;createUser</a></li>
+									<li><a href="/main/queryUser" id="queryUser">&emsp;queryUser</a></li>
+									<li><a href="/main/modifyUser" id="modifyUser">&emsp;modifyUser</a></li>
+									<li><a href="/main/deleteUser" id="deleteUser">&emsp;deleteUser</a></li>
+								</ol>
+							</dd>
+							</dl>
+							<dl class="layui-nav-child">
+							<dd >
+								<a href="javascript:;"  class="menu_three " id="manageBook"> manageBook</a>
+								<ol class="layui-nav-child" style="display: none;">
+									<li><a href="/main/createBook" id="createBook">&emsp;createBook</a></li>
+									<li><a href="/main/queryBook" id="queryBook">&emsp;queryBook</a></li>
+									<li><a href="/main/modifyBook" id="modifyBook">&emsp;modifyBook</a></li>
+									<li><a href="/main/deleteBook" id="deleteBook">&emsp;deleteBook</a></li>
+								</ol>
+							</dd>
+							</dl>
+							<dl class="layui-nav-child">
+							<dd >
+								<a href="javascript:;"  class="menu_three " id="manageSubject"> manageSubject</a>
+								<ol class="layui-nav-child" style="display: none;">
+									<li><a href="/main/createSubject" id="createSubject">&emsp;createSubject</a></li>
+									<li><a href="/main/querySubject" id="querySubject">&emsp;querySubject</a></li>
+									<li><a href="/main/modifySubject" id="modifySubject">&emsp;modifySubject</a></li>
+									<li><a href="/main/deleteSubject" id="deleteSubject">&emsp;deleteSubject</a></li>
+								</ol>
+							</dd>
+							</dl>
+							<dl class="layui-nav-child">
+							<dd >
+								<a href="javascript:;"  class="menu_three " id="manageBookCopy"> manageBookCopy</a>
+								<ol class="layui-nav-child" style="display: none;">
+									<li><a href="/main/createBookCopy" id="createBookCopy">&emsp;createBookCopy</a></li>
+									<li><a href="/main/queryBookCopy" id="queryBookCopy">&emsp;queryBookCopy</a></li>
+									<li><a href="/main/modifyBookCopy" id="modifyBookCopy">&emsp;modifyBookCopy</a></li>
+									<li><a href="/main/deleteBookCopy" id="deleteBookCopy">&emsp;deleteBookCopy</a></li>
+								</ol>
+							</dd>
+							</dl>
+							<dl class="layui-nav-child">
+							<dd >
+								<a href="javascript:;"  class="menu_three " id="manageLibrarian"> manageLibrarian</a>
+								<ol class="layui-nav-child" style="display: none;">
+									<li><a href="/main/createLibrarian" id="createLibrarian">&emsp;createLibrarian</a></li>
+									<li><a href="/main/queryLibrarian" id="queryLibrarian">&emsp;queryLibrarian</a></li>
+									<li><a href="/main/modifyLibrarian" id="modifyLibrarian">&emsp;modifyLibrarian</a></li>
+									<li><a href="/main/deleteLibrarian" id="deleteLibrarian">&emsp;deleteLibrarian</a></li>
+								</ol>
+							</dd>
+							</dl>
+							<dl class="layui-nav-child">
+							<dd >
+							<a href="/main/listRecommendBook" id="listRecommendBook"> listRecommendBook</a>
+							</dd>
+							</dl>
+						</li>
+						<li class="layui-nav-item">
+							<a class="" href="javascript:;" id="Librarian">Librarian</a>
+							<dl class="layui-nav-child">
+							<dd >
+							<a href="/main/borrowBook" id="borrowBook"> borrowBook</a>
+							</dd>
+							</dl>
+							<dl class="layui-nav-child">
+							<dd >
+							<a href="/main/renewBook" id="renewBook"> renewBook</a>
+							</dd>
+							</dl>
+							<dl class="layui-nav-child">
+							<dd >
+							<a href="/main/payOverDueFee" id="payOverDueFee"> payOverDueFee</a>
+							</dd>
+							</dl>
+							<dl class="layui-nav-child">
+							<dd >
+							<a href="/main/returnBook" id="returnBook"> returnBook</a>
+							</dd>
+							</dl>
+						</li>
+						<li class="layui-nav-item">
+							<a class="" href="javascript:;" id="Scheduler">Scheduler</a>
+							<dl class="layui-nav-child">
+							<dd >
+							<a href="/main/checkOverDueandComputeOverDueFee" id="checkOverDueandComputeOverDueFee"> checkOverDueandComputeOverDueFee</a>
+							</dd>
+							</dl>
+							<dl class="layui-nav-child">
+							<dd >
+							<a href="/main/dueSoonNotification" id="dueSoonNotification"> dueSoonNotification</a>
+							</dd>
+							</dl>
+							<dl class="layui-nav-child">
+							<dd >
+							<a href="/main/countDownSuspensionDay" id="countDownSuspensionDay"> countDownSuspensionDay</a>
+							</dd>
+							</dl>
+						</li>
+						<li class="layui-nav-item">
+							<a class="" href="javascript:;" id="ThirdPartSystem">ThirdPartSystem</a>
+							<dl class="layui-nav-child">
+							<dd >
+							<a href="/main/sendNotificationEmail" id="sendNotificationEmail"> sendNotificationEmail</a>
+							</dd>
+							</dl>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="layui-body">
+						<iframe id="iframeMain" 
+					style="width: 100%; height: 100%;" src="/main/welcome">
+				</iframe>
+			</div>
+		</div>
+	</body>
+	</html>
+	

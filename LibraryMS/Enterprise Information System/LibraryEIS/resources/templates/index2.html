@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+	<html>
+	<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>Prototype</title>
+	<link rel="stylesheet" href="/css/layui.css"></link>
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script src="/js/layui.js"></script>
+	<script>
+	function formatDate(t) { 
+	if(isNaN(t)){
+	return ""; 
+	}else{
+	var now=new Date(t);
+	var year=now.getFullYear();
+	var month=now.getMonth()+1; 
+	var date=now.getDate(); 
+	return year+"-"+month+"-"+date; 
+	}
+	} 
+		//JavaScript代码区域
+		layui.use("element", function() {
+			var element = layui.element;
+			var $ = layui.jquery, element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+		});
+		$(document).ready(function() {
+	$.ajax({
+	type: "GET",
+	url: "/state/UserTable",
+	data: {},
+	dataType: "json",
+	success: function(data){
+	var html="";
+	$.each(data, function (i, item) {
+	html+='<tr align="center" style="height:60px">';
+	html+='<td >'+item.userID+'</td>';
+	html+='<td >'+item.name+'</td>';
+	html+='<td >'+item.sex+'</td>';
+	html+='<td >'+item.password+'</td>';
+	html+='<td >'+item.email+'</td>';
+	html+='<td >'+item.faculty+'</td>';
+	html+='<td >'+item.loanedNumber+'</td>';
+	html+='<td >'+item.borrowStatus+'</td>';
+	html+='<td >'+item.suspensionDays+'</td>';
+	html+='<td >'+item.overDueFee+'</td>';
+	html+='</tr>';
+	});
+	$("#User_table").html(html);
+	}
+	});
+	$.ajax({
+	type: "GET",
+	url: "/state/StudentTable",
+	data: {},
+	dataType: "json",
+	success: function(data){
+	var html="";
+	$.each(data, function (i, item) {
+	html+='<tr align="center" style="height:60px">';
+	html+='<td >'+item.major+'</td>';
+	html+='<td >'+item.programme+'</td>';
+	html+='<td >'+item.registrationStatus+'</td>';
+	html+='</tr>';
+	});
+	$("#Student_table").html(html);
+	}
+	});
+	$.ajax({
+	type: "GET",
+	url: "/state/FacultyTable",
+	data: {},
+	dataType: "json",
+	success: function(data){
+	var html="";
+	$.each(data, function (i, item) {
+	html+='<tr align="center" style="height:60px">';
+	html+='<td >'+item.position+'</td>';
+	html+='<td >'+item.status+'</td>';
+	html+='</tr>';
+	});
+	$("#Faculty_table").html(html);
+	}
+	});
+	$.ajax({
+	type: "GET",
+	url: "/state/BookTable",
+	data: {},
+	dataType: "json",
+	success: function(data){
+	var html="";
+	$.each(data, function (i, item) {
+	html+='<tr align="center" style="height:60px">';
+	html+='<td >'+item.callNo+'</td>';
+	html+='<td >'+item.title+'</td>';
+	html+='<td >'+item.edition+'</td>';
+	html+='<td >'+item.author+'</td>';
+	html+='<td >'+item.publisher+'</td>';
+	html+='<td >'+item.description+'</td>';
+	html+='<td >'+item.iSBn+'</td>';
+	html+='<td >'+item.copyNum+'</td>';
+	html+='</tr>';
+	});
+	$("#Book_table").html(html);
+	}
+	});
+	$.ajax({
+	type: "GET",
+	url: "/state/SubjectTable",
+	data: {},
+	dataType: "json",
+	success: function(data){
+	var html="";
+	$.each(data, function (i, item) {
+	html+='<tr align="center" style="height:60px">';
+	html+='<td >'+item.name+'</td>';
+	html+='</tr>';
+	});
+	$("#Subject_table").html(html);
+	}
+	});
+	$.ajax({
+	type: "GET",
+	url: "/state/BookCopyTable",
+	data: {},
+	dataType: "json",
+	success: function(data){
+	var html="";
+	$.each(data, function (i, item) {
+	html+='<tr align="center" style="height:60px">';
+	html+='<td >'+item.barcode+'</td>';
+	html+='<td >'+item.status+'</td>';
+	html+='<td >'+item.location+'</td>';
+	html+='<td >'+item.isReserved+'</td>';
+	html+='</tr>';
+	});
+	$("#BookCopy_table").html(html);
+	}
+	});
+	$.ajax({
+	type: "GET",
+	url: "/state/LoanTable",
+	data: {},
+	dataType: "json",
+	success: function(data){
+	var html="";
+	$.each(data, function (i, item) {
+	html+='<tr align="center" style="height:60px">';
+	html+='<td >'+formatDate(item.loanDate)+'</td>';
+	html+='<td >'+formatDate(item.renewDate)+'</td>';
+	html+='<td >'+formatDate(item.dueDate)+'</td>';
+	html+='<td >'+formatDate(item.returnDate)+'</td>';
+	html+='<td >'+item.renewedTimes+'</td>';
+	html+='<td >'+item.isReturned+'</td>';
+	html+='<td >'+item.overDueFee+'</td>';
+	html+='<td >'+item.overDue3Days+'</td>';
+	html+='<td >'+item.overDue10Days+'</td>';
+	html+='<td >'+item.overDue17Days+'</td>';
+	html+='<td >'+item.overDue31Days+'</td>';
+	html+='</tr>';
+	});
+	$("#Loan_table").html(html);
+	}
+	});
+	$.ajax({
+	type: "GET",
+	url: "/state/ReserveTable",
+	data: {},
+	dataType: "json",
+	success: function(data){
+	var html="";
+	$.each(data, function (i, item) {
+	html+='<tr align="center" style="height:60px">';
+	html+='<td >'+formatDate(item.reserveDate)+'</td>';
+	html+='<td >'+item.isReserveClosed+'</td>';
+	html+='</tr>';
+	});
+	$("#Reserve_table").html(html);
+	}
+	});
+	$.ajax({
+	type: "GET",
+	url: "/state/RecommendBookTable",
+	data: {},
+	dataType: "json",
+	success: function(data){
+	var html="";
+	$.each(data, function (i, item) {
+	html+='<tr align="center" style="height:60px">';
+	html+='<td >'+formatDate(item.recommendDate)+'</td>';
+	html+='</tr>';
+	});
+	$("#RecommendBook_table").html(html);
+	}
+	});
+	$.ajax({
+	type: "GET",
+	url: "/state/AdministratorTable",
+	data: {},
+	dataType: "json",
+	success: function(data){
+	var html="";
+	$.each(data, function (i, item) {
+	html+='<tr align="center" style="height:60px">';
+	html+='<td >'+item.adminID+'</td>';
+	html+='<td >'+item.userName+'</td>';
+	html+='<td >'+item.password+'</td>';
+	html+='</tr>';
+	});
+	$("#Administrator_table").html(html);
+	}
+	});
+	$.ajax({
+	type: "GET",
+	url: "/state/LibrarianTable",
+	data: {},
+	dataType: "json",
+	success: function(data){
+	var html="";
+	$.each(data, function (i, item) {
+	html+='<tr align="center" style="height:60px">';
+	html+='<td >'+item.librarianID+'</td>';
+	html+='<td >'+item.name+'</td>';
+	html+='<td >'+item.password+'</td>';
+	html+='</tr>';
+	});
+	$("#Librarian_table").html(html);
+	}
+	});
+	});
+	</script>
+	</head>
+	<body class="layui-layout-body">
+		<div class="layui-layout layui-layout-admin">
+			<div class="layui-header">
+				<div class="layui-logo">Prototype LibraryManagementSystem</div>
+				<ul class="layui-nav layui-layout-left">
+						<li class="layui-nav-item"><a href="/main/index" id="s_function">System Function</a></li>
+						<li class="layui-nav-item layui-this"><a href="/main/index2" id="s_state">System State</a></li>
+				</ul>
+			</div>
+		<div class="layui-tab layui-tab-brief">
+				<ul class="layui-tab-title">
+			<li class="layui-this" id="User">User</li>
+			<li id="Student">Student</li>
+			<li id="Faculty">Faculty</li>
+			<li id="Book">Book</li>
+			<li id="Subject">Subject</li>
+			<li id="BookCopy">BookCopy</li>
+			<li id="Loan">Loan</li>
+			<li id="Reserve">Reserve</li>
+			<li id="RecommendBook">RecommendBook</li>
+			<li id="Administrator">Administrator</li>
+			<li id="Librarian">Librarian</li>
+				</ul>
+				<div class="layui-tab-content" style="height: 100px;">
+					<div class="layui-tab-item layui-show" >
+						<table style="margin: auto;width:600px;"  border="1">
+							<thead>
+								<tr align="center" style="height:100px">
+								<td style="font-weight: bold">UserID</td>
+								<td style="font-weight: bold">Name</td>
+								<td style="font-weight: bold">Sex</td>
+								<td style="font-weight: bold">Password</td>
+								<td style="font-weight: bold">Email</td>
+								<td style="font-weight: bold">Faculty</td>
+								<td style="font-weight: bold">LoanedNumber</td>
+								<td style="font-weight: bold">BorrowStatus</td>
+								<td style="font-weight: bold">SuspensionDays</td>
+								<td style="font-weight: bold">OverDueFee</td>
+								</tr>
+							</thead>
+							<tbody id="User_table">
+							</tbody>
+						</table>
+					</div>
+					<div class="layui-tab-item" >
+						<table style="margin: auto;width:600px;"  border="1">
+							<thead>
+								<tr align="center" style="height:100px">
+								<td style="font-weight: bold">Major</td>
+								<td style="font-weight: bold">Programme</td>
+								<td style="font-weight: bold">RegistrationStatus</td>
+								</tr>
+							</thead>
+							<tbody id="Student_table">
+							</tbody>
+						</table>
+					</div>
+					<div class="layui-tab-item" >
+						<table style="margin: auto;width:600px;"  border="1">
+							<thead>
+								<tr align="center" style="height:100px">
+								<td style="font-weight: bold">Position</td>
+								<td style="font-weight: bold">Status</td>
+								</tr>
+							</thead>
+							<tbody id="Faculty_table">
+							</tbody>
+						</table>
+					</div>
+					<div class="layui-tab-item" >
+						<table style="margin: auto;width:600px;"  border="1">
+							<thead>
+								<tr align="center" style="height:100px">
+								<td style="font-weight: bold">CallNo</td>
+								<td style="font-weight: bold">Title</td>
+								<td style="font-weight: bold">Edition</td>
+								<td style="font-weight: bold">Author</td>
+								<td style="font-weight: bold">Publisher</td>
+								<td style="font-weight: bold">Description</td>
+								<td style="font-weight: bold">ISBn</td>
+								<td style="font-weight: bold">CopyNum</td>
+								</tr>
+							</thead>
+							<tbody id="Book_table">
+							</tbody>
+						</table>
+					</div>
+					<div class="layui-tab-item" >
+						<table style="margin: auto;width:600px;"  border="1">
+							<thead>
+								<tr align="center" style="height:100px">
+								<td style="font-weight: bold">Name</td>
+								</tr>
+							</thead>
+							<tbody id="Subject_table">
+							</tbody>
+						</table>
+					</div>
+					<div class="layui-tab-item" >
+						<table style="margin: auto;width:600px;"  border="1">
+							<thead>
+								<tr align="center" style="height:100px">
+								<td style="font-weight: bold">Barcode</td>
+								<td style="font-weight: bold">Status</td>
+								<td style="font-weight: bold">Location</td>
+								<td style="font-weight: bold">IsReserved</td>
+								</tr>
+							</thead>
+							<tbody id="BookCopy_table">
+							</tbody>
+						</table>
+					</div>
+					<div class="layui-tab-item" >
+						<table style="margin: auto;width:600px;"  border="1">
+							<thead>
+								<tr align="center" style="height:100px">
+								<td style="font-weight: bold">LoanDate</td>
+								<td style="font-weight: bold">RenewDate</td>
+								<td style="font-weight: bold">DueDate</td>
+								<td style="font-weight: bold">ReturnDate</td>
+								<td style="font-weight: bold">RenewedTimes</td>
+								<td style="font-weight: bold">IsReturned</td>
+								<td style="font-weight: bold">OverDueFee</td>
+								<td style="font-weight: bold">OverDue3Days</td>
+								<td style="font-weight: bold">OverDue10Days</td>
+								<td style="font-weight: bold">OverDue17Days</td>
+								<td style="font-weight: bold">OverDue31Days</td>
+								</tr>
+							</thead>
+							<tbody id="Loan_table">
+							</tbody>
+						</table>
+					</div>
+					<div class="layui-tab-item" >
+						<table style="margin: auto;width:600px;"  border="1">
+							<thead>
+								<tr align="center" style="height:100px">
+								<td style="font-weight: bold">ReserveDate</td>
+								<td style="font-weight: bold">IsReserveClosed</td>
+								</tr>
+							</thead>
+							<tbody id="Reserve_table">
+							</tbody>
+						</table>
+					</div>
+					<div class="layui-tab-item" >
+						<table style="margin: auto;width:600px;"  border="1">
+							<thead>
+								<tr align="center" style="height:100px">
+								<td style="font-weight: bold">RecommendDate</td>
+								</tr>
+							</thead>
+							<tbody id="RecommendBook_table">
+							</tbody>
+						</table>
+					</div>
+					<div class="layui-tab-item" >
+						<table style="margin: auto;width:600px;"  border="1">
+							<thead>
+								<tr align="center" style="height:100px">
+								<td style="font-weight: bold">AdminID</td>
+								<td style="font-weight: bold">UserName</td>
+								<td style="font-weight: bold">Password</td>
+								</tr>
+							</thead>
+							<tbody id="Administrator_table">
+							</tbody>
+						</table>
+					</div>
+					<div class="layui-tab-item" >
+						<table style="margin: auto;width:600px;"  border="1">
+							<thead>
+								<tr align="center" style="height:100px">
+								<td style="font-weight: bold">LibrarianID</td>
+								<td style="font-weight: bold">Name</td>
+								<td style="font-weight: bold">Password</td>
+								</tr>
+							</thead>
+							<tbody id="Librarian_table">
+							</tbody>
+						</table>
+					</div>
+			</div> 
+		</div>
+	</body>
+	</html>
+	

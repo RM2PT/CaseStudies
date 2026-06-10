@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+    <Properties>
+        <Property name="LOG_PATTERN">%notEmpty{user = %X{userId}}, %notEmpty{sessionId = %X{sessionId}} ,  %d{yyyy-MM-dd'T'HH:mm:ss.SSSZ} , %t , %C.%M , %p ,  %m%n</Property>
+        <Property name="APP_LOG_ROOT">/data/servers/logs</Property>
+    </Properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${LOG_PATTERN}" />
+        </Console>
+
+        <RollingFile name="appLog"
+                     fileName="${APP_LOG_ROOT}/takeoutsystemservice/takeoutsystemservice.log"
+                     filePattern="${APP_LOG_ROOT}/takeoutsystemservice/takeoutsystemservice-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout pattern="${LOG_PATTERN}" />
+            <Policies>
+                <SizeBasedTriggeringPolicy size="2MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="20" />
+        </RollingFile>
+
+    </Appenders>
+    <Loggers>
+
+        <Logger name="com.example.takeoutsystemservice" additivity="false">
+<!--            <AppenderRef ref="appLog" />-->
+             <AppenderRef ref="Console" />
+        </Logger>
+
+        <Root level="info">
+             <AppenderRef ref="Console" />
+<!--            <AppenderRef ref="appLog" />-->
+        </Root>
+    </Loggers>
+</Configuration>

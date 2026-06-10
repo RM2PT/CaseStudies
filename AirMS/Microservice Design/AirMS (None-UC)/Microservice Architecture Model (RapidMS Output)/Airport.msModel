@@ -1,0 +1,93 @@
+MicroServiceModel Airport {
+	MicroService AdminService {
+		ProvidedInterface manageUser{
+			[Operation]
+			createUser
+			queryUser
+			updateUser
+			modifyUser
+		}
+		ProvidedInterface manageDevice{
+			[Operation]
+			createDevice
+			queryDevice
+			updateDevice
+			modifyDevice
+		}
+		DomainModel AdminService {
+		}
+	}
+	MicroService MasterService {
+		ProvidedInterface raiseRepair{
+			[Operation]
+			raiseRepair
+		}
+		ProvidedInterface assignTask{
+			[Operation]
+			assignTask
+		}
+		DomainModel MasterService {
+			@AutoCRUD Entity Staff {
+				Id : Integer
+				Name : String
+				Password : String
+				Phone : String
+				Role : Integer
+				[Refer]
+			}
+		}
+	}
+	MicroService GroundStaffService {
+		ProvidedInterface score{
+			[Operation]
+			score
+		}
+		ProvidedInterface inquireRequest{
+			[Operation]
+			inquireRequest
+		}
+		DomainModel GroundStaffService {
+			 Entity ApprovalHistory {
+				Id : Integer
+				StaffId : Integer
+				Reject : Boolean
+				Suggestion : String
+				[Refer]
+			}
+		}
+	}
+	MicroService ManagerService {
+		DomainModel ManagerService {
+			@AutoCRUD Entity Device {
+				Id : Integer
+				Name : String
+				Location : String
+				[Refer]
+			}
+		}
+	}
+	MicroService WorkerService {
+		ProvidedInterface seekHelp{
+			[Operation]
+			seekHelp
+		}
+		ProvidedInterface submitRepairResult{
+			[Operation]
+			submitRepairResult
+		}
+		DomainModel WorkerService {
+			 Entity Repair {
+				Id : Integer
+				Repairname : String
+				Price : Integer
+				Description : String
+				Score : Integer
+				FailTime : Date
+				Close : Boolean
+				Process : Integer
+				Result : String
+				[Refer]
+			}
+		}
+	}
+}
